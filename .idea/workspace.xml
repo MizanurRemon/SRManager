@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="" />
+    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -73,7 +76,7 @@
     </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="2.2-no-premium" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -84,11 +87,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material3/material3/1.0.1/e90f5af2fdc04ac29257713d2ee94800d0262b17/material3-1.0.1-sources.jar!/androidx/compose/material3/TextFieldDefaults.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-de/strings.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-es/strings.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-fr/strings.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-it/strings.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-nl/strings.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -98,10 +96,11 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2UwOJ3e61sNuQt4aE9mZuI7LkXL" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
@@ -118,7 +117,7 @@
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "last_directory_selection": "/home/remon/Projects/Android/internet-politie-android-app/core/designsystem/src/main/res/drawable",
-    "last_opened_file_path": "/home/remon/Projects/Android/srmanager",
+    "last_opened_file_path": "/home/remon/Projects/Android/internet-politie-android-app",
     "memory.settings.postsync.last.time.stamp": "1693848167557",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
