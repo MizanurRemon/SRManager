@@ -56,9 +56,9 @@ fun SignInScreen(
     snackbarHostState: SnackbarHostState,
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel(),
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    toHome: ()-> Unit
 ) {
-    val isSignIn = true
     val showPassword = remember { mutableStateOf(false) }
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -85,13 +85,7 @@ fun SignInScreen(
             when (event) {
                 is UiEvent.Success -> {
 
-                    if (viewModel.state.isDraftUser) {
-                        navController.navigate(Route.VERIFY_OTP_EMAIL + "/${viewModel.state.email}" + "/${Route.SIGN_IN}")
-                    } else {
-                        navController.navigate(Route.NOTIFICATION_ON_OFF + "/${isSignIn}") {
-                            popUpTo(navController.graph.id)
-                        }
-                    }
+                    toHome()
 
                 }
 
@@ -327,7 +321,9 @@ fun SignInScreen(
         }
         Spacer(modifier = Modifier.weight(1f))
         AppActionButtonCompose(stringId = CommonR.string.sign_in) {
-            viewModel.onEvent(LoginEvent.OnSubmitClick)
+            //viewModel.onEvent(LoginEvent.OnSubmitClick)
+
+            toHome()
         }
 
 

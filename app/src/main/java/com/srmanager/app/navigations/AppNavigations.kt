@@ -134,7 +134,12 @@ fun IPApp(
                     snackbarHostState = snackBarHostState,
                     navController = navController,
                     onBack = {
-                        navController.navigate(Route.AUTH_CHOOSE)
+                        //navController.navigate(Route.AUTH_CHOOSE)
+                    },
+                    toHome = {
+                        navController.navigate(Route.HOME) {
+                            popUpTo(navController.graph.id)
+                        }
                     }
                 )
             }
