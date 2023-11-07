@@ -1,0 +1,204 @@
+<resources>
+    <string name="app_name">SR Manager</string>
+    <string name="ok_let_go">Ok, let\'s go</string>
+    <string name="welcome">Welcome</string>
+    <string name="sign_in_subtitle">This application has features that will keep you safe on the internet.</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="forget_password_exla">Forgot password?</string>
+    <string name="enter_your_password">Enter you password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="donot_have_account">"Don't have account? "</string>
+    <string name="sign_up_for_free">Sign up for free</string>
+    <string name="i_already_have_an_account">I already have an account</string>
+    <string name="enter_your_email">Enter your email</string>
+    <string name="invalid_email">Invalid email address</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="sign_up">Sign up</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="retype_your_password">Re-type your password</string>
+    <string name="age_category">Age category</string>
+    <string name="please_accept_our">Please accept our  </string>
+    <string name="terms_of_service">Terms of Service</string>
+    <string name="please_enter_valid_email">Please type a valid e-mail address.</string>
+    <string name="please_accept_our_terms">Please accept Terms of Service</string>
+    <string name="verify_email_address">Verify email address</string>
+    <string name="verify_email_address_info">We’ve sent you a code. Please check your email and insert the received code below.</string>
+    <string name="verify">Verify</string>
+    <string name="donot_get_any_code">"Didn’t get the code? "</string>
+    <string name="send_again">Send again</string>
+    <string name="incorrect_code">"Incorrect code. "</string>
+    <string name="expired_in">Expires in</string>
+    <string name="verified">Verified</string>
+    <string name="thanks_for_verify_your_account">Thank you for verifying your account.</string>
+    <string name="continues">Continue</string>
+    <string name="password_updated">Password updated</string>
+    <string name="your_new_password_is_set">Nice! Your new password has been set.</string>
+    <string name="continues_as_login">Continue to login</string>
+    <string name="check_you_email">Check your email</string>
+    <string name="we_have_send_you_a_reset_link">We’ve sent you a password reset link.\n Please check your email.</string>
+    <string name="set_your_new_password">Set your new password</string>
+    <string name="please_set_your_new_password">Please set your new password</string>
+    <string name="ops">Oops..</string>
+    <string name="forget_password_let_us_send_email">Forgot your password?\n Let us send you a link to reset it.</string>
+    <string name="please_enter_email_address">Please enter your email address</string>
+    <string name="send">Send</string>
+    <string name="no_website_report">Not able to report websites</string>
+    <string name="no_gaining_experience">Not gaining experience points</string>
+    <string name="no_personal_avatar">No personal avatar</string>
+    <string name="no_access_premium_feature">No access to premium features</string>
+    <string name="let_create_an_account">Let’s create an account</string>
+    <string name="home">Home</string>
+    <string name="back">Back</string>
+    <string name="trust_score">Trustscore</string>
+    <string name="got_it">Got it</string>
+    <string name="go_back_safely">Go back safely</string>
+    <string name="is_malicious">Is malicious!</string>
+    <string name="is_suspicious">Is suspicious!</string>
+    <string name="suspicious_info">Please be cautious when visiting this website.</string>
+    <string name="malicious_info">We advise you not to visit this website.</string>
+    <string name="continue_anyway">Continue anyway</string>
+    <string name="my_profile">My profile</string>
+    <string name="account_setting">Account settings</string>
+    <string name="log_out">Log out</string>
+    <string name="let_us_know_what_you_think">Let us know what you think?</string>
+    <string name="report_websites">Report websites</string>
+    <string name="gain_experience_points">Gain experience points</string>
+    <string name="personal_avatar">Personal avatar</string>
+    <string name="access_premium_feature">Access to premium features</string>
+    <string name="cancel_subscription">Cancel subscription</string>
+    <string name="subscription_includes">Subscription includes</string>
+    <string name="subscription_benefit_1">All features from basic subscription</string>
+    <string name="subscription_benefit_2">Premium for up to 6 people</string>
+    <string name="manage_subscription">Manage subscription</string>
+    <string name="subscription_members">Subscription members</string>
+    <string name="your_subs_cancel">Your subscription has been cancelled</string>
+    <string name="your_subs_cancel_info">Note that you will not enjoy the same benefits and protection
+        with a basis account compared to a premium subscription. \n\nDid’t like our product or service?</string>
+    <string name="let_us_know_why">Let us know why</string>
+    <string name="done">Done</string>
+    <string name="officer">Officer</string>
+    <string name="detective">Detective</string>
+    <string name="sergeant">Sergeant</string>
+    <string name="lieutenant">Lieutenant</string>
+    <string name="level_up">Level up</string>
+    <string name="complete_profile">Complete profile</string>
+    <string name="no_ranking">No ranking</string>
+    <string name="pending">Pending</string>
+    <string name="new_status" translatable="false">NEW</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="cancel">Cancel</string>
+    <string name="log_out_details">Log out from your account on this device. You will not be notified when accessing suspicious or malicious websites.</string>
+    <string name="cancel_subscription_info">Are you sure you want to cancel your current subscription plan? You will lose the premium benefits.</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="learn_more">Learn more</string>
+    <string name="prevent_opening_link_to_malicious_websites">Prevent opening links to malicious websites</string>
+    <string name="available_on_all_your_devices">Available on all your devices</string>
+    <string name="active_users_can_unlock_benefits">Active users can unlock benefits</string>
+    <string name="access_to_community">Access to our community</string>
+    <string name="completely_ad_free">Completely ad-free</string>
+    <string name="access_to_expert">Access to expert section</string>
+    <string name="email_projection">E-mail protection</string>
+    <string name="all_features_from_basic">All features from basic subscription</string>
+    <string name="premium_for_six_people">Premium for up to 6 people</string>
+    <string name="month">month</string>
+    <string name="purchase">Purchase</string>
+    <string name="contact_us">Contact us</string>
+    <string name="be_the_hero_of_your_family">Be the hero of your family</string>
+    <string name="basic">Basic</string>
+    <string name="premium" translatable="false">Premium</string>
+    <string name="family">Family</string>
+    <string name="business">Business</string>
+    <string name="lets_talk">Let\'s talk</string>
+    <string name="business_subscription_1">Protect your friends with our premium subscription</string>
+    <string name="business_subscription_2">Easy deployment through MDM</string>
+    <string name="business_subscription_3">Check which friends are protected</string>
+    <string name="business_subscription_4">License based</string>
+    <string name="enjoy">Enjoy</string>
+    <string name="enjoy_news_internet_protection">Enjoy your new protection</string>
+
+    <string name="accessibility_permission_step_1"><![CDATA[Tap <b>Installed services</b> and find the Internet Police app]]></string>
+    <string name="accessibility_permission_step_2"><![CDATA[Tap the switch to <b>turn ON</b>]]></string>
+    <string name="accessibility_permission_step_3"><![CDATA[Tap <b>Allow</b> to confirm]]></string>
+
+    <string name="go_to_settings">Go to settings</string>
+    <string name="guest">Guest</string>
+
+    <string name="wait_guest_title">Please wait while we set up your home page</string>
+    <string name="grant">Grant </string>
+    <string name="accessibility"> Accessibility </string>
+    <string name="permission">permission</string>
+    <string name="create_account">Create an account</string>
+    <string name="internet_police_agent">Internet Police Agent</string>
+    <string name="cast_vote">You reported a website</string>
+    <string name="vote_verified_suspicious">Your report for a suspicious website was verified</string>
+    <string name="vote_verified_malicious">Your report for a malicious website was verified</string>
+    <string name="vote_submit_desc_info">You provided additional information</string>
+    <string name="invite_user">You invited a friend</string>
+    <string name="invite_user_detective">Invited user reaches a higher rank</string>
+    <string name="suggest_partner">You suggested a potential partner for us</string>
+    <string name="suggest_partner_approved">Your suggested partner is approved</string>
+    <string name="posting">Posting</string>
+    <string name="posting_like">Like a post</string>
+    <string name="posting_like_receive">Receive a like on post</string>
+    <string name="answering_question">Answer a question</string>
+    <string name="solving_issue" translatable="false">Solving issue</string>
+    <string name="best_answer">Best answer</string>
+    <string name="endorse_answer">Endorse someone for an answer</string>
+    <string name="endorse_solution" translatable="false">Endorse solution</string>
+    <string name="endorsed_by_someone">Being endorsed by someone</string>
+    <string name="found_new_threat">Find a new threat (verified)</string>
+    <string name="vote_max_reached">You have exceeded the maximum allowed reports.</string>
+    <plurals name="missing_permission_plural">
+        <item quantity="one">%d Permission missing</item>
+        <item quantity="other">%d Permissions missing</item>
+    </plurals>
+    <string name="missing_permission_info">In order for the Internet Police app to properly protect you, it is necessary to grant the following permissions. Don’t worry, we don’t store or share any information about you or your device anywhere.</string>
+    <string name="missing_permission_accessibility_title">Accessibility</string>
+    <string name="missing_permission_accessibility_details">This permission is required to block websites and show website statistics.</string>
+    <string name="missing_permission_overlay_title" translatable="false">Enable “Appear on top”</string>
+    <string name="missing_permission_overlay_details">This permission is required since Android 10 to block websites and apps.</string>
+    <string name="appear_on_top">Display over other apps</string>
+    <string name="phishuntInfo"><![CDATA[Website is listed as malicious by <strong><a href="https://phishunt.io">Phishunt.io</a></strong>]]></string>
+    <string name="webwinkelkeurInfo"><![CDATA[Website has a quality mark from <strong><a href="https://www.webwinkelkeur.nl">Webwinkelkeur</a></strong>]]></string>
+    <string name="domainToolsNoRisk"><![CDATA[Website has no significant risk factors according to <strong><a href="https://www.domaintools.com">DomainTools</a></strong>]]></string>
+    <string name="domainToolsLowRisk"><![CDATA[Website has low risk factors according to <strong><a href="https://www.domaintools.com">DomainTools</a></strong>]]></string>
+    <string name="domainToolsModerateRisk"><![CDATA[Website has moderate risk factors according to <strong><a href="https://www.domaintools.com">DomainTools</a></strong>]]></string>
+    <string name="domainToolsHighRisk"><![CDATA[Website has high-risk factors according to <strong><a href="https://www.domaintools.com">DomainTools</a></strong>]]></string>
+    <string name="domainToolsVeryHighRisk"><![CDATA[Website has very high-risk factors according to <strong><a href="https://www.domaintools.com">DomainTools</a></strong>]]></string>
+    <string name="aa419Info"><![CDATA[Website is listed as malicious by <strong><a href="https://www.aa419.org">AA419</a></strong>]]></string>
+    <string name="always_protected">Always protected</string>
+    <string name="always_protected_text1">When using the internet, you don’t want to unexpectedly land on an unsafe website and become a victim of online fraud.</string>
+    <string name="always_protected_text2">Fortunately, Internet Police can help you stay safe on the internet. Our online Fraud Scanner checks every website you visit and gives you a warning if there’s potential for deception.</string>
+    <string name="sign_up_not_available">Sign-up not available</string>
+    <string name="sign_up_not_available_text1"><![CDATA[Unfortunately, we\'ve reached the <b>limit of beta users</b> for our app and are <b>currently</b> unable to accept new sign-ups. But don\'t worry, we have grand plans and want you to be a part of them!]]></string>
+    <string name="sign_up_not_available_text2"><![CDATA[If you <b>leave your email address</b>, we\'ll notify you first about the opportunity to sign up and become a part of our community of online fraud fighters.]]></string>
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="sign_up_not_available_dialog_text">Please note that you won’t be notified when you can start using our Fraude Scanner.</string>
+    <string name="thank_you_for_providing_email">Thank you very much for providing your email address. You are now on the waiting list!</string>
+    <string name="first_to_know">You\'re the first to know! We\'ll notify you first when sign-ups are open again. We appreciate your interest and enthusiasm.</string>
+    <string name="stay_connected">Stay connected with us in the meantime through social media.</string>
+    <string name="website_blocked_by_internet_police">Internet Police warning - Potential online fraud</string>
+    <string name="please_click_for_showing_more_details">Please click here for more information</string>
+    <string name="please_be_aware">Please be aware</string>
+    <string name="relatively_new_seller">is a relatively new seller on</string>
+    <string name="scammers_often_use">Scammers often use new accounts, so please be aware.</string>
+    <string name="i_agree">I agree</string>
+    <string name="no_active_internet_connection">No active internet connection</string>
+    <string name="no_internet_connection_text">Please check your connection and try again</string>
+    <string name="reload">Reload</string>
+    <string name="all_permission_granted">All permissions granted</string>
+    <string name="all_permission_granted_text">You’re all set to use the Fraud Scanner and explore the internet with protection.</string>
+    <string name="go_back">Go back</string>
+    <string name="display">Display</string>
+    <string name="over_the_apps">over other apps</string>
+    <string name="problem_with_account">Problem with account</string>
+    <string name="bug_or_issue_with_the_application">Bug or issue with the application</string>
+    <string name="other_problem">Other problem</string>
+    <string name="note_on_privacy">A note on privacy</string>
+    <string name="enabling_accessibility_service"><![CDATA[By enabling the <b>Accessibility Service</b>, you agree that Internet Police will see which websites you visit in order to warn you for malicious and suspicious ones.]]></string>
+    <string name="never_access_or_share_data_text">But don’t worry, we will never access, use or share this data during this process.</string>
+
+
+</resources>
