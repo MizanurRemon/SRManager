@@ -154,6 +154,7 @@ dependencies {
     implementation(Compose.appUpdate)
     implementation(Compose.inAppUpdate)
 
+    implementation("com.airbnb.android:lottie-compose:6.0.1")
 
 }
 

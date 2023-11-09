@@ -26,7 +26,7 @@ val AppBrush = Brush.linearGradient(
     colors = listOf(
         Color(0xFFFFFFFF),
         Color(0xFFF3F6FF),
-        Color(0xFFDBE3FF),
+        Color(0x500C344),
     ),
 )
 val AppBrushReversed = Brush.horizontalGradient(

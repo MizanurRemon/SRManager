@@ -10,70 +10,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/custom_notification_layout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/layout_browser_blocker_overlay.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/accessibility_service_config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/button_style.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_accessibility_master_permission.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_account_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_all_permission_granted.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_always_protected.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_avatar_component_selected.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_avater_bg_without_stroke.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_basic_plan.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_blue_cross.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_business.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_checked.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_chevron_right.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_cop_intro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_cop_notification_disable.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_cop_question_guest.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_cops_unsubscribe.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_default_avatar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_edit.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_elipsize_overlay_icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_facebook.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_family_plan.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_flag_england.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_flag_netherland.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_green_check.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_guest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_inbanx.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_info.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_instagram.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_large_green_check.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_left_arrow_rounded_bg_disable.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_left_arrow_rounded_bg_enable.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_lieutenant.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_linkedin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_logo_horizontal.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_logo_horizontal_dutch.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_logo_vertical.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_logo_vertical_dutch.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_logout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_my_subscription.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_negative.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_pending.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_permission_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_police_with_board_female.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_premium.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_profile.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_profile_bg.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_rank_detective.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_rank_officer.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_rating_low.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_rating_medium.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_red_cross.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_red_warning.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_right_arrow_rounded_bg_disable.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_right_arrow_rounded_bg_enable.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_sergeant.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_subscription_done.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_verified.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_waring_cop_malicious.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_warining_cop_suspicious.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_warning_logo.png" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/app/SRManager.app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/core/designsystem/SRManager.core.designsystem.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/raw/ic_no_network.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/connectivity/NetworkStatusScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/connectivity/NetworkStatusScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Color.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +125,7 @@
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "last_directory_selection": "/home/remon/Projects/Android/internet-politie-android-app/core/designsystem/src/main/res/drawable",
-    "last_opened_file_path": "/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable",
+    "last_opened_file_path": "/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/raw",
     "memory.settings.postsync.last.time.stamp": "1693848167557",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
@@ -201,6 +145,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/raw" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/raw" />
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/drawable" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -645,13 +591,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00207" summary="registration annoted string">
-      <created>1697703435360</created>
-      <option name="number" value="00207" />
-      <option name="presentableId" value="LOCAL-00207" />
-      <option name="project" value="LOCAL" />
-      <updated>1697703435360</updated>
-    </task>
     <task id="LOCAL-00208" summary="request param added">
       <created>1697703771688</created>
       <option name="number" value="00208" />
@@ -988,7 +927,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699519927115</updated>
     </task>
-    <option name="localTasksCounter" value="256" />
+    <task id="LOCAL-00256" summary="upt">
+      <created>1699520455301</created>
+      <option name="number" value="00256" />
+      <option name="presentableId" value="LOCAL-00256" />
+      <option name="project" value="LOCAL" />
+      <updated>1699520455301</updated>
+    </task>
+    <option name="localTasksCounter" value="257" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
