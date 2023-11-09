@@ -54,7 +54,7 @@ fun IPApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.HOME,
             modifier = Modifier.padding(innerPadding)
         ) {
 

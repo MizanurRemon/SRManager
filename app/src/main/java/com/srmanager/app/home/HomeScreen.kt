@@ -20,7 +20,7 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 fun HomeScreen(
 
 ) {
-
+    Text(text = "Home Screen")
 }
 
 

@@ -10,8 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/AppToolbarCompose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/AppToolbarCompose.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,6 +107,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "BundleExportedModule": "InternetPolice.app",
     "ExportBundle.BundlePathForInternetPolice.app": "/home/remon/Projects/Android/internet-politie-android-app/app",
     "Git.Branch.Popup.ShowAllRemotes": "true",
@@ -112,12 +115,13 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "ScreenRecorder.SavePath": "/home/remon/Desktop",
     "android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED": "TextView",
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "last_directory_selection": "/home/remon/Projects/Android/internet-politie-android-app/core/designsystem/src/main/res/drawable",
-    "last_opened_file_path": "/home/remon/Projects/Android/internet-politie-android-app",
+    "last_opened_file_path": "/home/remon/Projects/Android/srmanager",
     "memory.settings.postsync.last.time.stamp": "1693848167557",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
@@ -581,20 +585,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00202" summary="WARNING URL">
-      <created>1697628519031</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
-      <option name="project" value="LOCAL" />
-      <updated>1697628519031</updated>
-    </task>
-    <task id="LOCAL-00203" summary="WARNING ui modify">
-      <created>1697689790324</created>
-      <option name="number" value="00203" />
-      <option name="presentableId" value="LOCAL-00203" />
-      <option name="project" value="LOCAL" />
-      <updated>1697689790324</updated>
-    </task>
     <task id="LOCAL-00204" summary="WARNING ui modify">
       <created>1697694494463</created>
       <option name="number" value="00204" />
@@ -924,11 +914,24 @@
       <option name="project" value="LOCAL" />
       <updated>1699254400270</updated>
     </task>
-    <option name="localTasksCounter" value="251" />
+    <task id="LOCAL-00251" summary="upt">
+      <created>1699335663797</created>
+      <option name="number" value="00251" />
+      <option name="presentableId" value="LOCAL-00251" />
+      <option name="project" value="LOCAL" />
+      <updated>1699335663798</updated>
+    </task>
+    <task id="LOCAL-00252" summary="upt">
+      <created>1699335699207</created>
+      <option name="number" value="00252" />
+      <option name="presentableId" value="LOCAL-00252" />
+      <option name="project" value="LOCAL" />
+      <updated>1699335699207</updated>
+    </task>
+    <option name="localTasksCounter" value="253" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="WARNING ui modify" />
     <MESSAGE value="avatar" />
     <MESSAGE value="registration annoted string" />
     <MESSAGE value="request param added" />
@@ -953,7 +956,8 @@
     <MESSAGE value="sign up ui issue" />
     <MESSAGE value="scaling fixed" />
     <MESSAGE value="img fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="img fix" />
+    <MESSAGE value="upt" />
+    <option name="LAST_COMMIT_MESSAGE" value="upt" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>
