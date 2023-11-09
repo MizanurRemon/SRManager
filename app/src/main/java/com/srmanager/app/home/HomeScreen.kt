@@ -58,7 +58,7 @@ fun HomeScreen(navController: NavHostController) {
 }
 
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 @DevicePreviews
 fun PreviewHomeScreen() {

@@ -6,6 +6,11 @@
     <string name="email">Email</string>
     <string name="password">Password</string>
     <string name="reload">Reload</string>
+    <string name="back">Back</string>
+    <string name="home">Home</string>
+    <string name="customer_add">Customer Add</string>
+    <string name="report">Report</string>
+    <string name="order">Order</string>
     <string name="no_active_internet_connection">No active internet connection</string>
     <string name="no_internet_connection_text">Please connect with internet</string>
     <string name="forget_password_exla">Forgot password?</string>

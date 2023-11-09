@@ -25,6 +25,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 
 import com.srmanager.app.SplashScreen
 import com.srmanager.app.home.HomeScreen
+import com.srmanager.app.screens.CustomerAddScreen
 
 import com.srmanager.auth_presentation.forgot_pass.ForgetPassEmailInput
 import com.srmanager.auth_presentation.forgot_pass.ForgetPasswordCheckYourMailScreen
@@ -74,15 +75,10 @@ fun IPApp(
 
 
 
-            composable(
-                route = Route.VERIFY_OTP_EMAIL + "/{email}/{source}",
-                arguments = listOf(
-                    navArgument("email") { type = NavType.StringType },
-                    navArgument("source") { type = NavType.StringType }
-                )
-            ) {
-                VerifyEmailOTPScreen(
-                    navController = navController,
+            composable(route = Route.VERIFY_OTP_EMAIL + "/{email}/{source}",
+                arguments = listOf(navArgument("email") { type = NavType.StringType },
+                    navArgument("source") { type = NavType.StringType })) {
+                VerifyEmailOTPScreen(navController = navController,
                     snackBarHostState,
                     email = it.arguments?.getString("email") ?: "",
                     source = it.arguments?.getString("source") ?: "",
@@ -98,21 +94,18 @@ fun IPApp(
             }
 
             composable(route = Route.SIGN_UP) {
-                SignUpScreen(
-                    snackBarHostState,
+                SignUpScreen(snackBarHostState,
                     navController,
                     redirectVerifyScreen = { email, source ->
                         navController.navigate(Route.VERIFY_OTP_EMAIL + "/$email" + "/$source")
-                    }
-                )
+                    })
             }
 
             composable(route = Route.VERIFIED_EMAIL) {
                 VerifiedEmailDoneScreen(navController)
             }
             composable(route = Route.SIGN_IN) {
-                SignInScreen(
-                    snackbarHostState = snackBarHostState,
+                SignInScreen(snackbarHostState = snackBarHostState,
                     navController = navController,
                     onBack = {
                         //navController.navigate(Route.AUTH_CHOOSE)
@@ -121,8 +114,7 @@ fun IPApp(
                         navController.navigate(Route.HOME) {
                             popUpTo(navController.graph.id)
                         }
-                    }
-                )
+                    })
             }
             composable(route = Route.FORGET_PASS_EMAIL_INPUT) {
                 ForgetPassEmailInput(navController, snackBarHostState)
@@ -145,11 +137,7 @@ fun IPApp(
                 arguments = listOf(navArgument("email") {
                     type = NavType.StringType
                 })
-            ) { navBackStackEntry ->
-
-                /* val email = navBackStackEntry.arguments?.getString("email") ?: ""
-
-                ForgetPassSetNewPassScreen(email, navController, snackBarHostState) */
+            ) {
 
                 navController.popBackStack(Route.SIGN_IN, inclusive = false)
 
@@ -163,6 +151,12 @@ fun IPApp(
                 PasswordUpdatedScreen(actionTextResId = CommonR.string.done) {
                     navController.popBackStack(Route.HOME, inclusive = false)
                 }
+            }
+
+            composable(route = Route.CUSTOMER_ADD) {
+                CustomerAddScreen(onBack = {
+                    navController.navigateUp()
+                })
             }
 
         }

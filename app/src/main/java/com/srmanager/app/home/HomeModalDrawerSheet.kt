@@ -47,11 +47,9 @@ fun HomeModalDrawerSheet(
 
         NavigationDrawer(currentDestination, onNavigationDrawerItemClick = {
             scope.launch {
-                drawerState.close()
+                //drawerState.close()
 
-                navController.navigate(it.route) {
-                    popUpTo(navController.graph.id)
-                }
+                navController.navigate(it.route)
 
             }
         }, onCloseClick = {

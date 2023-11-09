@@ -31,8 +31,6 @@ fun NewsItemCompose(
     tag: String, dateText: String, onClick: () -> Unit
 ) {
 
-    val context = LocalContext.current
-
     return Row(
         modifier = Modifier
             .padding(top = 8.dp, bottom = 8.dp)

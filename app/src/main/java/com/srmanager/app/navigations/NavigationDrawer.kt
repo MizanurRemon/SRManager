@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -131,10 +132,12 @@ fun NavigationDrawer(
                     Icon(
                         painterResource(id = item.icon),
                         contentDescription = "",
-                        modifier = Modifier.padding(15.dp).size(20.r()),
+                        modifier = Modifier
+                            .padding(15.dp)
+                            .size(20.r()),
                     )
                     Text(
-                        text = item.title.capitalizeFirstCharacter(),
+                        text = stringResource(id = item.title).capitalizeFirstCharacter(),
                         style = TextStyle(color = Color.Black)
                     )
                 }
