@@ -26,7 +26,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.common.util.UiEvent
-import com.srmanager.core.designsystem.languageList
 import com.srmanager.core.designsystem.theme.AppBrush
 import com.srmanager.core.designsystem.theme.heading2TextStyle
 import com.srmanager.core.designsystem.theme.subHeading1TextStyle

@@ -14,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -25,7 +24,6 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 
 
 import com.srmanager.app.SplashScreen
-import com.srmanager.app.home.GuestPreAccountCreationInfoScreen
 import com.srmanager.app.home.HomeScreen
 
 import com.srmanager.auth_presentation.forgot_pass.ForgetPassEmailInput
@@ -71,7 +69,7 @@ fun IPApp(
             }
 
             composable(route = Route.HOME) {
-                HomeScreen()
+                HomeScreen(navController)
             }
 
 
@@ -99,23 +97,6 @@ fun IPApp(
                     })
             }
 
-
-
-
-            composable(route = Route.GUEST_PRE_ACC_CREATION_INFO) {
-                GuestPreAccountCreationInfoScreen(onAccountCreateButtonClick = {
-                    navController.navigate(Route.SIGN_UP)
-                }, onFinished = {
-//                    val notificationManager: NotificationManager =
-//                        context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-//                    if (notificationManager.isNotificationPolicyAccessGranted && notificationManager.areNotificationsEnabled()) {
-//                        navController.navigate(Route.HOME)
-//                    } else {
-                    navController.navigate(Route.HOME)
-                    // }
-
-                })
-            }
             composable(route = Route.SIGN_UP) {
                 SignUpScreen(
                     snackBarHostState,

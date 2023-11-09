@@ -9,7 +9,6 @@ import com.srmanager.core.common.util.DEFAULT_LANGUAGE_TAG
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.datastore.PreferenceDataStoreConstants
 import com.srmanager.core.datastore.PreferenceDataStoreHelper
-import com.srmanager.core.designsystem.languageList
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -24,8 +23,6 @@ class SplashViewModel @Inject constructor(
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-    var state by mutableStateOf(languageList[0])
-        private set
 
     fun onBack() {
         viewModelScope.launch {

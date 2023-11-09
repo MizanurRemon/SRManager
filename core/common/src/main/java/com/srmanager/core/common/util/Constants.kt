@@ -35,11 +35,6 @@ const val INSTAGRAM_URL = "https://www.instagram.com/internet_politie"
 
 val AGE_LIST = listOf("-18", "18-34", "35-60", "60+")
 
-val REPORT_SUBJECT_LIST = mutableListOf(
-    R.string.problem_with_account,
-    R.string.bug_or_issue_with_the_application,
-    R.string.other_problem
-)
 
 enum class LanguageTagEnum(val tag: String) {
     English("en"),
@@ -105,34 +100,6 @@ fun openMailBox(mail: String, subject: String, context: Context) {
     } catch (e: Exception) {
 
     }
-}
-
-enum class SpecialTagsFromServer(val value: Int) {
-    COMPLETE_PROFILE(R.string.complete_profile), CAST_VOTE(R.string.cast_vote), VOTE_VERIFIED_SUSPICIOUS(
-        R.string.vote_verified_suspicious
-    ),
-    VOTE_VERIFIED_MALICIOUS(R.string.vote_verified_malicious), VOTE_SUBMIT_DESC_INFO(R.string.vote_submit_desc_info), INVITE_USER(
-        R.string.invite_user
-    ),
-    INVITE_USER_DETECTIVE(R.string.invite_user_detective), SUGGEST_PARTNER(R.string.suggest_partner), SUGGEST_PARTNER_APPROVED(
-        R.string.suggest_partner_approved
-    ),
-    POSTING(R.string.posting), POSTING_LIKE(R.string.posting_like), POSTING_LIKE_RECEIVE(R.string.posting_like_receive), ANSWERING_QUESTION(
-        R.string.answering_question
-    ),
-    SOLVING_ISSUE(R.string.solving_issue), BEST_ANSWER(R.string.best_answer), ENDORSE_ANSWER(R.string.endorse_answer), ENDORSE_SOLUTION(
-        R.string.endorse_solution
-    ),
-    ENDORSED_BY_SOMEONE(R.string.endorsed_by_someone), FOUND_NEW_THREAT(R.string.found_new_threat), VOTE_MAX_REACHED(
-        R.string.vote_max_reached
-    ),
-    RESULT_PHISHUNTINFO(R.string.phishuntInfo), RESULT_WEBWINKELKEURINFO(R.string.webwinkelkeurInfo), RESULT_DOMAINTOOLSNORISK(
-        R.string.domainToolsNoRisk
-    ),
-    RESULT_DOMAINTOOLSLOWRISK(R.string.domainToolsLowRisk), RESULT_DOMAINTOOLSMODERATERISK(R.string.domainToolsModerateRisk), RESULT_DOMAINTOOLSHIGHRISK(
-        R.string.domainToolsHighRisk
-    ),
-    RESULT_DOMAINTOOLSVERYHIGHRISK(R.string.domainToolsVeryHighRisk), RESULT_AA419INFO(R.string.aa419Info)
 }
 
 fun shareStringWithOthers(text: String, context: Context) {

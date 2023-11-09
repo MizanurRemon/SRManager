@@ -10,15 +10,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_menu.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/app/SRManager.app.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/NavigationDrawer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/MenuHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/avatar.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/SplashScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/SplashScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/SplashViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/SplashViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/GuestPreAccountCreationInfoScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeModalDrawerSheet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeModalDrawerSheet.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/permission/AccessibilityPermissionScreen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/permission/OverlayPermissionScreen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/permission/PermissionScreen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/AppToolbarCompose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/AppToolbarCompose.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/MasterPermissionContainerCompose.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/LanguageConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/ProfileConstants.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/AgeGroupComposeSignup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/AgeGroupComposeSignup.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/LevelScoreCompose.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/ProfileImageCompose.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Color.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -127,7 +137,7 @@
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "last_directory_selection": "/home/remon/Projects/Android/internet-politie-android-app/core/designsystem/src/main/res/drawable",
-    "last_opened_file_path": "/home/remon/Projects/Android/srmanager",
+    "last_opened_file_path": "/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable",
     "memory.settings.postsync.last.time.stamp": "1693848167557",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
@@ -591,13 +601,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00205" summary="WARNING ui modify">
-      <created>1697694649242</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
-      <option name="project" value="LOCAL" />
-      <updated>1697694649242</updated>
-    </task>
     <task id="LOCAL-00206" summary="avatar">
       <created>1697700417080</created>
       <option name="number" value="00206" />
@@ -934,7 +937,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699509633955</updated>
     </task>
-    <option name="localTasksCounter" value="254" />
+    <task id="LOCAL-00254" summary="upt">
+      <created>1699512279158</created>
+      <option name="number" value="00254" />
+      <option name="presentableId" value="LOCAL-00254" />
+      <option name="project" value="LOCAL" />
+      <updated>1699512279158</updated>
+    </task>
+    <option name="localTasksCounter" value="255" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
