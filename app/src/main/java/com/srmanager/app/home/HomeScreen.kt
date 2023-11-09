@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
 import com.srmanager.core.designsystem.*
 import com.srmanager.core.designsystem.components.*
 import com.srmanager.core.designsystem.theme.*
@@ -20,7 +21,15 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 fun HomeScreen(
 
 ) {
-    Text(text = "Home Screen")
+    Column(modifier = Modifier.fillMaxSize()) {
+        AppToolbarCompose(
+            onClick = {
+
+            },
+            icon = DesignSystemR.drawable.ic_menu,
+            title = CommonR.string.app_name
+        )
+    }
 }
 
 

@@ -64,6 +64,9 @@ fun InternetPoliceTheme(
 ) {
     val systemUiController = rememberSystemUiController()
     systemUiController.setStatusBarColor(Color.White)
+    systemUiController.setSystemBarsColor(
+        color = APP_DEFAULT_COLOR
+    )
     val colorScheme = when {
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
