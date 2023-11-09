@@ -10,14 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules/app/SRManager.app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/core/designsystem/SRManager.core.designsystem.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/raw/ic_no_network.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/MenuHelper.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/NavigationItem.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_analyze.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_cart.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_customer_add.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_home.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/connectivity/NetworkStatusScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/connectivity/NetworkStatusScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Color.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeModalDrawerSheet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeModalDrawerSheet.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/NavigationDrawer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/NavigationDrawer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/navigation/Route.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/navigation/Route.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/MenuHelper.kt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +58,9 @@
         <option value="resourceFile" />
         <option value="Kotlin Sealed Class" />
         <option value="Kotlin Object" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Data Class" />
       </list>
     </option>
   </component>
@@ -150,10 +154,12 @@
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/drawable" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations" />
       <recent name="$PROJECT_DIR$/features/settings/settings_presentation/src/main/java/com/internetpolice/settings_presentation/screens/language" />
       <recent name="$PROJECT_DIR$/features/profile/profile_presentation/src/main/java/com/internetpolice/profile_presentation/email_update" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.srmanager.app.navigations" />
       <recent name="com.internetpolice.settings_presentation.screens.language" />
     </key>
   </component>
@@ -591,13 +597,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00208" summary="request param added">
-      <created>1697703771688</created>
-      <option name="number" value="00208" />
-      <option name="presentableId" value="LOCAL-00208" />
-      <option name="project" value="LOCAL" />
-      <updated>1697703771688</updated>
-    </task>
     <task id="LOCAL-00209" summary="request param added">
       <created>1697705719864</created>
       <option name="number" value="00209" />
@@ -934,7 +933,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699520455301</updated>
     </task>
-    <option name="localTasksCounter" value="257" />
+    <task id="LOCAL-00257" summary="upt">
+      <created>1699521644443</created>
+      <option name="number" value="00257" />
+      <option name="presentableId" value="LOCAL-00257" />
+      <option name="project" value="LOCAL" />
+      <updated>1699521644443</updated>
+    </task>
+    <option name="localTasksCounter" value="258" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

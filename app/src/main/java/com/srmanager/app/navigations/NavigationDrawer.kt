@@ -12,15 +12,18 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Close
+import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -28,22 +31,25 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
-import com.srmanager.core.common.util.NAVIGATION_ITEMS
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
+import com.srmanager.core.common.util.capitalizeFirstCharacter
+import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.AppBrush
 import com.srmanager.core.designsystem.theme.DRAWER_SELECTED
 import com.srmanager.core.designsystem.R as DesignSystemR
-import com.srmanager.core.common.R as CommonR
 
 @Composable
 fun NavigationDrawer(
     currentDestination: NavDestination?,
     onCloseClick: () -> Unit,
-    onNavigationDrawerItemClick: (String) -> Unit
+    onNavigationDrawerItemClick: (NavigationItem) -> Unit
 ) {
 
     Column(
@@ -111,22 +117,24 @@ fun NavigationDrawer(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding()
+                        .padding(start = 5.r())
                         .clickable {
                             onNavigationDrawerItemClick(item)
                         }
-//                        .border(
-//                            width = .5.dp,
-//                            color = if (currentDestination?.hierarchy?.any { it.route == item.route } == true) DRAWER_SELECTED_BORDER else Color.White
-//                        )
                         .background(
                             shape = RoundedCornerShape(10.dp),
-                            color = if (currentDestination?.hierarchy?.any { it.route == item } == true) DRAWER_SELECTED else Color.White
-                        )
+                            color = if (currentDestination?.hierarchy?.any { it.route == item.route } == true) DRAWER_SELECTED else Color.Transparent
+                        ),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
+
+                    Icon(
+                        painterResource(id = item.icon),
+                        contentDescription = "",
+                        modifier = Modifier.padding(15.dp).size(20.r()),
+                    )
                     Text(
-                        text = item,
-                        modifier = Modifier.padding(15.dp),
+                        text = item.title.capitalizeFirstCharacter(),
                         style = TextStyle(color = Color.Black)
                     )
                 }
@@ -134,6 +142,20 @@ fun NavigationDrawer(
 
         }
     }
+}
+
+@Composable
+@Preview
+fun PreviewNavigationDrawer() {
+
+    val navController = rememberNavController()
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentDestination = navBackStackEntry?.destination
+    NavigationDrawer(
+        currentDestination = currentDestination,
+        onCloseClick = { },
+        onNavigationDrawerItemClick = {}
+    )
 }
 
 

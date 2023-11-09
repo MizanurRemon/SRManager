@@ -49,7 +49,7 @@ fun HomeModalDrawerSheet(
             scope.launch {
                 drawerState.close()
 
-                navController.navigate(it) {
+                navController.navigate(it.route) {
                     popUpTo(navController.graph.id)
                 }
 
