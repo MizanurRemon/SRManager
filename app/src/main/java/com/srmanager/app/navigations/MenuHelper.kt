@@ -17,4 +17,7 @@ val NAVIGATION_ITEMS = listOf(
     NavigationItem(
         DesignSystemR.drawable.ic_analyze, Route.REPORT, CommonR.string.report
     ),
+    NavigationItem(
+        DesignSystemR.drawable.ic_logout, Route.REPORT, CommonR.string.log_out
+    ),
 )

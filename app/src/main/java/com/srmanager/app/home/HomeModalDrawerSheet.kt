@@ -1,5 +1,6 @@
 package com.srmanager.app.home
 
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -34,7 +35,8 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 fun HomeModalDrawerSheet(
     scope: CoroutineScope,
     drawerState: DrawerState,
-    navController: NavHostController
+    navController: NavHostController,
+    logOutClick: ()-> Unit
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentDestination = navBackStackEntry?.destination
@@ -49,7 +51,12 @@ fun HomeModalDrawerSheet(
             scope.launch {
                 //drawerState.close()
 
-                navController.navigate(it.route)
+                if (it.title == CommonR.string.log_out) {
+                    logOutClick()
+                } else {
+                    navController.navigate(it.route)
+                }
+
 
             }
         }, onCloseClick = {

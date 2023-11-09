@@ -6,8 +6,11 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.srmanager.core.common.navigation.Route
+import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.designsystem.*
 import com.srmanager.core.designsystem.components.*
 import com.srmanager.core.designsystem.theme.*
@@ -21,7 +24,7 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnusedMaterialScaffoldPaddingParameter")
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hiltViewModel()) {
 
     var drawerOpen by remember {
         mutableStateOf(false)
@@ -30,13 +33,44 @@ fun HomeScreen(navController: NavHostController) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
+    LaunchedEffect(key1 = true) {
+        viewModel.uiEvent.collect() { event ->
+            when (event) {
+                is UiEvent.Success -> {
+                    navController.navigate(Route.SIGN_IN) {
+                        popUpTo(navController.graph.id) {
+                            inclusive = true
+                        }
+                    }
+                }
+
+                is UiEvent.ShowSnackbar -> {
+                    /*snackbarHostState.showSnackbar(
+                        message = event.message.asString(context),
+                        duration = SnackbarDuration.Short,
+                    )*/
+                }
+
+                is UiEvent.NavigateUp -> {
+                    navController.navigateUp()
+                }
+
+                else -> {}
+            }
+
+        }
+    }
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             HomeModalDrawerSheet(
                 scope = scope,
                 drawerState = drawerState,
-                navController = navController
+                navController = navController,
+                logOutClick = {
+                    viewModel.onEvent(HomeEvent.OnLogOut)
+                }
             )
 
         },
@@ -56,7 +90,6 @@ fun HomeScreen(navController: NavHostController) {
     )
 
 }
-
 
 
 @Composable

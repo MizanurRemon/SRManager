@@ -45,6 +45,7 @@ import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.AppBrush
 import com.srmanager.core.designsystem.theme.DRAWER_SELECTED
 import com.srmanager.core.designsystem.R as DesignSystemR
+import com.srmanager.core.common.R as CommonR
 
 @Composable
 fun NavigationDrawer(

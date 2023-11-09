@@ -42,7 +42,7 @@ class HomeViewModel @Inject constructor(
             )
             state = state.copy(isLoggedIn = isLoggedIn)
 
-            launch {  }
+            launch { }
 
             if (isLoggedIn) {
 
@@ -50,6 +50,23 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+
+    fun onEvent(event: HomeEvent) {
+        when (event) {
+            is HomeEvent.OnLogOut -> {
+
+                state = state.copy(isLogOutLoading = true)
+
+                viewModelScope.launch {
+                    _uiEvent.send(
+                        UiEvent.Success
+                    )
+                }
+            }
+
+            else -> {}
+        }
+    }
 
 
 }
