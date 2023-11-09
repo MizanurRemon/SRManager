@@ -1,7 +1,5 @@
 <resources>
     <string name="app_name">SR Manager</string>
-    <string name="home">Home</string>
-    <string name="back">Back</string>
     <string name="send">Send</string>
     <string name="got_it">Got It</string>
     <string name="done">Done</string>
@@ -15,7 +13,6 @@
     <string name="sign_in">Sign In</string>
     <string name="donot_have_account">"Don't have account? "</string>
     <string name="sign_up_for_free">Sign up for free</string>
-    <string name="i_already_have_an_account">I already have an account</string>
     <string name="enter_your_email">Enter your email</string>
     <string name="invalid_email">Invalid email address</string>
     <string name="invalid_password">Invalid password</string>

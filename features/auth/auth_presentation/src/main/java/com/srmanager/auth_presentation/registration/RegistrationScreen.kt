@@ -427,7 +427,6 @@ fun SignUpScreen(
             AGE_LIST,
             state.ageCategory,
             modifier = Modifier,
-            selectedAgeCategoryItem,
             onClick = {
                 viewModel.onEvent(RegistrationEvent.OnAgeEnter(it))
             },
