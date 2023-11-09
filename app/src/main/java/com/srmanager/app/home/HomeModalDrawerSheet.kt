@@ -49,8 +49,6 @@ fun HomeModalDrawerSheet(
 
         NavigationDrawer(currentDestination, onNavigationDrawerItemClick = {
             scope.launch {
-                //drawerState.close()
-
                 if (it.title == CommonR.string.log_out) {
                     logOutClick()
                 } else {

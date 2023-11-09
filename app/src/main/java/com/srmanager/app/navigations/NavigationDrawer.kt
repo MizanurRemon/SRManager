@@ -67,21 +67,19 @@ fun NavigationDrawer(
         ) {
             Row(
                 modifier = Modifier
-                    .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween
+                    .fillMaxWidth().padding(10.r()), horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Spacer(modifier = Modifier.padding())
-                IconButton(onClick = {
+
+                Icon(imageVector = Icons.Outlined.Close, contentDescription = "", tint = Color.White, modifier = Modifier.clickable {
                     onCloseClick()
-                }) {
-                    Icon(imageVector = Icons.Outlined.Close, contentDescription = "")
-                }
+                })
             }
 
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(10.dp),
-//                verticalArrangement = Arrangement.spacedBy(5.dp)
+                    .padding(10.r()),
             ) {
                 Image(
                     painterResource(id = DesignSystemR.drawable.avatar),
@@ -135,7 +133,7 @@ fun NavigationDrawer(
                         contentDescription = "",
                         modifier = Modifier
                             .padding(15.dp)
-                            .size(20.r()),
+                            .size(25.r()),
                     )
                     Text(
                         text = stringResource(id = item.title).capitalizeFirstCharacter(),
