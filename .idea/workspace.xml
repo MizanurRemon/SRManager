@@ -10,15 +10,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_logout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/consumer-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/src/androidTest/java/com/srmnager/customer_presentatin/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/src/test/java/com/srmnager/customer_presentatin/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/consumer-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/androidTest/java/com/srmanager/customer_presentation/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/test/java/com/srmanager/customer_presentation/ExampleUnitTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeModalDrawerSheet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeModalDrawerSheet.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/MenuHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/MenuHelper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/NavigationDrawer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/NavigationDrawer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/screens/CustomerAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation/CustomerAddScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Modules.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Modules.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,6 +163,7 @@
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/drawable" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations" />
       <recent name="$PROJECT_DIR$/features/settings/settings_presentation/src/main/java/com/internetpolice/settings_presentation/screens/language" />
       <recent name="$PROJECT_DIR$/features/profile/profile_presentation/src/main/java/com/internetpolice/profile_presentation/email_update" />
@@ -594,20 +607,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00211" summary="request param added">
-      <created>1697712634344</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
-      <option name="project" value="LOCAL" />
-      <updated>1697712634344</updated>
-    </task>
-    <task id="LOCAL-00212" summary="Device Type Header added">
-      <created>1697716732160</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
-      <option name="project" value="LOCAL" />
-      <updated>1697716732160</updated>
-    </task>
     <task id="LOCAL-00213" summary="send otp pop up">
       <created>1697785202684</created>
       <option name="number" value="00213" />
@@ -937,7 +936,21 @@
       <option name="project" value="LOCAL" />
       <updated>1699524574832</updated>
     </task>
-    <option name="localTasksCounter" value="260" />
+    <task id="LOCAL-00260" summary="upt">
+      <created>1699526506012</created>
+      <option name="number" value="00260" />
+      <option name="presentableId" value="LOCAL-00260" />
+      <option name="project" value="LOCAL" />
+      <updated>1699526506012</updated>
+    </task>
+    <task id="LOCAL-00261" summary="upt">
+      <created>1699527074068</created>
+      <option name="number" value="00261" />
+      <option name="presentableId" value="LOCAL-00261" />
+      <option name="project" value="LOCAL" />
+      <updated>1699527074068</updated>
+    </task>
+    <option name="localTasksCounter" value="262" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

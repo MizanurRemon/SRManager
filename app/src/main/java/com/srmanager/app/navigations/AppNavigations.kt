@@ -25,7 +25,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 
 import com.srmanager.app.SplashScreen
 import com.srmanager.app.home.HomeScreen
-import com.srmanager.app.screens.CustomerAddScreen
+import com.srmanager.customer_presentation.CustomerAddScreen
 
 import com.srmanager.auth_presentation.forgot_pass.ForgetPassEmailInput
 import com.srmanager.auth_presentation.forgot_pass.ForgetPasswordCheckYourMailScreen
@@ -154,7 +154,7 @@ fun IPApp(
             }
 
             composable(route = Route.CUSTOMER_ADD) {
-                CustomerAddScreen(onBack = {
+                com.srmanager.customer_presentation.CustomerAddScreen(onBack = {
                     navController.navigateUp()
                 })
             }

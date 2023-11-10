@@ -27,14 +27,8 @@
             <option value="$PROJECT_DIR$/features/auth/auth_data" />
             <option value="$PROJECT_DIR$/features/auth/auth_domain" />
             <option value="$PROJECT_DIR$/features/auth/auth_presentation" />
-            <option value="$PROJECT_DIR$/features/report" />
-            <option value="$PROJECT_DIR$/features/report/report_data" />
-            <option value="$PROJECT_DIR$/features/report/report_domain" />
-            <option value="$PROJECT_DIR$/features/report/report_presentation" />
-            <option value="$PROJECT_DIR$/features/settings" />
-            <option value="$PROJECT_DIR$/features/settings/settings_data" />
-            <option value="$PROJECT_DIR$/features/settings/settings_domain" />
-            <option value="$PROJECT_DIR$/features/settings/settings_presentation" />
+            <option value="$PROJECT_DIR$/features/customer" />
+            <option value="$PROJECT_DIR$/features/customer/customer_presentation" />
           </set>
         </option>
       </GradleProjectSettings>

@@ -8,7 +8,8 @@ apply {
 }
 
 android {
-    namespace = "com.srmanager.auth_presentation"
+    namespace = "com.srmanager.customer_presentation"
+
 }
 
 dependencies {
@@ -16,10 +17,4 @@ dependencies {
     implementation(project(Modules.common))
     implementation(project(Modules.ui))
     implementation(project(Modules.network))
-
-    implementation(project(Modules.database))
-    implementation(project(Modules.datastore))
-    implementation(Compose.DATASTORE_PREFERENCES)
-
-    implementation(project(Modules.auth_domain))
 }

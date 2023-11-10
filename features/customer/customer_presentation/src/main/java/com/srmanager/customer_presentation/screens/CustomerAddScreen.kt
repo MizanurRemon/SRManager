@@ -1,4 +1,4 @@
-package com.srmanager.app.screens
+package com.srmanager.customer_presentation.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column

@@ -26,4 +26,6 @@ object Modules {
     const val news_data = ":features:news:news_data"
     const val news_domain = ":features:news:news_domain"
     const val news_presentation = ":features:news:news_presentation"
+
+    const val customer_presentation = ":features:customer:customer_presentation"
 }
