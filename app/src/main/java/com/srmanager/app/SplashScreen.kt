@@ -1,5 +1,6 @@
 package com.srmanager.app
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +20,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -40,6 +42,8 @@ fun SplashScreen(
     toHome: () -> Unit,
     toLogin: () -> Unit
 ) {
+
+    val context = LocalContext.current
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect() { event ->
 
@@ -48,7 +52,7 @@ fun SplashScreen(
 
                 is UiEvent.Success -> {
                     delay(2000L)
-                    toHome()
+                    // toHome()
 
                 }
 
@@ -58,13 +62,15 @@ fun SplashScreen(
                 is UiEvent.NavigateUp -> {
                     //delay(2000L)
 
-                    toLogin()
+                    // toLogin()
 
                 }
             }
 
         }
     }
+
+
 
     Column(
         modifier = Modifier
@@ -85,6 +91,11 @@ fun SplashScreen(
 
         Spacer(modifier = Modifier.height(10.dp))
 
-        Text(text = stringResource(id = CommonR.string.app_name).uppercase(), style = heading2TextStyle)
+        Text(
+            text = stringResource(id = CommonR.string.app_name).uppercase(),
+            style = heading2TextStyle
+        )
+
+        //Log.d("dataxx", "SplashScreen: ${viewModel.getLocationLiveData()}")
     }
 }

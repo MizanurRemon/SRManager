@@ -20,30 +20,23 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.google.accompanist.pager.ExperimentalPagerApi
-
-
 import com.srmanager.app.SplashScreen
 import com.srmanager.app.home.HomeScreen
-import com.srmanager.customer_presentation.CustomerAddScreen
-
 import com.srmanager.auth_presentation.forgot_pass.ForgetPassEmailInput
 import com.srmanager.auth_presentation.forgot_pass.ForgetPasswordCheckYourMailScreen
 import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.auth_presentation.registration.SignUpScreen
-
-
 import com.srmanager.auth_presentation.screens.PasswordUpdatedScreen
 import com.srmanager.auth_presentation.verify.VerifiedEmailDoneScreen
 import com.srmanager.auth_presentation.verify.VerifyEmailOTPScreen
 import com.srmanager.core.common.navigation.Route
-
+import com.srmanager.customer_presentation.screens.CustomerAddScreen
 import com.srmanager.core.common.R as CommonR
 
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun IPApp(
+fun MainApp(
     navController: NavHostController = rememberNavController(),
 ) {
     val context = LocalContext.current
@@ -53,7 +46,7 @@ fun IPApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.HOME,
+            startDestination = Route.SPLASH,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -75,9 +68,11 @@ fun IPApp(
 
 
 
-            composable(route = Route.VERIFY_OTP_EMAIL + "/{email}/{source}",
+            composable(
+                route = Route.VERIFY_OTP_EMAIL + "/{email}/{source}",
                 arguments = listOf(navArgument("email") { type = NavType.StringType },
-                    navArgument("source") { type = NavType.StringType })) {
+                    navArgument("source") { type = NavType.StringType })
+            ) {
                 VerifyEmailOTPScreen(navController = navController,
                     snackBarHostState,
                     email = it.arguments?.getString("email") ?: "",
@@ -154,7 +149,7 @@ fun IPApp(
             }
 
             composable(route = Route.CUSTOMER_ADD) {
-                com.srmanager.customer_presentation.CustomerAddScreen(onBack = {
+                CustomerAddScreen(onBack = {
                     navController.navigateUp()
                 })
             }

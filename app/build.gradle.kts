@@ -126,6 +126,7 @@ dependencies {
     implementation(project(Modules.database))
     implementation(project(Modules.datastore))
     implementation(project(Modules.designsystem))
+    implementation(project(Modules.customer_presentation))
 
     //Compose
     implementation(Compose.compiler)
@@ -147,6 +148,8 @@ dependencies {
     implementation(Compose.GLIDE)
     androidTestImplementation("junit:junit:4.13.2")
     implementation(Compose.GLIDE)
+    implementation(Compose.play_service_location)
+    implementation ("com.google.accompanist:accompanist-permissions:0.24.13-rc")
 
     debugImplementation(Compose.uiTool)
 

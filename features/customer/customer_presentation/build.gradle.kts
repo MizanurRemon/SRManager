@@ -17,4 +17,5 @@ dependencies {
     implementation(project(Modules.common))
     implementation(project(Modules.ui))
     implementation(project(Modules.network))
+    implementation(Compose.material3)
 }

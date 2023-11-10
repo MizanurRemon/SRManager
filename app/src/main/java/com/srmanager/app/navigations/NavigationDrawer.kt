@@ -1,7 +1,9 @@
 package com.srmanager.app.navigations
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -17,20 +19,18 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Close
-import androidx.compose.material.icons.rounded.Home
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -60,57 +60,9 @@ fun NavigationDrawer(
             .background(brush = AppBrush)
     ) {
 
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(color = APP_DEFAULT_COLOR)
-        ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth().padding(10.r()), horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Spacer(modifier = Modifier.padding())
-
-                Icon(imageVector = Icons.Outlined.Close, contentDescription = "", tint = Color.White, modifier = Modifier.clickable {
-                    onCloseClick()
-                })
-            }
-
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(10.r()),
-            ) {
-                Image(
-                    painterResource(id = DesignSystemR.drawable.avatar),
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .height(120.dp),
-                    contentDescription = ""
-                )
-
-                Text(
-                    text = "Martin Joseph",
-                    style = TextStyle(
-                        color = Color.White,
-                        fontWeight = FontWeight.ExtraBold,
-                        fontSize = 16.sp
-                    ),
-                    modifier = Modifier.padding(top = 10.dp)
-                )
-
-                Text(
-                    text = "Entrepreneur",
-                    style = TextStyle(
-                        color = Color.White,
-                        fontSize = 12.sp,
-                        fontStyle = FontStyle.Italic
-                    )
-                )
-            }
-
-
-        }
+        HeaderComposer(onCloseClick = {
+            onCloseClick()
+        })
         Column(modifier = Modifier.padding(5.dp)) {
 
             NAVIGATION_ITEMS.forEachIndexed { index, item ->
@@ -147,6 +99,72 @@ fun NavigationDrawer(
 }
 
 @Composable
+fun HeaderComposer(onCloseClick: () -> Unit) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = APP_DEFAULT_COLOR)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.r()), horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Spacer(modifier = Modifier.padding())
+
+            Icon(
+                imageVector = Icons.Outlined.Close,
+                contentDescription = "",
+                tint = Color.White,
+                modifier = Modifier.clickable {
+                    onCloseClick()
+                })
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(10.r()),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Image(
+                painterResource(id = DesignSystemR.drawable.app_icon),
+                modifier = Modifier
+                    .height(120.dp)
+                    /*.border(
+                        shape = RoundedCornerShape(15.dp),
+                        border = BorderStroke(1.dp, color = Color.LightGray)
+                    )*/
+                    .shadow(elevation = 10.dp,shape = RoundedCornerShape(15.dp), ),
+                contentDescription = ""
+            )
+
+            Text(
+                text = stringResource(id = CommonR.string.app_name),
+                style = TextStyle(
+                    color = Color.White,
+                    fontWeight = FontWeight.ExtraBold,
+                    fontSize = 16.sp
+                ),
+                modifier = Modifier.padding(top = 10.dp)
+            )
+
+        }
+
+
+    }
+}
+
+@Composable
+@Preview
+fun PreviewHeaderComposer() {
+
+    HeaderComposer {
+
+    }
+}
+
+@Composable
 @Preview
 fun PreviewNavigationDrawer() {
 
@@ -159,5 +177,7 @@ fun PreviewNavigationDrawer() {
         onNavigationDrawerItemClick = {}
     )
 }
+
+
 
 

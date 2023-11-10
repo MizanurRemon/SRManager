@@ -10,34 +10,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/consumer-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/src/androidTest/java/com/srmnager/customer_presentatin/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentatin/src/test/java/com/srmnager/customer_presentatin/ExampleUnitTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/consumer-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/androidTest/java/com/srmanager/customer_presentation/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/test/java/com/srmanager/customer_presentation/ExampleUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/location/LocationDetails.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/location/LocationLiveData.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/SplashScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/SplashScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/SplashViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/SplashViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/screens/CustomerAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation/CustomerAddScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Modules.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Modules.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/NavigationDrawer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/NavigationDrawer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/customer/customer_presentation/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/customer/customer_presentation/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation/screens/CustomerAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation/screens/CustomerAddScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[33220fdb]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/remon/.android/avd/Emulator.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -67,9 +59,9 @@
         <option value="resourceFile" />
         <option value="Kotlin Sealed Class" />
         <option value="Kotlin Object" />
-        <option value="Kotlin Class" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -138,7 +130,7 @@
     "cidr.known.project.marker": "true",
     "com.google.services.firebase.aqiPopupShown": "true",
     "last_directory_selection": "/home/remon/Projects/Android/internet-politie-android-app/core/designsystem/src/main/res/drawable",
-    "last_opened_file_path": "/home/remon/Projects/Android/srmanager",
+    "last_opened_file_path": "/home/remon/Projects/Android/Alife",
     "memory.settings.postsync.last.time.stamp": "1693848167557",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.17",
@@ -163,6 +155,7 @@
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/drawable" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation/screens" />
       <recent name="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations" />
       <recent name="$PROJECT_DIR$/features/settings/settings_presentation/src/main/java/com/internetpolice/settings_presentation/screens/language" />
@@ -607,13 +600,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00213" summary="send otp pop up">
-      <created>1697785202684</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
-      <option name="project" value="LOCAL" />
-      <updated>1697785202685</updated>
-    </task>
     <task id="LOCAL-00214" summary="notification screen permission screen UI modified">
       <created>1697795449861</created>
       <option name="number" value="00214" />
@@ -950,7 +936,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699527074068</updated>
     </task>
-    <option name="localTasksCounter" value="262" />
+    <task id="LOCAL-00262" summary="upt">
+      <created>1699591044170</created>
+      <option name="number" value="00262" />
+      <option name="presentableId" value="LOCAL-00262" />
+      <option name="project" value="LOCAL" />
+      <updated>1699591044170</updated>
+    </task>
+    <option name="localTasksCounter" value="263" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

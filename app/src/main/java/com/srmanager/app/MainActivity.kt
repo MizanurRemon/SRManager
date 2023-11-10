@@ -1,18 +1,25 @@
 package com.srmanager.app
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
+import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.location.LocationListener
+import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.NetworkRequest
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -24,7 +31,7 @@ import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.srmanager.app.connectivity.NetworkCallbackImpl
 import com.srmanager.app.connectivity.NetworkStatusScreen
-import com.srmanager.app.navigations.IPApp
+import com.srmanager.app.navigations.MainApp
 
 import com.srmanager.core.designsystem.deviceHeight
 import com.srmanager.core.designsystem.deviceWidth
@@ -35,6 +42,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private var locationManager: LocationManager? = null
+    private val REQUEST_LOCATION = 12
     private var newIntent: Intent? = null
 
     private var appUpdateManager: AppUpdateManager? = null
@@ -50,6 +59,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+    @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adjustFontScale(resources.configuration)
@@ -64,11 +74,12 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
             InternetPoliceTheme {
-                IPApp()
+                MainApp()
                 NetworkStatusScreen()
             }
         }
 
+        checkLocationPermission()
         checkForAppUpdate()
     }
 
@@ -82,7 +93,7 @@ class MainActivity : AppCompatActivity() {
         newIntent?.let {
 
             setContent {
-                IPApp()
+                MainApp()
             }
             newIntent = null
         }
@@ -175,5 +186,40 @@ class MainActivity : AppCompatActivity() {
             baseContext.resources.displayMetrics.setTo(metrics)
 
         }
+    }
+
+
+    private fun checkLocationPermission() {
+        Log.d("locationxx", "Check")
+        locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+            && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            Log.e("locationxx", "Not granted")
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                REQUEST_LOCATION
+            )
+        }
+        Log.d("locationxx", "Granted")
+       /* locationManager!!.requestLocationUpdates(
+            LocationManager.GPS_PROVIDER,
+            0,
+            60000f,
+            this as LocationListener
+        )
+        locationManager!!.requestLocationUpdates(
+            LocationManager.NETWORK_PROVIDER,
+            0,
+            60000f,
+            this as LocationListener
+        )*/
     }
 }

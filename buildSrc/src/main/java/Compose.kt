@@ -1,4 +1,5 @@
 object Compose {
+    const val play_service_location = "com.google.android.gms:play-services-location:21.0.1"
     const val composeVersion = "1.3.3"
     const val materialVersion = "1.0.1"
     const val composeCompilerVersion = "1.4.2"
