@@ -3,6 +3,8 @@ package com.srmanager.app.location
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
 import android.location.Location
 import android.os.Looper
 import android.util.Log
@@ -20,6 +22,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.util.Locale
 
 class LocationLiveData(private var context: Context) : LiveData<LocationDetails>() {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
@@ -71,15 +74,12 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
     private fun setLocationData(location: Location?) {
         location.let { location ->
 
-            value = LocationDetails(location!!.latitude, location.longitude)
-            val body = HashMap<String, String>()
-            body["latitude"] = value!!.latitude.toString()
-            body["longitude"] = value!!.longitude.toString()
-            Log.d("locationxx", "get loc: $body")
-           /* GlobalScope.launch(Dispatchers.IO) {
-                //locationData.value = LocationDetails(location!!.latitude, location.longitude)
-                userDao!!.insertUser(UserEntity(latitude = value!!.latitude.toString(), longitude = value!!.longitude.toString()))
-            }*/
+            value = LocationDetails(
+                location!!.latitude,
+                location.longitude,
+                getAddressFromLocation(location = location)
+            )
+
         }
 
     }
@@ -107,5 +107,26 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
             fastestInterval = ONE_MINUTE / 4
             priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         }
+    }
+
+    private val geocoder = Geocoder(context, Locale.getDefault())
+
+    private fun getAddressFromLocation(location: Location): String {
+        try {
+            val addresses: MutableList<Address>? =
+                geocoder.getFromLocation(location.latitude, location.longitude, 1)
+            if (addresses!!.isNotEmpty()) {
+                val address: Address = addresses[0]
+                val addressStringBuilder = StringBuilder()
+
+                for (i in 0..address.maxAddressLineIndex) {
+                    addressStringBuilder.append(address.getAddressLine(i)).append(" ")
+                }
+                return addressStringBuilder.toString().trim()
+            }
+        } catch (e: Exception) {
+            Log.d("dataxx", "Error getting address from location", e)
+        }
+        return ""
     }
 }

@@ -1,41 +1,34 @@
-package com.srmanager.app
+package com.srmanager.app.splash_screen
 
 import android.app.Application
-import android.content.Context
-import android.util.Log
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.srmanager.app.location.LocationDetails
 import com.srmanager.app.location.LocationLiveData
-import com.srmanager.core.common.util.DEFAULT_LANGUAGE_TAG
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.datastore.PreferenceDataStoreConstants
 import com.srmanager.core.datastore.PreferenceDataStoreHelper
-import com.srmanager.database.dao.UserDao
-import com.srmanager.database.entity.UserEntity
+import com.srmanager.database.dao.LocationDao
+import com.srmanager.database.entity.LocationEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
     private val preferenceDataStoreHelper: PreferenceDataStoreHelper,
     application: Application,
-    private val userDao: UserDao
+    private val locationDao: LocationDao
 ) : ViewModel() {
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
-   private val locationLiveData = LocationLiveData(application)
+    private val locationLiveData = LocationLiveData(application)
+
+    val address = mutableStateOf("")
 
 
     fun onBack() {
@@ -46,9 +39,7 @@ class SplashViewModel @Inject constructor(
 
     init {
 
-
         locationLiveData.observeForever {
-            Log.d("dataxx", "${it.toString()} ")
             viewModelScope.launch(Dispatchers.IO) {
                 val isLoggedIn = preferenceDataStoreHelper.getFirstPreference(
                     PreferenceDataStoreConstants.IS_LOGGED_IN,
@@ -57,25 +48,19 @@ class SplashViewModel @Inject constructor(
                 if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.NavigateUp)
 
 
-                userDao.updateLocation(latitude = it.latitude.toString(), longitude = it.longitude.toString())
+                locationDao.insertLocation(
+                    LocationEntity(
+                        latitude = it.latitude.toString(),
+                        longitude = it.longitude.toString(),
+                        address = it.address.toString()
+                    )
+                )
 
             }
 
         }
 
 
-      //  startLocationUpdates()
-
-
-    }
-
-
-    fun getLocationLiveData() = locationLiveData
-
-
-    private fun startLocationUpdates(){
-        locationLiveData.startLocationUpdates()
-     
     }
 
 }

@@ -10,9 +10,6 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUser(userEntity: UserEntity)
 
-    @Query("UPDATE user SET longitude = :longitude, latitude = :latitude")
-    fun updateLocation(latitude: String, longitude: String)
-
     @Query("DELETE  FROM user")
     suspend fun deleteUsers()
 

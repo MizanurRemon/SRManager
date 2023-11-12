@@ -20,7 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.srmanager.app.SplashScreen
+import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.app.home.HomeScreen
 import com.srmanager.auth_presentation.forgot_pass.ForgetPassEmailInput
 import com.srmanager.auth_presentation.forgot_pass.ForgetPasswordCheckYourMailScreen

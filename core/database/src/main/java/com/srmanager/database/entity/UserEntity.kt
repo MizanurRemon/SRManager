@@ -9,8 +9,5 @@ data class UserEntity(
     val id: Int = 0,
     val userId: Int? = null,
     val email: String? = null,
-    val userName: String? = null,
-    val latitude: String? = null,
-    val longitude: String? = null,
-    val address: String? = null
+    val userName: String? = null
 )
