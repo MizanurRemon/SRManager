@@ -58,7 +58,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -181,7 +180,6 @@ class MainActivity : AppCompatActivity() {
             wm.defaultDisplay.getMetrics(metrics)
             metrics.scaledDensity = configuration.fontScale * metrics.density
 
-            //baseContext.resources.updateConfiguration(configuration, metrics)
             baseContext.applicationContext.createConfigurationContext(it)
             baseContext.resources.displayMetrics.setTo(metrics)
 
@@ -190,7 +188,6 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun checkLocationPermission() {
-        Log.d("locationxx", "Check")
         locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager
         if (ActivityCompat.checkSelfPermission(
                 this,
@@ -201,14 +198,13 @@ class MainActivity : AppCompatActivity() {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-            Log.e("locationxx", "Not granted")
             ActivityCompat.requestPermissions(
                 this,
                 arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
                 REQUEST_LOCATION
             )
         }
-        Log.d("locationxx", "Granted")
+
        /* locationManager!!.requestLocationUpdates(
             LocationManager.GPS_PROVIDER,
             0,

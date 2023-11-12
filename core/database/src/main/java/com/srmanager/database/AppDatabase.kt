@@ -8,7 +8,7 @@ import com.srmanager.database.entity.UserEntity
 @Database(
     entities = [UserEntity::class],
     exportSchema =false ,
-    version = 5
+    version = 6
 )
 abstract class AppDatabase : RoomDatabase() {
 

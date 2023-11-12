@@ -66,9 +66,6 @@ class AuthRepositoryImpl(
                         id = 0,
                         userId = registrationResponse.userId,
                         email = registrationRequestData.email,
-                        ageCategory = registrationRequestData.ageCategory,
-                        language = registrationRequestData.language,
-                        isUserGiveConsent = false
                     )
                 )
 
@@ -125,20 +122,6 @@ class AuthRepositoryImpl(
                         id = loginResponse.userProfile.id,
                         userId = loginResponse.userId,
                         email = loginRequest.username,
-                        ageCategory = loginResponse.userProfile.ageCategory,
-                        avatarImageName = loginResponse.userProfile.avatarImageName,
-                        avatarImagePath = if (loginResponse.userProfile.avatarImagePath != "") loginResponse.userProfile.avatarImagePath else null,
-                        color = loginResponse.userProfile.color,
-                        hairStyle = loginResponse.userProfile.hairStyle,
-                        faceStyle = loginResponse.userProfile.faceStyle,
-                        hairColor = loginResponse.userProfile.hairColor,
-                        language = loginResponse.userProfile.language,
-                        rank = loginResponse.userProfile.rank,
-                        nickname = loginResponse.userProfile.nickname,
-                        gender = loginResponse.userProfile.gender,
-                        isProfileCompleted = loginResponse.userProfile.isProfileCompleted,
-                        isUserGiveConsent = false
-
                     )
                 )
                 preferenceDataStoreHelper.putPreference(
@@ -284,7 +267,7 @@ class AuthRepositoryImpl(
 
                 val response = authRemoteDataSource.resendVerificationEmail(
                     ResendVerificationRequest(
-                        username = user[0].email,
+                        username = user[0].email!!,
                         email = newEmail,// user[0].email
                         forProfileUpdate = forProfileUpdate
                     )
@@ -388,7 +371,7 @@ class AuthRepositoryImpl(
                 val loginDto = authRemoteDataSource.updateEmail(
                     UpdateEmailRequest(
                         newEmail = email,
-                        userId = user[0].userId
+                        userId = user[0].userId!!
                     )
                 )
 
@@ -408,19 +391,6 @@ class AuthRepositoryImpl(
                         id = loginResponse.userProfile.id,
                         userId = loginResponse.userId,
                         email = email,
-                        ageCategory = loginResponse.userProfile.ageCategory,
-                        avatarImageName = loginResponse.userProfile.avatarImageName,
-                        avatarImagePath = loginResponse.userProfile.avatarImagePath,
-                        color = loginResponse.userProfile.color,
-                        hairStyle = loginResponse.userProfile.hairStyle,
-                        faceStyle = loginResponse.userProfile.faceStyle,
-                        hairColor = loginResponse.userProfile.hairColor,
-                        language = loginResponse.userProfile.language,
-                        rank = loginResponse.userProfile.rank,
-                        nickname = loginResponse.userProfile.nickname,
-                        gender = loginResponse.userProfile.gender,
-                        isProfileCompleted = loginResponse.userProfile.isProfileCompleted,
-                        totalPoints = user[0].totalPoints
                     )
                 )
                 preferenceDataStoreHelper.putPreference(
@@ -450,8 +420,8 @@ class AuthRepositoryImpl(
                     authRemoteDataSource.verificationEmailDraft(
                         DraftVerificationRequest(
                             userId = user[0].userId.toString(),
-                            username = user[0].email,
-                            email = user[0].email,
+                            username = user[0].email!!,
+                            email = user[0].email!!,
                             forProfileUpdate = false
                         )
                     )
@@ -492,19 +462,6 @@ class AuthRepositoryImpl(
                         id = loginResponse.userProfile.id,
                         userId = loginResponse.userId,
                         email = email,
-                        ageCategory = loginResponse.userProfile.ageCategory,
-                        avatarImageName = loginResponse.userProfile.avatarImageName,
-                        avatarImagePath = if (loginResponse.userProfile.avatarImagePath != "") loginResponse.userProfile.avatarImagePath else null,
-                        color = loginResponse.userProfile.color,
-                        hairStyle = loginResponse.userProfile.hairStyle,
-                        faceStyle = loginResponse.userProfile.faceStyle,
-                        hairColor = loginResponse.userProfile.hairColor,
-                        language = loginResponse.userProfile.language,
-                        rank = loginResponse.userProfile.rank,
-                        nickname = loginResponse.userProfile.nickname,
-                        gender = loginResponse.userProfile.gender,
-                        isProfileCompleted = loginResponse.userProfile.isProfileCompleted
-
                     )
                 )
                 preferenceDataStoreHelper.putPreference(

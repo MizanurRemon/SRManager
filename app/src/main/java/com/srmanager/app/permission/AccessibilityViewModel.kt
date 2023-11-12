@@ -14,20 +14,20 @@ import javax.inject.Inject
 class AccessibilityViewModel @Inject constructor(private val userDao: UserDao) : ViewModel() {
     val isUserConsent = mutableStateOf(true)
     fun checkConsent() {
-        viewModelScope.launch(Dispatchers.IO) {
+        /*viewModelScope.launch(Dispatchers.IO) {
             userDao.getUsers().collect {
 
                 if (it.isNotEmpty()){
                     isUserConsent.value = !it[0].isUserGiveConsent
                 }
             }
-        }
+        }*/
 
     }
 
     fun updateConsent() {
         viewModelScope.launch(Dispatchers.IO) {
-            userDao.updateUserConsent(true)
+            //userDao.updateUserConsent(true)
         }
     }
 }

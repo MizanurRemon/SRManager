@@ -52,7 +52,7 @@ fun SplashScreen(
 
                 is UiEvent.Success -> {
                     delay(2000L)
-                    // toHome()
+                     toHome()
 
                 }
 
@@ -62,7 +62,7 @@ fun SplashScreen(
                 is UiEvent.NavigateUp -> {
                     //delay(2000L)
 
-                    // toLogin()
+                     toLogin()
 
                 }
             }
