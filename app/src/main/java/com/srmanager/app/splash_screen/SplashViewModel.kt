@@ -1,7 +1,9 @@
 package com.srmanager.app.splash_screen
 
 import android.app.Application
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.app.location.LocationLiveData
@@ -13,6 +15,7 @@ import com.srmanager.database.entity.LocationEntity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -28,7 +31,8 @@ class SplashViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
     private val locationLiveData = LocationLiveData(application)
 
-    val address = mutableStateOf("")
+    var state by mutableStateOf(SplashScreenState())
+        private set
 
 
     fun onBack() {
@@ -38,15 +42,11 @@ class SplashViewModel @Inject constructor(
     }
 
     init {
-
+        state = state.copy(isLoading = true)
         locationLiveData.observeForever {
             viewModelScope.launch(Dispatchers.IO) {
-                val isLoggedIn = preferenceDataStoreHelper.getFirstPreference(
-                    PreferenceDataStoreConstants.IS_LOGGED_IN,
-                    false
-                )
-                if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.NavigateUp)
 
+                state = state.copy(address = mutableStateOf(it.address.toString()))
 
                 locationDao.insertLocation(
                     LocationEntity(
@@ -55,6 +55,18 @@ class SplashViewModel @Inject constructor(
                         address = it.address.toString()
                     )
                 )
+
+                delay(5000)
+
+                state = state.copy(isLoading = false)
+
+                delay(2000)
+
+                val isLoggedIn = preferenceDataStoreHelper.getFirstPreference(
+                    PreferenceDataStoreConstants.IS_LOGGED_IN,
+                    false
+                )
+                if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.NavigateUp)
 
             }
 
