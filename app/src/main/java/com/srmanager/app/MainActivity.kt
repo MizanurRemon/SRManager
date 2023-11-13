@@ -31,16 +31,27 @@ import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
 import com.srmanager.app.connectivity.NetworkCallbackImpl
 import com.srmanager.app.connectivity.NetworkStatusScreen
+import com.srmanager.app.location.LocationLiveData
 import com.srmanager.app.navigations.MainApp
 
 import com.srmanager.core.designsystem.deviceHeight
 import com.srmanager.core.designsystem.deviceWidth
 import com.srmanager.core.designsystem.theme.InternetPoliceTheme
+import com.srmanager.database.dao.LocationDao
+import com.srmanager.database.entity.LocationEntity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var locationLiveData: LocationLiveData
+    @Inject
+    lateinit var locationDao: LocationDao
 
     private var locationManager: LocationManager? = null
     private val REQUEST_LOCATION = 12
@@ -80,6 +91,25 @@ class MainActivity : AppCompatActivity() {
 
         checkLocationPermission()
         checkForAppUpdate()
+        getLocation()
+
+    }
+
+    private fun getLocation(){
+        locationLiveData = LocationLiveData(application)
+        locationLiveData.observeForever {
+
+            GlobalScope.launch(Dispatchers.IO) {
+
+                locationDao.insertLocation(
+                    LocationEntity(
+                        latitude = it.latitude.toString(),
+                        longitude = it.longitude.toString(),
+                        address = it.address.toString()
+                    )
+                )
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
