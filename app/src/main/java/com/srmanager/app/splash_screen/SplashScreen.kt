@@ -29,6 +29,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -61,7 +62,7 @@ fun SplashScreen(
 
                 is UiEvent.Success -> {
 
-                     // toHome()
+                    // toHome()
 
                 }
 
@@ -115,13 +116,18 @@ fun SplashScreen(
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.padding(bottom = 5.r())
             ) {
-                Icon(Icons.Rounded.LocationOn, contentDescription = "", tint = Color.Gray, modifier = Modifier.size(20.r()))
+                Icon(
+                    Icons.Rounded.LocationOn,
+                    contentDescription = "",
+                    tint = Color.Gray,
+                    modifier = Modifier.size(20.r())
+                )
                 Spacer(modifier = Modifier.width(5.r()))
 
                 Text(
                     text = stringResource(
                         id = if (viewModel.state.isLoading) CommonR.string.fetching_location else CommonR.string.current_location
-                    ), style = bodyLightTextStyle.copy(color = Color.Gray)
+                    ), style = bodyLightTextStyle.copy(color = Color.Gray, fontSize = 14.sp)
                 )
             }
 
@@ -138,7 +144,8 @@ fun SplashScreen(
                     text = viewModel.state.address!!.value.toString(),
                     style = bodyLightTextStyle.copy(
                         letterSpacing = .2.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
                     )
                 )
             }
