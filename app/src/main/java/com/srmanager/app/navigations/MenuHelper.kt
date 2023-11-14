@@ -9,7 +9,7 @@ val NAVIGATION_ITEMS = listOf(
         DesignSystemR.drawable.ic_home, Route.HOME, CommonR.string.home
     ),
     NavigationItem(
-        DesignSystemR.drawable.ic_customer_add, Route.CUSTOMER, CommonR.string.customer_add
+        DesignSystemR.drawable.ic_shop, Route.OUTLET, CommonR.string.shop
     ),
     NavigationItem(
         DesignSystemR.drawable.ic_cart, Route.ORDER, CommonR.string.order

@@ -28,7 +28,7 @@ import com.srmanager.core.common.R as CommonR
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CustomerScreen(onBack: () -> Unit) {
+fun OutletScreen(onBack: () -> Unit) {
     Scaffold(floatingActionButton = {
         FloatingActionButton(
             onClick = { },
@@ -64,5 +64,5 @@ fun CustomerScreen(onBack: () -> Unit) {
 @Composable
 @Preview
 fun PreviewCustomerAddScreen() {
-    CustomerScreen(onBack = {})
+    OutletScreen(onBack = {})
 }
