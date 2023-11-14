@@ -7,13 +7,10 @@ import android.content.Intent
 import android.content.IntentSender.SendIntentException
 import android.content.pm.PackageManager
 import android.content.res.Configuration
-import android.location.LocationListener
-import android.location.LocationManager
 import android.net.ConnectivityManager
 import android.net.NetworkRequest
 import android.os.Bundle
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -33,7 +30,6 @@ import com.srmanager.app.connectivity.NetworkCallbackImpl
 import com.srmanager.app.connectivity.NetworkStatusScreen
 import com.srmanager.app.location.LocationLiveData
 import com.srmanager.app.navigations.MainApp
-
 import com.srmanager.core.designsystem.deviceHeight
 import com.srmanager.core.designsystem.deviceWidth
 import com.srmanager.core.designsystem.theme.InternetPoliceTheme
@@ -50,10 +46,10 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     private lateinit var locationLiveData: LocationLiveData
+
     @Inject
     lateinit var locationDao: LocationDao
 
-    private var locationManager: LocationManager? = null
     private val REQUEST_LOCATION = 12
     private var newIntent: Intent? = null
 
@@ -91,16 +87,13 @@ class MainActivity : AppCompatActivity() {
 
         checkLocationPermission()
         checkForAppUpdate()
-        getLocation()
-
     }
 
-    private fun getLocation(){
+    private fun getLocation() {
         locationLiveData = LocationLiveData(application)
         locationLiveData.observeForever {
 
             GlobalScope.launch(Dispatchers.IO) {
-
                 locationDao.insertLocation(
                     LocationEntity(
                         latitude = it.latitude.toString(),
@@ -218,34 +211,40 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun checkLocationPermission() {
-        locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
+            ) == PackageManager.PERMISSION_DENIED
         ) {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ),
                 REQUEST_LOCATION
             )
         }
-
-       /* locationManager!!.requestLocationUpdates(
-            LocationManager.GPS_PROVIDER,
-            0,
-            60000f,
-            this as LocationListener
-        )
-        locationManager!!.requestLocationUpdates(
-            LocationManager.NETWORK_PROVIDER,
-            0,
-            60000f,
-            this as LocationListener
-        )*/
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_LOCATION -> {
+                // If request is cancelled, the result arrays are empty.
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    // Permission granted, perform the action
+                    getLocation()
+                } else {
+                    // Permission denied
+                    checkLocationPermission()
+                }
+                return
+            }
+        }
+    }
+
 }

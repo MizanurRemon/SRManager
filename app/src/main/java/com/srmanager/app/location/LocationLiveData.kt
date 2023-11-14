@@ -70,7 +70,6 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
         )
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     private fun setLocationData(location: Location?) {
         location.let { location ->
 

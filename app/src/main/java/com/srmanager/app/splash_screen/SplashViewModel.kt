@@ -42,7 +42,9 @@ class SplashViewModel @Inject constructor(
             delay(5000)
 
             locationDao.getLocation().collect {
-                state = state.copy(isLoading = false,address = mutableStateOf(it[0].address.toString()))
+                if (it.isNotEmpty()){
+                    state = state.copy(isLoading = false,address = mutableStateOf(it[0].address.toString()))
+                }
             }
 
             delay(2000)
