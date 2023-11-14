@@ -1,4 +1,4 @@
-package com.srmanager.customer_presentation.screens
+package com.srmanager.outlet_presentation.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
@@ -55,7 +56,10 @@ fun OutletScreen(onBack: () -> Unit) {
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                Text(text = "Customer add", style = bodyBoldTextStyle.copy(color = Color.Black))
+                Text(
+                    text = stringResource(id = CommonR.string.outlet),
+                    style = bodyBoldTextStyle.copy(color = Color.Black)
+                )
             }
         }
     }

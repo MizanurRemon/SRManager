@@ -126,7 +126,7 @@ dependencies {
     implementation(project(Modules.database))
     implementation(project(Modules.datastore))
     implementation(project(Modules.designsystem))
-    implementation(project(Modules.customer_presentation))
+    implementation(project(Modules.outlet_presentation))
 
     //Compose
     implementation(Compose.compiler)

@@ -30,7 +30,7 @@ import com.srmanager.auth_presentation.screens.PasswordUpdatedScreen
 import com.srmanager.auth_presentation.verify.VerifiedEmailDoneScreen
 import com.srmanager.auth_presentation.verify.VerifyEmailOTPScreen
 import com.srmanager.core.common.navigation.Route
-import com.srmanager.customer_presentation.screens.OutletScreen
+import com.srmanager.outlet_presentation.screens.OutletScreen
 import com.srmanager.core.common.R as CommonR
 
 
@@ -46,7 +46,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.HOME,
+            startDestination = Route.OUTLET,
             modifier = Modifier.padding(innerPadding)
         ) {
 
