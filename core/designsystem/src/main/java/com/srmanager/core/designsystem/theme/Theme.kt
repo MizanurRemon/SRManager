@@ -1,12 +1,8 @@
 package com.srmanager.core.designsystem.theme
 
 import android.os.Build
-import android.view.Gravity
 import android.widget.TextView
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -15,7 +11,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -26,7 +21,6 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.*
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
@@ -36,16 +30,13 @@ import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.compose.ui.window.DialogWindowProvider
 import androidx.core.text.HtmlCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.srmanager.core.common.util.CoilImageGetter
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
-import com.srmanager.core.designsystem.h
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.w
 import com.srmanager.core.ui.DevicePreviews
-import com.srmanager.core.common.R as CommonR
 
 private val DarkColorScheme = darkColorScheme(
     primary = ColorPrimaryDark,
@@ -58,7 +49,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun InternetPoliceTheme(
+fun BaseTheme(
     darkTheme: Boolean = false,//isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {

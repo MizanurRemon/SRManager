@@ -62,7 +62,7 @@ fun SplashScreen(
 
                 is UiEvent.Success -> {
 
-                    // toHome()
+                     toHome()
 
                 }
 
@@ -71,7 +71,7 @@ fun SplashScreen(
 
                 is UiEvent.NavigateUp -> {
 
-                    // toLogin()
+                     toLogin()
 
                 }
             }

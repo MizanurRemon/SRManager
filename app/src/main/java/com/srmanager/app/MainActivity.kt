@@ -15,6 +15,7 @@ import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.mutableStateOf
 import androidx.core.app.ActivityCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.android.gms.tasks.Task
@@ -32,7 +33,7 @@ import com.srmanager.app.location.LocationLiveData
 import com.srmanager.app.navigations.MainApp
 import com.srmanager.core.designsystem.deviceHeight
 import com.srmanager.core.designsystem.deviceWidth
-import com.srmanager.core.designsystem.theme.InternetPoliceTheme
+import com.srmanager.core.designsystem.theme.BaseTheme
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.database.entity.LocationEntity
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +45,13 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private val permissionsToRequest = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION,
+    )
+
+    var locationPermissionDeny = mutableStateOf(false)
 
     private lateinit var locationLiveData: LocationLiveData
 
@@ -65,6 +73,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
     @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,9 +88,13 @@ class MainActivity : AppCompatActivity() {
 
 
         setContent {
-            InternetPoliceTheme {
+
+
+            BaseTheme {
                 MainApp()
                 NetworkStatusScreen()
+
+
             }
         }
 
@@ -211,16 +224,10 @@ class MainActivity : AppCompatActivity() {
 
 
     private fun checkLocationPermission() {
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) == PackageManager.PERMISSION_DENIED
-        ) {
+        if (!checkPermissionsGranted()) {
             ActivityCompat.requestPermissions(
                 this,
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION
-                ),
+                permissionsToRequest,
                 REQUEST_LOCATION
             )
         }
@@ -234,17 +241,23 @@ class MainActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             REQUEST_LOCATION -> {
-                // If request is cancelled, the result arrays are empty.
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-                    // Permission granted, perform the action
                     getLocation()
                 } else {
-                    // Permission denied
                     checkLocationPermission()
                 }
                 return
             }
         }
+    }
+
+    private fun checkPermissionsGranted(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            this, Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                    this, Manifest.permission.ACCESS_COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
     }
 
 }
