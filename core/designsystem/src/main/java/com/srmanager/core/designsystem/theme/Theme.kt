@@ -1,14 +1,20 @@
 package com.srmanager.core.designsystem.theme
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.widget.TextView
 import androidx.annotation.StringRes
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -21,9 +27,14 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.*
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.*
@@ -34,9 +45,12 @@ import androidx.core.text.HtmlCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.srmanager.core.common.util.CoilImageGetter
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
+import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.w
 import com.srmanager.core.ui.DevicePreviews
+import com.srmanager.core.designsystem.R as DesignSystemR
+import com.srmanager.core.common.R as CommonR
 
 private val DarkColorScheme = darkColorScheme(
     primary = ColorPrimaryDark,
@@ -565,11 +579,6 @@ fun ShowPopup(
 }
 
 
-
-
-
-
-
 @Composable
 fun HtmlToTextWithImage(text: String, modifier: Modifier = Modifier) {
     AndroidView(
@@ -589,6 +598,7 @@ fun HtmlToTextWithImage(text: String, modifier: Modifier = Modifier) {
     )
 }
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 @DevicePreviews
 fun PreviewShowPopup() {

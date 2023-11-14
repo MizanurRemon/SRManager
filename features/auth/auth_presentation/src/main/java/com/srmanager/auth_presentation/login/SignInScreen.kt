@@ -57,7 +57,7 @@ fun SignInScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel(),
     onBack: () -> Unit,
-    toHome: ()-> Unit
+    toHome: () -> Unit
 ) {
     val showPassword = remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -116,7 +116,8 @@ fun SignInScreen(
                 id = DesignSystemR.drawable.app_icon
             ),
             contentDescription = "",
-            modifier = Modifier.padding(vertical = 20.h())
+            modifier = Modifier
+                .padding(vertical = 20.h())
                 .size(80.w())
                 .shadow(elevation = 10.dp, shape = RoundedCornerShape(15.dp))
         )
@@ -138,7 +139,7 @@ fun SignInScreen(
                 textAlign = TextAlign.Left
             ),
             modifier = Modifier
-                .padding( bottom = 10.h())
+                .padding(bottom = 10.h())
                 .align(Alignment.Start),
         )
         TextField(
@@ -175,7 +176,7 @@ fun SignInScreen(
                 },
             leadingIcon = {
                 Image(
-                    painter = painterResource(id = if (viewModel.state.isEmailValid) DesignSystemR.drawable.ic_email else DesignSystemR.drawable.ic_red_error),
+                    painter = painterResource(id = DesignSystemR.drawable.ic_email),
                     contentDescription = "",
                     modifier = Modifier.size(24.r())
                 )
@@ -277,7 +278,7 @@ fun SignInScreen(
                 },
             leadingIcon = {
                 Image(
-                    painter = painterResource(id = if (viewModel.state.isPasswordValid) DesignSystemR.drawable.ic_lock else DesignSystemR.drawable.ic_red_error),
+                    painter = painterResource(id = DesignSystemR.drawable.ic_lock),
                     contentDescription = "",
                     modifier = Modifier.size(24.r())
                 )

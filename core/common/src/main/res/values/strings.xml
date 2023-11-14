@@ -52,5 +52,7 @@
     <string name="please_enter_email_address">Please enter your email address</string>
     <string name="fetching_location">fetching location</string>
     <string name="current_location">Your current location is</string>
-
+    <string name="enter_outlet_name">Enter Outlet Name</string>
+    <string name="enter_owner_name">Enter Owner Name</string>
+    <string name="enter_date_of_birth">Enter DOB</string>
 </resources>
