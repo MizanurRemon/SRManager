@@ -218,6 +218,8 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                         }
                     )
 
+                    Spacer(modifier = Modifier.height(10.r()))
+
                     TextField(
                         value = viewModel.state.ownerName,
                         colors = TextFieldDefaults.textFieldColors(
@@ -264,6 +266,8 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                             )
                         }
                     )
+
+                    Spacer(modifier = Modifier.height(10.r()))
 
                     TextField(
                         value = viewModel.state.birthdate,
