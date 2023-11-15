@@ -1,7 +1,7 @@
 object Compose {
     const val play_service_location = "com.google.android.gms:play-services-location:21.0.1"
     const val composeVersion = "1.3.3"
-    const val materialVersion = "1.0.1"
+    const val materialVersion = "1.2.0-alpha02"
     const val composeCompilerVersion = "1.4.2"
     const val material3 = "androidx.compose.material3:material3:${materialVersion}"
     const val ui = "androidx.compose.ui:ui:$composeVersion"
@@ -47,4 +47,10 @@ object Compose {
     const val GUAVA = "com.google.guava:guava:30.1.1-jre"
     const val COMPOSE_SCREENSHOT = "com.github.SmartToolFactory:Compose-Screenshot:1.0.3"
     const val JSOUP = "org.jsoup:jsoup:1.13.1"
+
+    private const val maxkeppelerVersion = "1.0.2"
+    const val maxkeppelerSheetsCore =
+        "com.maxkeppeler.sheets-compose-dialogs:core:$maxkeppelerVersion"
+    const val maxkeppelerSheetsCalendar =
+        "com.maxkeppeler.sheets-compose-dialogs:calendar:$maxkeppelerVersion"
 }

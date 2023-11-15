@@ -7,6 +7,8 @@ import android.net.Uri
 import android.provider.Browser
 import androidx.core.text.HtmlCompat
 import com.srmanager.core.common.R
+import java.text.SimpleDateFormat
+import java.util.Date
 
 const val INTERNAL_ERROR = -1
 const val EMAIL_REGEX =
@@ -29,12 +31,11 @@ const val WARNING_URL = PROFILE_PANEL_TEST
 const val REDIRECT_URL = WARNING_URL + "website-warning"
 
 const val TWITTER_URL = "https://twitter.com/IPoliceNL"
-const val LINKEDIN_URL= "https://www.linkedin.com/company/internet-politie-b-v/"
-const val FACEBOOK_URL= "https://www.facebook.com/InternetPolitie"
+const val LINKEDIN_URL = "https://www.linkedin.com/company/internet-politie-b-v/"
+const val FACEBOOK_URL = "https://www.facebook.com/InternetPolitie"
 const val INSTAGRAM_URL = "https://www.instagram.com/internet_politie"
 
 val AGE_LIST = listOf("-18", "18-34", "35-60", "60+")
-
 
 enum class LanguageTagEnum(val tag: String) {
     English("en"),
@@ -115,6 +116,16 @@ fun shareStringWithOthers(text: String, context: Context) {
 
 fun convertHtmlToText(text: String): String {
     return HtmlCompat.fromHtml(text, 0).toString()
+}
+
+fun convertMillisToDate(millis: Long): String {
+    val formatter = SimpleDateFormat(DATE_FORMAT)
+    return formatter.format(Date(millis))
+}
+
+fun currentDate(): String {
+    val sdf = SimpleDateFormat(DATE_FORMAT)
+    return sdf.format(Date())
 }
 
 

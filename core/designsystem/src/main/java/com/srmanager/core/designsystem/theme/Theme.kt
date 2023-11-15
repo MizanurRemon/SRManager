@@ -1,7 +1,10 @@
 package com.srmanager.core.designsystem.theme
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.os.Build
+import android.util.Log
+import android.widget.DatePicker
 import android.widget.TextView
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -44,6 +47,8 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.core.text.HtmlCompat
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.srmanager.core.common.util.CoilImageGetter
+import com.srmanager.core.common.util.convertMillisToDate
+import com.srmanager.core.common.util.currentDate
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
@@ -598,6 +603,56 @@ fun HtmlToTextWithImage(text: String, modifier: Modifier = Modifier) {
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MyDatePickerDialog(
+    onDateSelected: (String) -> Unit,
+    openDialog: MutableState<Boolean>,
+) {
+    val datePickerState = rememberDatePickerState(selectableDates = object : SelectableDates {
+        override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+            return utcTimeMillis <= System.currentTimeMillis()
+        }
+    })
+
+    val selectedDate = datePickerState.selectedDateMillis?.let {
+        convertMillisToDate(it)
+    } ?: currentDate()
+
+
+    if (openDialog.value) {
+        DatePickerDialog(
+            onDismissRequest = { openDialog.value = false },
+            confirmButton = {
+                Button(onClick = {
+                    onDateSelected(selectedDate)
+                    openDialog.value = false
+                }) {
+                    Text(text = stringResource(id = CommonR.string.done))
+                }
+            },
+            dismissButton = {
+                Button(onClick = {
+                    //onDateSelected(selectedDate)
+                    openDialog.value = false
+                }) {
+                    Text(text = stringResource(id = CommonR.string.dissmiss))
+                }
+            }
+        ) {
+            DatePicker(
+                title = {
+                    Text(
+                        modifier = Modifier.padding(20.r()),
+                        text = stringResource(id = CommonR.string.pick_date)
+                    )
+                },
+                state = datePickerState
+            )
+        }
+    }
+}
+
 @SuppressLint("UnrememberedMutableState")
 @Composable
 @DevicePreviews
@@ -623,5 +678,6 @@ fun PreviewShowPopup() {
             contentImage = DesignSystemR.drawable.ic_police_cross
         )*/
 
+    MyDatePickerDialog(onDateSelected = {}, openDialog)
 }
 

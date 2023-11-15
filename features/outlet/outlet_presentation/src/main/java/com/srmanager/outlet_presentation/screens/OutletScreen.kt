@@ -21,6 +21,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.sharp.DateRange
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -30,6 +31,10 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -53,6 +58,7 @@ import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
+import com.srmanager.core.designsystem.theme.MyDatePickerDialog
 import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
 import com.srmanager.core.designsystem.w
 import com.srmanager.outlet_presentation.viewmodel.OutletEvent
@@ -67,6 +73,9 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
 
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
+    var openDatePickerDialog = remember {
+        mutableStateOf(false)
+    }
     Scaffold(floatingActionButton = {
         FloatingActionButton(
             onClick = {
@@ -300,20 +309,39 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                                     color = ColorTextFieldPlaceholder,
                                 )
                             )
+                        },
+                        trailingIcon = {
+                            Icon(
+                                Icons.Sharp.DateRange,
+                                contentDescription = "",
+                                modifier = Modifier
+                                    .size(24.r())
+                                    .clickable {
+                                        openDatePickerDialog.value = true
+                                    },
+                                tint = APP_DEFAULT_COLOR
+                            )
                         }
                     )
 
                     Spacer(modifier = Modifier.height(10.r()))
 
                     AppActionButtonCompose(stringId = CommonR.string.done) {
-                        Toast.makeText(context, viewModel.state.outletName, Toast.LENGTH_SHORT)
-                            .show()
+
                     }
                 }
             }
 
         }
 
+    }
+
+    if (openDatePickerDialog.value) {
+        MyDatePickerDialog(
+            onDateSelected = {
+                viewModel.onEvent(OutletEvent.OnDatePick(it))
+            }, openDialog = openDatePickerDialog
+        )
     }
 }
 

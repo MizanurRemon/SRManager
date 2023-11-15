@@ -13,7 +13,6 @@ class OutletViewModel @Inject constructor() : ViewModel() {
     var state by mutableStateOf(OutletState())
         private set
 
-
     fun onEvent(event: OutletEvent) {
         when (event) {
             is OutletEvent.OnAddButtonClick -> {
@@ -25,15 +24,19 @@ class OutletViewModel @Inject constructor() : ViewModel() {
             }
 
             is OutletEvent.OnOutletNameEnter -> {
-                state = state.copy(outletName = event.name)
+                state = state.copy(outletName = event.value)
             }
 
             is OutletEvent.OnOwnerNameEnter -> {
-                state = state.copy(ownerName = event.name)
+                state = state.copy(ownerName = event.value)
             }
 
             is OutletEvent.OnBirthDateEnter -> {
-                state = state.copy(birthdate = event.name)
+                state = state.copy(birthdate = event.value)
+            }
+
+            is OutletEvent.OnDatePick -> {
+                state = state.copy(birthdate = event.value)
             }
         }
     }

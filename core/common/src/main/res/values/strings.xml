@@ -55,4 +55,6 @@
     <string name="enter_outlet_name">Enter Outlet Name</string>
     <string name="enter_owner_name">Enter Owner Name</string>
     <string name="enter_date_of_birth">Enter DOB</string>
+    <string name="pick_date">Pick date</string>
+    <string name="dissmiss">Dissmiss</string>
 </resources>
