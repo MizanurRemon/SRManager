@@ -21,6 +21,7 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.sharp.DateRange
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -73,7 +74,7 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
 
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
-    var openDatePickerDialog = remember {
+    val openDatePickerDialog = remember {
         mutableStateOf(false)
     }
     Scaffold(floatingActionButton = {
@@ -117,17 +118,15 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
             dismissOnBackPress = false,
             dismissOnClickOutside = false,
             usePlatformDefaultWidth = false
-        ),
-            onDismissRequest = {
-                viewModel.state.isShowEntryDialog.value = false
-            }) {
+        ), onDismissRequest = {
+            viewModel.state.isShowEntryDialog.value = false
+        }) {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(20.w())
                     .background(
-                        color = Color.White,
-                        shape = RoundedCornerShape(20.r())
+                        color = Color.White, shape = RoundedCornerShape(10.r())
                     )
             ) {
                 Box(
@@ -135,7 +134,7 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                         .fillMaxWidth()
                         .background(
                             color = APP_DEFAULT_COLOR,
-                            shape = RoundedCornerShape(topStart = 20.r(), topEnd = 20.r())
+                            shape = RoundedCornerShape(topStart = 10.r(), topEnd = 10.r())
                         )
                 ) {
                     Row(
@@ -146,10 +145,8 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                     ) {
 
                         Text(
-                            text = "Shop Entry Form",
-                            style = bodyBoldTextStyle.copy(
-                                color = Color.White,
-                                letterSpacing = .2.sp
+                            text = "Shop Entry Form", style = bodyBoldTextStyle.copy(
+                                color = Color.White, letterSpacing = .2.sp
                             )
                         )
 
@@ -171,16 +168,14 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                         .fillMaxWidth()
                         .padding(10.r())
                 ) {
-                    TextField(
-                        value = viewModel.state.outletName,
+                    TextField(value = viewModel.state.outletName,
                         colors = TextFieldDefaults.textFieldColors(
                             containerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
                         keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Password,
-                            imeAction = ImeAction.Done
+                            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                         ),
                         keyboardActions = KeyboardActions(onDone = {
                             keyboardController?.hide()
@@ -215,21 +210,18 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                                     color = ColorTextFieldPlaceholder,
                                 )
                             )
-                        }
-                    )
+                        })
 
                     Spacer(modifier = Modifier.height(10.r()))
 
-                    TextField(
-                        value = viewModel.state.ownerName,
+                    TextField(value = viewModel.state.ownerName,
                         colors = TextFieldDefaults.textFieldColors(
                             containerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
                         keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Password,
-                            imeAction = ImeAction.Done
+                            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                         ),
                         keyboardActions = KeyboardActions(onDone = {
                             keyboardController?.hide()
@@ -264,21 +256,18 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                                     color = ColorTextFieldPlaceholder,
                                 )
                             )
-                        }
-                    )
+                        })
 
                     Spacer(modifier = Modifier.height(10.r()))
 
-                    TextField(
-                        value = viewModel.state.birthdate,
+                    TextField(value = viewModel.state.birthdate,
                         colors = TextFieldDefaults.textFieldColors(
                             containerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
                         keyboardOptions = KeyboardOptions(
-                            keyboardType = KeyboardType.Password,
-                            imeAction = ImeAction.Done
+                            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
                         ),
                         keyboardActions = KeyboardActions(onDone = {
                             keyboardController?.hide()
@@ -325,7 +314,150 @@ fun OutletScreen(onBack: () -> Unit, viewModel: OutletViewModel = hiltViewModel(
                                     },
                                 tint = APP_DEFAULT_COLOR
                             )
-                        }
+                        })
+
+                    Spacer(modifier = Modifier.height(10.r()))
+
+                    TextField(
+                        value = viewModel.state.birthdate,
+                        colors = TextFieldDefaults.textFieldColors(
+                            containerColor = Color.White,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            keyboardController?.hide()
+
+                            defaultKeyboardAction(ImeAction.Done)
+                        }),
+                        onValueChange = {
+                            viewModel.onEvent(OutletEvent.OnBirthDateEnter(it))
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(54.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .border(
+                                width = 1.dp,
+                                shape = RoundedCornerShape(10.dp),
+                                color = Color.LightGray
+                            ),
+                        leadingIcon = {
+                            Icon(
+                                Icons.Default.Phone,
+                                contentDescription = "",
+                                modifier = Modifier.size(24.r()),
+                                tint = Color.LightGray
+                            )
+                        },
+                        placeholder = {
+                            Text(
+                                text = stringResource(id = CommonR.string.enter_mobile_no_1),
+                                style = TextStyle(
+                                    color = ColorTextFieldPlaceholder,
+                                )
+                            )
+                        },
+                    )
+
+                    Spacer(modifier = Modifier.height(10.r()))
+
+                    TextField(
+                        value = viewModel.state.phone2,
+                        colors = TextFieldDefaults.textFieldColors(
+                            containerColor = Color.White,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            keyboardController?.hide()
+
+                            defaultKeyboardAction(ImeAction.Done)
+                        }),
+                        onValueChange = {
+                            viewModel.onEvent(OutletEvent.OnMobileNo2Enter(it))
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(54.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .border(
+                                width = 1.dp,
+                                shape = RoundedCornerShape(10.dp),
+                                color = Color.LightGray
+                            ),
+                        leadingIcon = {
+                            Icon(
+                                Icons.Default.Phone,
+                                contentDescription = "",
+                                modifier = Modifier.size(24.r()),
+                                tint = Color.LightGray
+                            )
+                        },
+                        placeholder = {
+                            Text(
+                                text = stringResource(id = CommonR.string.enter_mobile_no_2),
+                                style = TextStyle(
+                                    color = ColorTextFieldPlaceholder,
+                                )
+                            )
+                        },
+                    )
+
+                    Spacer(modifier = Modifier.height(10.r()))
+
+                    TextField(
+                        value = viewModel.state.tradeLicense,
+                        colors = TextFieldDefaults.textFieldColors(
+                            containerColor = Color.White,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Password, imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            keyboardController?.hide()
+
+                            defaultKeyboardAction(ImeAction.Done)
+                        }),
+                        onValueChange = {
+                            viewModel.onEvent(OutletEvent.OnTradeLicenseEnter(it))
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(54.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .border(
+                                width = 1.dp,
+                                shape = RoundedCornerShape(10.dp),
+                                color = Color.LightGray
+                            ),
+                        leadingIcon = {
+                            Icon(
+                                Icons.Default.Phone,
+                                contentDescription = "",
+                                modifier = Modifier.size(24.r()),
+                                tint = Color.LightGray
+                            )
+                        },
+                        placeholder = {
+                            Text(
+                                text = stringResource(id = CommonR.string.enter_trade_license),
+                                style = TextStyle(
+                                    color = ColorTextFieldPlaceholder,
+                                )
+                            )
+                        },
                     )
 
                     Spacer(modifier = Modifier.height(10.r()))

@@ -4,7 +4,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 
 data class OutletState(
-    val isShowEntryDialog: MutableState<Boolean> = mutableStateOf(false),
+    val isShowEntryDialog: MutableState<Boolean> = mutableStateOf(true),
     val outletName: String = "",
     val ownerName: String = "",
     val birthdate: String = "",

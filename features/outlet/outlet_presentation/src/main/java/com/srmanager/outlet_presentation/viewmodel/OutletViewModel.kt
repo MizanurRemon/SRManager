@@ -38,6 +38,18 @@ class OutletViewModel @Inject constructor() : ViewModel() {
             is OutletEvent.OnDatePick -> {
                 state = state.copy(birthdate = event.value)
             }
+
+            is OutletEvent.OnMobileNo1Enter -> {
+                state = state.copy(phone1 = event.value)
+            }
+
+            is OutletEvent.OnMobileNo2Enter -> {
+                state = state.copy(phone2 = event.value)
+            }
+
+            is OutletEvent.OnTradeLicenseEnter-> {
+                state = state.copy(tradeLicense = event.value)
+            }
         }
     }
 }

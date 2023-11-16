@@ -57,4 +57,8 @@
     <string name="enter_date_of_birth">Enter DOB</string>
     <string name="pick_date">Pick date</string>
     <string name="dissmiss">Dissmiss</string>
+    <string name ="enter_mobile_no_1">Enter mobile no 1</string>
+    <string name ="enter_mobile_no_2">Enter mobile no 2</string>
+    <string name ="enter_trade_license">Enter trade license</string>
+    <string name ="enter_vat_trn">Enter TRN</string>
 </resources>
