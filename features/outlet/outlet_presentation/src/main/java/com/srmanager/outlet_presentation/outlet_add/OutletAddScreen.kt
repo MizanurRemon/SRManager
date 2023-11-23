@@ -43,6 +43,7 @@ import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
+import com.srmanager.core.designsystem.theme.MyDatePickerDialog
 import com.srmanager.core.designsystem.w
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
@@ -375,5 +376,13 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                 }
             }
         }
+    }
+
+    if (openDatePickerDialog.value) {
+        MyDatePickerDialog(
+            onDateSelected = {
+                viewModel.onEvent(OutletAddEvent.OnDatePick(it))
+            }, openDialog = openDatePickerDialog
+        )
     }
 }
