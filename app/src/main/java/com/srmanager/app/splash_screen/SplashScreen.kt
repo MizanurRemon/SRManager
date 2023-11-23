@@ -71,7 +71,8 @@ fun SplashScreen(
 
                 is UiEvent.NavigateUp -> {
 
-                     toLogin()
+                    // toLogin()
+                    toHome()
 
                 }
             }
@@ -141,7 +142,7 @@ fun SplashScreen(
                 )
             } else {
                 Text(
-                    text = viewModel.state.address!!.value.toString(),
+                    text = viewModel.state.address.value.toString(),
                     style = bodyLightTextStyle.copy(
                         letterSpacing = .2.sp,
                         fontWeight = FontWeight.Bold,

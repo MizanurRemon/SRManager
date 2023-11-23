@@ -13,5 +13,7 @@ data class OutletAddState(
     val tradeLicense: String = "",
     val tlcExpiryDate: String = "",
     val vatTRN: String = "",
-    val address: String = ""
+    val address: String = "",
+    val latitude: String = "",
+    val longitude: String = ""
 )

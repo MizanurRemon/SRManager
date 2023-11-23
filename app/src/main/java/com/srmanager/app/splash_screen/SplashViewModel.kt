@@ -18,6 +18,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -41,19 +42,32 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             delay(5000)
 
-            locationDao.getLocation().collect {
-                if (it.isNotEmpty()){
-                    state = state.copy(isLoading = false,address = mutableStateOf(it[0].address.toString()))
+            launch {
+                locationDao.getLocation().collect {
+                    if (it.isNotEmpty()) {
+                        state = state.copy(
+                            isLoading = false,
+                            address = mutableStateOf(it[0].address.toString())
+                        )
+                    }
                 }
             }
 
             delay(2000)
 
-            val isLoggedIn = preferenceDataStoreHelper.getFirstPreference(
-                PreferenceDataStoreConstants.IS_LOGGED_IN,
-                false
-            )
-            if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.NavigateUp)
+            launch {
+                val isLoggedIn = preferenceDataStoreHelper.getFirstPreference(
+                    PreferenceDataStoreConstants.IS_LOGGED_IN,
+                    false
+                )
+                if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.NavigateUp)
+            }
+
+
+
+
+
+
 
         }
 

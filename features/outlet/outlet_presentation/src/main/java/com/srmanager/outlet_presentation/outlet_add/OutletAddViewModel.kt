@@ -4,17 +4,33 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.srmanager.database.dao.LocationDao
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
-class OutletAddViewModel @Inject constructor() : ViewModel() {
+class OutletAddViewModel @Inject constructor(private val locationDao: LocationDao) : ViewModel() {
     var state by mutableStateOf(OutletAddState())
         private set
 
     init {
-
+        viewModelScope.launch {
+            launch {
+                locationDao.getLocation().collect {
+                    if (it.isNotEmpty()) {
+                        state = state.copy(
+                            address = it[0].address.toString(),
+                            latitude = it[0].latitude.toString(),
+                            longitude = it[0].longitude.toString()
+                        )
+                    }
+                }
+            }
+        }
     }
 
     fun onEvent(event: OutletAddEvent) {
@@ -63,8 +79,8 @@ class OutletAddViewModel @Inject constructor() : ViewModel() {
                 state = state.copy(vatTRN = event.value)
             }
 
-            is OutletAddEvent.OnAddressEnter-> {
-                state = state.copy(address =  event.value)
+            is OutletAddEvent.OnAddressEnter -> {
+                state = state.copy(address = event.value)
             }
         }
     }
