@@ -9,5 +9,8 @@ sealed class OutletAddEvent {
     data class OnMobileNo1Enter(val value: String): OutletAddEvent()
     data class OnMobileNo2Enter(val value: String): OutletAddEvent()
     data class OnTradeLicenseEnter(val value: String): OutletAddEvent()
+    data class OnVatTRNEnter(val value: String): OutletAddEvent()
     data class OnDatePick(val value : String): OutletAddEvent()
+    data class OnExpiryDateEnter(val value: String): OutletAddEvent()
+    data class OnAddressEnter(val value: String): OutletAddEvent()
 }

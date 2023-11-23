@@ -60,5 +60,15 @@
     <string name ="enter_mobile_no_1">Enter mobile no 1</string>
     <string name ="enter_mobile_no_2">Enter mobile no 2</string>
     <string name ="enter_trade_license">Enter trade license</string>
-    <string name ="enter_vat_trn">Enter TRN</string>
+    <string name ="enter_vat_trn">Enter vat TRN</string>
+    <string name="outlet_name">Outlet Name</string>
+    <string name="owner_name">Owner Name</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="mobile_no_1">Mobile No 1</string>
+    <string name="mobile_no_2">Mobile No 2</string>
+    <string name="trade_license">Trade License</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="vat_trn">Vat TRN</string>
+    <string name="address">Address</string>
+    <string name="enter_address">Enter Address</string>
 </resources>
