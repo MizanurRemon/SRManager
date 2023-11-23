@@ -16,6 +16,7 @@ object Route {
     const val EMAIL_UPDATED = "email_updated"
     const val NOTIFICATION_ON_OFF = "notification_on_off"
     const val OUTLET = "outlet"
+    const val OUTLET_ADD = "outlet_add"
     const val ORDER = "order"
     const val REPORT = "report"
 }

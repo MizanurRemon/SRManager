@@ -1,9 +1,9 @@
-package com.srmanager.outlet_presentation.viewmodel
+package com.srmanager.outlet_presentation.outlet_add
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 
-data class OutletState(
+data class OutletAddState(
     val isShowEntryDialog: MutableState<Boolean> = mutableStateOf(true),
     val outletName: String = "",
     val ownerName: String = "",

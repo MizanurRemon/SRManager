@@ -10,19 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/screens/OutletScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/screens/OutletScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletEvent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/navigation/Route.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/navigation/Route.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/screens/OutletScreen.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletEvent.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/viewmodel/OutletViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/remon/.android/avd/Emulator.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[33220fdb]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -51,12 +56,12 @@
         <option value="layoutResourceFile_vertical" />
         <option value="resourceFile" />
         <option value="Kotlin Object" />
-        <option value="Kotlin File" />
         <option value="Kotlin Interface" />
         <option value="Class" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Sealed Class" />
+        <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -150,13 +155,14 @@
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/drawable" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/Outlet" />
+      <recent name="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/OutletAdd" />
       <recent name="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/splash_screen" />
       <recent name="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation/screens" />
       <recent name="$PROJECT_DIR$/features/customer/customer_presentation/src/main/java/com/srmanager/customer_presentation" />
-      <recent name="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations" />
-      <recent name="$PROJECT_DIR$/features/settings/settings_presentation/src/main/java/com/internetpolice/settings_presentation/screens/language" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.srmanager.outlet_presentation.OutletAdd" />
       <recent name="com.srmanager.app.navigations" />
       <recent name="com.internetpolice.settings_presentation.screens.language" />
     </key>
@@ -595,13 +601,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00226" summary="fix UI">
-      <created>1698231554159</created>
-      <option name="number" value="00226" />
-      <option name="presentableId" value="LOCAL-00226" />
-      <option name="project" value="LOCAL" />
-      <updated>1698231554159</updated>
-    </task>
     <task id="LOCAL-00227" summary="fix UI">
       <created>1698293834312</created>
       <option name="number" value="00227" />
@@ -938,7 +937,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700026476641</updated>
     </task>
-    <option name="localTasksCounter" value="275" />
+    <task id="LOCAL-00275" summary="date picker">
+      <created>1700133216267</created>
+      <option name="number" value="00275" />
+      <option name="presentableId" value="LOCAL-00275" />
+      <option name="project" value="LOCAL" />
+      <updated>1700133216267</updated>
+    </task>
+    <option name="localTasksCounter" value="276" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

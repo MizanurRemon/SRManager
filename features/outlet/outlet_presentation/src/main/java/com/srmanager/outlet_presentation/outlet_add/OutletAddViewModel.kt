@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.viewmodel
+package com.srmanager.outlet_presentation.outlet_add
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -9,45 +9,45 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class OutletViewModel @Inject constructor() : ViewModel() {
-    var state by mutableStateOf(OutletState())
+class OutletAddViewModel @Inject constructor() : ViewModel() {
+    var state by mutableStateOf(OutletAddState())
         private set
 
-    fun onEvent(event: OutletEvent) {
+    fun onEvent(event: OutletAddEvent) {
         when (event) {
-            is OutletEvent.OnAddButtonClick -> {
+            is OutletAddEvent.OnAddButtonClick -> {
                 state = state.copy(isShowEntryDialog = mutableStateOf(true))
             }
 
-            is OutletEvent.OnSubmitButtonClick -> {
+            is OutletAddEvent.OnSubmitButtonClick -> {
 
             }
 
-            is OutletEvent.OnOutletNameEnter -> {
+            is OutletAddEvent.OnOutletNameEnter -> {
                 state = state.copy(outletName = event.value)
             }
 
-            is OutletEvent.OnOwnerNameEnter -> {
+            is OutletAddEvent.OnOwnerNameEnter -> {
                 state = state.copy(ownerName = event.value)
             }
 
-            is OutletEvent.OnBirthDateEnter -> {
+            is OutletAddEvent.OnBirthDateEnter -> {
                 state = state.copy(birthdate = event.value)
             }
 
-            is OutletEvent.OnDatePick -> {
+            is OutletAddEvent.OnDatePick -> {
                 state = state.copy(birthdate = event.value)
             }
 
-            is OutletEvent.OnMobileNo1Enter -> {
+            is OutletAddEvent.OnMobileNo1Enter -> {
                 state = state.copy(phone1 = event.value)
             }
 
-            is OutletEvent.OnMobileNo2Enter -> {
+            is OutletAddEvent.OnMobileNo2Enter -> {
                 state = state.copy(phone2 = event.value)
             }
 
-            is OutletEvent.OnTradeLicenseEnter-> {
+            is OutletAddEvent.OnTradeLicenseEnter -> {
                 state = state.copy(tradeLicense = event.value)
             }
         }
