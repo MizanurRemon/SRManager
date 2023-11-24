@@ -1,10 +1,6 @@
 package com.srmanager.outlet_presentation.outlet_add
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateOf
-
 data class OutletAddState(
-    val isShowEntryDialog: MutableState<Boolean> = mutableStateOf(true),
     val outletName: String = "",
     val ownerName: String = "",
     val birthdate: String = "",
@@ -15,5 +11,12 @@ data class OutletAddState(
     val vatTRN: String = "",
     val address: String = "",
     val latitude: String = "",
-    val longitude: String = ""
+    val longitude: String = "",
+    val isOutletNameError: Boolean = false,
+    val isOwnerNameError: Boolean = false,
+    val isBirthDateError: Boolean = false,
+    val isPhone1Error: Boolean = false,
+    val isPhone2Error: Boolean = false,
+    val isTradeLicenseError: Boolean = false,
+    val isVatTrnError: Boolean = false,
 )

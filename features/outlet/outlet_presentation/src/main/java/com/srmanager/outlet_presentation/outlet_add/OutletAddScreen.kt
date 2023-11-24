@@ -39,6 +39,7 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
@@ -50,7 +51,6 @@ import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
 import com.srmanager.core.designsystem.theme.MyDatePickerDialog
 import com.srmanager.core.designsystem.theme.smallBodyTextStyle
-import com.srmanager.core.designsystem.w
 import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
 
@@ -86,7 +86,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
             )
             Text(
                 text = stringResource(id = CommonR.string.outlet_name),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
             TextField(value = viewModel.state.outletName,
@@ -133,11 +133,21 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 })
 
+            if (viewModel.state.isOutletNameError) {
+                Text(
+                    text = stringResource(id = CommonR.string.empty_field),
+                    style = smallBodyTextStyle.copy(
+                        fontWeight = FontWeight.Light,
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 5.r())
+                )
+            }
 
 
             Text(
                 text = stringResource(id = CommonR.string.owner_name),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
@@ -184,12 +194,21 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                         )
                     )
                 })
-
+            if (viewModel.state.isOwnerNameError) {
+                Text(
+                    text = stringResource(id = CommonR.string.empty_field),
+                    style = smallBodyTextStyle.copy(
+                        fontWeight = FontWeight.Light,
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 5.r())
+                )
+            }
 
 
             Text(
                 text = stringResource(id = CommonR.string.date_of_birth),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
@@ -209,7 +228,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnBirthDateEnter(it))
+                    //viewModel.onEvent(OutletAddEvent.OnBirthDateEnter(it))
                 },
 
                 modifier = Modifier
@@ -250,11 +269,20 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 })
 
-
+            if (viewModel.state.isBirthDateError) {
+                Text(
+                    text = stringResource(id = CommonR.string.empty_field),
+                    style = smallBodyTextStyle.copy(
+                        fontWeight = FontWeight.Light,
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 5.r())
+                )
+            }
 
             Text(
                 text = stringResource(id = CommonR.string.mobile_no_1),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
@@ -308,7 +336,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
 
             Text(
                 text = stringResource(id = CommonR.string.mobile_no_2),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
@@ -362,7 +390,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
 
             Text(
                 text = stringResource(id = CommonR.string.trade_license),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
@@ -416,7 +444,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
 
             Text(
                 text = stringResource(id = CommonR.string.expiry_date),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
@@ -481,7 +509,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
 
             Text(
                 text = stringResource(id = CommonR.string.vat_trn),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
@@ -533,7 +561,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
 
             Text(
                 text = stringResource(id = CommonR.string.address),
-                style = smallBodyTextStyle,
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
@@ -591,14 +619,14 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
             ) {
                 Text(
                     text = stringResource(id = CommonR.string.location),
-                    style = smallBodyTextStyle,
+                    style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                     modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
                 )
 
                 Spacer(modifier = Modifier.weight(1f))
 
                 Text(
-                    text =  "${viewModel.state.latitude}, ${viewModel.state.longitude}",
+                    text = "${viewModel.state.latitude}, ${viewModel.state.longitude}",
                     style = smallBodyTextStyle,
                     modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
                 )
@@ -608,7 +636,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                 stringId = CommonR.string.done,
                 modifier = Modifier.padding(top = 10.r())
             ) {
-
+                viewModel.onEvent(OutletAddEvent.OnSubmitButtonClick)
             }
         }
     }

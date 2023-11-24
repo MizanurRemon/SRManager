@@ -1,5 +1,6 @@
 package com.srmanager.outlet_presentation.outlet_add
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -35,28 +36,58 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
 
     fun onEvent(event: OutletAddEvent) {
         when (event) {
-            is OutletAddEvent.OnAddButtonClick -> {
-                state = state.copy(isShowEntryDialog = mutableStateOf(true))
-            }
+
 
             is OutletAddEvent.OnSubmitButtonClick -> {
+                if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty()) {
+                    state = state.copy(
+                        isOutletNameError = state.outletName.isEmpty(),
+                        isOwnerNameError = state.ownerName.isEmpty(),
+                        isBirthDateError = state.birthdate.isEmpty()
+                    )
+                } else {
+                    state = state.copy(
+                        isOutletNameError = false,
+                        isOwnerNameError = false,
+                        isBirthDateError = false
+                    )
 
+                    val requestData = HashMap<String, Any>()
+                    requestData["outlet_name"] = state.outletName
+                    requestData["owner_name"] = state.ownerName
+                    requestData["birth_date"] = state.birthdate
+                    requestData["mobile_1"] = state.phone1
+                    requestData["mobile_2"] = state.phone2
+                    requestData["trade_license"] = state.tradeLicense
+                    requestData["vat_trn"] = state.vatTRN
+                    requestData["expiry_date"] = state.tlcExpiryDate
+                    requestData["address"] = state.address
+                    requestData["latitude"] = state.latitude
+                    requestData["longitude"] = state.longitude
+
+
+                    Log.d("dataxx", "onEvent: $requestData")
+                }
             }
 
             is OutletAddEvent.OnOutletNameEnter -> {
-                state = state.copy(outletName = event.value)
+                state =
+                    state.copy(outletName = event.value, isOutletNameError = event.value.isEmpty())
             }
 
             is OutletAddEvent.OnOwnerNameEnter -> {
-                state = state.copy(ownerName = event.value)
+                state =
+                    state.copy(ownerName = event.value, isOwnerNameError = event.value.isEmpty())
             }
 
             is OutletAddEvent.OnBirthDateEnter -> {
-                state = state.copy(birthdate = event.value)
+                state =
+                    state.copy(birthdate = event.value, isBirthDateError = event.value.isEmpty())
             }
 
             is OutletAddEvent.OnDatePick -> {
-                state = state.copy(birthdate = event.value)
+                state =
+                    state.copy(birthdate = event.value, isBirthDateError = event.value.isEmpty())
             }
 
             is OutletAddEvent.OnMobileNo1Enter -> {
