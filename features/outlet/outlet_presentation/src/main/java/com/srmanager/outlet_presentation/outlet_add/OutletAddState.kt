@@ -19,4 +19,5 @@ data class OutletAddState(
     val isPhone2Error: Boolean = false,
     val isTradeLicenseError: Boolean = false,
     val isVatTrnError: Boolean = false,
+    val isExpiryDateError : Boolean = false
 )

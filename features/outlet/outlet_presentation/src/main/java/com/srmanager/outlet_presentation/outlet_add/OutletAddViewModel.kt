@@ -39,17 +39,24 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
 
 
             is OutletAddEvent.OnSubmitButtonClick -> {
-                if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty()) {
+                if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty()) {
                     state = state.copy(
                         isOutletNameError = state.outletName.isEmpty(),
                         isOwnerNameError = state.ownerName.isEmpty(),
-                        isBirthDateError = state.birthdate.isEmpty()
+                        isBirthDateError = state.birthdate.isEmpty(),
+                        isPhone1Error = state.phone1.isEmpty(),
+                        isTradeLicenseError = state.tradeLicense.isEmpty(),
+                        isVatTrnError = state.vatTRN.isEmpty()
                     )
                 } else {
                     state = state.copy(
                         isOutletNameError = false,
                         isOwnerNameError = false,
-                        isBirthDateError = false
+                        isBirthDateError = false,
+                        isPhone1Error = false,
+                        isPhone2Error = false,
+                        isTradeLicenseError = false,
+                        isVatTrnError = false,
                     )
 
                     val requestData = HashMap<String, Any>()
@@ -91,7 +98,7 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
             }
 
             is OutletAddEvent.OnMobileNo1Enter -> {
-                state = state.copy(phone1 = event.value)
+                state = state.copy(phone1 = event.value, isPhone1Error = event.value.isEmpty())
             }
 
             is OutletAddEvent.OnMobileNo2Enter -> {
@@ -99,15 +106,21 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
             }
 
             is OutletAddEvent.OnTradeLicenseEnter -> {
-                state = state.copy(tradeLicense = event.value)
+                state = state.copy(
+                    tradeLicense = event.value,
+                    isTradeLicenseError = event.value.isEmpty()
+                )
             }
 
             is OutletAddEvent.OnExpiryDateEnter -> {
-                state = state.copy(tlcExpiryDate = event.value)
+                state = state.copy(
+                    tlcExpiryDate = event.value,
+                    isExpiryDateError = event.value.isEmpty()
+                )
             }
 
             is OutletAddEvent.OnVatTRNEnter -> {
-                state = state.copy(vatTRN = event.value)
+                state = state.copy(vatTRN = event.value, isVatTrnError = event.value.isEmpty())
             }
 
             is OutletAddEvent.OnAddressEnter -> {

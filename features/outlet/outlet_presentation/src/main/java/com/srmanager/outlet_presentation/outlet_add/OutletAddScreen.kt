@@ -1,5 +1,13 @@
 package com.srmanager.outlet_presentation.outlet_add
 
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -27,13 +35,16 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -44,6 +55,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.srmanager.core.common.util.getBitmapFromImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
@@ -61,6 +73,24 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
     val keyboardController = LocalSoftwareKeyboardController.current
     val openDatePickerDialog = remember {
         mutableStateOf(false)
+    }
+
+    var imageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    val launcher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
+            imageUri = uri
+        }
+
+    val bitmap = remember {
+        mutableStateOf<Bitmap?>(
+            getBitmapFromImage(
+                context,
+                DesignSystemR.drawable.ic_camera
+            )
+        )
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -81,9 +111,63 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(100.dp)
-                    .background(color = Color.Black)
-            )
+                    .height(250.r())
+                    .border(
+                        width = 1.r(),
+                        color = Color.LightGray,
+                        shape = RoundedCornerShape(20.r())
+                    )
+                    .clickable {
+                        launcher.launch("image/*")
+                    }
+            ) {
+
+                if (imageUri == null){
+                    bitmap.value?.let {
+                        Image(
+                            bitmap = it.asImageBitmap(),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(20.r()))
+                                .align(Alignment.Center)
+                        )
+                    }
+                }else{
+                    imageUri.let { it ->
+                        when {
+                            Build.VERSION.SDK_INT < 28 -> {
+                                bitmap.value = MediaStore.Images
+                                    .Media.getBitmap(context.contentResolver, it) as Nothing?
+
+                            }
+
+                            else -> {
+                                val source = it?.let { it1 ->
+                                    ImageDecoder
+                                        .createSource(context.contentResolver, it1)
+                                }
+
+                                bitmap.value = source?.let { it1 -> ImageDecoder.decodeBitmap(it1) }
+                            }
+                        }
+                    }
+
+                    bitmap.value?.let { btm ->
+                        Image(
+                            bitmap = btm.asImageBitmap(),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .clip(RoundedCornerShape(20.r()))
+                                .align(Alignment.Center)
+                        )
+                    }
+                }
+
+
+
+
+
+            }
             Text(
                 text = stringResource(id = CommonR.string.outlet_name),
                 style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
@@ -332,6 +416,17 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                 },
             )
 
+            if (viewModel.state.isPhone1Error) {
+                Text(
+                    text = stringResource(id = CommonR.string.invalid),
+                    style = smallBodyTextStyle.copy(
+                        fontWeight = FontWeight.Light,
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 5.r())
+                )
+            }
+
 
 
             Text(
@@ -385,6 +480,17 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 },
             )
+
+            if (viewModel.state.isPhone2Error) {
+                Text(
+                    text = stringResource(id = CommonR.string.invalid),
+                    style = smallBodyTextStyle.copy(
+                        fontWeight = FontWeight.Light,
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 5.r())
+                )
+            }
 
 
 
@@ -440,6 +546,17 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                 },
             )
 
+            if (viewModel.state.isTradeLicenseError) {
+                Text(
+                    text = stringResource(id = CommonR.string.empty_field),
+                    style = smallBodyTextStyle.copy(
+                        fontWeight = FontWeight.Light,
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 5.r())
+                )
+            }
+
 
 
             Text(
@@ -464,7 +581,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnExpiryDateEnter(it))
+
                 },
 
                 modifier = Modifier
@@ -505,6 +622,17 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 })
 
+
+            if (viewModel.state.isExpiryDateError) {
+                Text(
+                    text = stringResource(id = CommonR.string.empty_field),
+                    style = smallBodyTextStyle.copy(
+                        fontWeight = FontWeight.Light,
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 5.r())
+                )
+            }
 
 
             Text(
@@ -558,6 +686,17 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 },
             )
+
+            if (viewModel.state.isVatTrnError) {
+                Text(
+                    text = stringResource(id = CommonR.string.empty_field),
+                    style = smallBodyTextStyle.copy(
+                        fontWeight = FontWeight.Light,
+                        color = Color.Red
+                    ),
+                    modifier = Modifier.padding(top = 5.r())
+                )
+            }
 
             Text(
                 text = stringResource(id = CommonR.string.address),

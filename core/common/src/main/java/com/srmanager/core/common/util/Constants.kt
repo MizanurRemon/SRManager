@@ -3,10 +3,13 @@ package com.srmanager.core.common.util
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
 import android.net.Uri
 import android.provider.Browser
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
-import com.srmanager.core.common.R
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -126,6 +129,20 @@ fun convertMillisToDate(millis: Long): String {
 fun currentDate(): String {
     val sdf = SimpleDateFormat(DATE_FORMAT)
     return sdf.format(Date())
+}
+
+fun getBitmapFromImage(context: Context, drawable: Int): Bitmap {
+
+    val db = ContextCompat.getDrawable(context, drawable)
+
+    val bit = Bitmap.createBitmap(
+        db!!.intrinsicWidth, db.intrinsicHeight, Bitmap.Config.ARGB_8888
+    )
+    val canvas = Canvas(bit)
+    db.setBounds(0, 0, canvas.width, canvas.height)
+    db.draw(canvas)
+    return bit
+
 }
 
 
