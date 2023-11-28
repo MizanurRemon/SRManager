@@ -153,13 +153,12 @@ fun getBitmapFromImage(context: Context, drawable: Int): Bitmap {
 fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
 
     return try {
-        val imageStream = resolver.openInputStream(imageUri!!)
-        val selectedImage = BitmapFactory.decodeStream(imageStream)
+        val selectedImage = BitmapFactory.decodeStream(resolver.openInputStream(imageUri!!))
         val byteArrayOutputStream = ByteArrayOutputStream()
         selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-        val b = byteArrayOutputStream.toByteArray()
-
-        android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT)
+        val imgString = android.util.Base64.encodeToString(byteArrayOutputStream.toByteArray(), android.util.Base64.DEFAULT)
+        Log.d("dataxx", "fileImageUriToBase64: $imgString")
+        return imgString
     } catch (e: java.lang.Exception) {
         Log.d("dataxx", "ERORXX: " + e.message)
         ""

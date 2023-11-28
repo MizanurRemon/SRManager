@@ -19,4 +19,5 @@ dependencies {
     implementation(project(Modules.network))
     implementation(Compose.material3)
     implementation(project(Modules.database))
+    implementation(Coil.coilCompose)
 }

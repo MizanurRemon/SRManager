@@ -105,7 +105,7 @@ dependencies {
     implementation(AndroidX.appCompat)
     implementation(Compose.viewModelCompose)
     implementation(Coil.coilCompose)
-    implementation(Exoplayer.exoPlayer)
+//    implementation(Exoplayer.exoPlayer)
 
     implementation(Hilt.hiltAndroidVersion)
     kapt(Hilt.hiltCompiler)

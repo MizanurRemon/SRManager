@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -44,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -51,6 +53,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.rememberImagePainter
+import com.srmanager.core.common.util.CoilImageGetter
 import com.srmanager.core.common.util.getBitmapFromImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
@@ -84,14 +88,9 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
             imageUri = uri
         }
 
-    val bitmap = remember {
-        mutableStateOf<Bitmap?>(
-            getBitmapFromImage(
-                context,
-                DesignSystemR.drawable.ic_camera
-            )
-        )
-    }
+
+
+
 
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
@@ -123,46 +122,33 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
             ) {
 
                 if (imageUri == null) {
-                    bitmap.value?.let {
-                        Image(
-                            bitmap = it.asImageBitmap(),
-                            contentDescription = "",
-                            modifier = Modifier
-                                .clip(RoundedCornerShape(20.r()))
-                                .align(Alignment.Center)
-                        )
-                    }
+                    Image(
+                        painter = painterResource(id = DesignSystemR.drawable.ic_camera),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .align(Alignment.Center)
+
+                    )
                 } else {
                     imageUri.let {
 
-                        viewModel.onEvent(OutletAddEvent.OnImageSelection(it!!, context.contentResolver))
-                        when {
-                            Build.VERSION.SDK_INT < 28 -> {
-                                bitmap.value = MediaStore.Images
-                                    .Media.getBitmap(context.contentResolver, it) as Nothing?
+                        viewModel.onEvent(
+                            OutletAddEvent.OnImageSelection(
+                                it!!,
+                                context.contentResolver
+                            )
+                        )
 
-                            }
-
-                            else -> {
-                                val source = it.let { it1 ->
-                                    ImageDecoder
-                                        .createSource(context.contentResolver, it1)
-                                }
-
-                                bitmap.value = source.let { it1 -> ImageDecoder.decodeBitmap(it1) }
-                            }
-                        }
-                    }
-
-                    bitmap.value?.let { btm ->
                         Image(
-                            bitmap = btm.asImageBitmap(),
+                            painter = rememberImagePainter(data = imageUri),
                             contentDescription = "",
                             modifier = Modifier
-                                .clip(RoundedCornerShape(20.r()))
+                               // .clip(RoundedCornerShape(20.r()))
                                 .align(Alignment.Center)
+                                .fillMaxHeight()
                         )
                     }
+
                 }
 
 
@@ -637,7 +623,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
         )
     }
 
-    if (openExpiryDatePickerDialog.value){
+    if (openExpiryDatePickerDialog.value) {
         MyDatePickerDialog(
             onDateSelected = {
                 viewModel.onEvent(OutletAddEvent.OnExpiryDateEnter(it))
