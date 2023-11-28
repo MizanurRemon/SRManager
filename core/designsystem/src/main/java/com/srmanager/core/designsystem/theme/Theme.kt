@@ -660,7 +660,6 @@ fun MyDatePickerDialog(
 
 @Composable
 fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> Unit) {
-    val width = (LocalConfiguration.current.screenWidthDp / 3.0).dp
 
     val context = LocalContext.current
     var imageUri by remember {
@@ -716,8 +715,7 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
             ) {
                 Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(10.r()),
+                        .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
 
@@ -739,8 +737,16 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
                         )
                     }
 
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(1.r())
+                            .background(color = Color.Gray).
+                        padding(vertical = 10.r())
+                    )
+
                     Row(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 10.r()),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
@@ -853,10 +859,6 @@ fun PreviewShowPopup() {
         )*/
 
     // MyDatePickerDialog(onDateSelected = {}, openDialog)
-
-    val imageUri by remember {
-        mutableStateOf<Uri?>(null)
-    }
 
     ImagePickerDialog(openDialog, onDoneClick = {})
 }
