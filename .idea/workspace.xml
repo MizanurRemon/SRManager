@@ -10,14 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_check.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_cross.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_gallery.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/xml/provider_paths.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +47,6 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile_vertical" />
-        <option value="resourceFile" />
         <option value="Kotlin Object" />
         <option value="Kotlin Interface" />
         <option value="Class" />
@@ -59,6 +54,7 @@
         <option value="Kotlin Sealed Class" />
         <option value="Kotlin File" />
         <option value="Kotlin Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -598,13 +594,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00235" summary="language updated">
-      <created>1698402587212</created>
-      <option name="number" value="00235" />
-      <option name="presentableId" value="LOCAL-00235" />
-      <option name="project" value="LOCAL" />
-      <updated>1698402587212</updated>
-    </task>
     <task id="LOCAL-00236" summary="language updated">
       <created>1698657752650</created>
       <option name="number" value="00236" />
@@ -941,7 +930,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701156141845</updated>
     </task>
-    <option name="localTasksCounter" value="284" />
+    <task id="LOCAL-00284" summary="ui">
+      <created>1701162240382</created>
+      <option name="number" value="00284" />
+      <option name="presentableId" value="LOCAL-00284" />
+      <option name="project" value="LOCAL" />
+      <updated>1701162240382</updated>
+    </task>
+    <option name="localTasksCounter" value="285" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

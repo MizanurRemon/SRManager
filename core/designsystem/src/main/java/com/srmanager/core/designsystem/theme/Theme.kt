@@ -1,6 +1,9 @@
 package com.srmanager.core.designsystem.theme
 
+import android.Manifest
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.widget.TextView
@@ -39,16 +42,23 @@ import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.text.HtmlCompat
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.srmanager.core.common.util.CoilImageGetter
 import com.srmanager.core.common.util.convertMillisToDate
 import com.srmanager.core.common.util.currentDate
+import com.srmanager.core.designsystem.BuildConfig
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.w
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Objects
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
@@ -657,11 +667,33 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
         mutableStateOf<Uri?>(null)
     }
 
-    val launcher =
+    val file = context.createImageFile()
+    val uri = FileProvider.getUriForFile(
+        Objects.requireNonNull(context),
+        context.packageName + ".provider", file
+    )
+
+    val cameraLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
+            imageUri = uri
+        }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) {
+        if (it) {
+            Toast.makeText(context, "Permission Granted", Toast.LENGTH_SHORT).show()
+            cameraLauncher.launch(uri)
+        } else {
+            Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    val galleryLauncher =
         rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
             imageUri = uri!!
         }
-
 
 
     if (openDialog.value) {
@@ -738,7 +770,20 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
                         Icon(
                             painter = painterResource(id = DesignSystemR.drawable.ic_camera),
                             contentDescription = "",
-                            modifier = Modifier.size(30.r())
+                            modifier = Modifier
+                                .size(30.r())
+                                .clickable {
+                                    val permissionCheckResult = ContextCompat.checkSelfPermission(
+                                        context,
+                                        Manifest.permission.CAMERA
+                                    )
+
+                                    if (permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
+                                        cameraLauncher.launch(uri)
+                                    } else {
+                                        permissionLauncher.launch(Manifest.permission.CAMERA)
+                                    }
+                                }
                         )
 
                         Icon(
@@ -747,7 +792,7 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
                             modifier = Modifier
                                 .size(30.r())
                                 .clickable {
-                                    launcher.launch("image/*")
+                                    galleryLauncher.launch("image/*")
                                 },
                         )
 
@@ -771,6 +816,16 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
 
 }
 
+fun Context.createImageFile(): File {
+    // Create an image file name
+    val timeStamp = SimpleDateFormat("yyMMddHHmmss").format(Date())
+    val imageFileName = "JPEG_" + timeStamp + "_"
+    return File.createTempFile(
+        imageFileName,
+        ".jpg",
+        externalCacheDir
+    )
+}
 
 @SuppressLint("UnrememberedMutableState")
 @Composable
