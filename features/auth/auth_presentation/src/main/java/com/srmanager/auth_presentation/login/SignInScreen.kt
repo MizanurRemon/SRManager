@@ -73,7 +73,7 @@ fun SignInScreen(
             annotation = CommonR.string.sign_up_for_free.toString()
         )
 
-        withStyle(style = SpanStyle(color = ColorPrimaryDark, fontWeight = FontWeight.W700)) {
+        withStyle(style = SpanStyle(color = Color.Black, fontWeight = FontWeight.W700)) {
             append(stringResource(id = CommonR.string.sign_up_for_free).replace(".", ""))
         }
 
