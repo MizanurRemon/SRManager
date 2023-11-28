@@ -40,14 +40,13 @@ import com.srmanager.core.common.R as CommonR
 fun MainApp(
     navController: NavHostController = rememberNavController(),
 ) {
-    val context = LocalContext.current
     val snackBarHostState = remember { SnackbarHostState() }
     var isChangingEmail = remember { false }
 
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.OUTLET_ADD,
             modifier = Modifier.padding(innerPadding)
         ) {
 

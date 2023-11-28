@@ -11,6 +11,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkRequest
 import android.os.Bundle
 import android.util.DisplayMetrics
+import android.util.Log
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
@@ -37,6 +38,7 @@ import com.srmanager.core.designsystem.theme.BaseTheme
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.database.entity.LocationEntity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -73,8 +75,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
-    @OptIn(ExperimentalPermissionsApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adjustFontScale(resources.configuration)
@@ -89,12 +89,9 @@ class MainActivity : AppCompatActivity() {
 
         setContent {
 
-
             BaseTheme {
                 MainApp()
                 NetworkStatusScreen()
-
-
             }
         }
 
@@ -102,10 +99,12 @@ class MainActivity : AppCompatActivity() {
         checkForAppUpdate()
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun getLocation() {
         locationLiveData = LocationLiveData(application)
         locationLiveData.observeForever {
 
+            Log.d("dataxx", "getLocation: $it")
             GlobalScope.launch(Dispatchers.IO) {
                 locationDao.insertLocation(
                     LocationEntity(
@@ -230,6 +229,8 @@ class MainActivity : AppCompatActivity() {
                 permissionsToRequest,
                 REQUEST_LOCATION
             )
+        }else{
+            getLocation()
         }
     }
 

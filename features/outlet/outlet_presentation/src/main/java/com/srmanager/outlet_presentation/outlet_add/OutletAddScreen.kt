@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -554,7 +555,8 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
 
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(54.dp)
+                    .wrapContentHeight()
+                    //.height(54.dp)
                     .clip(RoundedCornerShape(10.dp))
                     .border(
                         width = 1.dp,

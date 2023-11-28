@@ -26,9 +26,6 @@ import java.util.Locale
 
 class LocationLiveData(private var context: Context) : LiveData<LocationDetails>() {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
-    private val REQUEST_LOCATION = 12
-    public val locationData = MutableLiveData<LocationDetails>()
-    private var userDao: UserDao? = null
     override fun onActive() {
         super.onActive()
         if (ActivityCompat.checkSelfPermission(
@@ -51,7 +48,7 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
         startLocationUpdates()
     }
 
-    fun startLocationUpdates() {
+    private fun startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
