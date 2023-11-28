@@ -1,11 +1,12 @@
 package com.srmanager.core.designsystem.theme
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
+import android.net.Uri
 import android.os.Build
-import android.util.Log
-import android.widget.DatePicker
 import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -14,12 +15,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
@@ -34,17 +32,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.ImeAction
-import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.text.HtmlCompat
+import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.srmanager.core.common.util.CoilImageGetter
 import com.srmanager.core.common.util.convertMillisToDate
@@ -53,7 +49,6 @@ import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.w
-import com.srmanager.core.ui.DevicePreviews
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
@@ -653,9 +648,133 @@ fun MyDatePickerDialog(
     }
 }
 
+@Composable
+fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> Unit) {
+    val width = (LocalConfiguration.current.screenWidthDp / 3.0).dp
+
+    val context = LocalContext.current
+    var imageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    val launcher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
+            imageUri = uri!!
+        }
+
+
+
+    if (openDialog.value) {
+        Dialog(
+            onDismissRequest = { openDialog.value = false },
+            properties = DialogProperties(
+                dismissOnBackPress = false,
+                dismissOnClickOutside = false,
+                usePlatformDefaultWidth = false
+            )
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(40.w())
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(32.dp)
+                    )
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(10.r()),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.r())
+                            .padding(bottom = 10.r())
+                    ) {
+                        Image(
+                            painter = if (imageUri == null) painterResource(id = DesignSystemR.drawable.ic_camera) else rememberImagePainter(
+                                data = imageUri
+                            ),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .fillMaxHeight()
+                        )
+                    }
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+
+                        Icon(
+                            painter = painterResource(id = DesignSystemR.drawable.ic_check),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.r())
+                                .clickable {
+                                    if (imageUri == null) {
+                                        Toast
+                                            .makeText(
+                                                context,
+                                                "Please select image",
+                                                Toast.LENGTH_SHORT
+                                            )
+                                            .show()
+                                    } else {
+                                        openDialog.value = false
+                                        onDoneClick(imageUri!!)
+                                    }
+                                },
+                            tint = Color.Green
+                        )
+
+                        Icon(
+                            painter = painterResource(id = DesignSystemR.drawable.ic_camera),
+                            contentDescription = "",
+                            modifier = Modifier.size(30.r())
+                        )
+
+                        Icon(
+                            painter = painterResource(id = DesignSystemR.drawable.ic_gallery),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.r())
+                                .clickable {
+                                    launcher.launch("image/*")
+                                },
+                        )
+
+                        Icon(
+                            painter = painterResource(id = DesignSystemR.drawable.ic_cross),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.r())
+                                .clickable {
+                                    openDialog.value = false
+                                },
+                            tint = Color.Red
+                        )
+
+                    }
+
+                }
+            }
+        }
+    }
+
+}
+
+
 @SuppressLint("UnrememberedMutableState")
 @Composable
-@DevicePreviews
+@Preview
 fun PreviewShowPopup() {
     val openDialog = remember { mutableStateOf(true) }
     /* ShowPopup(
@@ -678,6 +797,12 @@ fun PreviewShowPopup() {
             contentImage = DesignSystemR.drawable.ic_police_cross
         )*/
 
-    MyDatePickerDialog(onDateSelected = {}, openDialog)
+    // MyDatePickerDialog(onDateSelected = {}, openDialog)
+
+    val imageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    ImagePickerDialog(openDialog, onDoneClick = {})
 }
 

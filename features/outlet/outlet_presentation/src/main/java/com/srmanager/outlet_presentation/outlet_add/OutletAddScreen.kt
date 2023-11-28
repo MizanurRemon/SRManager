@@ -1,11 +1,6 @@
 package com.srmanager.outlet_presentation.outlet_add
 
-import android.graphics.Bitmap
-import android.graphics.ImageDecoder
 import android.net.Uri
-import android.os.Build
-import android.provider.MediaStore
-import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
@@ -61,6 +56,7 @@ import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
+import com.srmanager.core.designsystem.theme.ImagePickerDialog
 import com.srmanager.core.designsystem.theme.MyDatePickerDialog
 import com.srmanager.core.designsystem.theme.smallBodyTextStyle
 import com.srmanager.core.common.R as CommonR
@@ -83,14 +79,9 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
         mutableStateOf<Uri?>(null)
     }
 
-    val launcher =
-        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
-            imageUri = uri
-        }
-
-
-
-
+    val openImagePickerDialog = remember {
+        mutableStateOf(false)
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
@@ -117,7 +108,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                         shape = RoundedCornerShape(20.r())
                     )
                     .clickable {
-                        launcher.launch("image/*")
+                        openImagePickerDialog.value = true
                     }
             ) {
 
@@ -130,24 +121,20 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
 
                     )
                 } else {
-                    imageUri.let {
-
-                        viewModel.onEvent(
-                            OutletAddEvent.OnImageSelection(
-                                it!!,
-                                context.contentResolver
-                            )
+                    viewModel.onEvent(
+                        OutletAddEvent.OnImageSelection(
+                            imageUri!!,
+                            context.contentResolver
                         )
+                    )
 
-                        Image(
-                            painter = rememberImagePainter(data = imageUri),
-                            contentDescription = "",
-                            modifier = Modifier
-                               // .clip(RoundedCornerShape(20.r()))
-                                .align(Alignment.Center)
-                                .fillMaxHeight()
-                        )
-                    }
+                    Image(
+                        painter = rememberImagePainter(data = imageUri),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .fillMaxHeight()
+                    )
 
                 }
 
@@ -629,5 +616,11 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                 viewModel.onEvent(OutletAddEvent.OnExpiryDateEnter(it))
             }, openDialog = openExpiryDatePickerDialog
         )
+    }
+
+    if (openImagePickerDialog.value) {
+        ImagePickerDialog(openDialog = openImagePickerDialog, onDoneClick = { image ->
+            imageUri = image
+        })
     }
 }

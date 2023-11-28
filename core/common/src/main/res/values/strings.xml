@@ -75,4 +75,7 @@
     <string name="location">Location:</string>
     <string name="empty_field">Empty field</string>
     <string name="invalid">Invalid</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="cancel">Cancel</string>
 </resources>
