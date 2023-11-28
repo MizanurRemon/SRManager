@@ -1,6 +1,7 @@
 package com.srmanager.core.common.util
 
 import android.content.ActivityNotFoundException
+import android.content.ContentResolver
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -8,9 +9,13 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.net.Uri
 import android.provider.Browser
+import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
+import java.io.ByteArrayOutputStream
+import java.io.File
 import java.text.SimpleDateFormat
+import java.util.Base64
 import java.util.Date
 
 const val INTERNAL_ERROR = -1
@@ -142,7 +147,23 @@ fun getBitmapFromImage(context: Context, drawable: Int): Bitmap {
     db.setBounds(0, 0, canvas.width, canvas.height)
     db.draw(canvas)
     return bit
+}
 
+
+fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
+
+    return try {
+        val imageStream = resolver.openInputStream(imageUri!!)
+        val selectedImage = BitmapFactory.decodeStream(imageStream)
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        val b = byteArrayOutputStream.toByteArray()
+
+        android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT)
+    } catch (e: java.lang.Exception) {
+        Log.d("dataxx", "ERORXX: " + e.message)
+        ""
+    }
 }
 
 

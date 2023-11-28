@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -39,14 +40,15 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
 
 
             is OutletAddEvent.OnSubmitButtonClick -> {
-                if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty()) {
+                if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty() || state.image.isEmpty()) {
                     state = state.copy(
                         isOutletNameError = state.outletName.isEmpty(),
                         isOwnerNameError = state.ownerName.isEmpty(),
                         isBirthDateError = state.birthdate.isEmpty(),
                         isPhone1Error = state.phone1.isEmpty(),
                         isTradeLicenseError = state.tradeLicense.isEmpty(),
-                        isVatTrnError = state.vatTRN.isEmpty()
+                        isVatTrnError = state.vatTRN.isEmpty(),
+                        isImageError = state.image.isEmpty()
                     )
                 } else {
                     state = state.copy(
@@ -57,6 +59,7 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
                         isPhone2Error = false,
                         isTradeLicenseError = false,
                         isVatTrnError = false,
+                        isImageError = false
                     )
 
                     val requestData = HashMap<String, Any>()
@@ -71,6 +74,7 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
                     requestData["address"] = state.address
                     requestData["latitude"] = state.latitude
                     requestData["longitude"] = state.longitude
+                    //requestData["photo"] = state.image
 
 
                     Log.d("dataxx", "onEvent: $requestData")
@@ -125,6 +129,13 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
 
             is OutletAddEvent.OnAddressEnter -> {
                 state = state.copy(address = event.value)
+            }
+
+            is OutletAddEvent.OnImageSelection -> {
+                state = state.copy(
+                    image = fileImageUriToBase64(event.value, event.contentResolver),
+                    isImageError = false
+                )
             }
         }
     }

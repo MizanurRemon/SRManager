@@ -310,7 +310,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/camera_alt/baseline_camera_alt_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/error_outline/baseline_error_outline_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -320,7 +320,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_camera" />
+                            <entry key="color" value="b20000" />
+                            <entry key="outputName" value="ic_error_outline" />
                             <entry key="sourceFile" value="$USER_HOME$/Downloads/icons8-shop-64.svg" />
                           </map>
                         </option>

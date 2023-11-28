@@ -8,7 +8,6 @@ import android.provider.MediaStore
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -26,8 +25,6 @@ import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.sharp.DateRange
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -47,7 +44,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -72,6 +68,10 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     val openDatePickerDialog = remember {
+        mutableStateOf(false)
+    }
+
+    val openExpiryDatePickerDialog = remember {
         mutableStateOf(false)
     }
 
@@ -114,7 +114,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .height(250.r())
                     .border(
                         width = 1.r(),
-                        color = Color.LightGray,
+                        color = if (viewModel.state.isImageError) Color.Red else Color.LightGray,
                         shape = RoundedCornerShape(20.r())
                     )
                     .clickable {
@@ -122,7 +122,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     }
             ) {
 
-                if (imageUri == null){
+                if (imageUri == null) {
                     bitmap.value?.let {
                         Image(
                             bitmap = it.asImageBitmap(),
@@ -132,8 +132,10 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                                 .align(Alignment.Center)
                         )
                     }
-                }else{
-                    imageUri.let { it ->
+                } else {
+                    imageUri.let {
+
+                        viewModel.onEvent(OutletAddEvent.OnImageSelection(it!!, context.contentResolver))
                         when {
                             Build.VERSION.SDK_INT < 28 -> {
                                 bitmap.value = MediaStore.Images
@@ -142,12 +144,12 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                             }
 
                             else -> {
-                                val source = it?.let { it1 ->
+                                val source = it.let { it1 ->
                                     ImageDecoder
                                         .createSource(context.contentResolver, it1)
                                 }
 
-                                bitmap.value = source?.let { it1 -> ImageDecoder.decodeBitmap(it1) }
+                                bitmap.value = source.let { it1 -> ImageDecoder.decodeBitmap(it1) }
                             }
                         }
                     }
@@ -162,9 +164,6 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                         )
                     }
                 }
-
-
-
 
 
             }
@@ -198,16 +197,9 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = Color.LightGray
+                        color = if (viewModel.state.isOutletNameError) Color.Red else Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(id = DesignSystemR.drawable.ic_shop),
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.enter_outlet_name),
@@ -216,17 +208,6 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                         )
                     )
                 })
-
-            if (viewModel.state.isOutletNameError) {
-                Text(
-                    text = stringResource(id = CommonR.string.empty_field),
-                    style = smallBodyTextStyle.copy(
-                        fontWeight = FontWeight.Light,
-                        color = Color.Red
-                    ),
-                    modifier = Modifier.padding(top = 5.r())
-                )
-            }
 
 
             Text(
@@ -260,16 +241,9 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = Color.LightGray
+                        color = if (viewModel.state.isOwnerNameError) Color.Red else Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        painter = painterResource(id = DesignSystemR.drawable.ic_shop),
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.enter_owner_name),
@@ -278,16 +252,6 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                         )
                     )
                 })
-            if (viewModel.state.isOwnerNameError) {
-                Text(
-                    text = stringResource(id = CommonR.string.empty_field),
-                    style = smallBodyTextStyle.copy(
-                        fontWeight = FontWeight.Light,
-                        color = Color.Red
-                    ),
-                    modifier = Modifier.padding(top = 5.r())
-                )
-            }
 
 
             Text(
@@ -322,16 +286,9 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = Color.LightGray
+                        color = if (viewModel.state.isBirthDateError) Color.Red else Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        Icons.Sharp.DateRange,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.enter_date_of_birth),
@@ -353,16 +310,6 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 })
 
-            if (viewModel.state.isBirthDateError) {
-                Text(
-                    text = stringResource(id = CommonR.string.empty_field),
-                    style = smallBodyTextStyle.copy(
-                        fontWeight = FontWeight.Light,
-                        color = Color.Red
-                    ),
-                    modifier = Modifier.padding(top = 5.r())
-                )
-            }
 
             Text(
                 text = stringResource(id = CommonR.string.mobile_no_1),
@@ -386,7 +333,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnBirthDateEnter(it))
+                    viewModel.onEvent(OutletAddEvent.OnMobileNo1Enter(it))
                 },
 
                 modifier = Modifier
@@ -396,16 +343,9 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = Color.LightGray
+                        color = if (viewModel.state.isPhone1Error) Color.Red else Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        Icons.Default.Phone,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.enter_mobile_no_1),
@@ -415,17 +355,6 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 },
             )
-
-            if (viewModel.state.isPhone1Error) {
-                Text(
-                    text = stringResource(id = CommonR.string.invalid),
-                    style = smallBodyTextStyle.copy(
-                        fontWeight = FontWeight.Light,
-                        color = Color.Red
-                    ),
-                    modifier = Modifier.padding(top = 5.r())
-                )
-            }
 
 
 
@@ -461,16 +390,9 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = Color.LightGray
+                        color = if (viewModel.state.isPhone2Error) Color.Red else Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        Icons.Default.Phone,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.enter_mobile_no_2),
@@ -480,18 +402,6 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 },
             )
-
-            if (viewModel.state.isPhone2Error) {
-                Text(
-                    text = stringResource(id = CommonR.string.invalid),
-                    style = smallBodyTextStyle.copy(
-                        fontWeight = FontWeight.Light,
-                        color = Color.Red
-                    ),
-                    modifier = Modifier.padding(top = 5.r())
-                )
-            }
-
 
 
             Text(
@@ -526,16 +436,9 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = Color.LightGray
+                        color = if (viewModel.state.isTradeLicenseError) Color.Red else Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        Icons.Default.Phone,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.enter_trade_license),
@@ -545,18 +448,6 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     )
                 },
             )
-
-            if (viewModel.state.isTradeLicenseError) {
-                Text(
-                    text = stringResource(id = CommonR.string.empty_field),
-                    style = smallBodyTextStyle.copy(
-                        fontWeight = FontWeight.Light,
-                        color = Color.Red
-                    ),
-                    modifier = Modifier.padding(top = 5.r())
-                )
-            }
-
 
 
             Text(
@@ -591,19 +482,12 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = Color.LightGray
+                        color = if (viewModel.state.isExpiryDateError) Color.Red else Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        Icons.Sharp.DateRange,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
-                        text = stringResource(id = CommonR.string.enter_date_of_birth),
+                        text = stringResource(id = CommonR.string.enter_expity_date),
                         style = TextStyle(
                             color = ColorTextFieldPlaceholder,
                         )
@@ -616,23 +500,11 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                         modifier = Modifier
                             .size(24.r())
                             .clickable {
-                                openDatePickerDialog.value = true
+                                openExpiryDatePickerDialog.value = true
                             },
                         tint = APP_DEFAULT_COLOR
                     )
                 })
-
-
-            if (viewModel.state.isExpiryDateError) {
-                Text(
-                    text = stringResource(id = CommonR.string.empty_field),
-                    style = smallBodyTextStyle.copy(
-                        fontWeight = FontWeight.Light,
-                        color = Color.Red
-                    ),
-                    modifier = Modifier.padding(top = 5.r())
-                )
-            }
 
 
             Text(
@@ -657,7 +529,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnTradeLicenseEnter(it))
+                    viewModel.onEvent(OutletAddEvent.OnVatTRNEnter(it))
                 },
 
                 modifier = Modifier
@@ -667,19 +539,12 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = Color.LightGray
+                        color = if (viewModel.state.isVatTrnError) Color.Red else Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        Icons.Default.Phone,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
-                        text = stringResource(id = CommonR.string.enter_trade_license),
+                        text = stringResource(id = CommonR.string.enter_vat_trn),
                         style = TextStyle(
                             color = ColorTextFieldPlaceholder,
                         )
@@ -687,16 +552,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                 },
             )
 
-            if (viewModel.state.isVatTrnError) {
-                Text(
-                    text = stringResource(id = CommonR.string.empty_field),
-                    style = smallBodyTextStyle.copy(
-                        fontWeight = FontWeight.Light,
-                        color = Color.Red
-                    ),
-                    modifier = Modifier.padding(top = 5.r())
-                )
-            }
+
 
             Text(
                 text = stringResource(id = CommonR.string.address),
@@ -732,14 +588,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                         shape = RoundedCornerShape(10.dp),
                         color = Color.LightGray
                     ),
-                leadingIcon = {
-                    Icon(
-                        Icons.Default.LocationOn,
-                        contentDescription = "",
-                        modifier = Modifier.size(24.r()),
-                        tint = Color.LightGray
-                    )
-                },
+
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.enter_address),
@@ -785,6 +634,14 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
             onDateSelected = {
                 viewModel.onEvent(OutletAddEvent.OnDatePick(it))
             }, openDialog = openDatePickerDialog
+        )
+    }
+
+    if (openExpiryDatePickerDialog.value){
+        MyDatePickerDialog(
+            onDateSelected = {
+                viewModel.onEvent(OutletAddEvent.OnExpiryDateEnter(it))
+            }, openDialog = openExpiryDatePickerDialog
         )
     }
 }
