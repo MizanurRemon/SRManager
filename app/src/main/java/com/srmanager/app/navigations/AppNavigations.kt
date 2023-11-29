@@ -30,6 +30,7 @@ import com.srmanager.auth_presentation.screens.PasswordUpdatedScreen
 import com.srmanager.auth_presentation.verify.VerifiedEmailDoneScreen
 import com.srmanager.auth_presentation.verify.VerifyEmailOTPScreen
 import com.srmanager.core.common.navigation.Route
+import com.srmanager.order_presentation.order.OrderScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
 import com.srmanager.report_presentation.report.ReportScreen
@@ -47,7 +48,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SIGN_IN,
+            startDestination = Route.SPLASH,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -166,6 +167,12 @@ fun MainApp(
 
             composable(route = Route.REPORT) {
                 ReportScreen(onBack = { navController.navigateUp() })
+            }
+
+            composable(route = Route.ORDER) {
+                OrderScreen(onBack = {
+                    navController.navigateUp()
+                })
             }
 
         }

@@ -45,7 +45,7 @@ fun ReportScreen(onBack: () -> Unit) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    text = stringResource(id = CommonR.string.outlet),
+                    text = stringResource(id = CommonR.string.report),
                     style = bodyBoldTextStyle.copy(color = Color.Black)
                 )
             }

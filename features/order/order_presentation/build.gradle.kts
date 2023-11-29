@@ -9,7 +9,7 @@ apply {
 }
 
 android {
-    namespace = "com.srmanager.report_presentation"
+    namespace = "com.srmanager.order_presentation"
 }
 
 
