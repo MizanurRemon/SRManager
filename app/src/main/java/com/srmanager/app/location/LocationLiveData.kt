@@ -24,6 +24,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.util.Locale
 
+@Suppress("DEPRECATION")
 class LocationLiveData(private var context: Context) : LiveData<LocationDetails>() {
     private val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
     override fun onActive() {
@@ -70,12 +71,13 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
     private fun setLocationData(location: Location?) {
         location.let { location ->
 
-            value = LocationDetails(
-                location!!.latitude,
-                location.longitude,
-                getAddressFromLocation(location = location)
-            )
-
+            if (location != null){
+                value = LocationDetails(
+                    location.latitude,
+                    location.longitude,
+                    getAddressFromLocation(location = location)
+                )
+            }
         }
 
     }
@@ -121,7 +123,7 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
                 return addressStringBuilder.toString().trim()
             }
         } catch (e: Exception) {
-            Log.d("dataxx", "Error getting address from location", e)
+            Log.e("dataxx", "Error: ", e)
         }
         return ""
     }
