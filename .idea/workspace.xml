@@ -9,7 +9,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="" />
+    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="SRM">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -75,6 +78,7 @@
     </favorite-branches>
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="remon &lt;remonmizanur@gmail.com&gt;" />
         <option value="MizanurRemon &lt;remonmizanur@gmail.com&gt;" />
       </list>
     </option>
@@ -597,20 +601,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00249" summary="img fix">
-      <created>1699251257523</created>
-      <option name="number" value="00249" />
-      <option name="presentableId" value="LOCAL-00249" />
-      <option name="project" value="LOCAL" />
-      <updated>1699251257523</updated>
-    </task>
-    <task id="LOCAL-00250" summary="img fix">
-      <created>1699254400269</created>
-      <option name="number" value="00250" />
-      <option name="presentableId" value="LOCAL-00250" />
-      <option name="project" value="LOCAL" />
-      <updated>1699254400270</updated>
-    </task>
     <task id="LOCAL-00251" summary="upt">
       <created>1699335663797</created>
       <option name="number" value="00251" />
@@ -940,7 +930,21 @@
       <option name="project" value="LOCAL" />
       <updated>1701257101444</updated>
     </task>
-    <option name="localTasksCounter" value="298" />
+    <task id="LOCAL-00298" summary="SRM">
+      <created>1701257216335</created>
+      <option name="number" value="00298" />
+      <option name="presentableId" value="LOCAL-00298" />
+      <option name="project" value="LOCAL" />
+      <updated>1701257216335</updated>
+    </task>
+    <task id="LOCAL-00299" summary="SRM">
+      <created>1701257417079</created>
+      <option name="number" value="00299" />
+      <option name="presentableId" value="LOCAL-00299" />
+      <option name="project" value="LOCAL" />
+      <updated>1701257417079</updated>
+    </task>
+    <option name="localTasksCounter" value="300" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

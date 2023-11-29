@@ -13,7 +13,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -37,7 +36,6 @@ import com.srmanager.report_presentation.report.ReportScreen
 import com.srmanager.core.common.R as CommonR
 
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainApp(
     navController: NavHostController = rememberNavController(),
