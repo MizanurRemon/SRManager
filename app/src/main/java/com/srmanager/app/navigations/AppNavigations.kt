@@ -46,7 +46,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.SIGN_UP,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -109,6 +109,9 @@ fun MainApp(
                         navController.navigate(Route.HOME) {
                             popUpTo(navController.graph.id)
                         }
+                    },
+                    toSignUp = {
+                        navController.navigate(Route.SIGN_UP)
                     })
             }
             composable(route = Route.FORGET_PASS_EMAIL_INPUT) {

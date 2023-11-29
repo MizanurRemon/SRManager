@@ -186,58 +186,23 @@ fun SignUpScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(54.dp)
-                .clip(RoundedCornerShape(15.dp))
-                .onFocusChanged {
-                    viewModel.isEmailValid()
-                }
-
-                .conditional(state.isEmailValid) {
-                    return@conditional border(
-                        width = 1.dp, color = Color(0xFFE2E4EA), shape = RoundedCornerShape(15.dp)
-                    )
-                }
-                .conditional(!state.isEmailValid) {
-                    return@conditional border(
-                        width = 1.dp, color = ColorError, shape = RoundedCornerShape(15.dp)
-                    )
-                },
-
-            leadingIcon = {
-                Image(
-                    painter = painterResource(id = if (state.isEmailValid) DesignSystemR.drawable.ic_email else DesignSystemR.drawable.ic_red_error),
-                    contentDescription = "",
-                    modifier = Modifier.size(24.r())
-                )
-            },
-
+                .clip(RoundedCornerShape(10.dp))
+                .border(
+                    width = 1.dp,
+                    shape = RoundedCornerShape(10.dp),
+                    color = if (viewModel.state.isEmailValid) Color.Red else Color.LightGray
+                ),
             placeholder = {
                 Text(
                     text = stringResource(id = CommonR.string.enter_your_email), style = TextStyle(
                         color = ColorTextFieldPlaceholder,
                     )
                 )
-            },
+            }
 
-            )
+        )
 
 
-        if (!state.isEmailValid) {
-            Text(
-                text = context.getString(CommonR.string.please_enter_valid_email),
-                style = TextStyle(
-                    fontWeight = FontWeight.W300,
-                    fontFamily = fontRoboto,
-                    lineHeight = 24.sp,
-                    fontSize = 15.sp,
-                    textAlign = TextAlign.Left,
-                    color = ColorError
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.h())
-                    .align(Alignment.Start),
-            )
-        }
 
         Text(
             text = stringResource(id = CommonR.string.password),
@@ -268,27 +233,12 @@ fun SignUpScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(54.dp)
-                .clip(RoundedCornerShape(15.dp))
-                .onFocusChanged {
-                    viewModel.isPasswordValid()
-                }
-                .conditional(state.isPasswordValid) {
-                    return@conditional border(
-                        width = 1.dp, color = Color(0xFFE2E4EA), shape = RoundedCornerShape(15.dp)
-                    )
-                }
-                .conditional(!state.isPasswordValid) {
-                    return@conditional border(
-                        width = 1.dp, color = ColorError, shape = RoundedCornerShape(15.dp)
-                    )
-                },
-            leadingIcon = {
-                Image(
-                    painter = painterResource(id = if (state.isPasswordValid) DesignSystemR.drawable.ic_lock else DesignSystemR.drawable.ic_red_error),
-                    contentDescription = "",
-                    modifier = Modifier.size(24.r())
-                )
-            },
+                .clip(RoundedCornerShape(10.dp))
+                .border(
+                    width = 1.dp,
+                    shape = RoundedCornerShape(10.dp),
+                    color = if (viewModel.state.isPasswordValid) Color.Red else Color.LightGray
+                ),
             placeholder = {
                 Text(
                     text = stringResource(id = CommonR.string.enter_your_password),
@@ -307,23 +257,7 @@ fun SignUpScreen(
             },
             visualTransformation = if (showPassword.value) VisualTransformation.None else PasswordVisualTransformation(),
         )
-        if (!state.isPasswordValid) {
-            Text(
-                text = context.getString(CommonR.string.invalid_password),
-                style = TextStyle(
-                    fontWeight = FontWeight.W300,
-                    fontFamily = fontRoboto,
-                    lineHeight = 24.ssp(),
-                    fontSize = 15.ssp(),
-                    textAlign = TextAlign.Left,
-                    color = ColorError
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.h())
-                    .align(Alignment.Start),
-            )
-        }
+
 
         Text(
             text = stringResource(id = CommonR.string.confirm_password),
@@ -353,27 +287,12 @@ fun SignUpScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(54.dp)
-                .clip(RoundedCornerShape(15.dp))
-                .onFocusChanged {
-                    viewModel.isConfirmPasswordValid()
-                }
-                .conditional(state.isConfirmPasswordValid) {
-                    return@conditional border(
-                        width = 1.dp, color = Color(0xFFE2E4EA), shape = RoundedCornerShape(15.dp)
-                    )
-                }
-                .conditional(!state.isConfirmPasswordValid) {
-                    return@conditional border(
-                        width = 1.dp, color = ColorError, shape = RoundedCornerShape(15.dp)
-                    )
-                },
-            leadingIcon = {
-                Image(
-                    painter = painterResource(id = if (state.isConfirmPasswordValid) DesignSystemR.drawable.ic_lock else DesignSystemR.drawable.ic_red_error),
-                    contentDescription = "",
-                    modifier = Modifier.size(24.r())
-                )
-            },
+                .clip(RoundedCornerShape(10.dp))
+                .border(
+                    width = 1.dp,
+                    shape = RoundedCornerShape(10.dp),
+                    color = if (viewModel.state.isConfirmPasswordValid) Color.Red else Color.LightGray
+                ),
             placeholder = {
                 Text(
                     text = stringResource(id = CommonR.string.retype_your_password),
@@ -392,104 +311,11 @@ fun SignUpScreen(
             },
             visualTransformation = if (showConfirmPassword.value) VisualTransformation.None else PasswordVisualTransformation(),
         )
-        if (!state.isConfirmPasswordValid) {
-            Text(
-                text = context.getString(CommonR.string.invalid_password),
-                style = TextStyle(
-                    fontWeight = FontWeight.W300,
-                    fontFamily = fontRoboto,
-                    lineHeight = 24.ssp(),
-                    fontSize = 15.ssp(),
-                    textAlign = TextAlign.Left,
-                    color = ColorError
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.h())
-                    .align(Alignment.Start),
-            )
-        }
-        Spacer(modifier = Modifier.height(20.h()))
 
-        Row {
-            Image(
-                painter = painterResource(id = DesignSystemR.drawable.ic_calender),
-                contentDescription = null,
-                modifier = Modifier.size(24.r())
-            )
-            Spacer(modifier = Modifier.width(12.w()))
-            Text(
-                text = stringResource(id = CommonR.string.age_category),
-                style = subHeadingFormTextStyle
-            )
-        }
-        AgeGroupComposeSignup(
-            AGE_LIST,
-            state.ageCategory,
-            modifier = Modifier,
-            onClick = {
-                viewModel.onEvent(RegistrationEvent.OnAgeEnter(it))
-            },
-        )
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .offset(x = (-16).w())
-                .padding(top = 26.h())
-                .align(Alignment.Start),
-            verticalAlignment = Alignment.CenterVertically,
-        ) {
-            Checkbox(checked = state.isAgreedToTermsAndConditions,
-                colors = CheckboxDefaults.colors(
-                    checkmarkColor = ColorTextPrimary,
-                    disabledCheckedColor = Color.LightGray,
-                    checkedColor = Color.LightGray,
-                    disabledIndeterminateColor = Color.LightGray,
-                    disabledUncheckedColor = Color.LightGray,
-                    uncheckedColor = if(!state.isTCValid) Color.Red else Color.LightGray,
-                ), onCheckedChange = {
-                    viewModel.onEvent(RegistrationEvent.OnAcceptTermsEnter(it))
-                })
-
-            ClickableText(text = termsConditions,
-                style = bodyRegularTextStyle.copy(
-                    color = ColorTextPrimary,
-                    letterSpacing = .5.sp,
-                    textAlign = TextAlign.Center
-                ),
-                modifier = Modifier.padding(top = 25.h(), bottom = 25.h()),
-                onClick = { offset ->
-                    termsConditions.getStringAnnotations(
-                        tag = CommonR.string.terms_of_service.toString(),
-                        start = offset,
-                        end = offset
-                    ).firstOrNull()?.let {
-                        openExternalLink(TERMS_SERVICE_URL, context)
-                    }
-                })
-        }
-        if (!state.isTCValid) {
-            Text(
-                text = context.getString(CommonR.string.please_accept_our_terms),
-                style = TextStyle(
-                    fontWeight = FontWeight.W300,
-                    fontFamily = fontRoboto,
-                    lineHeight = 24.ssp(),
-                    fontSize = 15.ssp(),
-                    textAlign = TextAlign.Left,
-                    color = ColorError
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 20.h())
-                    .align(Alignment.Start),
-                letterSpacing = .5.sp
-            )
-        }
         Spacer(modifier = Modifier.weight(1f))
+
         AppActionButtonCompose(stringId = CommonR.string.sign_up,
-            bgColor = ColorPrimaryDark,
             textColor = Color.White,
             modifier = Modifier.padding(bottom = 55.h()),
             onActionButtonClick = {

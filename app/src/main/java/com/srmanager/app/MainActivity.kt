@@ -104,7 +104,6 @@ class MainActivity : AppCompatActivity() {
         locationLiveData = LocationLiveData(application)
         locationLiveData.observeForever {
 
-            Log.d("dataxx", "getLocation: $it")
             GlobalScope.launch(Dispatchers.IO) {
                 locationDao.insertLocation(
                     LocationEntity(

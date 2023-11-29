@@ -57,7 +57,8 @@ fun SignInScreen(
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel(),
     onBack: () -> Unit,
-    toHome: () -> Unit
+    toHome: () -> Unit,
+    toSignUp: () -> Unit
 ) {
     val showPassword = remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -341,7 +342,7 @@ fun SignInScreen(
                     start = offset,
                     end = offset
                 ).firstOrNull()?.let {
-
+                    toSignUp()
                 }
             }
         )

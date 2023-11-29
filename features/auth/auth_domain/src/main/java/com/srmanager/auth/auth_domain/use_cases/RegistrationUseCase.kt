@@ -9,11 +9,9 @@ class RegistrationUseCase(private val authRepository: AuthRepository) {
     suspend operator fun invoke(registrationModel: RegistrationModel): Result<RegistrationResponse> {
         return authRepository.getRegistrationResponse(
             RegistrationRequest(
-                ageCategory = registrationModel.ageCategory,
                 email = registrationModel.email,
                 password = registrationModel.password,
                 confirmPassword = registrationModel.confirmPassword,
-                isAgreedToTermsAndConditions = registrationModel.isAgreedToTermsAndConditions,
                 language = registrationModel.language,
             )
         )
