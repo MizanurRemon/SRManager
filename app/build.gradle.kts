@@ -16,6 +16,10 @@ android {
     namespace = ProjectConfig.appId
     compileSdk = ProjectConfig.compileSdk
 
+    dexOptions {
+        preDexLibraries = false
+    }
+
     defaultConfig {
         applicationId = ProjectConfig.appId
         minSdk = ProjectConfig.minSdk
@@ -97,7 +101,10 @@ android {
 //            }
 //    }
 
+
 }
+
+
 
 dependencies {
 
@@ -116,18 +123,23 @@ dependencies {
 
     implementation(Coroutines.coroutines)
 
-    implementation(project(Modules.domain))
-    implementation(project(Modules.data))
-    implementation(project(Modules.auth_presentation))
-    implementation(project(Modules.auth_domain))
-    implementation(project(Modules.auth_data))
     implementation(project(Modules.common))
     implementation(project(Modules.network))
     implementation(project(Modules.database))
     implementation(project(Modules.datastore))
     implementation(project(Modules.designsystem))
+    implementation(project(Modules.domain))
+    implementation(project(Modules.data))
+
+    implementation(project(Modules.auth_presentation))
+    implementation(project(Modules.auth_domain))
+    implementation(project(Modules.auth_data))
+
     implementation(project(Modules.outlet_presentation))
+
     implementation(project(Modules.report_presentation))
+
+    implementation(project(Modules.order_presentation))
 
     //Compose
     implementation(Compose.compiler)
@@ -150,7 +162,7 @@ dependencies {
     androidTestImplementation("junit:junit:4.13.2")
     implementation(Compose.GLIDE)
     implementation(Compose.play_service_location)
-    implementation (Compose.AccompanistPermissions)
+    implementation(Compose.AccompanistPermissions)
 
     debugImplementation(Compose.uiTool)
 

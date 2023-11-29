@@ -9,35 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/features/order/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/consumer-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/consumer-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/src/androidTest/java/com/srmanager/order_presentationn/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/src/test/java/com/srmanager/order_presentationn/ExampleUnitTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/src/androidTest/java/com/srmanager/order/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/src/test/java/com/srmanager/order/ExampleUnitTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/consumer-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/proguard-rules.pro" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/src/androidTest/java/com/srmanager/report_presentation/ExampleInstrumentedTest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/src/main/AndroidManifest.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/src/main/java/com/srmanager/report_presentation/report/ReportScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/src/test/java/com/srmanager/report_presentation/ExampleUnitTest.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Modules.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Modules.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
-    </list>
+    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,40 +102,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;BundleExportedModule&quot;: &quot;InternetPolice.app&quot;,
-    &quot;ExportBundle.BundlePathForInternetPolice.app&quot;: &quot;/home/remon/Projects/Android/internet-politie-android-app/app&quot;,
-    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
-    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ScreenRecorder.SavePath&quot;: &quot;/home/remon/Desktop&quot;,
-    &quot;android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED&quot;: &quot;TextView&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;/home/remon/Projects/Android/internet-politie-android-app/core/designsystem/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/remon/Projects/Android/Scanner&quot;,
-    &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1693848167557&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;recommended.upgrade.do.not.ask.for.project&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;emulator&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "BundleExportedModule": "InternetPolice.app",
+    "ExportBundle.BundlePathForInternetPolice.app": "/home/remon/Projects/Android/internet-politie-android-app/app",
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "PROJECT_TRUSTED_KEY": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ScreenRecorder.SavePath": "/home/remon/Desktop",
+    "android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED": "TextView",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "last_directory_selection": "/home/remon/Projects/Android/internet-politie-android-app/core/designsystem/src/main/res/drawable",
+    "last_opened_file_path": "/home/remon/Projects/Android/internet-politie-android-app",
+    "memory.settings.postsync.last.time.stamp": "1693848167557",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "recommended.upgrade.do.not.ask.for.project": "true",
+    "settings.editor.selected.configurable": "vcs.Subversion"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ExportApk.BuildVariants&quot;: [
-      &quot;release&quot;
+  "keyToStringList": {
+    "ExportApk.BuildVariants": [
+      "release"
     ],
-    &quot;com.android.tools.idea.sqlite.queryhistory&quot;: [
-      &quot;SELECT * FROM user&quot;,
-      &quot;UPDATE user SET email = \&quot;re\&quot;&quot;
+    "com.android.tools.idea.sqlite.queryhistory": [
+      "SELECT * FROM user",
+      "UPDATE user SET email = \"re\""
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/raw" />
@@ -617,20 +589,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00246" summary="sign up ui issue">
-      <created>1698994128306</created>
-      <option name="number" value="00246" />
-      <option name="presentableId" value="LOCAL-00246" />
-      <option name="project" value="LOCAL" />
-      <updated>1698994128307</updated>
-    </task>
-    <task id="LOCAL-00247" summary="scaling fixed">
-      <created>1699249213883</created>
-      <option name="number" value="00247" />
-      <option name="presentableId" value="LOCAL-00247" />
-      <option name="project" value="LOCAL" />
-      <updated>1699249213883</updated>
-    </task>
     <task id="LOCAL-00248" summary="img fix">
       <created>1699250111596</created>
       <option name="number" value="00248" />
@@ -960,11 +918,24 @@
       <option name="project" value="LOCAL" />
       <updated>1701240479843</updated>
     </task>
-    <option name="localTasksCounter" value="295" />
+    <task id="LOCAL-00295" summary="UPD">
+      <created>1701242294850</created>
+      <option name="number" value="00295" />
+      <option name="presentableId" value="LOCAL-00295" />
+      <option name="project" value="LOCAL" />
+      <updated>1701242294850</updated>
+    </task>
+    <task id="LOCAL-00296" summary="SRM">
+      <created>1701256620429</created>
+      <option name="number" value="00296" />
+      <option name="presentableId" value="LOCAL-00296" />
+      <option name="project" value="LOCAL" />
+      <updated>1701256620429</updated>
+    </task>
+    <option name="localTasksCounter" value="297" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="send otp pop up" />
     <MESSAGE value="notification screen permission screen UI modified" />
     <MESSAGE value="AlwaysProtectedScreen UI modified" />
     <MESSAGE value="auth screen" />
@@ -989,7 +960,8 @@
     <MESSAGE value="re arrange" />
     <MESSAGE value="ui" />
     <MESSAGE value="UPD" />
-    <option name="LAST_COMMIT_MESSAGE" value="UPD" />
+    <MESSAGE value="SRM" />
+    <option name="LAST_COMMIT_MESSAGE" value="SRM" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>

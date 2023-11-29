@@ -1,4 +1,4 @@
-package com.srmanager.order_presentationn
+package com.srmanager.order_presentation
 
 import org.junit.Test
 
