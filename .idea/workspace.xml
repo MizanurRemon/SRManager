@@ -10,17 +10,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/consumer-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/consumer-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/src/androidTest/java/com/srmanager/order_presentationn/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentationn/src/test/java/com/srmanager/order_presentationn/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/src/androidTest/java/com/srmanager/order/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/src/test/java/com/srmanager/order/ExampleUnitTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/build.gradle.kts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/consumer-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/proguard-rules.pro" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/src/androidTest/java/com/srmanager/report_presentation/ExampleInstrumentedTest.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/src/main/AndroidManifest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/src/main/java/com/srmanager/report_presentation/report/ReportScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/report/report_presentation/src/test/java/com/srmanager/report_presentation/ExampleUnitTest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/registration/RegistrationScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/registration/RegistrationScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Modules.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Modules.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/remon/.android/avd/Pixel_3a_API_33.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[33220fdb]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -52,9 +75,9 @@
         <option value="Class" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Sealed Class" />
-        <option value="Kotlin File" />
         <option value="Kotlin Class" />
         <option value="resourceFile" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -594,13 +617,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00245" summary="language issue">
-      <created>1698914411868</created>
-      <option name="number" value="00245" />
-      <option name="presentableId" value="LOCAL-00245" />
-      <option name="project" value="LOCAL" />
-      <updated>1698914411869</updated>
-    </task>
     <task id="LOCAL-00246" summary="sign up ui issue">
       <created>1698994128306</created>
       <option name="number" value="00246" />
@@ -937,7 +953,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701235893592</updated>
     </task>
-    <option name="localTasksCounter" value="294" />
+    <task id="LOCAL-00294" summary="UPD">
+      <created>1701240479843</created>
+      <option name="number" value="00294" />
+      <option name="presentableId" value="LOCAL-00294" />
+      <option name="project" value="LOCAL" />
+      <updated>1701240479843</updated>
+    </task>
+    <option name="localTasksCounter" value="295" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

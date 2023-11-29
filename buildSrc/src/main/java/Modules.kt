@@ -11,9 +11,7 @@ object Modules {
     const val auth_presentation = ":features:auth:auth_presentation"
     const val auth_data = ":features:auth:auth_data"
     const val auth_domain = ":features:auth:auth_domain"
-    const val report_domain = ":features:report:report_domain"
-    const val report_presentation = ":features:report:report_presentation"
-    const val report_data = ":features:report:report_data"
+
     const val notification_presentation = ":features:notification:notification_presentation"
     const val profile_presentation = ":features:profile:profile_presentation"
     const val profile_data = ":features:profile:profile_data"
@@ -29,4 +27,8 @@ object Modules {
 
     const val customer_presentation = ":features:customer:customer_presentation"
     const val outlet_presentation = ":features:outlet:outlet_presentation"
+
+    const val report_domain = ":features:report:report_domain"
+    const val report_presentation = ":features:report:report_presentation"
+    const val report_data = ":features:report:report_data"
 }

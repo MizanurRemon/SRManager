@@ -53,4 +53,7 @@ object Compose {
         "com.maxkeppeler.sheets-compose-dialogs:core:$maxkeppelerVersion"
     const val maxkeppelerSheetsCalendar =
         "com.maxkeppeler.sheets-compose-dialogs:calendar:$maxkeppelerVersion"
+
+    const val Lottie = "com.airbnb.android:lottie-compose:6.0.1"
+    const val AccompanistPermissions = "com.google.accompanist:accompanist-permissions:0.24.13-rc"
 }

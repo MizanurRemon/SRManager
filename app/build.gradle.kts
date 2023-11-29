@@ -127,6 +127,7 @@ dependencies {
     implementation(project(Modules.datastore))
     implementation(project(Modules.designsystem))
     implementation(project(Modules.outlet_presentation))
+    implementation(project(Modules.report_presentation))
 
     //Compose
     implementation(Compose.compiler)
@@ -149,7 +150,7 @@ dependencies {
     androidTestImplementation("junit:junit:4.13.2")
     implementation(Compose.GLIDE)
     implementation(Compose.play_service_location)
-    implementation ("com.google.accompanist:accompanist-permissions:0.24.13-rc")
+    implementation (Compose.AccompanistPermissions)
 
     debugImplementation(Compose.uiTool)
 
@@ -157,7 +158,7 @@ dependencies {
     implementation(Compose.appUpdate)
     implementation(Compose.inAppUpdate)
 
-    implementation("com.airbnb.android:lottie-compose:6.0.1")
+    implementation(Compose.Lottie)
 
 }
 
