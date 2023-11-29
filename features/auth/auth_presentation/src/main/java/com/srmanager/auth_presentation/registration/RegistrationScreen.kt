@@ -120,10 +120,6 @@ fun SignUpScreen(
         }
     }
 
-
-
-
-
     return Column(
         modifier = Modifier
             .fillMaxSize()
@@ -142,7 +138,6 @@ fun SignUpScreen(
             Icon(
                 Icons.Default.ArrowBack,
                 contentDescription = "Back",
-                tint = ColorPrimaryDark,
                 modifier = Modifier
                     .size(24.r())
                     .clickable {

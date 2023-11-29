@@ -32,6 +32,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -74,7 +75,7 @@ fun SignInScreen(
             annotation = CommonR.string.sign_up_for_free.toString()
         )
 
-        withStyle(style = SpanStyle(color = Color.Black, fontWeight = FontWeight.W700)) {
+        withStyle(style = SpanStyle(color = Color.Black, fontWeight = FontWeight.W700, textDecoration = TextDecoration.Underline)) {
             append(stringResource(id = CommonR.string.sign_up_for_free).replace(".", ""))
         }
 
@@ -210,7 +211,7 @@ fun SignInScreen(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 40.dp, bottom = 10.dp),
+                .padding(top = 20.dp, bottom = 10.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
@@ -321,14 +322,17 @@ fun SignInScreen(
                     .align(Alignment.Start),
             )
         }
-        Spacer(modifier = Modifier.weight(1f))
+
+        Spacer(modifier = Modifier.height(20.r()))
+
+
         AppActionButtonCompose(stringId = CommonR.string.sign_in) {
             //viewModel.onEvent(LoginEvent.OnSubmitClick)
 
             toHome()
         }
 
-
+        Spacer(modifier = Modifier.weight(1f))
         ClickableText(
             modifier = Modifier.padding(top = 40.h(), bottom = 55.h()),
             text = noteText,
