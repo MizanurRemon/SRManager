@@ -57,9 +57,7 @@ fun SignInScreen(
     snackbarHostState: SnackbarHostState,
     navController: NavController,
     viewModel: LoginViewModel = hiltViewModel(),
-    onBack: () -> Unit,
-    toHome: () -> Unit,
-    toSignUp: () -> Unit
+    toHome: () -> Unit
 ) {
     val showPassword = remember { mutableStateOf(false) }
     val context = LocalContext.current
@@ -317,33 +315,10 @@ fun SignInScreen(
 
 
         AppActionButtonCompose(stringId = CommonR.string.sign_in) {
-            //viewModel.onEvent(LoginEvent.OnSubmitClick)
-
             toHome()
         }
 
-        //Spacer(modifier = Modifier.weight(1f))
-        /*ClickableText(
-            modifier = Modifier.padding(top = 40.h(), bottom = 55.h()),
-            text = noteText,
-            style = bodyRegularTextStyle.copy(
-                color = ColorTextPrimary,
-                // letterSpacing = .5.sp,
-                textAlign = TextAlign.Center
-            ), onClick = { offset ->
-                noteText.getStringAnnotations(
-                    tag = CommonR.string.sign_up_for_free.toString(),
-                    start = offset,
-                    end = offset
-                ).firstOrNull()?.let {
-                    toSignUp()
-                }
-            }
-        )*/
 
-        BackHandler {
-            onBack()
-        }
 
         if (viewModel.state.isShowDialog)
             LoadingDialog {}

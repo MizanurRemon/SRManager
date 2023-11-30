@@ -21,11 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.app.home.HomeScreen
-import com.srmanager.auth_presentation.forgot_pass.ForgetPassEmailInput
-import com.srmanager.auth_presentation.forgot_pass.ForgetPasswordCheckYourMailScreen
 import com.srmanager.auth_presentation.login.SignInScreen
-import com.srmanager.auth_presentation.registration.SignUpScreen
-import com.srmanager.auth_presentation.screens.PasswordUpdatedScreen
 import com.srmanager.auth_presentation.verify.VerifiedEmailDoneScreen
 import com.srmanager.auth_presentation.verify.VerifyEmailOTPScreen
 import com.srmanager.core.common.navigation.Route
@@ -57,7 +53,9 @@ fun MainApp(
                     }
                 }, toLogin = {
                     navController.navigate(Route.SIGN_IN) {
-                        popUpTo(navController.graph.id)
+                        popUpTo(navController.graph.id){
+                            inclusive = true
+                        }
                     }
                 })
             }
@@ -88,48 +86,22 @@ fun MainApp(
                     })
             }
 
-            composable(route = Route.SIGN_UP) {
-                SignUpScreen(snackBarHostState,
-                    navController,
-                    redirectVerifyScreen = { email, source ->
-                        navController.navigate(Route.VERIFY_OTP_EMAIL + "/$email" + "/$source")
-                    })
-            }
 
             composable(route = Route.VERIFIED_EMAIL) {
                 VerifiedEmailDoneScreen(navController)
             }
             composable(route = Route.SIGN_IN) {
-                SignInScreen(snackbarHostState = snackBarHostState,
+                SignInScreen(
+                    snackbarHostState = snackBarHostState,
                     navController = navController,
-                    onBack = {
-                        //navController.navigate(Route.AUTH_CHOOSE)
-                    },
                     toHome = {
                         navController.navigate(Route.HOME) {
                             popUpTo(navController.graph.id)
                         }
-                    },
-                    toSignUp = {
-                        navController.navigate(Route.SIGN_UP)
                     })
             }
-            composable(route = Route.FORGET_PASS_EMAIL_INPUT) {
-                ForgetPassEmailInput(navController, snackBarHostState)
-            }
-            composable(
-                route = Route.FORGET_PASS_CHECK_YOUR_MAIL + "/{email}",
-                arguments = listOf(navArgument("email") {
-                    type = NavType.StringType
-                })
-            ) { navBackStackEntry ->
 
-                val email = navBackStackEntry.arguments?.getString("email") ?: ""
 
-                ForgetPasswordCheckYourMailScreen(email) {
-                    navController.navigate(Route.FORGET_PASS_NEW_PASS + "/${it}")
-                }
-            }
             composable(
                 route = Route.FORGET_PASS_NEW_PASS + "/{email}",
                 arguments = listOf(navArgument("email") {
@@ -140,16 +112,7 @@ fun MainApp(
                 navController.popBackStack(Route.SIGN_IN, inclusive = false)
 
             }
-            composable(route = Route.FORGET_PASS_UPDATE) {
-                PasswordUpdatedScreen(actionTextResId = CommonR.string.continues_as_login) {
-                    navController.navigate(Route.SIGN_IN)
-                }
-            }
-            composable(route = Route.PASS_UPDATE) {
-                PasswordUpdatedScreen(actionTextResId = CommonR.string.done) {
-                    navController.popBackStack(Route.HOME, inclusive = false)
-                }
-            }
+
 
             composable(route = Route.OUTLET) {
                 OutletScreen(onBack = {
