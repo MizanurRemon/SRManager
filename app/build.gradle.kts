@@ -1,5 +1,7 @@
 import java.util.Properties
 import java.io.FileInputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 plugins {
     id("com.android.application")
@@ -89,22 +91,21 @@ android {
 
     }
 
-//    applicationVariants.all {
-//        val variant = this
-//        variant.outputs
-//            .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
-//            .forEach { output ->
-//                val outputFileName =
-//                    "IP_${variant.baseName}_${variant.versionName}_march20.apk"
-//                println("OutputFileName: $outputFileName")
-//                output.outputFileName = outputFileName
-//            }
-//    }
+    applicationVariants.all {
+        val variant = this
+        variant.outputs
+            .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
+            .forEach { output ->
+                val formatter = DateTimeFormatter.ofPattern("ddMMyy_hhmm")
+                val formattedDate = LocalDateTime.now().format(formatter)
+                val outputFileName =
+                    "SRM_${formattedDate}.apk"
+                output.outputFileName = outputFileName
+            }
+    }
 
 
 }
-
-
 
 dependencies {
 
@@ -112,7 +113,6 @@ dependencies {
     implementation(AndroidX.appCompat)
     implementation(Compose.viewModelCompose)
     implementation(Coil.coilCompose)
-//    implementation(Exoplayer.exoPlayer)
 
     implementation(Hilt.hiltAndroidVersion)
     kapt(Hilt.hiltCompiler)
@@ -171,6 +171,5 @@ dependencies {
     implementation(Compose.inAppUpdate)
 
     implementation(Compose.Lottie)
-
 }
 

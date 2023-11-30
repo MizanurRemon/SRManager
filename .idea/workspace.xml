@@ -11,7 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -601,20 +601,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00255" summary="upt">
-      <created>1699519927115</created>
-      <option name="number" value="00255" />
-      <option name="presentableId" value="LOCAL-00255" />
-      <option name="project" value="LOCAL" />
-      <updated>1699519927115</updated>
-    </task>
-    <task id="LOCAL-00256" summary="upt">
-      <created>1699520455301</created>
-      <option name="number" value="00256" />
-      <option name="presentableId" value="LOCAL-00256" />
-      <option name="project" value="LOCAL" />
-      <updated>1699520455301</updated>
-    </task>
     <task id="LOCAL-00257" summary="upt">
       <created>1699521644443</created>
       <option name="number" value="00257" />
@@ -944,7 +930,21 @@
       <option name="project" value="LOCAL" />
       <updated>1701317062121</updated>
     </task>
-    <option name="localTasksCounter" value="304" />
+    <task id="LOCAL-00304" summary="SRM">
+      <created>1701318321976</created>
+      <option name="number" value="00304" />
+      <option name="presentableId" value="LOCAL-00304" />
+      <option name="project" value="LOCAL" />
+      <updated>1701318321976</updated>
+    </task>
+    <task id="LOCAL-00305" summary="SRM">
+      <created>1701318880121</created>
+      <option name="number" value="00305" />
+      <option name="presentableId" value="LOCAL-00305" />
+      <option name="project" value="LOCAL" />
+      <updated>1701318880121</updated>
+    </task>
+    <option name="localTasksCounter" value="306" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
