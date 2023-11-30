@@ -75,7 +75,13 @@ fun SignInScreen(
             annotation = CommonR.string.sign_up_for_free.toString()
         )
 
-        withStyle(style = SpanStyle(color = Color.Black, fontWeight = FontWeight.W700, textDecoration = TextDecoration.Underline)) {
+        withStyle(
+            style = SpanStyle(
+                color = Color.Black,
+                fontWeight = FontWeight.W700,
+                textDecoration = TextDecoration.Underline
+            )
+        ) {
             append(stringResource(id = CommonR.string.sign_up_for_free).replace(".", ""))
         }
 
@@ -332,8 +338,8 @@ fun SignInScreen(
             toHome()
         }
 
-        Spacer(modifier = Modifier.weight(1f))
-        ClickableText(
+        //Spacer(modifier = Modifier.weight(1f))
+        /*ClickableText(
             modifier = Modifier.padding(top = 40.h(), bottom = 55.h()),
             text = noteText,
             style = bodyRegularTextStyle.copy(
@@ -349,7 +355,7 @@ fun SignInScreen(
                     toSignUp()
                 }
             }
-        )
+        )*/
 
         BackHandler {
             onBack()

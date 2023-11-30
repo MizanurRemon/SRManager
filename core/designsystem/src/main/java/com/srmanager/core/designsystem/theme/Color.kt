@@ -25,8 +25,8 @@ val DRAWER_BG = Color(0xFF00C344)
 val AppBrush = Brush.linearGradient(
     colors = listOf(
         Color(0xFFFFFFFF),
-        Color(0xFFF3F6FF),
-        Color(0x500C344),
+        Color(0xFFFFFFFF),
+        Color(0xFFFFFFFF),
     ),
 )
 val AppBrushReversed = Brush.horizontalGradient(
