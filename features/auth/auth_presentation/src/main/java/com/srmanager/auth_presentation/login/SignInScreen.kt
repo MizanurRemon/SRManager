@@ -214,38 +214,22 @@ fun SignInScreen(
                     .align(Alignment.Start),
             )
         }
-        Row(
+        
+        Spacer(modifier = Modifier.height(20.r()))
+        Text(
+            text = stringResource(id = CommonR.string.password),
+            style = TextStyle(
+                fontFamily = fontRoboto,
+                fontSize = 16.ssp(),
+                color = Color(0xff151B33),
+                fontWeight = FontWeight.W500,
+                lineHeight = 21.ssp(),
+                textAlign = TextAlign.Left
+            ),
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 20.dp, bottom = 10.dp),
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Text(
-                text = stringResource(id = CommonR.string.password),
-                style = TextStyle(
-                    fontFamily = fontRoboto,
-                    fontSize = 16.sp,
-                    color = Color(0xff151B33),
-                    fontWeight = FontWeight.W500,
-                    lineHeight = 21.sp,
-                    textAlign = TextAlign.Left
-                ),
-            )
-            Text(
-                text = stringResource(id = CommonR.string.forget_password_exla),
-                style = TextStyle(
-                    fontFamily = fontRoboto,
-                    fontSize = 16.sp,
-                    color = ColorTextPrimary,
-                    fontWeight = FontWeight.W300,
-                    lineHeight = 19.sp,
-                    textAlign = TextAlign.Right
-                ),
-                modifier = Modifier.clickable {
-                    navController.navigate(Route.FORGET_PASS_EMAIL_INPUT)
-                }
-            )
-        }
+                .padding(bottom = 10.h())
+                .align(Alignment.Start),
+        )
         TextField(
             value = viewModel.state.password,
             colors = TextFieldDefaults.textFieldColors(
