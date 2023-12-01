@@ -112,7 +112,10 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
             }
 
             is OutletAddEvent.OnMobileNo2Enter -> {
-                state = state.copy(phone2 = event.value)
+                state = state.copy(
+                    phone2 = event.value,
+                    isPhone2Error = event.value.isNotEmpty() && !isPhoneNumberValid(event.value)
+                )
             }
 
             is OutletAddEvent.OnTradeLicenseEnter -> {
