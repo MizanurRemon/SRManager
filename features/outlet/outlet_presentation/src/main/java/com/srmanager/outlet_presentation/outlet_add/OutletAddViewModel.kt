@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.srmanager.auth_presentation.isPhoneNumberValid
 import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -51,6 +52,8 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
                         isImageError = state.image.isEmpty()
                     )
                 } else {
+
+
                     state = state.copy(
                         isOutletNameError = false,
                         isOwnerNameError = false,
@@ -102,7 +105,10 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
             }
 
             is OutletAddEvent.OnMobileNo1Enter -> {
-                state = state.copy(phone1 = event.value, isPhone1Error = event.value.isEmpty())
+                state = state.copy(
+                    phone1 = event.value,
+                    isPhone1Error = event.value.isEmpty() || !isPhoneNumberValid(event.value)
+                )
             }
 
             is OutletAddEvent.OnMobileNo2Enter -> {

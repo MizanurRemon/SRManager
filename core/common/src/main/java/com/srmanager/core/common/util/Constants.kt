@@ -17,6 +17,7 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Base64
 import java.util.Date
+import java.util.regex.Pattern
 
 const val INTERNAL_ERROR = -1
 const val EMAIL_REGEX =
@@ -156,7 +157,10 @@ fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
         val selectedImage = BitmapFactory.decodeStream(resolver.openInputStream(imageUri!!))
         val byteArrayOutputStream = ByteArrayOutputStream()
         selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-        val imgString = android.util.Base64.encodeToString(byteArrayOutputStream.toByteArray(), android.util.Base64.DEFAULT)
+        val imgString = android.util.Base64.encodeToString(
+            byteArrayOutputStream.toByteArray(),
+            android.util.Base64.DEFAULT
+        )
         Log.d("dataxx", "fileImageUriToBase64: $imgString")
         return imgString
     } catch (e: java.lang.Exception) {
@@ -164,7 +168,3 @@ fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
         ""
     }
 }
-
-
-
-
