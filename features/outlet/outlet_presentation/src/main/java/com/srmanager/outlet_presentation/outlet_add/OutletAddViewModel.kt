@@ -5,12 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import com.srmanager.auth_presentation.isPhoneNumberValid
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
-import com.srmanager.outlet_domain.model.OutletModel
-import com.srmanager.outlet_domain.use_cases.OutletUseCases
+import com.srmanager.outlet_domain.model.OutletAddModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OutletAddViewModel @Inject constructor(
     private val locationDao: LocationDao,
-    private val outletUseCases: OutletUseCases
+    //private val outletUseCases: OutletUseCases
 ) : ViewModel() {
     var state by mutableStateOf(OutletAddState())
         private set
@@ -90,9 +90,9 @@ class OutletAddViewModel @Inject constructor(
                     requestData["longitude"] = state.longitude
                     requestData["photo"] = state.image*/
 
-                    viewModelScope.launch {
-                        outletUseCases.outletAddUseCases(
-                            OutletModel(
+                 /*   viewModelScope.launch {
+                        outletUseCases.outletAddUseCase(
+                            OutletAddModel(
                                 outletImage = state.image,
                                 outletName = state.outletName,
                                 ownerName = state.ownerName,
@@ -112,7 +112,7 @@ class OutletAddViewModel @Inject constructor(
                         }.onFailure {
                             state = state.copy(isLoading = false)
                         }
-                    }
+                    }*/
 
                 }
             }
