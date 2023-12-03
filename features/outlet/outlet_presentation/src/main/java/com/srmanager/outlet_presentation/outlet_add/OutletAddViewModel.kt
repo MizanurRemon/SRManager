@@ -21,7 +21,7 @@ import javax.inject.Inject
 @HiltViewModel
 class OutletAddViewModel @Inject constructor(
     private val locationDao: LocationDao,
-    //private val outletUseCases: OutletUseCases
+    private val outletUseCases: OutletUseCases
 ) : ViewModel() {
     var state by mutableStateOf(OutletAddState())
         private set
@@ -90,7 +90,7 @@ class OutletAddViewModel @Inject constructor(
                     requestData["longitude"] = state.longitude
                     requestData["photo"] = state.image*/
 
-                 /*   viewModelScope.launch {
+                    viewModelScope.launch {
                         outletUseCases.outletAddUseCase(
                             OutletAddModel(
                                 outletImage = state.image,
@@ -112,7 +112,7 @@ class OutletAddViewModel @Inject constructor(
                         }.onFailure {
                             state = state.copy(isLoading = false)
                         }
-                    }*/
+                    }
 
                 }
             }

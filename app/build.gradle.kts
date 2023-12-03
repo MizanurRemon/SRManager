@@ -136,6 +136,8 @@ dependencies {
     implementation(project(Modules.auth_data))
 
     implementation(project(Modules.outlet_presentation))
+    implementation(project(Modules.outlet_domain))
+    implementation(project(Modules.outlet_data))
 
     implementation(project(Modules.report_presentation))
 

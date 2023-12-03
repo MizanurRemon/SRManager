@@ -31,15 +31,6 @@ class OutletDataModule {
         return OutletRemoteDataSourceImpl(publicApiService, privateApiService)
     }
 
-
-    @Singleton
-    @Provides
-    fun provideNetworkHandler(
-        @ApplicationContext context: Context,
-    ): NetworkHandler {
-        return NetworkHandler(context)
-    }
-
     @Singleton
     @Provides
     fun provideOutletRepository(
