@@ -68,7 +68,5 @@ object PublicNetworkModule {
     ): PublicApiService {
         return retrofit.create(PublicApiService::class.java)
     }
-
-
 }
 

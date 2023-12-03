@@ -18,9 +18,9 @@ android {
     namespace = ProjectConfig.appId
     compileSdk = ProjectConfig.compileSdk
 
-    dexOptions {
+   /* dexOptions {
         preDexLibraries = false
-    }
+    }*/
 
     defaultConfig {
         applicationId = ProjectConfig.appId

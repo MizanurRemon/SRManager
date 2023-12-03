@@ -5,7 +5,7 @@ import com.srmanager.outlet_domain.model.CommonResponse
 import com.srmanager.outlet_domain.model.OutletModel
 import com.srmanager.outlet_domain.repository.OutletRepository
 
-data class OutletAddUseCases(private val outletRepository: OutletRepository) {
+class OutletAddUseCases(private val outletRepository: OutletRepository) {
     suspend operator fun invoke(outletModel: OutletModel): Result<CommonResponse> {
         return outletRepository.addOutlet(
             OutletAddRequest(

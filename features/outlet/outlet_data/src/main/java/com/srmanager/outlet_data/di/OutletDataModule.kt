@@ -1,6 +1,5 @@
 package com.srmanager.outlet_data.di
 
-import android.content.Context
 import com.srmanager.core.datastore.PreferenceDataStoreHelper
 import com.srmanager.core.network.PrivateApiService
 import com.srmanager.core.network.PublicApiService
@@ -15,7 +14,6 @@ import com.srmanager.outlet_domain.repository.OutletRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -34,22 +32,12 @@ class OutletDataModule {
 
     @Singleton
     @Provides
-    fun provideNetworkHandler(
-        @ApplicationContext context: Context,
-    ): NetworkHandler {
-        return NetworkHandler(context)
-    }
-
-    @Singleton
-    @Provides
     fun provideOutletRepository(
         outletRemoteDataSource: OutletRemoteDataSource,
-        preferenceDataStoreHelper: PreferenceDataStoreHelper,
         networkHandler: NetworkHandler
     ): OutletRepository {
         return OutletRepositoryImpl(
             outletRemoteDataSource = outletRemoteDataSource,
-            preferenceDataStoreHelper = preferenceDataStoreHelper,
             networkHandler = networkHandler
         )
     }

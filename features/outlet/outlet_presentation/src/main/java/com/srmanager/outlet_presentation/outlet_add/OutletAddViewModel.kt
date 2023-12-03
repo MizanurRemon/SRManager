@@ -1,18 +1,19 @@
 package com.srmanager.outlet_presentation.outlet_add
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.auth_presentation.isPhoneNumberValid
+import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletModel
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,6 +25,10 @@ class OutletAddViewModel @Inject constructor(
 ) : ViewModel() {
     var state by mutableStateOf(OutletAddState())
         private set
+
+    private val _uiEvent = Channel<UiEvent>()
+    val uiEvent = _uiEvent.receiveAsFlow()
+
 
     init {
         viewModelScope.launch {
@@ -68,6 +73,7 @@ class OutletAddViewModel @Inject constructor(
                         isTradeLicenseError = false,
                         isVatTrnError = false,
                         isImageError = false,
+                        isLoading = true
                     )
 
                     /*val requestData = HashMap<String, Any>()
@@ -102,8 +108,9 @@ class OutletAddViewModel @Inject constructor(
                             )
                         ).onSuccess {
 
+                            state = state.copy(isLoading = false)
                         }.onFailure {
-
+                            state = state.copy(isLoading = false)
                         }
                     }
 
@@ -172,6 +179,8 @@ class OutletAddViewModel @Inject constructor(
                     isImageError = false
                 )
             }
+
+            else -> {}
         }
     }
 }

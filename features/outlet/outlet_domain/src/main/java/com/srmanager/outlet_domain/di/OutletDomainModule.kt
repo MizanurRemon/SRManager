@@ -15,9 +15,11 @@ import dagger.hilt.android.scopes.ViewModelScoped
 class OutletDomainModule {
     @ViewModelScoped
     @Provides
-    fun provideOutletUseCases(outletRepository: OutletRepository): OutletUseCases {
+    fun provideOutletUseCases(
+        outletRepository: OutletRepository
+    ): OutletUseCases {
         return OutletUseCases(
-            outletAddUseCases = OutletAddUseCases(outletRepository = outletRepository)
+            outletAddUseCases = OutletAddUseCases(outletRepository)
         )
     }
 }

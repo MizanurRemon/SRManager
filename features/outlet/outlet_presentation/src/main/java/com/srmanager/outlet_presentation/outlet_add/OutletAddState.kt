@@ -22,5 +22,6 @@ data class OutletAddState(
     val isExpiryDateError: Boolean = false,
     val isAddressError: Boolean = false,
     val isImageError: Boolean = false,
-    val image: String = ""
+    val image: String = "",
+    val isLoading : Boolean = false
 )
