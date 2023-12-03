@@ -9,6 +9,8 @@ import androidx.lifecycle.viewModelScope
 import com.srmanager.auth_presentation.isPhoneNumberValid
 import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
+import com.srmanager.outlet_domain.model.OutletModel
+import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -16,7 +18,10 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class OutletAddViewModel @Inject constructor(private val locationDao: LocationDao) : ViewModel() {
+class OutletAddViewModel @Inject constructor(
+    private val locationDao: LocationDao,
+    private val outletUseCases: OutletUseCases
+) : ViewModel() {
     var state by mutableStateOf(OutletAddState())
         private set
 
@@ -62,10 +67,10 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
                         isPhone2Error = false,
                         isTradeLicenseError = false,
                         isVatTrnError = false,
-                        isImageError = false
+                        isImageError = false,
                     )
 
-                    val requestData = HashMap<String, Any>()
+                    /*val requestData = HashMap<String, Any>()
                     requestData["outlet_name"] = state.outletName
                     requestData["owner_name"] = state.ownerName
                     requestData["birth_date"] = state.birthdate
@@ -77,10 +82,31 @@ class OutletAddViewModel @Inject constructor(private val locationDao: LocationDa
                     requestData["address"] = state.address
                     requestData["latitude"] = state.latitude
                     requestData["longitude"] = state.longitude
-                    //requestData["photo"] = state.image
+                    requestData["photo"] = state.image*/
 
+                    viewModelScope.launch {
+                        outletUseCases.outletAddUseCases(
+                            OutletModel(
+                                outletImage = state.image,
+                                outletName = state.outletName,
+                                ownerName = state.ownerName,
+                                dateOfBirth = state.birthdate,
+                                mobileNo = state.phone1,
+                                secondaryMobileNo = state.phone2,
+                                tradeLicense = state.tradeLicense,
+                                expiryDate = state.tlcExpiryDate,
+                                vat = state.vatTRN,
+                                address = state.address,
+                                latitude = state.latitude,
+                                longitude = state.longitude
+                            )
+                        ).onSuccess {
 
-                    Log.d("dataxx", "onEvent: $requestData")
+                        }.onFailure {
+
+                        }
+                    }
+
                 }
             }
 

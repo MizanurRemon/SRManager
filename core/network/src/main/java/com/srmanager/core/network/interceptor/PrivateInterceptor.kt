@@ -75,7 +75,7 @@ class PrivateInterceptor(private val preferenceDataStoreHelper: PreferenceDataSt
         val okHttpClient = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(RestConfig.SERVER_URL_EN)
+            .baseUrl(RestConfig.LOCAL_URL)
             .addConverterFactory(
                 @OptIn(ExperimentalSerializationApi::class)
                 Json {

@@ -33,11 +33,11 @@ object PublicNetworkModule {
     @Provides
     @Singleton
     @PublicNetwork(TypeEnum.OKHTTP)
-    fun provideOkHttpClient(@PublicNetwork(TypeEnum.INTERCEPTOR) authInterceptor: PublicInterceptor): OkHttpClient {
+    fun provideOkHttpClient(@PublicNetwork(TypeEnum.INTERCEPTOR) interceptor: PublicInterceptor): OkHttpClient {
         return OkHttpClient.Builder().apply {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            this.addInterceptor(httpLoggingInterceptor)
+            this.addInterceptor(httpLoggingInterceptor).addInterceptor(interceptor)
                 .connectTimeout(60, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
         }.build()
@@ -49,7 +49,7 @@ object PublicNetworkModule {
     fun provideRetrofit(
         @PublicNetwork(TypeEnum.OKHTTP) okHttpClient: OkHttpClient,
     ): Retrofit {
-        return Retrofit.Builder().baseUrl(RestConfig.SERVER_URL_EN).callFactory(okHttpClient)
+        return Retrofit.Builder().baseUrl(RestConfig.LOCAL_URL).callFactory(okHttpClient)
             .addCallAdapterFactory(ResultCallAdapterFactory()).addConverterFactory(
                 @OptIn(ExperimentalSerializationApi::class) Json {
                     ignoreUnknownKeys = true;

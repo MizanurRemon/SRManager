@@ -51,7 +51,7 @@ object PrivateNetworkModule {
     fun provideRetrofit(
         @PrivateNetwork(TypeEnum.OKHTTP) okHttpClient: OkHttpClient,
     ): Retrofit {
-        return Retrofit.Builder().baseUrl(RestConfig.SERVER_URL_EN).callFactory(okHttpClient)
+        return Retrofit.Builder().baseUrl(RestConfig.LOCAL_URL).callFactory(okHttpClient)
             .addCallAdapterFactory(ResultCallAdapterFactory()).addConverterFactory(
                 @OptIn(ExperimentalSerializationApi::class) Json {
                     ignoreUnknownKeys = true;

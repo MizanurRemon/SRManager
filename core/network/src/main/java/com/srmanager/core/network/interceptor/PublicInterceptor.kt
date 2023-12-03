@@ -16,18 +16,10 @@ class PublicInterceptor(private val preferenceDataStoreHelper: PreferenceDataSto
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
 
-        var tag = runBlocking {
-            preferenceDataStoreHelper.getFirstPreference(
-                PreferenceDataStoreConstants.LANGUAGE_TAG,
-                DEFAULT_LANGUAGE_TAG
-            )
-        }
-
-        val tagUrl = if (tag == DEFAULT_LANGUAGE_TAG) RestConfig.SERVER_URL_NL else RestConfig.SERVER_URL_EN
 
         val originalUrl: HttpUrl = originalRequest.url
 
-        val newUrl: HttpUrl = tagUrl.toHttpUrlOrNull()!!
+        val newUrl: HttpUrl = RestConfig.LOCAL_URL.toHttpUrlOrNull()!!
             .newBuilder()
             .addPathSegments(originalUrl.encodedPath)
             .build()
@@ -35,7 +27,7 @@ class PublicInterceptor(private val preferenceDataStoreHelper: PreferenceDataSto
         val newRequest =
             originalRequest.newBuilder()
                 .url(newUrl)
-                .addHeader("App-Type", "APP-ANDROID")
+                //.addHeader("App-Type", "APP-ANDROID")
                 .build()
         return chain.proceed(newRequest)
     }

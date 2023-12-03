@@ -4,27 +4,8 @@ import org.json.JSONObject
 import java.util.*
 
 object RestConfig {
-    const val LOCAL_URL = ""
-    const val ALL_NEWS = "https://internetpolice.com/"
-    const val DUTCH_NEWS = "https://internetpolitie.nl/"
+    const val LOCAL_URL = "http://115.127.82.2:8080/"
 
-    private const val SERVER_URL_NL_STAGE = "https://api-staging.internetpolitie.nl/"
-    private const val SERVER_URL_EN_STAGE = "https://api-staging.internetpolitie.nl/"
-    private const val SERVER_TEST_URL = "https://api-test.internetpolice.com/"
-
-    private const val SERVER_URL_NL_PRODUCTION= "https://api-prod.internetpolice.com/"
-    private const val SERVER_URL_EN_PRODUCTION= "https://api-prod.internetpolice.com/"
-
-    const val SERVER_URL_NL = SERVER_TEST_URL
-    const val SERVER_URL_EN = SERVER_URL_EN_STAGE//SERVER_TEST_URL
-
-    const val SERVER_URL_DOMAIN_DETAILS = "https://dcs.webest.cf/"
-    private const val SERVER_URL_CACHE_OLD = "https://dcs.webest.cf/"
-    private const val SERVER_URL_CACHE_STAGING = "https://dcs-staging.internetpolitie.nl/"
-    private const val SERVER_URL_CACHE_TEST = "https://dcs-test.internetpolice.com/"
-
-    const val SERVER_URL_CACHE = SERVER_URL_CACHE_TEST
-    const val SERVER_URL_FOR_SCRAPPING = SERVER_TEST_URL
     fun validateToken(token: String): Boolean {
         try {
             val parts = token.split(".")

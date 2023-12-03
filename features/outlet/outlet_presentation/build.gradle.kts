@@ -20,4 +20,6 @@ dependencies {
     implementation(Compose.material3)
     implementation(project(Modules.database))
     implementation(Coil.coilCompose)
+
+    implementation(project(Modules.outlet_domain))
 }

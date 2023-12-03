@@ -27,6 +27,8 @@ object Modules {
 
     const val customer_presentation = ":features:customer:customer_presentation"
 
+    const val outlet_data = ":features:outlet:outlet_data"
+    const val outlet_domain = ":features:outlet:outlet_domain"
     const val outlet_presentation = ":features:outlet:outlet_presentation"
 
     const val order_presentation = ":features:order:order_presentation"
