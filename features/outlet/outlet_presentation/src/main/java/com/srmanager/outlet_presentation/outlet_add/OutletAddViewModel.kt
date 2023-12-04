@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import com.srmanager.auth_presentation.isPhoneNumberValid
 import com.srmanager.core.common.util.UiEvent
+import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletAddModel
@@ -76,7 +77,8 @@ class OutletAddViewModel @Inject constructor(
                         isLoading = true
                     )
 
-                    /*val requestData = HashMap<String, Any>()
+                    /*
+                    val requestData = HashMap<String, Any>()
                     requestData["outlet_name"] = state.outletName
                     requestData["owner_name"] = state.ownerName
                     requestData["birth_date"] = state.birthdate
@@ -88,7 +90,8 @@ class OutletAddViewModel @Inject constructor(
                     requestData["address"] = state.address
                     requestData["latitude"] = state.latitude
                     requestData["longitude"] = state.longitude
-                    requestData["photo"] = state.image*/
+                    requestData["photo"] = state.image
+                    */
 
                     viewModelScope.launch {
                         outletUseCases.outletAddUseCase(
@@ -109,8 +112,22 @@ class OutletAddViewModel @Inject constructor(
                         ).onSuccess {
 
                             state = state.copy(isLoading = false)
+                            _uiEvent.send(
+                                UiEvent.ShowSnackbar(
+                                    UiText.DynamicString(
+                                        it.message
+                                    )
+                                )
+                            )
                         }.onFailure {
                             state = state.copy(isLoading = false)
+                            _uiEvent.send(
+                                UiEvent.ShowSnackbar(
+                                    UiText.DynamicString(
+                                        it.message.toString()
+                                    )
+                                )
+                            )
                         }
                     }
 

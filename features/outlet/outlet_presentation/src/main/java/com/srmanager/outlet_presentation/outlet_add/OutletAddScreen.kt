@@ -25,10 +25,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.DateRange
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -51,9 +54,11 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.srmanager.core.common.util.CoilImageGetter
+import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.getBitmapFromImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
+import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
@@ -65,7 +70,11 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltViewModel()) {
+fun OutletAddScreen(
+    onBack: () -> Unit,
+    viewModel: OutletAddViewModel = hiltViewModel(),
+    snackbarHostState: SnackbarHostState
+) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
     val openDatePickerDialog = remember {
@@ -84,6 +93,30 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
         mutableStateOf(false)
     }
 
+
+    LaunchedEffect(key1 = true) {
+        viewModel.uiEvent.collect { event ->
+            when (event) {
+                is UiEvent.Success -> {
+
+
+                }
+
+                is UiEvent.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(
+                        message = event.message.asString(context),
+                        duration = SnackbarDuration.Short,
+                    )
+                }
+
+                is UiEvent.NavigateUp -> {
+
+                }
+            }
+
+        }
+    }
+
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
             onClick = { onBack() },
@@ -99,48 +132,6 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
 
             ) {
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(250.r())
-                    .border(
-                        width = 1.r(),
-                        color = if (viewModel.state.isImageError) Color.Red else Color.LightGray,
-                        shape = RoundedCornerShape(20.r())
-                    )
-                    .clickable {
-                        openImagePickerDialog.value = true
-                    }
-            ) {
-
-                if (imageUri == null) {
-                    Image(
-                        painter = painterResource(id = DesignSystemR.drawable.ic_camera),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .align(Alignment.Center)
-
-                    )
-                } else {
-                    viewModel.onEvent(
-                        OutletAddEvent.OnImageSelection(
-                            imageUri!!,
-                            context.contentResolver
-                        )
-                    )
-
-                    Image(
-                        painter = rememberImagePainter(data = imageUri),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .fillMaxHeight()
-                    )
-
-                }
-
-
-            }
             Text(
                 text = stringResource(id = CommonR.string.outlet_name),
                 style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
@@ -595,6 +586,49 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
                 )
             }
 
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(250.r())
+                    .border(
+                        width = 1.r(),
+                        color = if (viewModel.state.isImageError) Color.Red else Color.LightGray,
+                        shape = RoundedCornerShape(10.r())
+                    )
+                    .clickable {
+                        openImagePickerDialog.value = true
+                    }
+            ) {
+
+                if (imageUri == null) {
+                    Image(
+                        painter = painterResource(id = DesignSystemR.drawable.ic_camera),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .align(Alignment.Center)
+
+                    )
+                } else {
+                    viewModel.onEvent(
+                        OutletAddEvent.OnImageSelection(
+                            imageUri!!,
+                            context.contentResolver
+                        )
+                    )
+
+                    Image(
+                        painter = rememberImagePainter(data = imageUri),
+                        contentDescription = "",
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .fillMaxHeight()
+                    )
+
+                }
+
+
+            }
+
             AppActionButtonCompose(
                 stringId = CommonR.string.done,
                 modifier = Modifier.padding(top = 10.r())
@@ -625,4 +659,7 @@ fun OutletAddScreen(onBack: () -> Unit, viewModel: OutletAddViewModel = hiltView
             imageUri = image
         })
     }
+
+    if (viewModel.state.isLoading)
+        LoadingDialog {}
 }

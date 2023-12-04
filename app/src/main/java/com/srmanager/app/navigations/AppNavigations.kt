@@ -42,7 +42,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.OUTLET_ADD,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -53,7 +53,7 @@ fun MainApp(
                     }
                 }, toLogin = {
                     navController.navigate(Route.SIGN_IN) {
-                        popUpTo(navController.graph.id){
+                        popUpTo(navController.graph.id) {
                             inclusive = true
                         }
                     }
@@ -123,7 +123,9 @@ fun MainApp(
             }
 
             composable(route = Route.OUTLET_ADD) {
-                OutletAddScreen(onBack = { navController.navigateUp() })
+                OutletAddScreen(
+                    snackbarHostState = snackBarHostState,
+                    onBack = { navController.navigateUp() })
             }
 
             composable(route = Route.REPORT) {

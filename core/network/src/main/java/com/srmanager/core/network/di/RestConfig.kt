@@ -4,7 +4,7 @@ import org.json.JSONObject
 import java.util.*
 
 object RestConfig {
-    const val LOCAL_URL = "http://115.127.82.2:8080/"
+    const val LOCAL_URL = "http://115.127.82.2:8080"
 
     fun validateToken(token: String): Boolean {
         try {
