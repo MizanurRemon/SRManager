@@ -12,17 +12,12 @@ import android.net.NetworkRequest
 import android.os.Bundle
 import android.provider.Settings
 import android.util.DisplayMetrics
-import android.util.Log
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.core.app.ActivityCompat
-import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -55,6 +50,7 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity() {
 
     private val gpsStatus = mutableStateOf(true)
+    private val permissionGranted = mutableStateOf(true)
 
 
     private val permissionsToRequest = arrayOf(
@@ -92,19 +88,21 @@ class MainActivity : AppCompatActivity() {
             (heightPixels / density).toInt()
         }
 
-
+        permissionGranted.value = checkPermissionsGranted()
 
         setContent {
 
             BaseTheme {
                 MainApp()
                 NetworkStatusScreen()
-                GpsStatus(gpsStatus = gpsStatus)
+                if (permissionGranted.value) {
+                    GpsStatus(gpsStatus = gpsStatus)
 
-                if (!gpsStatus.value) {
-                    GpsStatusDialog(openDialog = gpsStatus, onClick = {
-                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
-                    })
+                    if (!gpsStatus.value) {
+                        GpsStatusDialog(openDialog = gpsStatus, onClick = {
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        })
+                    }
                 }
             }
         }
@@ -260,6 +258,7 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             REQUEST_LOCATION -> {
                 if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    permissionGranted.value = true
                     getLocation()
                 } else {
                     checkLocationPermission()
@@ -270,6 +269,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkPermissionsGranted(): Boolean {
+
         return ActivityCompat.checkSelfPermission(
             this, Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED &&
