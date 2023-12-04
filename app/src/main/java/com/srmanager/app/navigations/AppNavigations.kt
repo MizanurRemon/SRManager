@@ -32,7 +32,6 @@ fun MainApp(
     navController: NavHostController = rememberNavController(),
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
-    var isChangingEmail = remember { false }
 
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
