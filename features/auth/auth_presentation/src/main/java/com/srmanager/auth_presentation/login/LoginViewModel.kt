@@ -1,20 +1,15 @@
 package com.srmanager.auth_presentation.login
 
-import androidx.appcompat.app.AppCompatDelegate
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.NavController
-import com.srmanager.auth.auth_domain.model.AuthenticationModel
 import com.srmanager.auth.auth_domain.model.LoginModel
 import com.srmanager.auth.auth_domain.use_cases.AuthUseCases
-import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
-import com.srmanager.core.datastore.PreferenceDataStoreConstants
 import com.srmanager.core.datastore.PreferenceDataStoreHelper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -33,20 +28,12 @@ class LoginViewModel @Inject constructor(
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
 
-
-    fun isEmailValid() {
-        if (state.email.isEmpty()) return
-        state = state.copy(isEmailValid = authUseCases.emailValidate(state.email))
-    }
-
-
-
-
     fun onEvent(event: LoginEvent) {
         when (event) {
-            is LoginEvent.OnEmailEnter -> {
+            is LoginEvent.OnUserNameEnter -> {
                 state = state.copy(
-                    email = event.email
+                    userName = event.userName,
+                    isUserNameValid = event.userName.isEmpty()
                 )
             }
 
@@ -67,78 +54,36 @@ class LoginViewModel @Inject constructor(
 
     private fun signIn() {
         viewModelScope.launch {
-            if (authUseCases.emailValidate(state.email) && state.password.isNotEmpty()) {
+            if (state.userName.isNotEmpty() && state.password.isNotEmpty()) {
                 state = state.copy(
                     isShowDialog = true,
-                    isEmailValid = true,
+                    isUserNameValid = true,
                     isPasswordValid = true,
                 )
                 authUseCases.loginUseCase(
                     LoginModel(
-                        email = state.email,
+                        email = state.userName,
                         password = state.password,
                     )
                 ).onSuccess {
 
-                    state = state.copy(
-                        isShowDialog = false,
-                        tag = if (it.userProfile.language == "dutch") "nl" else "en"
-                    )
-
-                    preferenceDataStoreHelper.putPreference(
-                        PreferenceDataStoreConstants.LANGUAGE_TAG,
-                        state.tag
-                    )
-                    AppCompatDelegate.setApplicationLocales(
-                        LocaleListCompat.forLanguageTags(
-                            state.tag
-                        )
-                    )
                     _uiEvent.send(
                         UiEvent.Success
                     )
                 }.onFailure {
-
-                    if (it.message == "404") {
-                        authUseCases.authenticationDraftUseCase(
-                            AuthenticationModel(
-                                username = state.email,
-                                password = state.password,
-                                rememberMe = false,
-                                deviceId = ""
-                            )
-                        ).onSuccess {
-
-                            state = state.copy(isShowDialog = false, isDraftUser = true)
-                            _uiEvent.send(
-                                UiEvent.Success
-                            )
-                        }.onFailure {
-                            state = state.copy(isShowDialog = false)
-                            _uiEvent.send(
-                                UiEvent.ShowSnackbar(
-                                    UiText.DynamicString(
-                                        it.message.toString()
-                                    )
-                                )
-                            )
-                        }
-                    } else {
-                        state = state.copy(isShowDialog = false)
-                        _uiEvent.send(
-                            UiEvent.ShowSnackbar(
-                                UiText.DynamicString(
-                                    it.message ?: ""
-                                )
+                    state = state.copy(isShowDialog = false)
+                    _uiEvent.send(
+                        UiEvent.ShowSnackbar(
+                            UiText.DynamicString(
+                                it.message ?: ""
                             )
                         )
-                    }
-
+                    )
                 }
             } else {
                 state = state.copy(
-                    isEmailValid = authUseCases.emailValidate(state.email),
-                    isPasswordValid = state.password.isNotEmpty(),
+                    isUserNameValid = state.userName.isEmpty(),
+                    isPasswordValid = state.password.isEmpty(),
                 )
             }
         }

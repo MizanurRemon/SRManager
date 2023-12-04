@@ -1,13 +1,11 @@
 package com.srmanager.auth_presentation.login
 
-import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
@@ -38,7 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.LoadingDialog
@@ -135,7 +132,7 @@ fun SignInScreen(
         )
 
         Text(
-            text = stringResource(id = CommonR.string.email),
+            text = stringResource(id = CommonR.string.user_name),
             style = TextStyle(
                 fontFamily = fontRoboto,
                 fontSize = 16.ssp(),
@@ -148,71 +145,45 @@ fun SignInScreen(
                 .padding(bottom = 10.h())
                 .align(Alignment.Start),
         )
-        TextField(
-            value = viewModel.state.email,
+
+        TextField(value = viewModel.state.userName,
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.White,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
             ),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
+            ),
+            keyboardActions = KeyboardActions(onDone = {
+                keyboardController?.hide()
+
+                defaultKeyboardAction(ImeAction.Done)
+            }),
             onValueChange = {
-                viewModel.onEvent(LoginEvent.OnEmailEnter(it))
+                viewModel.onEvent(LoginEvent.OnUserNameEnter(it))
             },
+
             modifier = Modifier
                 .fillMaxWidth()
                 .height(54.dp)
-                .clip(RoundedCornerShape(15.dp))
-                .onFocusChanged {
-                    viewModel.isEmailValid()
-                }
-                .conditional(viewModel.state.isEmailValid) {
-                    return@conditional border(
-                        width = 1.dp,
-                        color = Color(0xFFE2E4EA),
-                        shape = RoundedCornerShape(15.dp)
-                    )
-                }
-                .conditional(!viewModel.state.isEmailValid) {
-                    return@conditional border(
-                        width = 1.dp,
-                        color = ColorError,
-                        shape = RoundedCornerShape(15.dp)
-                    )
-                },
-            leadingIcon = {
-                Image(
-                    painter = painterResource(id = DesignSystemR.drawable.ic_email),
-                    contentDescription = "",
-                    modifier = Modifier.size(24.r())
-                )
-            },
+                .clip(RoundedCornerShape(10.dp))
+                .border(
+                    width = 1.dp,
+                    shape = RoundedCornerShape(10.dp),
+                    color = if (viewModel.state.isUserNameValid) Color.Red else Color.LightGray
+                ),
+
             placeholder = {
                 Text(
-                    text = stringResource(id = CommonR.string.enter_your_email), style = TextStyle(
+                    text = stringResource(id = CommonR.string.enter_user_name),
+                    style = TextStyle(
                         color = ColorTextFieldPlaceholder,
                     )
                 )
-            },
-        )
-        if (!viewModel.state.isEmailValid) {
-            Text(
-                text = context.getString(CommonR.string.invalid_email),
-                style = TextStyle(
-                    fontWeight = FontWeight.W300,
-                    fontFamily = fontRoboto,
-                    lineHeight = 24.ssp(),
-                    fontSize = 15.ssp(),
-                    textAlign = TextAlign.Left,
-                    color = ColorError
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 4.h())
-                    .align(Alignment.Start),
-            )
-        }
-        
+            })
+
+
         Spacer(modifier = Modifier.height(20.r()))
         Text(
             text = stringResource(id = CommonR.string.password),
@@ -251,28 +222,12 @@ fun SignInScreen(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(54.dp)
-                .clip(RoundedCornerShape(15.dp))
-                .conditional(viewModel.state.isPasswordValid) {
-                    return@conditional border(
-                        width = 1.dp,
-                        color = Color(0xFFE2E4EA),
-                        shape = RoundedCornerShape(15.dp)
-                    )
-                }
-                .conditional(!viewModel.state.isPasswordValid) {
-                    return@conditional border(
-                        width = 1.dp,
-                        color = ColorError,
-                        shape = RoundedCornerShape(15.dp)
-                    )
-                },
-            leadingIcon = {
-                Image(
-                    painter = painterResource(id = DesignSystemR.drawable.ic_lock),
-                    contentDescription = "",
-                    modifier = Modifier.size(24.r())
-                )
-            },
+                .clip(RoundedCornerShape(10.dp))
+                .border(
+                    width = 1.dp,
+                    shape = RoundedCornerShape(10.dp),
+                    color = if (viewModel.state.isPasswordValid) Color.Red else Color.LightGray
+                ),
             placeholder = {
                 Text(
                     text = stringResource(id = CommonR.string.enter_your_password),
@@ -293,7 +248,7 @@ fun SignInScreen(
             visualTransformation = if (showPassword.value) VisualTransformation.None else PasswordVisualTransformation(),
         )
 
-        if (!viewModel.state.isPasswordValid) {
+       /* if (!viewModel.state.isPasswordValid) {
             Text(
                 text = context.getString(CommonR.string.invalid_password),
                 style = TextStyle(
@@ -309,13 +264,13 @@ fun SignInScreen(
                     .padding(top = 4.h())
                     .align(Alignment.Start),
             )
-        }
+        }*/
 
         Spacer(modifier = Modifier.height(20.r()))
 
 
         AppActionButtonCompose(stringId = CommonR.string.sign_in) {
-            toHome()
+            viewModel.onEvent(LoginEvent.OnSubmitClick)
         }
 
 

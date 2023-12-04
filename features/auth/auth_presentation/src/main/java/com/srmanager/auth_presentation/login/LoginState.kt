@@ -1,14 +1,9 @@
 package com.srmanager.auth_presentation.login
 
-import com.srmanager.core.common.util.DEFAULT_LANGUAGE_TAG
-
 data class LoginState(
-    val email: String = "",
+    val userName: String = "",
     val password: String = "",
-    val isEmailValid: Boolean = true,
-    val isPasswordValid: Boolean = true,
+    val isUserNameValid: Boolean = false,
+    val isPasswordValid: Boolean = false,
     val isShowDialog: Boolean = false,
-    val isRegAllowed: Boolean = false,
-    val tag: String = DEFAULT_LANGUAGE_TAG,
-    val isDraftUser : Boolean = false
 )

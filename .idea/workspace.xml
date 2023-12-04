@@ -12,16 +12,18 @@
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/RestConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/RestConfig.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/LoginEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/LoginEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/LoginState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/LoginState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/SignInScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[33220fdb]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/remon/.android/avd/Pixel_3a_API_33.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -56,6 +58,7 @@
         <option value="Kotlin Class" />
         <option value="Kotlin File" />
         <option value="Kotlin Data Class" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
@@ -124,7 +127,6 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;ScreenRecorder.SavePath&quot;: &quot;/home/remon/Desktop&quot;,
     &quot;android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED&quot;: &quot;TextView&quot;,
     &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
@@ -606,13 +608,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00265" summary="upt">
-      <created>1699789134288</created>
-      <option name="number" value="00265" />
-      <option name="presentableId" value="LOCAL-00265" />
-      <option name="project" value="LOCAL" />
-      <updated>1699789134288</updated>
-    </task>
     <task id="LOCAL-00266" summary="upt">
       <created>1699791051871</created>
       <option name="number" value="00266" />
@@ -949,7 +944,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701626218119</updated>
     </task>
-    <option name="localTasksCounter" value="314" />
+    <task id="LOCAL-00314" summary="SRM">
+      <created>1701664111425</created>
+      <option name="number" value="00314" />
+      <option name="presentableId" value="LOCAL-00314" />
+      <option name="project" value="LOCAL" />
+      <updated>1701664111425</updated>
+    </task>
+    <option name="localTasksCounter" value="315" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
