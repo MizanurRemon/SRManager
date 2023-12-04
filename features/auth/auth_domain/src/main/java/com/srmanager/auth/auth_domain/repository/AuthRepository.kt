@@ -11,14 +11,9 @@ import com.srmanager.core.network.model.RegistrationRequest
 import com.srmanager.core.network.model.ResetPasswordRequest
 
 interface AuthRepository {
-    suspend fun getRegistrationResponse(registrationRequest: RegistrationRequest): Result<RegistrationResponse>
+
     suspend fun getLoginResponse(loginRequest: LoginRequest): Result<LoginResponse>
-    suspend fun getVerifyTokenResponse(token: String): Result<CommonResponseDto>
     suspend fun resendVerificationEmail(email: String, forProfileUpdate: Boolean): Result<CommonResponseDto>
-    suspend fun resetPasswordLinkSend(string: ResetPasswordRequest): Result<CommonResponseDto>
-    suspend fun passwordReset(newPasswordRequest: NewPasswordRequest): Result<CommonResponseDto>
     suspend fun updateEmail(email : String): Result<LoginResponse>
-    suspend fun authenticationDraftCheck(authenticationDraftRequest: AuthenticationDraftRequest): Result<AuthenticationDraftResponse>
-    suspend fun verificationEmailDraft() : Result<CommonResponseDto>
-    suspend fun draftUserTokenVerify(email: String,token: String): Result<LoginResponse>
+
 }

@@ -5,13 +5,6 @@ import com.srmanager.auth.auth_domain.model.RegistrationResponse
 import com.srmanager.core.network.dto.LoginDto
 import com.srmanager.core.network.dto.RegistrationDto
 
-
-fun RegistrationDto.toRegistrationResponse(): RegistrationResponse {
-    return RegistrationResponse(
-        userId = userId ?: 0,
-    )
-}
-
 fun LoginDto.toLoginResponse(): LoginResponse {
     return LoginResponse(
         userId = userId,

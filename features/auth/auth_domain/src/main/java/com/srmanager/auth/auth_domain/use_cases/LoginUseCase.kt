@@ -9,7 +9,7 @@ class LoginUseCase(private val authRepository: AuthRepository) {
     suspend operator fun invoke(loginModel: LoginModel): Result<LoginResponse> {
         return authRepository.getLoginResponse(
             LoginRequest(
-                username = loginModel.email,
+                userName = loginModel.email,
                 password = loginModel.password
             )
         )

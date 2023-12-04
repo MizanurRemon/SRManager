@@ -22,16 +22,11 @@ import androidx.navigation.navArgument
 import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.app.home.HomeScreen
 import com.srmanager.auth_presentation.login.SignInScreen
-import com.srmanager.auth_presentation.verify.VerifiedEmailDoneScreen
-import com.srmanager.auth_presentation.verify.VerifyEmailOTPScreen
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.order_presentation.order.OrderScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
 import com.srmanager.report_presentation.report.ReportScreen
-import com.srmanager.core.common.R as CommonR
-
-
 @Composable
 fun MainApp(
     navController: NavHostController = rememberNavController(),
@@ -65,31 +60,6 @@ fun MainApp(
             }
 
 
-
-            composable(
-                route = Route.VERIFY_OTP_EMAIL + "/{email}/{source}",
-                arguments = listOf(navArgument("email") { type = NavType.StringType },
-                    navArgument("source") { type = NavType.StringType })
-            ) {
-                VerifyEmailOTPScreen(navController = navController,
-                    snackBarHostState,
-                    email = it.arguments?.getString("email") ?: "",
-                    source = it.arguments?.getString("source") ?: "",
-                    onSubmit = {
-                        if (isChangingEmail) {
-                            isChangingEmail = false
-                            navController.navigate(Route.EMAIL_UPDATED)
-                        } else {
-                            navController.navigate(Route.VERIFIED_EMAIL)
-                        }
-
-                    })
-            }
-
-
-            composable(route = Route.VERIFIED_EMAIL) {
-                VerifiedEmailDoneScreen(navController)
-            }
             composable(route = Route.SIGN_IN) {
                 SignInScreen(
                     snackbarHostState = snackBarHostState,
