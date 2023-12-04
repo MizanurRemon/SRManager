@@ -741,12 +741,14 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
                         modifier = Modifier
                             .fillMaxWidth()
                             .height(1.r())
-                            .background(color = Color.Gray).
-                        padding(vertical = 10.r())
+                            .background(color = Color.Gray)
+                            .padding(vertical = 10.r())
                     )
 
                     Row(
-                        modifier = Modifier.fillMaxWidth().padding(vertical = 10.r()),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 10.r()),
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceEvenly
                     ) {
@@ -833,11 +835,65 @@ fun Context.createImageFile(): File {
     )
 }
 
+@Composable
+fun GpsStatusDialog(openDialog: MutableState<Boolean>, onClick: () -> Unit) {
+    if (!openDialog.value) {
+        Dialog(properties = DialogProperties(
+            dismissOnBackPress = false,
+            dismissOnClickOutside = false,
+            usePlatformDefaultWidth = false
+        ),
+            onDismissRequest = {
+                openDialog.value = false
+            }) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(40.w())
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(32.dp)
+                    )
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                ) {
+
+                    Text(
+                        text = stringResource(id = CommonR.string.gps_disabled),
+                        style = subHeading1TextStyle.copy(textAlign = TextAlign.Start),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(10.r()))
+
+                    Text(
+                        text = stringResource(id = CommonR.string.gps_disabled_text),
+                        style = bodyRegularTextStyle.copy(textAlign = TextAlign.Start),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+
+                        Spacer(modifier = Modifier.weight(1f))
+
+                        TextButton(onClick = { onClick() }) {
+                            Text(text = stringResource(id = CommonR.string.got_it))
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 @SuppressLint("UnrememberedMutableState")
 @Composable
 @Preview
 fun PreviewShowPopup() {
-    val openDialog = remember { mutableStateOf(true) }
+    val openDialog = remember { mutableStateOf(false) }
     /* ShowPopup(
          openDialog = openDialog,
          titleResId = CommonR.string.delete_account,
@@ -860,6 +916,9 @@ fun PreviewShowPopup() {
 
     // MyDatePickerDialog(onDateSelected = {}, openDialog)
 
-    ImagePickerDialog(openDialog, onDoneClick = {})
+    //ImagePickerDialog(openDialog, onDoneClick = {})
+    GpsStatusDialog(openDialog, onClick = {})
 }
+
+
 

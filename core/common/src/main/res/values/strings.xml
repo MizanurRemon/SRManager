@@ -80,4 +80,6 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="cancel">Cancel</string>
+    <string name="gps_disabled">GPS Disabled</string>
+    <string name="gps_disabled_text">Make sure your GPS is Turned ON</string>
 </resources>

@@ -10,13 +10,17 @@ import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkRequest
 import android.os.Bundle
+import android.provider.Settings
 import android.util.DisplayMetrics
 import android.util.Log
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.core.app.ActivityCompat
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.android.gms.tasks.Task
@@ -28,6 +32,7 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.srmanager.app.GPS.GpsStatus
 import com.srmanager.app.connectivity.NetworkCallbackImpl
 import com.srmanager.app.connectivity.NetworkStatusScreen
 import com.srmanager.app.location.LocationLiveData
@@ -35,6 +40,7 @@ import com.srmanager.app.navigations.MainApp
 import com.srmanager.core.designsystem.deviceHeight
 import com.srmanager.core.designsystem.deviceWidth
 import com.srmanager.core.designsystem.theme.BaseTheme
+import com.srmanager.core.designsystem.theme.GpsStatusDialog
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.database.entity.LocationEntity
 import dagger.hilt.android.AndroidEntryPoint
@@ -48,12 +54,13 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private val gpsStatus = mutableStateOf(true)
+
+
     private val permissionsToRequest = arrayOf(
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_FINE_LOCATION,
     )
-
-    var locationPermissionDeny = mutableStateOf(false)
 
     private lateinit var locationLiveData: LocationLiveData
 
@@ -92,10 +99,17 @@ class MainActivity : AppCompatActivity() {
             BaseTheme {
                 MainApp()
                 NetworkStatusScreen()
+                GpsStatus(gpsStatus = gpsStatus)
+
+                if (!gpsStatus.value) {
+                    GpsStatusDialog(openDialog = gpsStatus, onClick = {
+                        startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    })
+                }
             }
         }
 
-        checkLocationPermission()
+        //checkLocationPermission()
         checkForAppUpdate()
     }
 
@@ -127,9 +141,13 @@ class MainActivity : AppCompatActivity() {
 
             setContent {
                 MainApp()
+
             }
             newIntent = null
+
         }
+
+        checkLocationPermission()
     }
 
     override fun onStart() {
@@ -228,7 +246,7 @@ class MainActivity : AppCompatActivity() {
                 permissionsToRequest,
                 REQUEST_LOCATION
             )
-        }else{
+        } else {
             getLocation()
         }
     }
