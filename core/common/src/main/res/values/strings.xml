@@ -82,4 +82,7 @@
     <string name="cancel">Cancel</string>
     <string name="gps_disabled">GPS Disabled</string>
     <string name="gps_disabled_text">Make sure your GPS is Turned ON</string>
+    <string name="outlet_details">Outlet Details</string>
+    <string name="create_outlet">Create Outlet</string>
+    <string name="save_changes">Save Changes</string>
 </resources>

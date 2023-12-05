@@ -39,14 +39,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
-import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
-import com.srmanager.core.designsystem.theme.bodyRegularSpanStyle
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import com.srmanager.core.designsystem.theme.subHeading1TextStyle
 import com.srmanager.outlet_domain.model.OutletResponse
@@ -59,7 +56,8 @@ import com.srmanager.core.common.R as CommonR
 fun OutletScreen(
     onBack: () -> Unit,
     viewModel: OutletViewModel = hiltViewModel(),
-    onAddClick: () -> Unit
+    onAddClick: () -> Unit,
+    onItemClick: () -> Unit
 ) {
 
     Scaffold(floatingActionButton = {
@@ -93,7 +91,9 @@ fun OutletScreen(
             ) {
                 items(50) { index ->
                     Spacer(modifier = Modifier.height(10.r()))
-                    ItemCompose(viewModel.state.outletList[0], index)
+                    ItemCompose(viewModel.state.outletList[0], index, onItemClick = {
+                        onItemClick()
+                    })
                 }
             }
         }
@@ -102,12 +102,15 @@ fun OutletScreen(
 }
 
 @Composable
-fun ItemCompose(response: OutletResponse, index: Int) {
+fun ItemCompose(response: OutletResponse, index: Int, onItemClick: () -> Unit) {
     val context = LocalContext.current
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 10.r()),
+            .padding(horizontal = 10.r())
+            .clickable {
+                onItemClick()
+            },
         elevation = CardDefaults.cardElevation(
             defaultElevation = 2.dp
         )
@@ -217,11 +220,11 @@ fun ItemCompose(response: OutletResponse, index: Int) {
 @Composable
 @Preview
 fun previewItemCompose() {
-    ItemCompose(response = OUTLET_LIST[0], index = 1)
+    ItemCompose(response = OUTLET_LIST[0], index = 1, onItemClick = {})
 }
 
 @Composable
 @Preview
 fun PreviewCustomerAddScreen() {
-    OutletScreen(onBack = {}, onAddClick = {})
+    OutletScreen(onBack = {}, onAddClick = {}, onItemClick = {})
 }

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
@@ -14,11 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.app.home.HomeScreen
 import com.srmanager.auth_presentation.login.SignInScreen
@@ -27,6 +24,7 @@ import com.srmanager.order_presentation.order.OrderScreen
 import com.srmanager.outlet_presentation.maps.MapScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
+import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
 import com.srmanager.report_presentation.report.ReportScreen
 
 @Composable
@@ -38,7 +36,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.OUTLET_ADD,
+            startDestination = Route.OUTLET,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -76,15 +74,24 @@ fun MainApp(
             composable(route = Route.OUTLET) {
                 OutletScreen(onBack = {
                     navController.navigateUp()
-                }) {
+                }, onAddClick = {
                     navController.navigate(Route.OUTLET_ADD)
-                }
+                }, onItemClick = {
+                    navController.navigate(Route.OUTLET_DETAILS)
+                })
             }
 
             composable(route = Route.OUTLET_ADD) {
                 OutletAddScreen(
                     snackbarHostState = snackBarHostState,
                     onBack = { navController.navigateUp() })
+            }
+
+            composable(route = Route.OUTLET_DETAILS) {
+                OutletDetailsScreen(
+                    snackbarHostState = snackBarHostState,
+                    onBack = { navController.navigateUp() }
+                )
             }
 
             composable(route = Route.REPORT) {
