@@ -10,6 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_waving_people.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/MapsState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/MapsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/MapScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/MapScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,9 +56,9 @@
         <option value="Kotlin Interface" />
         <option value="valueResourceFile" />
         <option value="Kotlin File" />
+        <option value="Kotlin Sealed Class" />
         <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Sealed Class" />
       </list>
     </option>
   </component>

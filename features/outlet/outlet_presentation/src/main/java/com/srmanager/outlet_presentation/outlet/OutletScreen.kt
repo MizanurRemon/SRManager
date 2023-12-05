@@ -23,6 +23,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -212,7 +213,7 @@ fun ItemCompose(
                                 .width(25.r())
                                 .clickable(
                                     interactionSource = interactionSource,
-                                    indication = null
+                                    indication = rememberRipple()
                                 ) {
                                     onLocationClick()
                                 }
