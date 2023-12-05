@@ -1,5 +1,6 @@
 package com.srmanager.core.common.util
 
+import android.R
 import android.content.ActivityNotFoundException
 import android.content.ContentResolver
 import android.content.Context
@@ -13,11 +14,10 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import java.io.ByteArrayOutputStream
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Base64
 import java.util.Date
-import java.util.regex.Pattern
+
 
 const val INTERNAL_ERROR = -1
 const val EMAIL_REGEX =
@@ -167,4 +167,10 @@ fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
         Log.d("dataxx", "ERORXX: " + e.message)
         ""
     }
+}
+
+
+fun base64ToImage(imageString: String): Bitmap {
+    var imageBytes = android.util.Base64.decode(imageString, android.util.Base64.DEFAULT)
+    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 }

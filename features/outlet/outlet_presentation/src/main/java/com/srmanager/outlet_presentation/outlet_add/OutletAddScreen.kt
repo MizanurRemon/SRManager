@@ -55,6 +55,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberImagePainter
 import com.srmanager.core.common.util.CoilImageGetter
 import com.srmanager.core.common.util.UiEvent
+import com.srmanager.core.common.util.base64ToImage
 import com.srmanager.core.common.util.getBitmapFromImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
@@ -617,7 +618,7 @@ fun OutletAddScreen(
                     )
 
                     Image(
-                        painter = rememberImagePainter(data = imageUri),
+                        bitmap = base64ToImage(viewModel.state.image).asImageBitmap(),
                         contentDescription = "",
                         modifier = Modifier
                             .align(Alignment.Center)
