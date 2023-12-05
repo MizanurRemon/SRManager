@@ -36,7 +36,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.OUTLET,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -78,6 +78,8 @@ fun MainApp(
                     navController.navigate(Route.OUTLET_ADD)
                 }, onItemClick = {
                     navController.navigate(Route.OUTLET_DETAILS)
+                }, onLocationClick = {
+                    navController.navigate(Route.MAP)
                 })
             }
 
@@ -105,7 +107,9 @@ fun MainApp(
             }
 
             composable(route = Route.MAP) {
-                MapScreen()
+                MapScreen(onBack = {
+                    navController.navigateUp()
+                })
             }
 
         }

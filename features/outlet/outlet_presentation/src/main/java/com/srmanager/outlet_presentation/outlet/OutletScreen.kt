@@ -57,7 +57,8 @@ fun OutletScreen(
     onBack: () -> Unit,
     viewModel: OutletViewModel = hiltViewModel(),
     onAddClick: () -> Unit,
-    onItemClick: () -> Unit
+    onItemClick: () -> Unit,
+    onLocationClick: () -> Unit
 ) {
 
     Scaffold(floatingActionButton = {
@@ -93,7 +94,9 @@ fun OutletScreen(
                     Spacer(modifier = Modifier.height(10.r()))
                     ItemCompose(viewModel.state.outletList[0], index, onItemClick = {
                         onItemClick()
-                    })
+                    }) {
+                        onLocationClick()
+                    }
                 }
             }
         }
@@ -102,7 +105,12 @@ fun OutletScreen(
 }
 
 @Composable
-fun ItemCompose(response: OutletResponse, index: Int, onItemClick: () -> Unit) {
+fun ItemCompose(
+    response: OutletResponse,
+    index: Int,
+    onItemClick: () -> Unit,
+    onLocationClick: () -> Unit
+) {
     val context = LocalContext.current
     Card(
         modifier = Modifier
@@ -196,9 +204,7 @@ fun ItemCompose(response: OutletResponse, index: Int, onItemClick: () -> Unit) {
                                 .weight(1f)
                                 .width(25.r())
                                 .clickable {
-                                    Toast
-                                        .makeText(context, "view location", Toast.LENGTH_SHORT)
-                                        .show()
+                                    onLocationClick()
                                 }
                         ) {
                             Icon(
@@ -220,11 +226,11 @@ fun ItemCompose(response: OutletResponse, index: Int, onItemClick: () -> Unit) {
 @Composable
 @Preview
 fun previewItemCompose() {
-    ItemCompose(response = OUTLET_LIST[0], index = 1, onItemClick = {})
+    ItemCompose(response = OUTLET_LIST[0], index = 1, onItemClick = {}, onLocationClick = {})
 }
 
 @Composable
 @Preview
 fun PreviewCustomerAddScreen() {
-    OutletScreen(onBack = {}, onAddClick = {}, onItemClick = {})
+    OutletScreen(onBack = {}, onAddClick = {}, onItemClick = {}, onLocationClick = {})
 }
