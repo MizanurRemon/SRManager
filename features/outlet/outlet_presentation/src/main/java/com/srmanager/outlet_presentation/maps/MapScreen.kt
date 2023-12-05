@@ -24,7 +24,7 @@ import com.srmanager.core.designsystem.components.AppToolbarCompose
 fun MapScreen(onBack: () -> Unit) {
     val singapore = LatLng(23.822350, 90.365417)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(singapore, 10f)
+        position = CameraPosition.fromLatLngZoom(singapore, 15f)
     }
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
