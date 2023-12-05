@@ -56,4 +56,7 @@ object Compose {
 
     const val Lottie = "com.airbnb.android:lottie-compose:6.0.1"
     const val AccompanistPermissions = "com.google.accompanist:accompanist-permissions:0.24.13-rc"
+    const val MAPS = "com.google.maps.android:maps-ktx:3.1.0"
+    const val MAPS_COMPOSE = "com.google.maps.android:maps-compose:2.7.2"
+    const val PLAY_SERVICES_MAPS = "com.google.android.gms:play-services-maps:18.2.0"
 }

@@ -22,4 +22,7 @@ dependencies {
     implementation(Coil.coilCompose)
 
     implementation(project(Modules.outlet_domain))
+
+    implementation(Compose.MAPS_COMPOSE)
+    implementation(Compose.PLAY_SERVICES_MAPS)
 }

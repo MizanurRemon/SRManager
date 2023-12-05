@@ -24,9 +24,11 @@ import com.srmanager.app.home.HomeScreen
 import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.order_presentation.order.OrderScreen
+import com.srmanager.outlet_presentation.maps.MapScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
 import com.srmanager.report_presentation.report.ReportScreen
+
 @Composable
 fun MainApp(
     navController: NavHostController = rememberNavController(),
@@ -36,7 +38,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.OUTLET,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -105,6 +107,10 @@ fun MainApp(
                 OrderScreen(onBack = {
                     navController.navigateUp()
                 })
+            }
+
+            composable(route = Route.MAP) {
+                MapScreen()
             }
 
         }
