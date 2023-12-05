@@ -10,11 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/navigation/Route.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/navigation/Route.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -607,13 +605,6 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
     </task>
-    <task id="LOCAL-00273" summary="date picker">
-      <created>1700026137907</created>
-      <option name="number" value="00273" />
-      <option name="presentableId" value="LOCAL-00273" />
-      <option name="project" value="LOCAL" />
-      <updated>1700026137907</updated>
-    </task>
     <task id="LOCAL-00274" summary="date picker">
       <created>1700026476641</created>
       <option name="number" value="00274" />
@@ -950,7 +941,14 @@
       <option name="project" value="LOCAL" />
       <updated>1701754377531</updated>
     </task>
-    <option name="localTasksCounter" value="322" />
+    <task id="LOCAL-00322" summary="SRM">
+      <created>1701757879006</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
+      <option name="project" value="LOCAL" />
+      <updated>1701757879006</updated>
+    </task>
+    <option name="localTasksCounter" value="323" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

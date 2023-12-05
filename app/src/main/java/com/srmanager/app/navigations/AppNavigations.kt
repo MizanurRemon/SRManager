@@ -73,18 +73,6 @@ fun MainApp(
             }
 
 
-            composable(
-                route = Route.FORGET_PASS_NEW_PASS + "/{email}",
-                arguments = listOf(navArgument("email") {
-                    type = NavType.StringType
-                })
-            ) {
-
-                navController.popBackStack(Route.SIGN_IN, inclusive = false)
-
-            }
-
-
             composable(route = Route.OUTLET) {
                 OutletScreen(onBack = {
                     navController.navigateUp()
