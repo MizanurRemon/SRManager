@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,6 +32,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -51,7 +53,6 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
 fun OutletScreen(
     onBack: () -> Unit,
@@ -92,11 +93,15 @@ fun OutletScreen(
             ) {
                 items(50) { index ->
                     Spacer(modifier = Modifier.height(10.r()))
-                    ItemCompose(viewModel.state.outletList[0], index, onItemClick = {
-                        onItemClick()
-                    }) {
-                        onLocationClick()
-                    }
+                    ItemCompose(
+                        viewModel.state.outletList[0], index,
+                        onItemClick = {
+                            onItemClick()
+                        },
+                        onLocationClick = {
+                            onLocationClick()
+                        },
+                    )
                 }
             }
         }
@@ -111,6 +116,8 @@ fun ItemCompose(
     onItemClick: () -> Unit,
     onLocationClick: () -> Unit
 ) {
+    val interactionSource = remember { MutableInteractionSource() }
+
     val context = LocalContext.current
     Card(
         modifier = Modifier
@@ -203,7 +210,10 @@ fun ItemCompose(
                                 .background(color = Color(0xFF23585F))
                                 .weight(1f)
                                 .width(25.r())
-                                .clickable {
+                                .clickable(
+                                    interactionSource = interactionSource,
+                                    indication = null
+                                ) {
                                     onLocationClick()
                                 }
                         ) {
