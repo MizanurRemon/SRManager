@@ -59,7 +59,7 @@ fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel()) {
     val destination = LatLng(23.822350, 90.365417)
     val initialPosition = LatLng(viewModel.state.latitude, viewModel.state.longitude)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(destination, 15f)
+        position = CameraPosition.fromLatLngZoom(initialPosition, 15f)
     }
 
     /*LaunchedEffect(Unit) {
@@ -81,7 +81,7 @@ fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel()) {
             cameraPositionState = cameraPositionState
         ) {
             Marker(
-                state = MarkerState(position = destination),
+                state = MarkerState(position = initialPosition),
                 title = "London",
                 snippet = "Marker in Big Ben",
                 icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
@@ -89,14 +89,14 @@ fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel()) {
 
 
 
-            Marker(
-                state = MarkerState(position = initialPosition),
-                title = "London",
-                snippet = "Marker in Big Ben",
-                icon = bitmapDescriptorFromVector(
-                    context, DesignSystemR.drawable.ic_waving_people
-                )
-            )
+//            Marker(
+//                state = MarkerState(position = initialPosition),
+//                title = "London",
+//                snippet = "Marker in Big Ben",
+//                icon = bitmapDescriptorFromVector(
+//                    context, DesignSystemR.drawable.ic_waving_people
+//                )
+//            )
 
 
         }

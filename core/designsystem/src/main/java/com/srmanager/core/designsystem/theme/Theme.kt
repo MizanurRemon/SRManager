@@ -614,11 +614,13 @@ fun MyDatePickerDialog(
     onDateSelected: (String) -> Unit,
     openDialog: MutableState<Boolean>,
 ) {
-    val datePickerState = rememberDatePickerState(selectableDates = object : SelectableDates {
-        override fun isSelectableDate(utcTimeMillis: Long): Boolean {
-            return utcTimeMillis <= System.currentTimeMillis()
-        }
-    })
+    val datePickerState = rememberDatePickerState(
+        yearRange = IntRange(start = 2022, endInclusive = 2024),
+        selectableDates = object : SelectableDates {
+            override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                return true//utcTimeMillis >= System.currentTimeMillis()
+            }
+        })
 
     val selectedDate = datePickerState.selectedDateMillis?.let {
         convertMillisToDate(it)
@@ -652,7 +654,7 @@ fun MyDatePickerDialog(
                         text = stringResource(id = CommonR.string.pick_date)
                     )
                 },
-                state = datePickerState
+                state = datePickerState,
             )
         }
     }
@@ -914,10 +916,10 @@ fun PreviewShowPopup() {
             contentImage = DesignSystemR.drawable.ic_police_cross
         )*/
 
-    // MyDatePickerDialog(onDateSelected = {}, openDialog)
+     MyDatePickerDialog(onDateSelected = {}, openDialog)
 
     //ImagePickerDialog(openDialog, onDoneClick = {})
-    GpsStatusDialog(openDialog, onClick = {})
+    //GpsStatusDialog(openDialog, onClick = {})
 }
 
 
