@@ -15,8 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
-import java.util.Base64
 import java.util.Date
+import com.srmanager.core.common.R as CommonR
 
 
 const val INTERNAL_ERROR = -1
@@ -45,6 +45,12 @@ const val FACEBOOK_URL = "https://www.facebook.com/InternetPolitie"
 const val INSTAGRAM_URL = "https://www.instagram.com/internet_politie"
 
 val AGE_LIST = listOf("-18", "18-34", "35-60", "60+")
+
+val REPORT_SUBJECT_LIST = listOf(
+    CommonR.string.report,
+    CommonR.string.address,
+    CommonR.string.app_name
+)
 
 enum class LanguageTagEnum(val tag: String) {
     English("en"),

@@ -109,47 +109,14 @@ fun SplashScreen(
 
         Spacer(modifier = Modifier.weight(1f))
 
-        Column(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(bottom = 5.r())
-            ) {
-                Icon(
-                    Icons.Rounded.LocationOn,
-                    contentDescription = "",
-                    tint = Color.Gray,
-                    modifier = Modifier.size(20.r())
-                )
-                Spacer(modifier = Modifier.width(5.r()))
-
-                Text(
-                    text = stringResource(
-                        id = if (viewModel.state.isLoading) CommonR.string.fetching_location else CommonR.string.current_location
-                    ), style = bodyLightTextStyle.copy(color = Color.Gray, fontSize = 14.sp)
-                )
-            }
-
-            if (viewModel.state.isLoading) {
-                CircularProgressIndicator(
-                    strokeWidth = 2.dp,
-                    color = APP_DEFAULT_COLOR,
-                    modifier = Modifier
-                        .align(Alignment.CenterHorizontally)
-                        .size(20.r())
-                )
-            } else {
-                Text(
-                    text = viewModel.state.address.value.toString(),
-                    style = bodyLightTextStyle.copy(
-                        letterSpacing = .2.sp,
-                        fontWeight = FontWeight.Bold,
-                        textAlign = TextAlign.Center
-                    )
-                )
-            }
+        if (viewModel.state.isLoading) {
+            CircularProgressIndicator(
+                strokeWidth = 2.dp,
+                color = APP_DEFAULT_COLOR,
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .size(20.r())
+            )
         }
 
 

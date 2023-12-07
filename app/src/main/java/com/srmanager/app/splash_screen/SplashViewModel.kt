@@ -40,18 +40,18 @@ class SplashViewModel @Inject constructor(
         state = state.copy(isLoading = true)
 
         viewModelScope.launch(Dispatchers.IO) {
-            delay(5000)
-
-            launch {
-                locationDao.getLocation().collect {
-                    if (it.isNotEmpty()) {
-                        state = state.copy(
-                            isLoading = false,
-                            address = mutableStateOf(it[0].address.toString())
-                        )
-                    }
-                }
-            }
+//            delay(5000)
+//
+//            launch {
+//                locationDao.getLocation().collect {
+//                    if (it.isNotEmpty()) {
+//                        state = state.copy(
+//                            isLoading = false,
+//                            address = mutableStateOf(it[0].address.toString())
+//                        )
+//                    }
+//                }
+//            }
 
             delay(2000)
 
@@ -60,14 +60,11 @@ class SplashViewModel @Inject constructor(
                     PreferenceDataStoreConstants.IS_LOGGED_IN,
                     false
                 )
-                if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.NavigateUp)
+                if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.Success)
             }
 
 
-
-
-
-
+            state = state.copy(isLoading = false)
 
         }
 

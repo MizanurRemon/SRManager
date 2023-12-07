@@ -76,14 +76,15 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
         },
         content = {
             Column(modifier = Modifier.fillMaxSize()) {
-                AppToolbarCompose(
+                AppHomeToolbarCompose(
                     onClick = {
                         scope.launch {
                             drawerState.open()
                         }
                     },
                     icon = DesignSystemR.drawable.ic_menu,
-                    title = CommonR.string.app_name
+                    title = CommonR.string.app_name,
+                    address = viewModel.state.address
                 )
             }
         }

@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.ArrowForward
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.ripple.rememberRipple
@@ -60,7 +61,7 @@ fun OutletScreen(
     viewModel: OutletViewModel = hiltViewModel(),
     onAddClick: () -> Unit,
     onItemClick: () -> Unit,
-    onLocationClick: () -> Unit
+    onLocationClick: () -> Unit, onCheckOutClick: () -> Unit
 ) {
 
     Scaffold(floatingActionButton = {
@@ -102,6 +103,9 @@ fun OutletScreen(
                         onLocationClick = {
                             onLocationClick()
                         },
+                        onCheckOutClick = {
+                            onCheckOutClick()
+                        },
                     )
                 }
             }
@@ -115,7 +119,7 @@ fun ItemCompose(
     response: OutletResponse,
     index: Int,
     onItemClick: () -> Unit,
-    onLocationClick: () -> Unit
+    onLocationClick: () -> Unit, onCheckOutClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -226,6 +230,27 @@ fun ItemCompose(
                             )
                         }
 
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier
+                                .background(color = Color(0xFF673AB7))
+                                .weight(1f)
+                                .width(25.r())
+                                .clickable(
+                                    interactionSource = interactionSource,
+                                    indication = rememberRipple()
+                                ) {
+                                    onCheckOutClick()
+                                }
+                        ) {
+                            Icon(
+                                Icons.Default.ArrowForward,
+                                contentDescription = "",
+                                tint = Color.LightGray,
+                                modifier = Modifier.size(16.r())
+                            )
+                        }
+
                     }
                 }
 
@@ -237,11 +262,11 @@ fun ItemCompose(
 @Composable
 @Preview
 fun previewItemCompose() {
-    ItemCompose(response = OUTLET_LIST[0], index = 1, onItemClick = {}, onLocationClick = {})
+    ItemCompose(response = OUTLET_LIST[0], index = 1, onItemClick = {}, onLocationClick = {}, onCheckOutClick = {})
 }
 
 @Composable
 @Preview
 fun PreviewCustomerAddScreen() {
-    OutletScreen(onBack = {}, onAddClick = {}, onItemClick = {}, onLocationClick = {})
+    OutletScreen(onBack = {}, onAddClick = {}, onItemClick = {}, onLocationClick = {}, onCheckOutClick = {})
 }

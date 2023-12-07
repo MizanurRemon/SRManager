@@ -85,4 +85,7 @@
     <string name="outlet_details">Outlet Details</string>
     <string name="create_outlet">Create Outlet</string>
     <string name="save_changes">Save Changes</string>
+    <string name="outlet_checkout">Outlet Checkout</string>
+    <string name="remarks">Remarks</string>
+    <string name="remaining">Remaining</string>
 </resources>
