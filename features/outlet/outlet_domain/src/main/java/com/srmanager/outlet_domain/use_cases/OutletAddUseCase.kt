@@ -10,6 +10,7 @@ class OutletAddUseCase(private val outletRepository: OutletRepository) {
     suspend operator fun invoke(outletAddModel: OutletAddModel): Result<CommonResponse> {
         return outletRepository.addOutlet(
             OutletAddRequest(
+                id = "",
                 outletImage = outletAddModel.outletImage,
                 outletName = outletAddModel.outletName,
                 ownerName = outletAddModel.ownerName,

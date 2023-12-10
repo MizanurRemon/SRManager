@@ -77,22 +77,6 @@ class OutletAddViewModel @Inject constructor(
                         isLoading = true
                     )
 
-                    /*
-                    val requestData = HashMap<String, Any>()
-                    requestData["outlet_name"] = state.outletName
-                    requestData["owner_name"] = state.ownerName
-                    requestData["birth_date"] = state.birthdate
-                    requestData["mobile_1"] = state.phone1
-                    requestData["mobile_2"] = state.phone2
-                    requestData["trade_license"] = state.tradeLicense
-                    requestData["vat_trn"] = state.vatTRN
-                    requestData["expiry_date"] = state.tlcExpiryDate
-                    requestData["address"] = state.address
-                    requestData["latitude"] = state.latitude
-                    requestData["longitude"] = state.longitude
-                    requestData["photo"] = state.image
-                    */
-
                     viewModelScope.launch {
                         outletUseCases.outletAddUseCase(
                             OutletAddModel(
@@ -111,7 +95,21 @@ class OutletAddViewModel @Inject constructor(
                             )
                         ).onSuccess {
 
-                            state = state.copy(isLoading = false)
+                            state = state.copy(
+                                isLoading = false,
+                                image = "",
+                                outletName = "",
+                                ownerName = "",
+                                birthdate =  "",
+                                phone1 =  "",
+                                phone2 =  "",
+                                tradeLicense =  "",
+                                tlcExpiryDate =  "",
+                                vatTRN =  "",
+                                address =  "",
+                                latitude = "",
+                                longitude =  ""
+                            )
                             _uiEvent.send(
                                 UiEvent.ShowSnackbar(
                                     UiText.DynamicString(

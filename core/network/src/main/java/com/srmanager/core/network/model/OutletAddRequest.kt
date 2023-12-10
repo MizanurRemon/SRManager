@@ -5,6 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class OutletAddRequest(
+    var id: String = "",
     var outletImage: String? = null,
     var outletName: String? = null,
     var ownerName: String? = null,
