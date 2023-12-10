@@ -31,9 +31,9 @@ class AuthRepositoryImpl(
                 val loginResponse = loginDto.toLoginResponse()
                 preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.ACCESS_TOKEN,
-                    loginResponse.access_token
+                    loginResponse.data
                 )
-                preferenceDataStoreHelper.putPreference(
+              /*  preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.REFRESH_TOKEN,
                     loginResponse.refresh_token
                 )
@@ -45,7 +45,7 @@ class AuthRepositoryImpl(
                         userId = loginResponse.userId,
                         email = loginRequest.userName,
                     )
-                )
+                )*/
                 preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.IS_LOGGED_IN,
                     true
@@ -146,9 +146,9 @@ class AuthRepositoryImpl(
                 val loginResponse = loginDto.toLoginResponse()
                 preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.ACCESS_TOKEN,
-                    loginResponse.access_token
+                    loginResponse.data
                 )
-                preferenceDataStoreHelper.putPreference(
+            /*    preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.REFRESH_TOKEN,
                     loginResponse.refresh_token
                 )
@@ -160,7 +160,7 @@ class AuthRepositoryImpl(
                         userId = loginResponse.userId,
                         email = email,
                     )
-                )
+                )*/
                 preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.IS_LOGGED_IN,
                     true
