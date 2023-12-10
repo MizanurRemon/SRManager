@@ -19,18 +19,4 @@ class AuthRemoteDataSourceImpl(
     override suspend fun getLoginResponse(loginRequest: LoginRequest): LoginDto {
         return publicApiService.login(loginRequest)
     }
-
-
-
-    override suspend fun resendVerificationEmail(resendVerification: ResendVerificationRequest): CommonResponseDto {
-        return privateApiService.resendVerificationCode(resendVerification)
-    }
-
-
-    override suspend fun updateEmail(updateEmailRequest: UpdateEmailRequest): LoginDto {
-        return privateApiService.updateEmail(updateEmailRequest)
-    }
-
-
-
 }

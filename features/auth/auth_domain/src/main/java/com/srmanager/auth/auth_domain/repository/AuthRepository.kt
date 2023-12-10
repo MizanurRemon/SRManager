@@ -13,7 +13,5 @@ import com.srmanager.core.network.model.ResetPasswordRequest
 interface AuthRepository {
 
     suspend fun getLoginResponse(loginRequest: LoginRequest): Result<LoginResponse>
-    suspend fun resendVerificationEmail(email: String, forProfileUpdate: Boolean): Result<CommonResponseDto>
-    suspend fun updateEmail(email : String): Result<LoginResponse>
 
 }

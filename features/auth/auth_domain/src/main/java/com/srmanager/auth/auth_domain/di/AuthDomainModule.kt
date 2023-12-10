@@ -23,9 +23,7 @@ class AuthDomainModule {
         return AuthUseCases(
             emailValidate = emailValidate,
             passwordValidate = passwordValidate,
-            resendVerificationEmilUseCase = ResendVerificationEmilUseCase(authRepository),
-            loginUseCase = LoginUseCase(authRepository),
-            updateEmailUseCase = UpdateEmailUseCase(authRepository),
+            loginUseCase = LoginUseCase(authRepository)
         )
     }
 }

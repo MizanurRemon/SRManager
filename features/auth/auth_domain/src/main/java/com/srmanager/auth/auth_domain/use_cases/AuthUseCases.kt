@@ -6,7 +6,5 @@ import com.srmanager.core.common.domain.use_case.PasswordValidationResult
 data class AuthUseCases(
     val emailValidate: EmailValidationResult,
     val passwordValidate: PasswordValidationResult,
-    val resendVerificationEmilUseCase: ResendVerificationEmilUseCase,
     val loginUseCase: LoginUseCase,
-    val updateEmailUseCase: UpdateEmailUseCase,
 )

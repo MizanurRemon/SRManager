@@ -12,7 +12,7 @@ class OutletRemoteDataSourceImpl(
     private val privateApiService: PrivateApiService,
 ) : OutletRemoteDataSource {
     override suspend fun addOutlet(outletAddRequest: OutletAddRequest): CommonResponseDto {
-        return publicApiService.addOutlet(outletAddRequest)
+        return privateApiService.addOutlet(outletAddRequest)
     }
 
 }

@@ -12,8 +12,6 @@ import com.srmanager.core.network.model.*
 import retrofit2.http.*
 
 interface PublicApiService {
-    @POST("bsol/api/outlet")
-    suspend fun addOutlet(@Body request: OutletAddRequest): CommonResponseDto
 
     @POST("bsol/api/auth")
     suspend fun login(

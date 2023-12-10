@@ -10,10 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/LoginDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/LoginDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/mapper/RegistrationMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/mapper/RegistrationMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PublicApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PublicApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/dataSource/remote/AuthRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/dataSource/remote/AuthRemoteDataSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/dataSourceImpl/remote/AuthRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/dataSourceImpl/remote/AuthRemoteDataSourceImpl.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/repository/AuthRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/repository/AuthRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/model/LoginResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/model/LoginResponse.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/di/AuthDomainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/di/AuthDomainModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/repository/AuthRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/repository/AuthRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/use_cases/AuthUseCases.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/use_cases/AuthUseCases.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/use_cases/ResendVerificationEmilUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/use_cases/UpdateEmailUseCase.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSourceImpl/remote/OutletRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSourceImpl/remote/OutletRemoteDataSourceImpl.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -960,7 +968,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="333" />
+    <option name="localTasksCounter" value="334" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

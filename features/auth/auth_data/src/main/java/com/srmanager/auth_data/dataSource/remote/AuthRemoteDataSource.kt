@@ -11,7 +11,4 @@ import com.srmanager.core.network.model.*
 interface AuthRemoteDataSource {
 
     suspend fun getLoginResponse(loginRequest: LoginRequest): LoginDto
-    suspend fun resendVerificationEmail(resendVerification: ResendVerificationRequest): CommonResponseDto
-    suspend fun updateEmail(updateEmailRequest: UpdateEmailRequest): LoginDto
-
 }
