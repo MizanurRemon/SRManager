@@ -26,9 +26,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val preferenceDataStoreHelper: PreferenceDataStoreHelper,
-    private val locationDao: LocationDao
-) : ViewModel() {
+    private val preferenceDataStoreHelper: PreferenceDataStoreHelper) : ViewModel() {
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -40,19 +38,6 @@ class SplashViewModel @Inject constructor(
         state = state.copy(isLoading = true)
 
         viewModelScope.launch(Dispatchers.IO) {
-//            delay(5000)
-//
-//            launch {
-//                locationDao.getLocation().collect {
-//                    if (it.isNotEmpty()) {
-//                        state = state.copy(
-//                            isLoading = false,
-//                            address = mutableStateOf(it[0].address.toString())
-//                        )
-//                    }
-//                }
-//            }
-
             delay(2000)
 
             launch {
@@ -60,7 +45,7 @@ class SplashViewModel @Inject constructor(
                     PreferenceDataStoreConstants.IS_LOGGED_IN,
                     false
                 )
-                if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.Success)
+                if (isLoggedIn) _uiEvent.send(UiEvent.Success) else _uiEvent.send(UiEvent.NavigateUp)
             }
 
 
