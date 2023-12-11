@@ -79,7 +79,7 @@ fun MainApp(
                 }, onAddClick = {
                     navController.navigate(Route.OUTLET_ADD)
                 }, onItemClick = {
-                    navController.navigate(Route.OUTLET_DETAILS)
+                    navController.navigate(Route.OUTLET_DASHBOARD)
                 }, onLocationClick = {
                     navController.navigate(Route.MAP)
                 }, onCheckOutClick = {
