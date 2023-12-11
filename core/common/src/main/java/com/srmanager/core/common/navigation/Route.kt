@@ -12,4 +12,5 @@ object Route {
     const val MAP = "map"
     const val OUTLET_DETAILS = "outlet_details"
     const val OUTLET_CHECKOUT = "outlet_checkout"
+    const val OUTLET_DASHBOARD = "outlet_dashboard"
 }
