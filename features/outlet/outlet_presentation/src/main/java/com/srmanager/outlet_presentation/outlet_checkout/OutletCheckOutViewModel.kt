@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.checkout
+package com.srmanager.outlet_presentation.outlet_checkout
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

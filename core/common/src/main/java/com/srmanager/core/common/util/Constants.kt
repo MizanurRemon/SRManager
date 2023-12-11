@@ -28,7 +28,7 @@ const val URL_REGEX =
 const val ENGLISH_TAG = "en"
 const val DEFAULT_LANGUAGE_TAG = "nl"
 const val FAV_ICON_PREFIX_URL = "https://www.google.com/s2/favicons?sz=256&domain="
-const val DATE_FORMAT = "dd/MM/yyyy"
+const val DATE_FORMAT = "yyyy-MM-dd"
 
 const val APP_SETTINGS = "app_settings"
 const val LANGUAGE_KEY = "language_key"

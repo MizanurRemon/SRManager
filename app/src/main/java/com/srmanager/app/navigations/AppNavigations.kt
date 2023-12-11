@@ -21,7 +21,7 @@ import com.srmanager.app.home.HomeScreen
 import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.order_presentation.order.OrderScreen
-import com.srmanager.outlet_presentation.checkout.OutletCheckoutScreen
+import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
 import com.srmanager.outlet_presentation.maps.MapScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen

@@ -615,10 +615,9 @@ fun MyDatePickerDialog(
     openDialog: MutableState<Boolean>,
 ) {
     val datePickerState = rememberDatePickerState(
-        //yearRange = IntRange(start = 2022, endInclusive = 2024),
         selectableDates = object : SelectableDates {
             override fun isSelectableDate(utcTimeMillis: Long): Boolean {
-                return true//utcTimeMillis >= System.currentTimeMillis()
+                return true
             }
         })
 
@@ -640,7 +639,6 @@ fun MyDatePickerDialog(
             },
             dismissButton = {
                 Button(onClick = {
-                    //onDateSelected(selectedDate)
                     openDialog.value = false
                 }) {
                     Text(text = stringResource(id = CommonR.string.dissmiss))

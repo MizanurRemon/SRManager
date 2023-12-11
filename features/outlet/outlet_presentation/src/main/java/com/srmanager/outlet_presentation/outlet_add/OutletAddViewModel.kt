@@ -52,6 +52,7 @@ class OutletAddViewModel @Inject constructor(
 
 
             is OutletAddEvent.OnSubmitButtonClick -> {
+                state = state.copy(isLoading = true)
                 if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty() || state.image.isEmpty()) {
                     state = state.copy(
                         isOutletNameError = state.outletName.isEmpty(),
@@ -60,7 +61,8 @@ class OutletAddViewModel @Inject constructor(
                         isPhone1Error = state.phone1.isEmpty(),
                         isTradeLicenseError = state.tradeLicense.isEmpty(),
                         isVatTrnError = state.vatTRN.isEmpty(),
-                        isImageError = state.image.isEmpty()
+                        isImageError = state.image.isEmpty(),
+                        isLoading = false
                     )
                 } else {
 
@@ -73,8 +75,7 @@ class OutletAddViewModel @Inject constructor(
                         isPhone2Error = false,
                         isTradeLicenseError = false,
                         isVatTrnError = false,
-                        isImageError = false,
-                        isLoading = true
+                        isImageError = false
                     )
 
                     viewModelScope.launch {
@@ -106,9 +107,7 @@ class OutletAddViewModel @Inject constructor(
                                 tradeLicense =  "",
                                 tlcExpiryDate =  "",
                                 vatTRN =  "",
-                                address =  "",
-                                latitude = "",
-                                longitude =  ""
+                                address =  ""
                             )
                             _uiEvent.send(
                                 UiEvent.ShowSnackbar(

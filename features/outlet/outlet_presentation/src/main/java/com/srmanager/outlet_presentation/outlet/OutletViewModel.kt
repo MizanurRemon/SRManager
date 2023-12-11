@@ -4,12 +4,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.outlet_domain.model.OutletResponse
 import com.srmanager.outlet_presentation.outlet_add.OutletAddState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -28,7 +31,13 @@ class OutletViewModel @Inject constructor() : ViewModel() {
     }
 
     private fun getOutletList() {
-        state = state.copy(outletList = OUTLET_LIST)
+
+        viewModelScope.launch {
+            state = state.copy(isLoading = true)
+            delay(2000)
+            state = state.copy(outletList = OUTLET_LIST, isLoading = false)
+        }
+
     }
 
 }

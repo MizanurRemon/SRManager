@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.checkout
+package com.srmanager.outlet_presentation.outlet_checkout
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable

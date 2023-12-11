@@ -27,6 +27,7 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -64,53 +65,74 @@ fun OutletScreen(
     onLocationClick: () -> Unit, onCheckOutClick: () -> Unit
 ) {
 
-    Scaffold(floatingActionButton = {
-        FloatingActionButton(
-            onClick = {
-                onAddClick()
-            },
-            modifier = Modifier.padding(end = 20.r(), bottom = 40.r()),
-            containerColor = APP_DEFAULT_COLOR
-        ) {
-            Icon(
-                Icons.Default.Add,
-                contentDescription = null,
-                modifier = Modifier.size(30.r()),
-                tint = Color.White
-            )
-        }
-    }, floatingActionButtonPosition = FabPosition.End) {
-        Column(modifier = Modifier.fillMaxSize()) {
+    Scaffold(
+        topBar = {
             AppToolbarCompose(
                 onClick = { onBack() },
                 icon = DesignSystemR.drawable.ic_back,
                 title = CommonR.string.back
             )
-
-
-            val lazyColumnListState = rememberLazyListState()
-            LazyColumn(
-                state = lazyColumnListState,
-                modifier = Modifier.padding(bottom = 20.dp)
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    onAddClick()
+                },
+                modifier = Modifier.padding(end = 20.r(), bottom = 40.r()),
+                containerColor = APP_DEFAULT_COLOR
             ) {
-                items(50) { index ->
-                    Spacer(modifier = Modifier.height(10.r()))
-                    ItemCompose(
-                        viewModel.state.outletList[0], index,
-                        onItemClick = {
-                            onItemClick()
-                        },
-                        onLocationClick = {
-                            onLocationClick()
-                        },
-                        onCheckOutClick = {
-                            onCheckOutClick()
-                        },
+                Icon(
+                    Icons.Default.Add,
+                    contentDescription = null,
+                    modifier = Modifier.size(30.r()),
+                    tint = Color.White
+                )
+            }
+        },
+        floatingActionButtonPosition = FabPosition.End,
+        content = { innerPadding ->
+            Box(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .fillMaxSize(),
+                contentAlignment = Alignment.TopCenter,
+            ) {
+
+                if (viewModel.state.isLoading) {
+                    CircularProgressIndicator(
+                        strokeWidth = 2.dp,
+                        color = APP_DEFAULT_COLOR,
+                        modifier = Modifier
+                            .size(20.r())
+                            .padding(top = 10.r())
                     )
+                } else {
+                    val lazyColumnListState = rememberLazyListState()
+                    LazyColumn(
+                        state = lazyColumnListState,
+                        modifier = Modifier.padding(bottom = 20.dp)
+                    ) {
+                        items(15) { index ->
+                            Spacer(modifier = Modifier.height(10.r()))
+                            ItemCompose(
+                                viewModel.state.outletList[0], index,
+                                onItemClick = {
+                                    onItemClick()
+                                },
+                                onLocationClick = {
+                                    onLocationClick()
+                                },
+                                onCheckOutClick = {
+                                    onCheckOutClick()
+                                },
+                            )
+                        }
+                    }
                 }
+
             }
         }
-    }
+    )
 
 }
 
@@ -262,11 +284,21 @@ fun ItemCompose(
 @Composable
 @Preview
 fun previewItemCompose() {
-    ItemCompose(response = OUTLET_LIST[0], index = 1, onItemClick = {}, onLocationClick = {}, onCheckOutClick = {})
+    ItemCompose(
+        response = OUTLET_LIST[0],
+        index = 1,
+        onItemClick = {},
+        onLocationClick = {},
+        onCheckOutClick = {})
 }
 
 @Composable
 @Preview
 fun PreviewCustomerAddScreen() {
-    OutletScreen(onBack = {}, onAddClick = {}, onItemClick = {}, onLocationClick = {}, onCheckOutClick = {})
+    OutletScreen(
+        onBack = {},
+        onAddClick = {},
+        onItemClick = {},
+        onLocationClick = {},
+        onCheckOutClick = {})
 }

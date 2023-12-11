@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.checkout
+package com.srmanager.outlet_presentation.outlet_checkout
 
 sealed class OutletCheckOutEvent {
     data class OnReasonSelect(val value: String) : OutletCheckOutEvent()
