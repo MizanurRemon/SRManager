@@ -28,16 +28,17 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -45,13 +46,14 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import com.srmanager.core.designsystem.theme.subHeading1TextStyle
-import com.srmanager.outlet_domain.model.OutletResponse
+import com.srmanager.core.network.dto.Data
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
@@ -62,8 +64,35 @@ fun OutletScreen(
     viewModel: OutletViewModel = hiltViewModel(),
     onAddClick: () -> Unit,
     onItemClick: () -> Unit,
-    onLocationClick: () -> Unit, onCheckOutClick: () -> Unit
+    onLocationClick: () -> Unit,
+    onCheckOutClick: () -> Unit,
+    snackbarHostState: SnackbarHostState
 ) {
+
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = true) {
+        viewModel.uiEvent.collect { event ->
+            when (event) {
+                is UiEvent.Success -> {
+
+
+                }
+
+                is UiEvent.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(
+                        message = event.message.asString(context),
+                        duration = SnackbarDuration.Short,
+                    )
+                }
+
+                is UiEvent.NavigateUp -> {
+
+                }
+            }
+
+        }
+    }
 
     Scaffold(
         topBar = {
@@ -112,20 +141,19 @@ fun OutletScreen(
                         state = lazyColumnListState,
                         modifier = Modifier.padding(bottom = 20.dp)
                     ) {
-                        items(15) { index ->
+                        items(viewModel.state.outletList.data.size) { index ->
                             Spacer(modifier = Modifier.height(10.r()))
                             ItemCompose(
-                                viewModel.state.outletList[0], index,
+                                viewModel.state.outletList.data[index], index,
                                 onItemClick = {
                                     onItemClick()
                                 },
                                 onLocationClick = {
                                     onLocationClick()
                                 },
-                                onCheckOutClick = {
-                                    onCheckOutClick()
-                                },
-                            )
+                            ) {
+                                onCheckOutClick()
+                            }
                         }
                     }
                 }
@@ -138,7 +166,7 @@ fun OutletScreen(
 
 @Composable
 fun ItemCompose(
-    response: OutletResponse,
+    response: Data,
     index: Int,
     onItemClick: () -> Unit,
     onLocationClick: () -> Unit, onCheckOutClick: () -> Unit
@@ -281,16 +309,16 @@ fun ItemCompose(
     }
 }
 
-@Composable
+/*@Composable
 @Preview
 fun previewItemCompose() {
     ItemCompose(
         response = OUTLET_LIST[0],
         index = 1,
         onItemClick = {},
-        onLocationClick = {},
-        onCheckOutClick = {})
-}
+        onLocationClick = {}
+    ) {}
+}*/
 
 @Composable
 @Preview
@@ -300,5 +328,6 @@ fun PreviewCustomerAddScreen() {
         onAddClick = {},
         onItemClick = {},
         onLocationClick = {},
-        onCheckOutClick = {})
+        onCheckOutClick = {},
+        snackbarHostState = remember { SnackbarHostState() })
 }

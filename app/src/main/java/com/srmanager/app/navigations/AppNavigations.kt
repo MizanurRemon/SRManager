@@ -84,7 +84,9 @@ fun MainApp(
                     navController.navigate(Route.MAP)
                 }, onCheckOutClick = {
                     navController.navigate(Route.OUTLET_CHECKOUT)
-                })
+                },
+                    snackbarHostState = snackBarHostState
+                )
             }
 
             composable(route = Route.OUTLET_ADD) {

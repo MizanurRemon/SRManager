@@ -9,6 +9,6 @@ interface PrivateApiService {
     @POST("bsol/api/outlet")
     suspend fun addOutlet(@Body request: OutletAddRequest): CommonResponseDto
 
-    /*@GET("bsol/api/outlet")
-    suspend fun getOutletList(): OutletDataDto*/
+    @GET("bsol/api/outlet")
+    suspend fun getOutletList(): OutletDataDto
 }

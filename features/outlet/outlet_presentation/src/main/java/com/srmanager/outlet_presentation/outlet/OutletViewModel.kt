@@ -6,7 +6,9 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.UiEvent
+import com.srmanager.core.common.util.UiText
 import com.srmanager.outlet_domain.model.OutletResponse
+import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import com.srmanager.outlet_presentation.outlet_add.OutletAddState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
@@ -17,7 +19,8 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class OutletViewModel @Inject constructor() : ViewModel() {
+class OutletViewModel @Inject constructor(private val outletUseCases: OutletUseCases) :
+    ViewModel() {
 
     var state by mutableStateOf(OutletState())
         private set
@@ -34,27 +37,24 @@ class OutletViewModel @Inject constructor() : ViewModel() {
 
         viewModelScope.launch {
             state = state.copy(isLoading = true)
-            delay(2000)
-            state = state.copy(outletList = OUTLET_LIST, isLoading = false)
+
+            outletUseCases.outletListUseCases().onSuccess {
+                state = state.copy(outletList = it, isLoading = false)
+            }.onFailure {
+                state = state.copy(isLoading = false)
+                _uiEvent.send(
+                    UiEvent.ShowSnackbar(
+                        UiText.DynamicString(
+                            it.message.toString()
+                        )
+                    )
+                )
+            }
+
+
         }
 
     }
 
 }
-
-val OUTLET_LIST = listOf(
-    OutletResponse(
-        outletName = "outlet name",
-        ownerName = "owner name",
-        dateOfBirth = "17/11/2023",
-        mobileNo = "+60162229232",
-        secondaryMobileNo = "+60162229235",
-        tradeLicense = "45A89",
-        expiryDate = "25/12/2031",
-        vat = "450",
-        address = "Dhaka, Bangladesh",
-        latitude = "23.045789",
-        longitude = "90.165164"
-    )
-)
 
