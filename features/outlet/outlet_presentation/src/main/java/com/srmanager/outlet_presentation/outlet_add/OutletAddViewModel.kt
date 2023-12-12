@@ -52,33 +52,34 @@ class OutletAddViewModel @Inject constructor(
 
 
             is OutletAddEvent.OnSubmitButtonClick -> {
-                state = state.copy(isLoading = true)
-                if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty() || state.image.isEmpty()) {
-                    state = state.copy(
-                        isOutletNameError = state.outletName.isEmpty(),
-                        isOwnerNameError = state.ownerName.isEmpty(),
-                        isBirthDateError = state.birthdate.isEmpty(),
-                        isPhone1Error = state.phone1.isEmpty(),
-                        isTradeLicenseError = state.tradeLicense.isEmpty(),
-                        isVatTrnError = state.vatTRN.isEmpty(),
-                        isImageError = state.image.isEmpty(),
-                        isLoading = false
-                    )
-                } else {
+                viewModelScope.launch {
+                    state = state.copy(isLoading = true)
+                    if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty() || state.image.isEmpty()) {
+                        state = state.copy(
+                            isOutletNameError = state.outletName.isEmpty(),
+                            isOwnerNameError = state.ownerName.isEmpty(),
+                            isBirthDateError = state.birthdate.isEmpty(),
+                            isPhone1Error = state.phone1.isEmpty(),
+                            isTradeLicenseError = state.tradeLicense.isEmpty(),
+                            isVatTrnError = state.vatTRN.isEmpty(),
+                            isImageError = state.image.isEmpty(),
+                            isLoading = false
+                        )
+                    } else {
 
 
-                    state = state.copy(
-                        isOutletNameError = false,
-                        isOwnerNameError = false,
-                        isBirthDateError = false,
-                        isPhone1Error = false,
-                        isPhone2Error = false,
-                        isTradeLicenseError = false,
-                        isVatTrnError = false,
-                        isImageError = false
-                    )
+                        state = state.copy(
+                            isOutletNameError = false,
+                            isOwnerNameError = false,
+                            isBirthDateError = false,
+                            isPhone1Error = false,
+                            isPhone2Error = false,
+                            isTradeLicenseError = false,
+                            isVatTrnError = false,
+                            isImageError = false
+                        )
 
-                    viewModelScope.launch {
+
                         outletUseCases.outletAddUseCase(
                             OutletAddModel(
                                 outletImage = state.image,
@@ -126,8 +127,9 @@ class OutletAddViewModel @Inject constructor(
                                 )
                             )
                         }
-                    }
 
+
+                    }
                 }
             }
 
