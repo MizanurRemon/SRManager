@@ -6,6 +6,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.net.Uri
+import android.util.Log
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -47,28 +48,23 @@ import com.google.maps.android.compose.Polyline
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.srmanager.core.designsystem.R
 import com.srmanager.core.designsystem.components.AppToolbarCompose
+import com.srmanager.core.network.dto.Data
 import kotlinx.coroutines.delay
 import com.srmanager.core.designsystem.R as DesignSystemR
 
 
 @Composable
-fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel()) {
+fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel(),  outletDetails: Data? = null) {
     val context = LocalContext.current
     var polylinePoints by remember { mutableStateOf(emptyList<LatLng>()) }
 
-    val destination = LatLng(23.822350, 90.365417)
+    val destination = LatLng(outletDetails!!.latitude.toDouble(), outletDetails.longitude.toDouble())
     val initialPosition = LatLng(viewModel.state.latitude, viewModel.state.longitude)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(initialPosition, 15f)
+        position = CameraPosition.fromLatLngZoom(destination, 15f)
     }
 
-    /*LaunchedEffect(Unit) {
-        delay(1000)
-        polylinePoints = listOf(
-            destination,
-            initialPosition
-        )
-    }*/
+    Log.d("dataxx", "MapScreen: ${outletDetails.toString()}")
 
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
@@ -81,23 +77,11 @@ fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel()) {
             cameraPositionState = cameraPositionState
         ) {
             Marker(
-                state = MarkerState(position = initialPosition),
+                state = MarkerState(position = destination),
                 title = "London",
                 snippet = "Marker in Big Ben",
                 icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
             )
-
-
-
-//            Marker(
-//                state = MarkerState(position = initialPosition),
-//                title = "London",
-//                snippet = "Marker in Big Ben",
-//                icon = bitmapDescriptorFromVector(
-//                    context, DesignSystemR.drawable.ic_waving_people
-//                )
-//            )
-
 
         }
 

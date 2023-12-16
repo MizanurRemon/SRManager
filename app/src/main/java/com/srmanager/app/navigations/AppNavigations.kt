@@ -20,6 +20,7 @@ import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.app.home.HomeScreen
 import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
+import com.srmanager.core.network.dto.Data
 import com.srmanager.order_presentation.order.OrderScreen
 import com.srmanager.outlet_presentation.dashboard.OutletDashboardScreen
 import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
@@ -35,10 +36,12 @@ fun MainApp(
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
 
+    var outletDetails: Data? = null
+
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.HOME,
+            startDestination = Route.SPLASH,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -80,7 +83,8 @@ fun MainApp(
                     navController.navigate(Route.OUTLET_ADD)
                 }, onItemClick = {
                     navController.navigate(Route.OUTLET_DASHBOARD)
-                }, onLocationClick = {
+                }, onLocationClick = { data ->
+                    outletDetails = data
                     navController.navigate(Route.MAP)
                 }, onCheckOutClick = {
                     navController.navigate(Route.OUTLET_CHECKOUT)
@@ -113,9 +117,13 @@ fun MainApp(
             }
 
             composable(route = Route.MAP) {
-                MapScreen(onBack = {
-                    navController.navigateUp()
-                })
+
+                MapScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    outletDetails = outletDetails
+                )
             }
 
             composable(route = Route.OUTLET_CHECKOUT) {

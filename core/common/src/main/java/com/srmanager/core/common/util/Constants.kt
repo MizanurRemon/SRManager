@@ -1,6 +1,5 @@
 package com.srmanager.core.common.util
 
-import android.R
 import android.content.ActivityNotFoundException
 import android.content.ContentResolver
 import android.content.Context
@@ -10,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.net.Uri
 import android.provider.Browser
+import android.util.Base64
 import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
@@ -162,21 +162,19 @@ fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
     return try {
         val selectedImage = BitmapFactory.decodeStream(resolver.openInputStream(imageUri!!))
         val byteArrayOutputStream = ByteArrayOutputStream()
-        selectedImage.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
-        val imgString = android.util.Base64.encodeToString(
+        selectedImage.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream)
+
+        return Base64.encodeToString(
             byteArrayOutputStream.toByteArray(),
-            android.util.Base64.DEFAULT
-        )
-        Log.d("dataxx", "fileImageUriToBase64: $imgString")
-        return imgString
-    } catch (e: java.lang.Exception) {
-        Log.d("dataxx", "ERORXX: " + e.message)
+            Base64.DEFAULT
+        ).replace("\n", "")
+    } catch (e: Exception) {
         ""
     }
 }
 
 
 fun base64ToImage(imageString: String): Bitmap {
-    var imageBytes = android.util.Base64.decode(imageString, android.util.Base64.DEFAULT)
+    val imageBytes = Base64.decode(imageString, Base64.DEFAULT)
     return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 }

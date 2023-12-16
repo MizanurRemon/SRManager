@@ -111,6 +111,10 @@ class OutletAddViewModel @Inject constructor(
                                 address =  ""
                             )
                             _uiEvent.send(
+                                UiEvent.Success
+                            )
+
+                            _uiEvent.send(
                                 UiEvent.ShowSnackbar(
                                     UiText.DynamicString(
                                         it.message
@@ -196,7 +200,6 @@ class OutletAddViewModel @Inject constructor(
                 )
             }
 
-            else -> {}
         }
     }
 }

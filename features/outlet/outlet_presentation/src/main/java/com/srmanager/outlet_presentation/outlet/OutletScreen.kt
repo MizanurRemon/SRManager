@@ -64,7 +64,7 @@ fun OutletScreen(
     viewModel: OutletViewModel = hiltViewModel(),
     onAddClick: () -> Unit,
     onItemClick: () -> Unit,
-    onLocationClick: () -> Unit,
+    onLocationClick: (response: Data) -> Unit,
     onCheckOutClick: () -> Unit,
     snackbarHostState: SnackbarHostState
 ) {
@@ -148,8 +148,8 @@ fun OutletScreen(
                                 onItemClick = {
                                     onItemClick()
                                 },
-                                onLocationClick = {
-                                    onLocationClick()
+                                onLocationClick = { data ->
+                                    onLocationClick(data)
                                 },
                             ) {
                                 onCheckOutClick()
@@ -169,7 +169,8 @@ fun ItemCompose(
     response: Data,
     index: Int,
     onItemClick: () -> Unit,
-    onLocationClick: () -> Unit, onCheckOutClick: () -> Unit
+    onLocationClick: (response: Data) -> Unit,
+    onCheckOutClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
@@ -269,7 +270,7 @@ fun ItemCompose(
                                     interactionSource = interactionSource,
                                     indication = rememberRipple()
                                 ) {
-                                    onLocationClick()
+                                    onLocationClick(response)
                                 }
                         ) {
                             Icon(

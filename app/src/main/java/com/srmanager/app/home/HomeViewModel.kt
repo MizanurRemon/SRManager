@@ -15,6 +15,7 @@ import com.srmanager.database.dao.UserDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -67,13 +68,17 @@ class HomeViewModel @Inject constructor(
         when (event) {
             is HomeEvent.OnLogOut -> {
 
-                state = state.copy(isLogOutLoading = true)
-
                 viewModelScope.launch {
+                    state = state.copy(isLogOutLoading = true)
+                    delay(2000)
+                    state = state.copy(isLogOutLoading = false)
+                    preferenceDataStoreHelper.clearAllPreference()
                     _uiEvent.send(
                         UiEvent.Success
                     )
                 }
+
+
             }
 
             else -> {}

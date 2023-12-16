@@ -103,6 +103,7 @@ fun OutletAddScreen(
             when (event) {
                 is UiEvent.Success -> {
 
+                    imageUri = null
 
                 }
 

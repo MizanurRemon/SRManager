@@ -710,7 +710,7 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
                     .padding(40.w())
                     .background(
                         color = Color.White,
-                        shape = RoundedCornerShape(32.dp)
+                        shape = RoundedCornerShape(10.dp)
                     )
             ) {
                 Column(
@@ -734,6 +734,7 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
                             modifier = Modifier
                                 .align(Alignment.Center)
                                 .fillMaxHeight()
+                                .padding(10.r())
                         )
                     }
 
@@ -742,7 +743,7 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
                             .fillMaxWidth()
                             .height(1.r())
                             .background(color = Color.Gray)
-                            .padding(vertical = 10.r())
+                            //.padding(vertical = 5.r())
                     )
 
                     Row(

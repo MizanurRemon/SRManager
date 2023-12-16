@@ -90,6 +90,10 @@ fun HomeScreen(navController: NavHostController, viewModel: HomeViewModel = hilt
         }
     )
 
+    if (viewModel.state.isLogOutLoading){
+        LoadingDialog {}
+    }
+
 }
 
 

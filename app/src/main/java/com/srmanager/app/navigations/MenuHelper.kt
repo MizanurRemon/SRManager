@@ -11,12 +11,12 @@ val NAVIGATION_ITEMS = listOf(
     NavigationItem(
         DesignSystemR.drawable.ic_shop, Route.OUTLET, CommonR.string.outlet
     ),
-    NavigationItem(
+   /* NavigationItem(
         DesignSystemR.drawable.ic_cart, Route.ORDER, CommonR.string.order
     ),
     NavigationItem(
         DesignSystemR.drawable.ic_analyze, Route.REPORT, CommonR.string.report
-    ),
+    ),*/
     NavigationItem(
         DesignSystemR.drawable.ic_logout, Route.REPORT, CommonR.string.log_out
     ),
