@@ -64,8 +64,6 @@ fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel(),  o
         position = CameraPosition.fromLatLngZoom(destination, 15f)
     }
 
-    Log.d("dataxx", "MapScreen: ${outletDetails.toString()}")
-
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
             onClick = { onBack() },
