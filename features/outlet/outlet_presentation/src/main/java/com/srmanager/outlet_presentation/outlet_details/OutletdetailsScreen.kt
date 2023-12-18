@@ -56,6 +56,7 @@ import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.base64ToImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
+import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
@@ -90,10 +91,6 @@ fun OutletDetailsScreen(
     val openImagePickerDialog = remember {
         mutableStateOf(false)
     }
-
-    viewModel.onEvent(OutletDetailsEvent.OnOutletNameEnter(outletDetails!!.outletName))
-    viewModel.onEvent(OutletDetailsEvent.OnOwnerNameEnter(outletDetails.ownerName))
-    viewModel.onEvent(OutletDetailsEvent.OnAddressEnter(outletDetails.address))
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
@@ -676,6 +673,12 @@ fun OutletDetailsScreen(
             ) {
                 viewModel.onEvent(OutletDetailsEvent.OnSubmitButtonClick)
             }
+        }
+    }
+
+    if (viewModel.state.isLoading) {
+        LoadingDialog {
+
         }
     }
 }
