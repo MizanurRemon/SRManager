@@ -18,4 +18,6 @@ sealed class OutletDetailsEvent {
     data class OnAddressEnter(val value: String) : OutletDetailsEvent()
     data class OnImageSelection(val value: Uri, val contentResolver: ContentResolver) :
         OutletDetailsEvent()
+
+    object OnGettingCurrentLocation: OutletDetailsEvent()
 }

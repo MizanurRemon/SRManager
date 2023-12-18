@@ -61,16 +61,11 @@ import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
 import com.srmanager.core.designsystem.theme.smallBodyTextStyle
 import com.srmanager.core.network.dto.Data
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
 @SuppressLint("CoroutineCreationDuringComposition")
-@OptIn(ExperimentalComposeUiApi::class, DelicateCoroutinesApi::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun OutletDetailsScreen(
     onBack: () -> Unit,
@@ -96,12 +91,9 @@ fun OutletDetailsScreen(
         mutableStateOf(false)
     }
 
-
-    /*GlobalScope.launch (Dispatchers.IO){
-
-    }*/
     viewModel.onEvent(OutletDetailsEvent.OnOutletNameEnter(outletDetails!!.outletName))
     viewModel.onEvent(OutletDetailsEvent.OnOwnerNameEnter(outletDetails.ownerName))
+    viewModel.onEvent(OutletDetailsEvent.OnAddressEnter(outletDetails.address))
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
@@ -551,11 +543,26 @@ fun OutletDetailsScreen(
 
 
 
-            Text(
-                text = stringResource(id = CommonR.string.address),
-                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
-                modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
-            )
+            Row {
+                Text(
+                    text = stringResource(id = CommonR.string.address),
+                    style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                    modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
+                )
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(
+                    text = stringResource(id = CommonR.string.get_current_location),
+                    style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                    modifier = Modifier
+                        .padding(top = 10.r(), bottom = 5.r())
+                        .clickable {
+                            viewModel.onEvent(OutletDetailsEvent.OnGettingCurrentLocation)
+                        }
+                )
+
+            }
 
             TextField(
                 value = viewModel.state.address,

@@ -33,15 +33,13 @@ class OutletAddViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            launch {
-                locationDao.getLocation().collect {
-                    if (it.isNotEmpty()) {
-                        state = state.copy(
-                            address = it[0].address.toString(),
-                            latitude = it[0].latitude.toString(),
-                            longitude = it[0].longitude.toString()
-                        )
-                    }
+            locationDao.getLocation().collect {
+                if (it.isNotEmpty()) {
+                    state = state.copy(
+                        address = it[0].address.toString(),
+                        latitude = it[0].latitude.toString(),
+                        longitude = it[0].longitude.toString()
+                    )
                 }
             }
         }
@@ -102,13 +100,13 @@ class OutletAddViewModel @Inject constructor(
                                 image = "",
                                 outletName = "",
                                 ownerName = "",
-                                birthdate =  "",
-                                phone1 =  "",
-                                phone2 =  "",
-                                tradeLicense =  "",
-                                tlcExpiryDate =  "",
-                                vatTRN =  "",
-                                address =  ""
+                                birthdate = "",
+                                phone1 = "",
+                                phone2 = "",
+                                tradeLicense = "",
+                                tlcExpiryDate = "",
+                                vatTRN = "",
+                                address = ""
                             )
                             _uiEvent.send(
                                 UiEvent.Success

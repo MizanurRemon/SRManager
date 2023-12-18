@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.srmanager.auth_presentation.isPhoneNumberValid
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.fileImageUriToBase64
+import com.srmanager.database.dao.LocationDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -16,12 +17,29 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class OutletDetailsViewModel @Inject constructor() : ViewModel() {
+class OutletDetailsViewModel @Inject constructor(
+    private val locationDao: LocationDao,
+) : ViewModel() {
     var state by mutableStateOf(OutletDetailsState())
         private set
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
+
+    private fun getCurrentLocation() {
+        viewModelScope.launch {
+            locationDao.getLocation().collect {
+                if (it.isNotEmpty()) {
+                    state = state.copy(
+                        address = mutableStateOf(it[0].address.toString()).value,
+                        latitude = it[0].latitude.toString(),
+                        longitude = it[0].longitude.toString()
+                    )
+
+                }
+            }
+        }
+    }
 
     fun onEvent(event: OutletDetailsEvent) {
         when (event) {
@@ -123,6 +141,9 @@ class OutletDetailsViewModel @Inject constructor() : ViewModel() {
                 )
             }
 
+            is OutletDetailsEvent.OnGettingCurrentLocation -> {
+                getCurrentLocation()
+            }
 
         }
     }
