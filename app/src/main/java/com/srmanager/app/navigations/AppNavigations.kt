@@ -103,7 +103,8 @@ fun MainApp(
             composable(route = Route.OUTLET_DETAILS) {
                 OutletDetailsScreen(
                     snackbarHostState = snackBarHostState,
-                    onBack = { navController.navigateUp() }
+                    onBack = { navController.navigateUp() },
+                    outletDetails = outletDetails
                 )
             }
 

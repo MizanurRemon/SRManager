@@ -43,6 +43,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -207,7 +209,6 @@ fun ItemCompose(
                 Row(modifier = Modifier.fillMaxWidth()) {
                     Column(
                         modifier = Modifier
-                            // .background(color = Color.DarkGray)
                             .padding(15.r())
                     ) {
                         Text(
@@ -223,19 +224,23 @@ fun ItemCompose(
                                 color = Color.DarkGray
                             )
                         )
+
                         Text(
                             text = "Address: ${response.address}",
                             style = bodyRegularTextStyle.copy(
                                 fontSize = 14.ssp(),
                                 fontWeight = FontWeight.W500,
-                                color = Color.DarkGray
-                            )
+                                color = Color.DarkGray,
+                                textAlign = TextAlign.Start
+                            ),
+                            modifier = Modifier.width(300.r()),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
                         )
                     }
                     Spacer(modifier = Modifier.weight(1f))
                     Column(
                         modifier = Modifier
-                            //.fillMaxWidth()
                             .height(100.r()),
                         verticalArrangement = Arrangement.SpaceEvenly
                     ) {

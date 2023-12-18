@@ -1,6 +1,8 @@
 package com.srmanager.outlet_presentation.outlet_details
 
+import android.annotation.SuppressLint
 import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -22,7 +24,6 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.DateRange
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
@@ -34,7 +35,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -54,23 +54,29 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.base64ToImage
-import com.srmanager.core.designsystem.R
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
 import com.srmanager.core.designsystem.theme.smallBodyTextStyle
-import com.srmanager.outlet_presentation.outlet_add.OutletAddEvent
+import com.srmanager.core.network.dto.Data
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
+@SuppressLint("CoroutineCreationDuringComposition")
+@OptIn(ExperimentalComposeUiApi::class, DelicateCoroutinesApi::class)
 @Composable
 fun OutletDetailsScreen(
     onBack: () -> Unit,
     viewModel: OutletDetailsViewModel = hiltViewModel(),
-    snackbarHostState: SnackbarHostState
+    snackbarHostState: SnackbarHostState,
+    outletDetails: Data?
 ) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -90,6 +96,12 @@ fun OutletDetailsScreen(
         mutableStateOf(false)
     }
 
+
+    /*GlobalScope.launch (Dispatchers.IO){
+
+    }*/
+    viewModel.onEvent(OutletDetailsEvent.OnOutletNameEnter(outletDetails!!.outletName))
+    viewModel.onEvent(OutletDetailsEvent.OnOwnerNameEnter(outletDetails.ownerName))
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
@@ -112,6 +124,7 @@ fun OutletDetailsScreen(
             }
 
         }
+
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -141,8 +154,10 @@ fun OutletDetailsScreen(
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
             TextField(value = viewModel.state.outletName,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -155,7 +170,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnOutletNameEnter(it))
+                    viewModel.onEvent(OutletDetailsEvent.OnOutletNameEnter(it))
                 },
 
                 modifier = Modifier
@@ -185,8 +200,10 @@ fun OutletDetailsScreen(
             )
 
             TextField(value = viewModel.state.ownerName,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -199,7 +216,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnOwnerNameEnter(it))
+                    viewModel.onEvent(OutletDetailsEvent.OnOwnerNameEnter(it))
                 },
 
                 modifier = Modifier
@@ -230,8 +247,10 @@ fun OutletDetailsScreen(
 
             TextField(value = viewModel.state.birthdate,
                 readOnly = true,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -244,7 +263,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    //viewModel.onEvent(OutletAddEvent.OnBirthDateEnter(it))
+                    //viewModel.onEvent(OutletDetailsEvent.OnBirthDateEnter(it))
                 },
 
                 modifier = Modifier
@@ -287,8 +306,10 @@ fun OutletDetailsScreen(
 
             TextField(
                 value = viewModel.state.phone1,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -301,7 +322,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnMobileNo1Enter(it))
+                    viewModel.onEvent(OutletDetailsEvent.OnMobileNo1Enter(it))
                 },
 
                 modifier = Modifier
@@ -334,8 +355,10 @@ fun OutletDetailsScreen(
 
             TextField(
                 value = viewModel.state.phone2,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -348,7 +371,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnMobileNo2Enter(it))
+                    viewModel.onEvent(OutletDetailsEvent.OnMobileNo2Enter(it))
                 },
 
                 modifier = Modifier
@@ -380,8 +403,10 @@ fun OutletDetailsScreen(
 
             TextField(
                 value = viewModel.state.tradeLicense,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -394,7 +419,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnTradeLicenseEnter(it))
+                    viewModel.onEvent(OutletDetailsEvent.OnTradeLicenseEnter(it))
                 },
 
                 modifier = Modifier
@@ -426,8 +451,10 @@ fun OutletDetailsScreen(
 
             TextField(value = viewModel.state.tlcExpiryDate,
                 readOnly = true,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -483,8 +510,10 @@ fun OutletDetailsScreen(
 
             TextField(
                 value = viewModel.state.vatTRN,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -497,7 +526,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnVatTRNEnter(it))
+                    viewModel.onEvent(OutletDetailsEvent.OnVatTRNEnter(it))
                 },
 
                 modifier = Modifier
@@ -530,8 +559,10 @@ fun OutletDetailsScreen(
 
             TextField(
                 value = viewModel.state.address,
-                colors = TextFieldDefaults.textFieldColors(
-                    containerColor = Color.White,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                 ),
@@ -544,7 +575,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletAddEvent.OnAddressEnter(it))
+                    viewModel.onEvent(OutletDetailsEvent.OnAddressEnter(it))
                 },
 
                 modifier = Modifier
@@ -613,7 +644,7 @@ fun OutletDetailsScreen(
                     )
                 } else {
                     viewModel.onEvent(
-                        OutletAddEvent.OnImageSelection(
+                        OutletDetailsEvent.OnImageSelection(
                             imageUri!!,
                             context.contentResolver
                         )
@@ -636,7 +667,7 @@ fun OutletDetailsScreen(
                 stringId = CommonR.string.save_changes,
                 modifier = Modifier.padding(top = 10.r())
             ) {
-                viewModel.onEvent(OutletAddEvent.OnSubmitButtonClick)
+                viewModel.onEvent(OutletDetailsEvent.OnSubmitButtonClick)
             }
         }
     }
@@ -646,5 +677,9 @@ fun OutletDetailsScreen(
 @Preview
 fun PreviewOutletDetailsScreen() {
     val snackBarHostState = remember { SnackbarHostState() }
-    OutletDetailsScreen(onBack = {}, snackbarHostState = snackBarHostState)
+    OutletDetailsScreen(
+        onBack = {},
+        snackbarHostState = snackBarHostState,
+        outletDetails = null
+    )
 }
