@@ -81,7 +81,8 @@ fun MainApp(
                     navController.navigateUp()
                 }, onAddClick = {
                     navController.navigate(Route.OUTLET_ADD)
-                }, onItemClick = {
+                }, onItemClick = { data ->
+                    outletDetails = data
                     navController.navigate(Route.OUTLET_DASHBOARD)
                 }, onLocationClick = { data ->
                     outletDetails = data
@@ -137,9 +138,11 @@ fun MainApp(
                     onBack = {
                         navController.navigateUp()
                     },
-                    onGridItemClick = { route ->
+                    onGridItemClick = { route, data ->
+                        outletDetails = data
                         navController.navigate(route)
-                    }
+                    },
+                    outletDetails = outletDetails
                 )
             }
 

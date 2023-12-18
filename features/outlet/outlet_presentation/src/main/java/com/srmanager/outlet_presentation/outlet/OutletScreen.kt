@@ -63,7 +63,7 @@ fun OutletScreen(
     onBack: () -> Unit,
     viewModel: OutletViewModel = hiltViewModel(),
     onAddClick: () -> Unit,
-    onItemClick: () -> Unit,
+    onItemClick: (response: Data) -> Unit,
     onLocationClick: (response: Data) -> Unit,
     onCheckOutClick: () -> Unit,
     snackbarHostState: SnackbarHostState
@@ -145,15 +145,16 @@ fun OutletScreen(
                             Spacer(modifier = Modifier.height(10.r()))
                             ItemCompose(
                                 viewModel.state.outletList.data[index], index,
-                                onItemClick = {
-                                    onItemClick()
+                                onItemClick = { data ->
+                                    onItemClick(data)
                                 },
                                 onLocationClick = { data ->
                                     onLocationClick(data)
                                 },
-                            ) {
-                                onCheckOutClick()
-                            }
+                                onCheckOutClick = {
+                                    onCheckOutClick()
+                                }
+                            )
                         }
                     }
                 }
@@ -168,7 +169,7 @@ fun OutletScreen(
 fun ItemCompose(
     response: Data,
     index: Int,
-    onItemClick: () -> Unit,
+    onItemClick: (response: Data) -> Unit,
     onLocationClick: (response: Data) -> Unit,
     onCheckOutClick: () -> Unit
 ) {
@@ -180,7 +181,7 @@ fun ItemCompose(
             .fillMaxWidth()
             .padding(horizontal = 10.r())
             .clickable {
-                onItemClick()
+                onItemClick(response)
             },
         elevation = CardDefaults.cardElevation(
             defaultElevation = 2.dp

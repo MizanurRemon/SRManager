@@ -26,5 +26,11 @@ val OUTLET_DASHBOARD_MENUS = listOf(
         icon = DesignSystemR.drawable.ic_cart,
         title = CommonR.string.order,
         route = Route.ORDER
+    ),
+
+    DashboardItemsResponse(
+        icon = DesignSystemR.drawable.ic_location_pin,
+        title = CommonR.string.location,
+        route = Route.MAP
     )
 )

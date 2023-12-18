@@ -1,6 +1,5 @@
 package com.srmanager.outlet_presentation.dashboard
 
-import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,29 +14,31 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
+import com.srmanager.core.network.dto.Data
 import com.srmanager.core.common.R as CommonR
 
 @Composable
-fun OutletDashboardScreen(onBack: () -> Unit, onGridItemClick: (route: String) -> Unit) {
+fun OutletDashboardScreen(
+    onBack: () -> Unit,
+    onGridItemClick: (route: String, outletDetails: Data?) -> Unit,
+    outletDetails: Data? = null
+) {
     Scaffold(
         topBar = {
             AppToolbarCompose(
@@ -58,9 +59,10 @@ fun OutletDashboardScreen(onBack: () -> Unit, onGridItemClick: (route: String) -
                     items(OUTLET_DASHBOARD_MENUS.size) { index ->
                         GridItem(
                             OUTLET_DASHBOARD_MENUS[index],
-                            onGridItemClick = { route ->
-                                onGridItemClick(route)
+                            onGridItemClick = { route, outletDetails ->
+                                onGridItemClick(route, outletDetails)
                             },
+                            outletDetails = outletDetails
                         )
                     }
                 }
@@ -70,12 +72,16 @@ fun OutletDashboardScreen(onBack: () -> Unit, onGridItemClick: (route: String) -
 }
 
 @Composable
-fun GridItem(response: DashboardItemsResponse, onGridItemClick: (route: String) -> Unit) {
+fun GridItem(
+    response: DashboardItemsResponse,
+    onGridItemClick: (route: String, outletDetails: Data?) -> Unit,
+    outletDetails: Data?
+) {
     Card(
         modifier = Modifier
             .fillMaxSize()
             .clickable {
-                onGridItemClick(response.route)
+                onGridItemClick(response.route, outletDetails)
             }
             .padding(10.r()),
         colors = CardDefaults.cardColors(
@@ -114,5 +120,5 @@ fun GridItem(response: DashboardItemsResponse, onGridItemClick: (route: String) 
 @Composable
 @Preview
 fun PreviewOutletDashboardScreen() {
-    OutletDashboardScreen(onBack = {}, onGridItemClick = {})
+    //OutletDashboardScreen(onBack = {}, onGridItemClick = {})
 }
