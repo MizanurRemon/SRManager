@@ -74,7 +74,7 @@
     <string name="vat_trn">Vat TRN</string>
     <string name="address">Address</string>
     <string name="enter_address">Enter Address</string>
-    <string name="location">Location:</string>
+    <string name="location">Location</string>
     <string name="empty_field">Empty field</string>
     <string name="invalid">Invalid</string>
     <string name="camera">Camera</string>

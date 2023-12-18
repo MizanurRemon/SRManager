@@ -53,7 +53,7 @@ fun OutletDashboardScreen(onBack: () -> Unit, onGridItemClick: (route: String) -
                     .padding(innerPadding)
             ) {
                 LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 128.dp)
+                    columns = GridCells.Adaptive(minSize = 128.r())
                 ) {
                     items(OUTLET_DASHBOARD_MENUS.size) { index ->
                         GridItem(
@@ -103,7 +103,7 @@ fun GridItem(response: DashboardItemsResponse, onGridItemClick: (route: String) 
                     color = Color.White,
                     fontSize = 14.ssp(),
                     textAlign = TextAlign.Center
-                )
+                ),
             )
 
         }
