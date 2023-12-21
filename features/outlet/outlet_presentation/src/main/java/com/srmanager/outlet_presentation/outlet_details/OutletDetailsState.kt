@@ -1,6 +1,7 @@
 package com.srmanager.outlet_presentation.outlet_details
 
 data class OutletDetailsState(
+    val id: Int = 0,
     val outletName: String = "",
     val ownerName: String = "",
     val birthdate: String = "",

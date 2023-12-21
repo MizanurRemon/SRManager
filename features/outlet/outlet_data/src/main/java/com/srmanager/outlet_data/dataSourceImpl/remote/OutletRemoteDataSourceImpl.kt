@@ -5,6 +5,7 @@ import com.srmanager.core.network.PrivateApiService
 import com.srmanager.core.network.PublicApiService
 import com.srmanager.core.network.dto.CommonResponseDto
 import com.srmanager.core.network.dto.OutletDataDto
+import com.srmanager.core.network.dto.OutletDetailsDto
 import com.srmanager.core.network.model.*
 
 
@@ -18,6 +19,10 @@ class OutletRemoteDataSourceImpl(
 
     override suspend fun getOutletList(): OutletDataDto {
         return privateApiService.getOutletList()
+    }
+
+    override suspend fun getOutletDetails(outletID: String): OutletDetailsDto{
+        return privateApiService.getOutletDetails(outletID)
     }
 
 }

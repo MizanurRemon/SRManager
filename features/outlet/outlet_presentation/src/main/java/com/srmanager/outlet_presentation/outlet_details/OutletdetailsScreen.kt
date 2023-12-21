@@ -3,6 +3,7 @@ package com.srmanager.outlet_presentation.outlet_details
 import android.annotation.SuppressLint
 import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -114,6 +115,13 @@ fun OutletDetailsScreen(
 
         }
 
+    }
+
+
+
+    LaunchedEffect(Unit) {
+        //Toast.makeText(context, outletDetails!!.id.toString(), Toast.LENGTH_SHORT).show()
+        viewModel.getOutletDetails(outletID = outletDetails!!.id.toString())
     }
 
     Column(modifier = Modifier.fillMaxSize()) {

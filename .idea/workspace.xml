@@ -10,11 +10,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/OutletDetailsDto.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/model/OutletDetailsResponse.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletDetailsUseCases.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PublicApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PublicApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/DomainDto.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/AuthenticationDraftRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/BasicInfoRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/CompleteProfileRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/DraftVerificationRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/ErrorResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/NewPasswordRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/PasswordChangeRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/RegistrationErrorModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/RegistrationRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/ReportProblemRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/ReportRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/ReportResponse.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/ResendVerificationRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/ResetPasswordRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/ScrapDataRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/SendDescriptionRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/UpdateEmailRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/UpdateUserNameRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/UserDataUpdateRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/UserWaitingRequest.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/repository/AuthRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/repository/AuthRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSource/remote/OutletRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSource/remote/OutletRemoteDataSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSourceImpl/remote/OutletRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSourceImpl/remote/OutletRemoteDataSourceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/mapper/OutletMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/mapper/OutletMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/repository/OutletRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/repository/OutletRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/di/OutletDomainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/di/OutletDomainModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/repository/OutletRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/repository/OutletRepository.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletUseCases.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletUseCases.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,7 +58,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/remon/.android/avd/Resizable_Experimental_API_33.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[33220fdb]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -116,50 +150,50 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
-    &quot;BundleExportedModule&quot;: &quot;InternetPolice.app&quot;,
-    &quot;ExportBundle.BundlePathForInternetPolice.app&quot;: &quot;/home/remon/Projects/Android/internet-politie-android-app/app&quot;,
-    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
-    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ScreenRecorder.SavePath&quot;: &quot;/home/remon/Desktop&quot;,
-    &quot;android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED&quot;: &quot;TextView&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_directory_selection&quot;: &quot;/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/remon/Projects/Android/srmanager&quot;,
-    &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1693848167557&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;recommended.upgrade.do.not.ask.for.project&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Android App.app.executor": "Run",
+    "BundleExportedModule": "InternetPolice.app",
+    "ExportBundle.BundlePathForInternetPolice.app": "/home/remon/Projects/Android/internet-politie-android-app/app",
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "PROJECT_TRUSTED_KEY": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ScreenRecorder.SavePath": "/home/remon/Desktop",
+    "android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED": "TextView",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.google.services.firebase.aqiPopupShown": "true",
+    "git-widget-placeholder": "develop",
+    "kotlin-language-version-configured": "true",
+    "last_directory_selection": "/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable",
+    "last_opened_file_path": "/home/remon/Projects/Android/internet-politie-android-app",
+    "memory.settings.postsync.last.time.stamp": "1693848167557",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.17",
+    "project.structure.side.proportion": "0.2",
+    "recommended.upgrade.do.not.ask.for.project": "true",
+    "settings.editor.selected.configurable": "preferences.customizations",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ExportApk.BuildVariants&quot;: [
-      &quot;release&quot;
+  "keyToStringList": {
+    "ExportApk.BuildVariants": [
+      "release"
     ],
-    &quot;com.android.tools.idea.sqlite.queryhistory&quot;: [
-      &quot;SELECT * FROM user&quot;,
-      &quot;UPDATE user SET email = \&quot;re\&quot;&quot;
+    "com.android.tools.idea.sqlite.queryhistory": [
+      "SELECT * FROM user",
+      "UPDATE user SET email = \"re\""
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/drawable" />
@@ -589,7 +623,7 @@
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
       <workItem from="1703172670983" duration="2181000" />
-      <workItem from="1703176082685" duration="327000" />
+      <workItem from="1703176082685" duration="5934000" />
     </task>
     <task id="LOCAL-00283" summary="ui">
       <created>1701156141845</created>
@@ -934,7 +968,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="348" />
+    <option name="localTasksCounter" value="349" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

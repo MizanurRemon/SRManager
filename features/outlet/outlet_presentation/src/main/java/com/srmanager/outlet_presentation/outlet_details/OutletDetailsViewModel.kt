@@ -1,14 +1,18 @@
 package com.srmanager.outlet_presentation.outlet_details
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.auth_presentation.isPhoneNumberValid
 import com.srmanager.core.common.util.UiEvent
+import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
+import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -19,12 +23,54 @@ import javax.inject.Inject
 @HiltViewModel
 class OutletDetailsViewModel @Inject constructor(
     private val locationDao: LocationDao,
+    private val outletUseCases: OutletUseCases,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     var state by mutableStateOf(OutletDetailsState())
         private set
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
+
+    init {
+//        state = state.copy(id = savedStateHandle["outletID"]!!)
+        //Log.d("dataxx", "OutletDetailsScreen: ${state.id.toString()}")
+        //getOutletDetails()
+    }
+
+    fun getOutletDetails(outletID: String) {
+        viewModelScope.launch {
+            state = state.copy(isLoading = true)
+            outletUseCases.outletDetailsUseCases(outletID = outletID).onSuccess { response ->
+                state = state.copy(
+                    isLoading = false,
+                    image = "",
+                    outletName = response.data.outletName,
+                    ownerName = response.data.ownerName,
+                    birthdate = response.data.dateOfBirth,
+                    phone1 = response.data.mobileNo,
+                    phone2 = response.data.secondaryMobileNo,
+                    tradeLicense = response.data.tradeLicense,
+                    tlcExpiryDate = response.data.expiryDate,
+                    vatTRN = response.data.vat,
+                    address = response.data.address
+                )
+
+            }.onFailure {
+                state = state.copy(
+                    isLoading = false
+                )
+
+                _uiEvent.send(
+                    UiEvent.ShowSnackbar(
+                        UiText.DynamicString(
+                            it.message.toString()
+                        )
+                    )
+                )
+            }
+        }
+    }
 
     private fun getCurrentLocation() {
         viewModelScope.launch {
@@ -70,10 +116,6 @@ class OutletDetailsViewModel @Inject constructor(
                         isImageError = false,
                         isLoading = true
                     )
-
-                    viewModelScope.launch {
-
-                    }
 
                 }
             }
@@ -142,7 +184,7 @@ class OutletDetailsViewModel @Inject constructor(
             }
 
             is OutletDetailsEvent.OnGettingCurrentLocation -> {
-                getCurrentLocation()
+                //getCurrentLocation()
             }
 
         }
