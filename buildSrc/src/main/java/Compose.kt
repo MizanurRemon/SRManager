@@ -59,4 +59,5 @@ object Compose {
     const val MAPS = "com.google.maps.android:maps-ktx:3.1.0"
     const val MAPS_COMPOSE = "com.google.maps.android:maps-compose:2.7.2"
     const val PLAY_SERVICES_MAPS = "com.google.android.gms:play-services-maps:18.2.0"
+    const val ACCOMPANIST_SWIPE_REFRRESH =  "com.google.accompanist:accompanist-swiperefresh:0.27.0"
 }
