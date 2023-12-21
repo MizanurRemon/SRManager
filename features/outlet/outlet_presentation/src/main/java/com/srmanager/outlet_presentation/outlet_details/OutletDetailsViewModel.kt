@@ -45,15 +45,15 @@ class OutletDetailsViewModel @Inject constructor(
                 state = state.copy(
                     isLoading = false,
                     image = "",
-                    outletName = response.data.outletName,
-                    ownerName = response.data.ownerName,
-                    birthdate = response.data.dateOfBirth,
-                    phone1 = response.data.mobileNo,
-                    phone2 = response.data.secondaryMobileNo,
-                    tradeLicense = response.data.tradeLicense,
-                    tlcExpiryDate = response.data.expiryDate,
-                    vatTRN = response.data.vat,
-                    address = response.data.address
+                    outletName = response.data.outletName.toString(),
+                    ownerName = response.data.ownerName.toString(),
+                    birthdate = response.data.dateOfBirth.toString(),
+                    phone1 = response.data.mobileNo.toString(),
+                    phone2 = response.data.secondaryMobileNo.toString(),
+                    tradeLicense = response.data.tradeLicense.toString(),
+                    tlcExpiryDate = response.data.expiryDate.toString(),
+                    vatTRN = response.data.vat.toString(),
+                    address = response.data.address.toString()
                 )
 
             }.onFailure {
