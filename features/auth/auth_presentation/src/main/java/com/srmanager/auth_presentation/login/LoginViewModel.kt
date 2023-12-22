@@ -57,8 +57,8 @@ class LoginViewModel @Inject constructor(
             if (state.userName.isNotEmpty() && state.password.isNotEmpty()) {
                 state = state.copy(
                     isShowDialog = true,
-                    isUserNameValid = true,
-                    isPasswordValid = true,
+                    isUserNameValid = state.userName.isEmpty(),
+                    isPasswordValid =  state.password.isEmpty(),
                 )
                 authUseCases.loginUseCase(
                     LoginModel(

@@ -1,6 +1,7 @@
 package com.srmanager.outlet_domain.model
 
 data class OutletAddModel(
+    var id: String = "",
     var outletImage: String? = null,
     var outletName: String? = null,
     var ownerName: String? = null,

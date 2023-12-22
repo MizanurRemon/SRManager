@@ -5,7 +5,7 @@ import android.net.Uri
 import com.srmanager.core.network.dto.Data
 
 sealed class OutletDetailsEvent {
-    object OnSubmitButtonClick : OutletDetailsEvent()
+    data class OnSubmitButtonClick(val outletID: String) : OutletDetailsEvent()
     data class OnOutletNameEnter(val value: String) : OutletDetailsEvent()
     data class OnOwnerNameEnter(val value: String) : OutletDetailsEvent()
     data class OnBirthDateEnter(val value: String) : OutletDetailsEvent()

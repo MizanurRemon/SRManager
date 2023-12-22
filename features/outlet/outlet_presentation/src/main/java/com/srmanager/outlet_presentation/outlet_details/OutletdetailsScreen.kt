@@ -2,8 +2,6 @@ package com.srmanager.outlet_presentation.outlet_details
 
 import android.annotation.SuppressLint
 import android.net.Uri
-import android.util.Log
-import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -36,6 +34,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -50,6 +49,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -61,6 +61,8 @@ import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
+import com.srmanager.core.designsystem.theme.ImagePickerDialog
+import com.srmanager.core.designsystem.theme.MyDatePickerDialog
 import com.srmanager.core.designsystem.theme.smallBodyTextStyle
 import com.srmanager.core.network.dto.Data
 import com.srmanager.core.designsystem.R as DesignSystemR
@@ -85,7 +87,7 @@ fun OutletDetailsScreen(
         mutableStateOf(false)
     }
 
-    val imageUri by remember {
+    var imageUri by remember {
         mutableStateOf<Uri?>(null)
     }
 
@@ -119,8 +121,7 @@ fun OutletDetailsScreen(
 
 
 
-    LaunchedEffect(Unit) {
-        //Toast.makeText(context, outletDetails!!.id.toString(), Toast.LENGTH_SHORT).show()
+    LaunchedEffect(key1 = true) {
         viewModel.getOutletDetails(outletID = outletDetails!!.id.toString())
     }
 
@@ -559,7 +560,8 @@ fun OutletDetailsScreen(
 
                 Text(
                     text = stringResource(id = CommonR.string.get_current_location),
-                    style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                    style = smallBodyTextStyle.copy(fontWeight = FontWeight.W500),
+                    textDecoration = TextDecoration.Underline,
                     modifier = Modifier
                         .padding(top = 10.r(), bottom = 5.r())
                         .clickable {
@@ -679,9 +681,31 @@ fun OutletDetailsScreen(
                 stringId = CommonR.string.save_changes,
                 modifier = Modifier.padding(top = 10.r())
             ) {
-                viewModel.onEvent(OutletDetailsEvent.OnSubmitButtonClick)
+                viewModel.onEvent(OutletDetailsEvent.OnSubmitButtonClick(outletDetails!!.id.toString()))
             }
         }
+    }
+
+    if (openDatePickerDialog.value) {
+        MyDatePickerDialog(
+            onDateSelected = {
+                viewModel.onEvent(OutletDetailsEvent.OnDatePick(it))
+            }, openDialog = openDatePickerDialog
+        )
+    }
+
+    if (openExpiryDatePickerDialog.value) {
+        MyDatePickerDialog(
+            onDateSelected = {
+                viewModel.onEvent(OutletDetailsEvent.OnExpiryDateEnter(it))
+            }, openDialog = openExpiryDatePickerDialog
+        )
+    }
+
+    if (openImagePickerDialog.value) {
+        ImagePickerDialog(openDialog = openImagePickerDialog, onDoneClick = { image ->
+            imageUri = image
+        })
     }
 
     if (viewModel.state.isLoading) {
