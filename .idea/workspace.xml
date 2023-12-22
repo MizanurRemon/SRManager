@@ -11,9 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/OutletDetailsDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/OutletDetailsDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/mapper/OutletMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/mapper/OutletMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_presentation/src/main/java/com/srmanager/auth_presentation/login/LoginViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +90,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="bedd112b-bac2-4985-9118-92425f03ae83" />
+    <option name="defaultAccountId" value="6df592f5-df50-4dbf-a37e-c736e437449b" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material3/material3/1.0.1/e90f5af2fdc04ac29257713d2ee94800d0262b17/material3-1.0.1-sources.jar!/androidx/compose/material3/TextFieldDefaults.kt" root0="FORCE_HIGHLIGHTING" />
@@ -146,7 +144,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;recommended.upgrade.do.not.ask.for.project&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -962,7 +960,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="350" />
+    <option name="localTasksCounter" value="351" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

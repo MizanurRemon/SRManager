@@ -38,7 +38,7 @@ class LoginViewModel @Inject constructor(
             }
 
             is LoginEvent.OnPasswordEnter -> {
-                state = state.copy(password = event.password)
+                state = state.copy(password = event.password, isPasswordValid = event.password.isEmpty())
             }
 
             is LoginEvent.OnSubmitClick -> {
