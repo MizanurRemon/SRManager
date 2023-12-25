@@ -88,10 +88,6 @@ fun OutletDetailsScreen(
         mutableStateOf(false)
     }
 
-    var imageUri by remember {
-        mutableStateOf<Uri?>(null)
-    }
-
     val openImagePickerDialog = remember {
         mutableStateOf(false)
     }
@@ -656,7 +652,7 @@ fun OutletDetailsScreen(
                     }
             ) {
 
-                if (imageUri == null) {
+                if (viewModel.state.image.isEmpty()) {
                     Image(
                         painter = painterResource(id = DesignSystemR.drawable.ic_camera),
                         contentDescription = "",
@@ -665,12 +661,6 @@ fun OutletDetailsScreen(
 
                     )
                 } else {
-                    viewModel.onEvent(
-                        OutletDetailsEvent.OnImageSelection(
-                            imageUri!!,
-                            context.contentResolver
-                        )
-                    )
 
                     Image(
                         bitmap = base64ToImage(viewModel.state.image).asImageBitmap(),
@@ -712,7 +702,12 @@ fun OutletDetailsScreen(
 
     if (openImagePickerDialog.value) {
         ImagePickerDialog(openDialog = openImagePickerDialog, onDoneClick = { image ->
-            imageUri = image
+            viewModel.onEvent(
+                OutletDetailsEvent.OnImageSelection(
+                    image,
+                    context.contentResolver
+                )
+            )
         })
     }
 
