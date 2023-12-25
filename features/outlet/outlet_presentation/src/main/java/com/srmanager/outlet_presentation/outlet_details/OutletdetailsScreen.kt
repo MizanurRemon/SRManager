@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -64,7 +65,7 @@ import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
 import com.srmanager.core.designsystem.theme.ImagePickerDialog
 import com.srmanager.core.designsystem.theme.MyDatePickerDialog
 import com.srmanager.core.designsystem.theme.smallBodyTextStyle
-import com.srmanager.core.network.dto.Data
+import com.srmanager.core.network.dto.Outlet
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
@@ -75,7 +76,7 @@ fun OutletDetailsScreen(
     onBack: () -> Unit,
     viewModel: OutletDetailsViewModel = hiltViewModel(),
     snackbarHostState: SnackbarHostState,
-    outletDetails: Data?
+    outletDetails: Outlet?
 ) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -122,7 +123,7 @@ fun OutletDetailsScreen(
 
 
     LaunchedEffect(key1 = true) {
-        viewModel.getOutletDetails(outletID = outletDetails!!.id.toString())
+        //viewModel.getOutletDetails(outletID = outletDetails!!.id.toString())
     }
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -558,16 +559,23 @@ fun OutletDetailsScreen(
 
                 Spacer(modifier = Modifier.weight(1f))
 
-                Text(
-                    text = stringResource(id = CommonR.string.get_current_location),
-                    style = smallBodyTextStyle.copy(fontWeight = FontWeight.W500),
-                    textDecoration = TextDecoration.Underline,
-                    modifier = Modifier
-                        .padding(top = 10.r(), bottom = 5.r())
-                        .clickable {
-                            viewModel.onEvent(OutletDetailsEvent.OnGettingCurrentLocation)
-                        }
-                )
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
+                    .padding(top = 10.r(), bottom = 5.r())
+                    .clickable {
+                        viewModel.onEvent(OutletDetailsEvent.OnGettingCurrentLocation)
+                    }) {
+                    Icon(
+                        painter = painterResource(id = DesignSystemR.drawable.ic_my_location),
+                        contentDescription = "",
+                        modifier = Modifier.size(12.dp)
+                    )
+
+                    Spacer(modifier = Modifier.width(2.dp))
+                    Text(
+                        text = stringResource(id = CommonR.string.get_current_location),
+                        style = smallBodyTextStyle.copy(fontWeight = FontWeight.W500)
+                    )
+                }
 
             }
 

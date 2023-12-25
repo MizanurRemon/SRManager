@@ -36,7 +36,7 @@ class OutletDetailsViewModel @Inject constructor(
             outletUseCases.outletDetailsUseCases(outletID = outletID).onSuccess { response ->
                 state = state.copy(
                     isLoading = false,
-                    image = "",
+                    image = response.data.outletImage.toString(),
                     outletName = response.data.outletName.toString(),
                     ownerName = response.data.ownerName.toString(),
                     birthdate = response.data.dateOfBirth.toString(),

@@ -30,14 +30,14 @@ import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
-import com.srmanager.core.network.dto.Data
+import com.srmanager.core.network.dto.Outlet
 import com.srmanager.core.common.R as CommonR
 
 @Composable
 fun OutletDashboardScreen(
     onBack: () -> Unit,
-    onGridItemClick: (route: String, outletDetails: Data?) -> Unit,
-    outletDetails: Data? = null
+    onGridItemClick: (route: String, outletDetails: Outlet?) -> Unit,
+    outletDetails: Outlet? = null
 ) {
     Scaffold(
         topBar = {
@@ -74,8 +74,8 @@ fun OutletDashboardScreen(
 @Composable
 fun GridItem(
     response: DashboardItemsResponse,
-    onGridItemClick: (route: String, outletDetails: Data?) -> Unit,
-    outletDetails: Data?
+    onGridItemClick: (route: String, outletDetails: Outlet?) -> Unit,
+    outletDetails: Outlet?
 ) {
     Card(
         modifier = Modifier

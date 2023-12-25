@@ -2,7 +2,6 @@ package com.srmanager.outlet_presentation.outlet_details
 
 import android.content.ContentResolver
 import android.net.Uri
-import com.srmanager.core.network.dto.Data
 
 sealed class OutletDetailsEvent {
     data class OnSubmitButtonClick(val outletID: String) : OutletDetailsEvent()

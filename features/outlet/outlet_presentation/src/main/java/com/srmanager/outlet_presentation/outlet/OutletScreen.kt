@@ -55,7 +55,7 @@ import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import com.srmanager.core.designsystem.theme.subHeading1TextStyle
-import com.srmanager.core.network.dto.Data
+import com.srmanager.core.network.dto.Outlet
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
@@ -65,8 +65,8 @@ fun OutletScreen(
     onBack: () -> Unit,
     viewModel: OutletViewModel = hiltViewModel(),
     onAddClick: () -> Unit,
-    onItemClick: (response: Data) -> Unit,
-    onLocationClick: (response: Data) -> Unit,
+    onItemClick: (response: Outlet) -> Unit,
+    onLocationClick: (response: Outlet) -> Unit,
     onCheckOutClick: () -> Unit,
     snackbarHostState: SnackbarHostState
 ) {
@@ -169,10 +169,10 @@ fun OutletScreen(
 
 @Composable
 fun ItemCompose(
-    response: Data,
+    response: Outlet,
     index: Int,
-    onItemClick: (response: Data) -> Unit,
-    onLocationClick: (response: Data) -> Unit,
+    onItemClick: (response: Outlet) -> Unit,
+    onLocationClick: (response: Outlet) -> Unit,
     onCheckOutClick: () -> Unit
 ) {
     val interactionSource = remember { MutableInteractionSource() }

@@ -1,5 +1,8 @@
 package com.srmanager.outlet_domain.model
 
+import javax.annotation.concurrent.Immutable
+
+@Immutable
 data class OutletAddModel(
     var id: String = "",
     var outletImage: String? = null,

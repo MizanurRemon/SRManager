@@ -1,5 +1,9 @@
 package com.srmanager.outlet_presentation.outlet_details
 
+import javax.annotation.concurrent.Immutable
+
+
+@Immutable
 data class OutletDetailsState(
     val id: Int = 0,
     val outletName: String = "",
