@@ -89,10 +89,6 @@ fun OutletAddScreen(
         mutableStateOf(false)
     }
 
-    var imageUri by remember {
-        mutableStateOf<Uri?>(null)
-    }
-
     val openImagePickerDialog = remember {
         mutableStateOf(false)
     }
@@ -102,8 +98,6 @@ fun OutletAddScreen(
         viewModel.uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> {
-
-                    imageUri = null
 
                 }
 
@@ -608,7 +602,7 @@ fun OutletAddScreen(
                             }
                     ) {
 
-                        if (imageUri == null) {
+                        if (viewModel.state.image.isEmpty()) {
                             Image(
                                 painter = painterResource(id = DesignSystemR.drawable.ic_camera),
                                 contentDescription = "",
@@ -617,12 +611,6 @@ fun OutletAddScreen(
 
                             )
                         } else {
-                            viewModel.onEvent(
-                                OutletAddEvent.OnImageSelection(
-                                    imageUri!!,
-                                    context.contentResolver
-                                )
-                            )
 
                             Image(
                                 bitmap = base64ToImage(viewModel.state.image).asImageBitmap(),
@@ -666,7 +654,12 @@ fun OutletAddScreen(
 
     if (openImagePickerDialog.value) {
         ImagePickerDialog(openDialog = openImagePickerDialog, onDoneClick = { image ->
-            imageUri = image
+            viewModel.onEvent(
+                OutletAddEvent.OnImageSelection(
+                    image,
+                    context.contentResolver
+                )
+            )
         })
     }
 
