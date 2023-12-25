@@ -123,7 +123,7 @@ fun OutletDetailsScreen(
 
 
     LaunchedEffect(key1 = true) {
-        //viewModel.getOutletDetails(outletID = outletDetails!!.id.toString())
+        viewModel.getOutletDetails(outletID = outletDetails!!.id.toString())
     }
 
     Column(modifier = Modifier.fillMaxSize()) {

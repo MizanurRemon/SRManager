@@ -90,4 +90,6 @@
     <string name="remaining">Remaining</string>
     <string name="check_out">Checkout</string>
     <string name="get_current_location">Get current location</string>
+    <string name="search">Search</string>
+    <string name="refresh">refresh</string>
 </resources>
