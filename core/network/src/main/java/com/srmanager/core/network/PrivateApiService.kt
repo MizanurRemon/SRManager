@@ -16,4 +16,7 @@ interface PrivateApiService {
     suspend fun getOutletDetails(
         @Path("outletID") outletID: String,
     ): OutletDetailsDto
+
+    @GET("bsol/api/outlet/status")
+    suspend fun getCheckOutStatusList(): CheckOutStatusDto
 }

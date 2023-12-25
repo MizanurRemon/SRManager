@@ -3,6 +3,7 @@ package com.srmanager.outlet_data.dataSourceImpl.remote
 import com.srmanager.outlet_data.dataSource.remote.OutletRemoteDataSource
 import com.srmanager.core.network.PrivateApiService
 import com.srmanager.core.network.PublicApiService
+import com.srmanager.core.network.dto.CheckOutStatusDto
 import com.srmanager.core.network.dto.CommonResponseDto
 import com.srmanager.core.network.dto.OutletDataDto
 import com.srmanager.core.network.dto.OutletDetailsDto
@@ -21,8 +22,12 @@ class OutletRemoteDataSourceImpl(
         return privateApiService.getOutletList()
     }
 
-    override suspend fun getOutletDetails(outletID: String): OutletDetailsDto{
+    override suspend fun getOutletDetails(outletID: String): OutletDetailsDto {
         return privateApiService.getOutletDetails(outletID)
+    }
+
+    override suspend fun getCheckOutStatusList(): CheckOutStatusDto {
+        return privateApiService.getCheckOutStatusList()
     }
 
 }

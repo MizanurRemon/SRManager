@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -18,15 +19,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -42,10 +42,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.srmanager.core.common.util.REPORT_SUBJECT_LIST
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
+import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
 import com.srmanager.core.designsystem.theme.ColorTextPrimary
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
@@ -54,11 +54,10 @@ import com.srmanager.core.designsystem.w
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun OutletCheckoutScreen(onBack: () -> Unit, viewModel: OutletCheckOutViewModel = hiltViewModel()) {
 
-    var selectSubjectWarning by remember {
+    val selectSubjectWarning by remember {
         mutableStateOf(false)
     }
 
@@ -67,13 +66,7 @@ fun OutletCheckoutScreen(onBack: () -> Unit, viewModel: OutletCheckOutViewModel 
         mutableStateOf(false)
     }
 
-    var subjectItem by remember {
-        mutableIntStateOf(CommonR.string.done)
-    }
 
-    var subjectClicked by remember {
-        mutableStateOf(false)
-    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
@@ -82,170 +75,167 @@ fun OutletCheckoutScreen(onBack: () -> Unit, viewModel: OutletCheckOutViewModel 
             title = CommonR.string.outlet_checkout
         )
 
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(20.r())
-                .verticalScroll(rememberScrollState()),
-
-            ) {
-
-            Card(
+        if (viewModel.state.isLoading) {
+            CircularProgressIndicator(
+                strokeWidth = 2.dp,
+                color = APP_DEFAULT_COLOR,
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .clickable {
-                        subjectClicked = !subjectClicked
-                    },
-                colors = CardDefaults.cardColors(
-                    containerColor = Color.White,
-                ), elevation = CardDefaults.cardElevation(
-                    defaultElevation = 1.dp
-                ), border = BorderStroke(
-                    width = 1.dp, color = if (selectSubjectWarning) {
-                        Color.Red
-                    } else {
-                        Color.Transparent
-                    }
-                )
-            ) {
-                Row(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(14.w()),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
+                    .size(20.r())
+                    .padding(top = 10.r())
+            )
+        } else {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(20.r())
+                    .verticalScroll(rememberScrollState()),
+
                 ) {
-                    Text(
-                        text = stringResource(id = subjectItem),
-                        style = if (subjectItem == CommonR.string.done) {
-                            bodyRegularTextStyle.copy(
-                                color = if (selectSubjectWarning) {
-                                    Color.Red
-                                } else {
-                                    ColorTextFieldPlaceholder
-                                }
-                            )
+
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable {
+                            viewModel.onEvent(OutletCheckOutEvent.OnCardEvent)
+                        },
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color.White,
+                    ), elevation = CardDefaults.cardElevation(
+                        defaultElevation = 1.dp
+                    ), border = BorderStroke(
+                        width = 1.dp, color = if (selectSubjectWarning) {
+                            Color.Red
                         } else {
-                            bodyRegularTextStyle.copy(
+                            Color.Transparent
+                        }
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(14.w()),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = viewModel.state.selectedReason,
+                            style = bodyRegularTextStyle.copy(
                                 color = ColorTextPrimary,
                                 fontWeight = FontWeight.Bold
                             )
-                        }
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    Icon(
-                        Icons.Default.ArrowDropDown,
-                        contentDescription = ""
-                    )
-                }
-            }
-
-            Box(modifier = Modifier.fillMaxWidth()) {
-                OutlinedTextField(
-                    shape = RoundedCornerShape(15.dp),
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        containerColor = Color.White,
-                        focusedBorderColor = if (isDescriptionBlank) Color.Red else Color.White,
-                        unfocusedBorderColor = if (isDescriptionBlank) Color.Red else Color.White,
-                        cursorColor = Color.Black,
-                    ),
-                    value = viewModel.state.description,
-                    onValueChange = {
-                        viewModel.onEvent(OutletCheckOutEvent.OnRemarksEnter(it))
-                        isDescriptionBlank = it.isEmpty()
-                    },
-                    placeholder = {
-                        Text(
-                            text = stringResource(id = CommonR.string.remarks),
-                            style = bodyRegularTextStyle.copy(color = if (isDescriptionBlank) Color.Red else ColorTextFieldPlaceholder)
                         )
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(240.dp)
-                        .padding(top = 10.dp)
-                        .shadow(elevation = 1.dp, shape = RoundedCornerShape(15.dp))
-                )
+                        Spacer(modifier = Modifier.weight(1f))
+                        Icon(
+                            Icons.Default.ArrowDropDown,
+                            contentDescription = ""
+                        )
+                    }
+                }
 
-                if (subjectClicked) {
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 5.r())
-                            .clickable {
-                                subjectClicked = false
+                Box(modifier = Modifier.fillMaxSize()) {
+                    Column {
+                        OutlinedTextField(
+                            shape = RoundedCornerShape(15.dp),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                disabledContainerColor = Color.White,
+                                cursorColor = Color.Black,
+                                focusedBorderColor = if (isDescriptionBlank) Color.Red else Color.White,
+                                unfocusedBorderColor = if (isDescriptionBlank) Color.Red else Color.White,
+                            ),
+                            value = viewModel.state.description,
+                            onValueChange = {
+                                viewModel.onEvent(OutletCheckOutEvent.OnRemarksEnter(it))
+                                isDescriptionBlank = it.isEmpty()
                             },
-                        colors = CardDefaults.cardColors(
-                            containerColor = Color(0xFFE0F1E6),
-                        ),
-                        elevation = CardDefaults.cardElevation(
-                            defaultElevation = 2.dp
-                        ),
-                    ) {
-                        repeat(REPORT_SUBJECT_LIST.size) { index ->
-                            Column(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .clickable {
-                                        subjectItem = REPORT_SUBJECT_LIST[index]
-                                        subjectClicked = false
-                                        selectSubjectWarning = false
-                                        viewModel.onEvent(
-                                            OutletCheckOutEvent.OnReasonSelect(
-                                                context.resources.getString(
-                                                    REPORT_SUBJECT_LIST[index]
-                                                )
-                                            )
+                            placeholder = {
+                                Text(
+                                    text = stringResource(id = CommonR.string.remarks),
+                                    style = bodyRegularTextStyle.copy(color = if (isDescriptionBlank) Color.Red else ColorTextFieldPlaceholder)
+                                )
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(240.dp)
+                                .padding(top = 10.dp)
+                                .shadow(elevation = 1.dp, shape = RoundedCornerShape(15.dp))
+                        )
+
+                        Spacer(modifier = Modifier.height(10.r()))
+
+                        Row {
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = stringResource(id = CommonR.string.remaining) + ":" + viewModel.state.remainingWords,
+                                textAlign = TextAlign.Center,
+                                style = bodyRegularTextStyle.copy(color = Color.LightGray, fontSize = 14.sp)
+                            )
+                        }
+                        Spacer(modifier = Modifier.height(20.r()))
+
+                        Row {
+                            Text(text = stringResource(id = CommonR.string.location))
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = "${viewModel.state.latitude}, ${viewModel.state.longitude}",
+                                style = boldBodyTextStyle.copy(color = Color.Black, fontSize = 16.sp)
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(50.r()))
+
+                        AppActionButtonCompose(stringId = CommonR.string.done, onActionButtonClick = {})
+                    }
+
+                    if (viewModel.state.reasonItemClicked) {
+                        Card(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 5.r())
+                                .clickable {
+                                    viewModel.state.reasonItemClicked = false
+                                },
+                            colors = CardDefaults.cardColors(
+                                containerColor = Color(0xFFE0F1E6),
+                            ),
+                            elevation = CardDefaults.cardElevation(
+                                defaultElevation = 2.dp
+                            ),
+                        ) {
+                            repeat(viewModel.state.checkOutStatusList.size) { index ->
+                                Column(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .clickable {
+//                                            viewModel.state.subjectClicked = false
+                                            viewModel.onEvent(OutletCheckOutEvent.OnReasonSelect(viewModel.state.checkOutStatusList[index].name))
+
+                                        }
+                                ) {
+                                    Text(
+                                        text = viewModel.state.checkOutStatusList[index].name,
+                                        style = bodyRegularTextStyle.copy(
+                                            color = ColorTextPrimary,
+                                            fontWeight = FontWeight.Bold
+                                        ),
+                                        modifier = Modifier
+                                            .padding(15.dp)
+                                    )
+
+                                    if (index != viewModel.state.checkOutStatusList.size - 1) {
+                                        Divider(
+                                            color = Color.LightGray,
+                                            thickness = 1.dp,
+                                            modifier = Modifier.fillMaxWidth()
                                         )
                                     }
-                            ) {
-                                Text(
-                                    text = stringResource(id = REPORT_SUBJECT_LIST[index]),
-                                    style = bodyRegularTextStyle.copy(
-                                        color = ColorTextPrimary,
-                                        fontWeight = FontWeight.Bold
-                                    ),
-                                    modifier = Modifier
-                                        .padding(15.dp)
-                                )
-
-                                if (index != REPORT_SUBJECT_LIST.size - 1) {
-                                    Divider(
-                                        color = Color.LightGray,
-                                        thickness = 1.dp,
-                                        modifier = Modifier.fillMaxWidth()
-                                    )
                                 }
                             }
                         }
                     }
                 }
             }
-
-            Spacer(modifier = Modifier.height(10.r()))
-
-            Row() {
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    text = stringResource(id = CommonR.string.remaining) + ":" + viewModel.state.remainingWords,
-                    textAlign = TextAlign.Center,
-                    style = bodyRegularTextStyle.copy(color = Color.LightGray, fontSize = 14.sp)
-                )
-            }
-            Spacer(modifier = Modifier.height(20.r()))
-
-            Row {
-                Text(text = stringResource(id = CommonR.string.location))
-                Spacer(modifier = Modifier.weight(1f))
-                Text(
-                    text = "${viewModel.state.latitude}, ${viewModel.state.longitude}",
-                    style = boldBodyTextStyle.copy(color = Color.Black, fontSize = 16.sp)
-                )
-            }
-
-            Spacer(modifier = Modifier.height(50.r()))
-
-            AppActionButtonCompose(stringId = CommonR.string.done, onActionButtonClick = {})
         }
     }
 

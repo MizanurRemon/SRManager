@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.database.dao.LocationDao
+import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -16,7 +17,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class OutletCheckOutViewModel @Inject constructor(
-    private val locationDao: LocationDao
+    private val locationDao: LocationDao,
+    private val outletUseCases: OutletUseCases
 ) : ViewModel() {
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -35,6 +37,23 @@ class OutletCheckOutViewModel @Inject constructor(
                     }
                 }
             }
+
+            launch {
+                state = state.copy(
+                    isLoading = true
+                )
+
+                outletUseCases.checkOutStatusUseCase().onSuccess {
+                    state = state.copy(
+                        isLoading = false,
+                        checkOutStatusList = it.data
+                    )
+                }.onFailure {
+                    state = state.copy(
+                        isLoading = false
+                    )
+                }
+            }
         }
     }
 
@@ -42,7 +61,7 @@ class OutletCheckOutViewModel @Inject constructor(
 
         when (event) {
             is OutletCheckOutEvent.OnReasonSelect -> {
-
+                state = state.copy(selectedReason = event.value, reasonItemClicked = false)
             }
 
             is OutletCheckOutEvent.OnRemarksEnter -> {
@@ -50,6 +69,10 @@ class OutletCheckOutViewModel @Inject constructor(
                     description = event.value,
                     remainingWords = state.textLimit - event.value.length
                 )
+            }
+
+            is OutletCheckOutEvent.OnCardEvent -> {
+                state = state.copy(reasonItemClicked = !state.reasonItemClicked)
             }
 
         }

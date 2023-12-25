@@ -9,7 +9,6 @@ import com.srmanager.outlet_domain.model.OutletAddModel
 
 class OutletAddUseCase(private val outletRepository: OutletRepository) {
     suspend operator fun invoke(outletAddModel: OutletAddModel): Result<CommonResponse> {
-        Log.d("dataxx", "invoke: ${outletAddModel.toString()}")
         return outletRepository.addOutlet(
             OutletAddRequest(
                 id = outletAddModel.id,
