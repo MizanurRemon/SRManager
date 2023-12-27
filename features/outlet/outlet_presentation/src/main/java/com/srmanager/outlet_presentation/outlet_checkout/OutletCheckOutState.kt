@@ -4,6 +4,7 @@ import com.srmanager.core.network.dto.StatusResponse
 
 data class OutletCheckOutState(
     val selectedReason : String = "Select reason",
+    val outletStatusId: String = "",
     val description: String = "",
     val latitude: String = "",
     val longitude: String = "",

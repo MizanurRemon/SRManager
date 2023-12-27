@@ -63,7 +63,11 @@ class OutletCheckOutViewModel @Inject constructor(
 
         when (event) {
             is OutletCheckOutEvent.OnReasonSelect -> {
-                state = state.copy(selectedReason = event.value, reasonItemClicked = false)
+                state = state.copy(
+                    selectedReason = event.value.name,
+                    outletStatusId = event.value.id.toString(),
+                    reasonItemClicked = false
+                )
             }
 
             is OutletCheckOutEvent.OnRemarksEnter -> {
@@ -85,9 +89,9 @@ class OutletCheckOutViewModel @Inject constructor(
 
                     outletUseCases.outletCheckOutUseCase(
                         OutletCheckOutModel(
-                            id ="",
-                            outletStatusId ="",
-                            statusRemarks ="",
+                            id = "",
+                            outletStatusId = state.outletStatusId,
+                            statusRemarks = state.description,
                             latitude = state.latitude,
                             longitude = state.longitude
                         )

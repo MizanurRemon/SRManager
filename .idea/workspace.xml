@@ -9,22 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/CheckOutRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/model/OutletCheckOutModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletCheckOutUseCase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSource/remote/OutletRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSource/remote/OutletRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSourceImpl/remote/OutletRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSourceImpl/remote/OutletRemoteDataSourceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/repository/OutletRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/repository/OutletRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/repository/OutletRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/repository/OutletRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletUseCases.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletUseCases.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_checkout/OutletCheckOutEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_checkout/OutletCheckOutEvent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_checkout/OutletCheckOutViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_checkout/OutletCheckOutViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_checkout/OutletCheckoutScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_checkout/OutletCheckoutScreen.kt" afterDir="false" />
-    </list>
+    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -972,7 +957,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="361" />
+    <option name="localTasksCounter" value="362" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

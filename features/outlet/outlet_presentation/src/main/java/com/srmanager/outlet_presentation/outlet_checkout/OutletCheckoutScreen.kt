@@ -236,8 +236,7 @@ fun OutletCheckoutScreen(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clickable {
-//                                            viewModel.state.subjectClicked = false
-                                            viewModel.onEvent(OutletCheckOutEvent.OnReasonSelect(viewModel.state.checkOutStatusList[index].name))
+                                            viewModel.onEvent(OutletCheckOutEvent.OnReasonSelect(viewModel.state.checkOutStatusList[index]))
 
                                         }
                                 ) {
