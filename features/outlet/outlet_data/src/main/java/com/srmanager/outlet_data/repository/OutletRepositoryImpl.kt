@@ -1,5 +1,7 @@
 package com.srmanager.outlet_data.repository
 
+import com.srmanager.core.network.dto.CommonResponseDto
+import com.srmanager.core.network.model.CheckOutRequest
 import com.srmanager.outlet_domain.repository.OutletRepository
 import com.srmanager.outlet_data.dataSource.remote.OutletRemoteDataSource
 import com.srmanager.outlet_data.mapper.toResponse
@@ -71,6 +73,22 @@ class OutletRepositoryImpl(
         return if (networkHandler.isNetworkAvailable()) {
             try {
                 val responseDto = outletRemoteDataSource.getCheckOutStatusList()
+                val response = responseDto.toResponse()
+                Result.success(response)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        } else {
+            val throwable =
+                Throwable(message = "No internet connection available")
+            Result.failure(throwable)
+        }
+    }
+
+    override suspend fun checkout(checkOutRequest: CheckOutRequest): Result<CommonResponse> {
+        return if (networkHandler.isNetworkAvailable()) {
+            try {
+                val responseDto = outletRemoteDataSource.checkout(checkOutRequest)
                 val response = responseDto.toResponse()
                 Result.success(response)
             } catch (e: Exception) {

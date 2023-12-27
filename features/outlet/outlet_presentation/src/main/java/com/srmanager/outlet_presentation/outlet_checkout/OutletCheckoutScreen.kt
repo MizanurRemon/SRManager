@@ -24,8 +24,11 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,6 +45,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
@@ -55,7 +59,11 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
 @Composable
-fun OutletCheckoutScreen(onBack: () -> Unit, viewModel: OutletCheckOutViewModel = hiltViewModel()) {
+fun OutletCheckoutScreen(
+    onBack: () -> Unit,
+    viewModel: OutletCheckOutViewModel = hiltViewModel(),
+    snackbarHostState: SnackbarHostState
+) {
 
     val selectSubjectWarning by remember {
         mutableStateOf(false)
@@ -66,7 +74,27 @@ fun OutletCheckoutScreen(onBack: () -> Unit, viewModel: OutletCheckOutViewModel 
         mutableStateOf(false)
     }
 
+    LaunchedEffect(key1 = true) {
+        viewModel.uiEvent.collect { event ->
+            when (event) {
+                is UiEvent.Success -> {
 
+                }
+
+                is UiEvent.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(
+                        message = event.message.asString(context),
+                        duration = SnackbarDuration.Short,
+                    )
+                }
+
+                is UiEvent.NavigateUp -> {
+
+                }
+            }
+
+        }
+    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
@@ -244,5 +272,6 @@ fun OutletCheckoutScreen(onBack: () -> Unit, viewModel: OutletCheckOutViewModel 
 @Composable
 @Preview
 fun PreviewOutletCheckoutScreen() {
-    OutletCheckoutScreen(onBack = {})
+    val snackBarHostState = remember { SnackbarHostState() }
+    OutletCheckoutScreen(onBack = {}, snackbarHostState = snackBarHostState)
 }

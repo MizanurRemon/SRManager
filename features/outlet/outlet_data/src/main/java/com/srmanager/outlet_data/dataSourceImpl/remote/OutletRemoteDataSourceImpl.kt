@@ -30,4 +30,8 @@ class OutletRemoteDataSourceImpl(
         return privateApiService.getCheckOutStatusList()
     }
 
+    override suspend fun checkout(checkOutRequest: CheckOutRequest): CommonResponseDto {
+        return privateApiService.checkout(checkOutRequest)
+    }
+
 }

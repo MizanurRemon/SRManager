@@ -6,6 +6,7 @@ import com.srmanager.core.network.dto.CommonResponseDto
 import com.srmanager.core.network.dto.OutletDataDto
 import com.srmanager.core.network.dto.OutletDetailsDto
 import com.srmanager.core.network.model.*
+import retrofit2.http.Body
 
 
 interface OutletRemoteDataSource {
@@ -13,4 +14,5 @@ interface OutletRemoteDataSource {
     suspend fun getOutletList(): OutletDataDto
     suspend fun getOutletDetails(outletID: String): OutletDetailsDto
     suspend fun getCheckOutStatusList(): CheckOutStatusDto
+    suspend fun checkout(checkOutRequest: CheckOutRequest): CommonResponseDto
 }

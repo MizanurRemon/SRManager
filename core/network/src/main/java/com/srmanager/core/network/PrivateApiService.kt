@@ -19,4 +19,7 @@ interface PrivateApiService {
 
     @GET("bsol/api/outlet/status")
     suspend fun getCheckOutStatusList(): CheckOutStatusDto
+
+    @POST("bsol/api/outlet/checkout")
+    suspend fun checkout(@Body request: CheckOutRequest): CommonResponseDto
 }

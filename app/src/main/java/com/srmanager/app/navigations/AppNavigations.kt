@@ -129,9 +129,12 @@ fun MainApp(
             }
 
             composable(route = Route.OUTLET_CHECKOUT) {
-                OutletCheckoutScreen(onBack = {
-                    navController.navigateUp()
-                })
+                OutletCheckoutScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    snackbarHostState = snackBarHostState,
+                )
             }
 
             composable(route = Route.OUTLET_DASHBOARD) {
