@@ -19,6 +19,4 @@ interface UserDao {
     @Query("UPDATE user SET email = :email")
     fun updateEmail(email: String)
 
-    @Query("UPDATE user SET isUserGiveConsent = :consentValue")
-    fun updateUserConsent(consentValue: Boolean)
 }

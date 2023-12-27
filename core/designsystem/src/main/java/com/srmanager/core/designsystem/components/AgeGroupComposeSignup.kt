@@ -24,7 +24,6 @@ fun AgeGroupComposeSignup(
     itemList: List<String>,
     selectedItem: String,
     modifier: Modifier,
-    ageCategoryErrorState: MutableState<String>,
     size: Dp = 70.dp,
     onClick: (String) -> Unit,
 ) {

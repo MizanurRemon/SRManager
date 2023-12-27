@@ -10,10 +10,12 @@ import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.datastore.PreferenceDataStoreConstants
 import com.srmanager.core.datastore.PreferenceDataStoreHelper
+import com.srmanager.database.dao.LocationDao
 import com.srmanager.database.dao.UserDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -23,8 +25,8 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     private val userDao: UserDao,
     private val preferenceDataStoreHelper: PreferenceDataStoreHelper,
-
-    ) : ViewModel() {
+    private val locationDao: LocationDao
+) : ViewModel() {
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -42,7 +44,18 @@ class HomeViewModel @Inject constructor(
             )
             state = state.copy(isLoggedIn = isLoggedIn)
 
-            launch {  }
+            launch {
+                launch {
+                    locationDao.getLocation().collect {
+                        if (it.isNotEmpty()) {
+                            state = state.copy(
+                                address = it[0].address.toString()
+                            )
+                        }
+                    }
+                }
+
+            }
 
             if (isLoggedIn) {
 
@@ -50,6 +63,27 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+
+    fun onEvent(event: HomeEvent) {
+        when (event) {
+            is HomeEvent.OnLogOut -> {
+
+                viewModelScope.launch {
+                    state = state.copy(isLogOutLoading = true)
+                    delay(2000)
+                    state = state.copy(isLogOutLoading = false)
+                    preferenceDataStoreHelper.clearAllPreference()
+                    _uiEvent.send(
+                        UiEvent.Success
+                    )
+                }
+
+
+            }
+
+            else -> {}
+        }
+    }
 
 
 }

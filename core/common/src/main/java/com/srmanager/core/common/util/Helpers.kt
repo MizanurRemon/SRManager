@@ -1,6 +1,7 @@
 package com.srmanager.core.common.util
 
 import android.accessibilityservice.AccessibilityService
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Configuration
 import android.content.res.Resources
@@ -15,12 +16,13 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
+@SuppressLint("SimpleDateFormat")
 fun changeDateFormat(dateTime: String, oldFormat: String, newFormat: String): String? {
     val input = SimpleDateFormat(oldFormat)
     val output = SimpleDateFormat(newFormat)
     try {
         val getAbbreviate = input.parse(dateTime)    // parse input
-        return output.format(getAbbreviate)    // format output
+        return getAbbreviate?.let { output.format(it) }    // format output
     } catch (e: ParseException) {
         e.printStackTrace()
     }

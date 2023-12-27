@@ -7,7 +7,7 @@ import androidx.compose.runtime.mutableStateOf
 
 class NetworkCallbackImpl : ConnectivityManager.NetworkCallback() {
 
-    private val _isNetworkAvailable = mutableStateOf(false)
+    private val _isNetworkAvailable = mutableStateOf(true)
     val isNetworkAvailable: State<Boolean> = _isNetworkAvailable
     override fun onAvailable(network: Network) {
         super.onAvailable(network)

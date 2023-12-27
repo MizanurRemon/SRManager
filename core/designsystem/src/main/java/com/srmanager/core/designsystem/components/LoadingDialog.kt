@@ -10,10 +10,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
+import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorPrimaryDark
 
 @Composable
-fun LoadingDialog(onDismiss:() -> Unit) {
+fun LoadingDialog(onDismiss: () -> Unit) {
     Dialog(onDismissRequest = { onDismiss() }) {
         Card(
             shape = RoundedCornerShape(8.dp),
@@ -29,7 +30,7 @@ fun LoadingDialog(onDismiss:() -> Unit) {
             ) {
                 CircularProgressIndicator(
                     strokeWidth = 4.dp,
-                    color=ColorPrimaryDark,
+                    color = APP_DEFAULT_COLOR,
                     modifier = Modifier
                         .align(Alignment.CenterHorizontally)
                         .padding(8.dp)
