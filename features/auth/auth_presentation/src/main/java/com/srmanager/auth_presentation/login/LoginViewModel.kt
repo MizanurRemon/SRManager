@@ -38,7 +38,10 @@ class LoginViewModel @Inject constructor(
             }
 
             is LoginEvent.OnPasswordEnter -> {
-                state = state.copy(password = event.password, isPasswordValid = event.password.isEmpty())
+                state = state.copy(
+                    password = event.password,
+                    isPasswordValid = event.password.isEmpty()
+                )
             }
 
             is LoginEvent.OnSubmitClick -> {
@@ -58,7 +61,7 @@ class LoginViewModel @Inject constructor(
                 state = state.copy(
                     isShowDialog = true,
                     isUserNameValid = state.userName.isEmpty(),
-                    isPasswordValid =  state.password.isEmpty(),
+                    isPasswordValid = state.password.isEmpty(),
                 )
                 authUseCases.loginUseCase(
                     LoginModel(
@@ -66,10 +69,21 @@ class LoginViewModel @Inject constructor(
                         password = state.password,
                     )
                 ).onSuccess {
+                    state = state.copy(isShowDialog = false)
+                    if (it.httpStatus == 200) {
+                        _uiEvent.send(
+                            UiEvent.Success
+                        )
+                    } else {
+                        _uiEvent.send(
+                            UiEvent.ShowSnackbar(
+                                UiText.DynamicString(
+                                    it.message
+                                )
+                            )
+                        )
+                    }
 
-                    _uiEvent.send(
-                        UiEvent.Success
-                    )
                 }.onFailure {
                     state = state.copy(isShowDialog = false)
                     _uiEvent.send(

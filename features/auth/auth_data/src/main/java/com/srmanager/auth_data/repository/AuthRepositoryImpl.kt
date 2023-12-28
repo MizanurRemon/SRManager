@@ -1,5 +1,6 @@
 package com.srmanager.auth_data.repository
 
+import android.util.Log
 import com.srmanager.auth.auth_domain.model.LoginResponse
 import com.srmanager.auth.auth_domain.repository.AuthRepository
 import com.srmanager.auth_data.dataSource.local.AuthLocalDataSource
@@ -52,25 +53,21 @@ class AuthRepositoryImpl(
                 )
                 Result.success(loginResponse)
             } catch (e: HttpException) {
-                if (e.code() == 404) {
-                    Result.failure(Throwable(e.code().toString()))
-                } else {
-                    val json =
-                        Json { isLenient = true;ignoreUnknownKeys = true }
-                    val obj = e.response()?.errorBody()?.string()
-                        ?.let {
-                            json.decodeFromString<CommonErrorModel>(it)
-                        }
+                val json =
+                    Json { isLenient = true;ignoreUnknownKeys = true }
+                val obj = e.response()?.errorBody()?.string()
+                    ?.let {
+                        json.decodeFromString<CommonErrorModel>(it)
+                    }
 
-                    val message = obj?.error
+                val message = obj?.message
 
-                    val throwable =
-                        Throwable(
-                            message = message ?: "Something went wrong",
-                            cause = e.cause
-                        )
-                    Result.failure(throwable)
-                }
+                val throwable =
+                    Throwable(
+                        message = message ?: "Something went wrong",
+                        cause = e.cause
+                    )
+                Result.failure(throwable)
 
 
             } catch (e: Exception) {

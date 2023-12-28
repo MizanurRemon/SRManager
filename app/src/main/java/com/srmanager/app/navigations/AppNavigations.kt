@@ -134,6 +134,7 @@ fun MainApp(
                         navController.navigateUp()
                     },
                     snackbarHostState = snackBarHostState,
+                    outletDetails = outletDetails
                 )
             }
 

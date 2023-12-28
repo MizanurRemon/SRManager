@@ -48,6 +48,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
+import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
@@ -55,6 +56,7 @@ import com.srmanager.core.designsystem.theme.ColorTextPrimary
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import com.srmanager.core.designsystem.theme.boldBodyTextStyle
 import com.srmanager.core.designsystem.w
+import com.srmanager.core.network.dto.Outlet
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
@@ -62,17 +64,13 @@ import com.srmanager.core.common.R as CommonR
 fun OutletCheckoutScreen(
     onBack: () -> Unit,
     viewModel: OutletCheckOutViewModel = hiltViewModel(),
-    snackbarHostState: SnackbarHostState
+    snackbarHostState: SnackbarHostState,
+    outletDetails: Outlet?
 ) {
 
-    val selectSubjectWarning by remember {
-        mutableStateOf(false)
-    }
 
     val context = LocalContext.current
-    var isDescriptionBlank by remember {
-        mutableStateOf(false)
-    }
+
 
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
@@ -96,6 +94,15 @@ fun OutletCheckoutScreen(
         }
     }
 
+    LaunchedEffect(Unit) {
+        viewModel.onEvent(
+            OutletCheckOutEvent.OnOutletLocationSetUp(
+                outletDetails!!.latitude,
+                outletDetails!!.longitude
+            )
+        )
+    }
+
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
             onClick = { onBack() },
@@ -104,13 +111,15 @@ fun OutletCheckoutScreen(
         )
 
         if (viewModel.state.isLoading) {
-            CircularProgressIndicator(
-                strokeWidth = 2.dp,
-                color = APP_DEFAULT_COLOR,
-                modifier = Modifier
-                    .size(20.r())
-                    .padding(top = 10.r())
-            )
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+                CircularProgressIndicator(
+                    strokeWidth = 2.dp,
+                    color = APP_DEFAULT_COLOR,
+                    modifier = Modifier
+                        .size(20.r())
+                        .padding(top = 10.r())
+                )
+            }
         } else {
             Column(
                 modifier = Modifier
@@ -131,7 +140,7 @@ fun OutletCheckoutScreen(
                     ), elevation = CardDefaults.cardElevation(
                         defaultElevation = 1.dp
                     ), border = BorderStroke(
-                        width = 1.dp, color = if (selectSubjectWarning) {
+                        width = 1.dp, color = if (viewModel.state.isReasonSelectionError) {
                             Color.Red
                         } else {
                             Color.Transparent
@@ -169,18 +178,17 @@ fun OutletCheckoutScreen(
                                 unfocusedContainerColor = Color.White,
                                 disabledContainerColor = Color.White,
                                 cursorColor = Color.Black,
-                                focusedBorderColor = if (isDescriptionBlank) Color.Red else Color.White,
-                                unfocusedBorderColor = if (isDescriptionBlank) Color.Red else Color.White,
+                                focusedBorderColor = if (viewModel.state.isDescriptionEmpty) Color.Red else Color.White,
+                                unfocusedBorderColor = if (viewModel.state.isDescriptionEmpty) Color.Red else Color.White,
                             ),
                             value = viewModel.state.description,
                             onValueChange = {
                                 viewModel.onEvent(OutletCheckOutEvent.OnRemarksEnter(it))
-                                isDescriptionBlank = it.isEmpty()
                             },
                             placeholder = {
                                 Text(
                                     text = stringResource(id = CommonR.string.remarks),
-                                    style = bodyRegularTextStyle.copy(color = if (isDescriptionBlank) Color.Red else ColorTextFieldPlaceholder)
+                                    style = bodyRegularTextStyle.copy(color = if (viewModel.state.isDescriptionEmpty) Color.Red else ColorTextFieldPlaceholder)
                                 )
                             },
                             modifier = Modifier
@@ -197,7 +205,10 @@ fun OutletCheckoutScreen(
                             Text(
                                 text = stringResource(id = CommonR.string.remaining) + ":" + viewModel.state.remainingWords,
                                 textAlign = TextAlign.Center,
-                                style = bodyRegularTextStyle.copy(color = Color.LightGray, fontSize = 14.sp)
+                                style = bodyRegularTextStyle.copy(
+                                    color = Color.LightGray,
+                                    fontSize = 14.sp
+                                )
                             )
                         }
                         Spacer(modifier = Modifier.height(20.r()))
@@ -207,13 +218,34 @@ fun OutletCheckoutScreen(
                             Spacer(modifier = Modifier.weight(1f))
                             Text(
                                 text = "${viewModel.state.latitude}, ${viewModel.state.longitude}",
-                                style = boldBodyTextStyle.copy(color = Color.Black, fontSize = 16.sp)
+                                style = boldBodyTextStyle.copy(
+                                    color = Color.Black,
+                                    fontSize = 16.sp
+                                )
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(10.r()))
+
+                        Row {
+                            Text(text = stringResource(id = CommonR.string.distance_from_outlet))
+                            Spacer(modifier = Modifier.weight(1f))
+                            Text(
+                                text = "${viewModel.state.distance.toString()} m",
+                                style = boldBodyTextStyle.copy(
+                                    color = Color.Black,
+                                    fontSize = 16.sp
+                                )
                             )
                         }
 
                         Spacer(modifier = Modifier.height(50.r()))
 
-                        AppActionButtonCompose(stringId = CommonR.string.done, onActionButtonClick = {})
+                        AppActionButtonCompose(
+                            stringId = CommonR.string.done,
+                            onActionButtonClick = {
+                                viewModel.onEvent(OutletCheckOutEvent.OnSubmitClick(outletDetails!!.id.toString()))
+                            })
                     }
 
                     if (viewModel.state.reasonItemClicked) {
@@ -236,7 +268,11 @@ fun OutletCheckoutScreen(
                                     modifier = Modifier
                                         .fillMaxWidth()
                                         .clickable {
-                                            viewModel.onEvent(OutletCheckOutEvent.OnReasonSelect(viewModel.state.checkOutStatusList[index]))
+                                            viewModel.onEvent(
+                                                OutletCheckOutEvent.OnReasonSelect(
+                                                    viewModel.state.checkOutStatusList[index]
+                                                )
+                                            )
 
                                         }
                                 ) {
@@ -266,11 +302,22 @@ fun OutletCheckoutScreen(
         }
     }
 
+    if (viewModel.state.isNetworkCalling) {
+        LoadingDialog {
+
+        }
+    }
+
 }
 
 @Composable
 @Preview
 fun PreviewOutletCheckoutScreen() {
     val snackBarHostState = remember { SnackbarHostState() }
-    OutletCheckoutScreen(onBack = {}, snackbarHostState = snackBarHostState)
+    val outletDetails = Outlet()
+    OutletCheckoutScreen(
+        onBack = {},
+        snackbarHostState = snackBarHostState,
+        outletDetails = outletDetails
+    )
 }

@@ -14,8 +14,13 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import java.io.ByteArrayOutputStream
+import java.text.DecimalFormat
 import java.text.SimpleDateFormat
 import java.util.Date
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 import com.srmanager.core.common.R as CommonR
 
 
@@ -177,4 +182,29 @@ fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
 fun base64ToImage(imageString: String): Bitmap {
     val imageBytes = Base64.decode(imageString, Base64.DEFAULT)
     return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+}
+
+fun calculationDistance(
+    latitude: String,
+    longitude: String,
+    myLatitude: String,
+    myLongitude: String
+): Double {
+    try {
+        val earthRadius = 6371 // Earth radius in kilometers
+
+        val dLat = Math.toRadians(myLatitude.toDouble() - latitude.toDouble())
+        val dLon = Math.toRadians(myLongitude.toDouble() - longitude.toDouble())
+
+        val a = sin(dLat / 2) * sin(dLat / 2) +
+                cos(Math.toRadians(latitude.toDouble())) * cos(Math.toRadians(myLatitude.toDouble())) *
+                sin(dLon / 2) * sin(dLon / 2)
+
+        val c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
+        val distance = (earthRadius * c) * 1000
+        return String.format("%.2f", distance).toDouble()
+    } catch (e: Exception) {
+        return 0.0
+    }
 }

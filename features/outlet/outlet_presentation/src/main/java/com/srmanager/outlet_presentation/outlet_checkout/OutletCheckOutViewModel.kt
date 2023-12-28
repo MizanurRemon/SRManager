@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
+import com.srmanager.core.common.util.calculationDistance
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletCheckOutModel
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
@@ -28,13 +29,19 @@ class OutletCheckOutViewModel @Inject constructor(
         private set
 
     init {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             launch {
                 locationDao.getLocation().collect {
                     if (it.isNotEmpty()) {
                         state = state.copy(
-                            latitude = it[0].latitude.toString(),
-                            longitude = it[0].longitude.toString()
+                            myLatitude = it[0].latitude.toString(),
+                            myLongitude = it[0].longitude.toString(),
+                            distance = calculationDistance(
+                                state.latitude,
+                                state.longitude,
+                                state.myLatitude,
+                                state.myLongitude
+                            )
                         )
                     }
                 }
@@ -56,24 +63,35 @@ class OutletCheckOutViewModel @Inject constructor(
                     )
                 }
             }
+
+
         }
     }
 
     fun onEvent(event: OutletCheckOutEvent) {
 
         when (event) {
+            is OutletCheckOutEvent.OnOutletLocationSetUp -> {
+                state = state.copy(
+                    latitude = event.latitude,
+                    longitude = event.longitude,
+                )
+            }
+
             is OutletCheckOutEvent.OnReasonSelect -> {
                 state = state.copy(
                     selectedReason = event.value.name,
                     outletStatusId = event.value.id.toString(),
-                    reasonItemClicked = false
+                    reasonItemClicked = false,
+                    isReasonSelectionError = event.value.name == "Select reason"
                 )
             }
 
             is OutletCheckOutEvent.OnRemarksEnter -> {
                 state = state.copy(
                     description = event.value,
-                    remainingWords = state.textLimit - event.value.length
+                    remainingWords = state.textLimit - event.value.length,
+                    isDescriptionEmpty = event.value.isEmpty()
                 )
             }
 
@@ -84,32 +102,61 @@ class OutletCheckOutViewModel @Inject constructor(
             is OutletCheckOutEvent.OnSubmitClick -> {
                 viewModelScope.launch {
                     state = state.copy(
-                        isLoading = true
+                        isDescriptionEmpty = state.description.isEmpty(),
+                        isReasonSelectionError = state.selectedReason == "Select reason",
+                        distance = calculationDistance(
+                            state.latitude,
+                            state.longitude,
+                            state.myLatitude,
+                            state.myLongitude
+                        )
                     )
 
-                    outletUseCases.outletCheckOutUseCase(
-                        OutletCheckOutModel(
-                            id = "",
-                            outletStatusId = state.outletStatusId,
-                            statusRemarks = state.description,
-                            latitude = state.latitude,
-                            longitude = state.longitude
+                    if (!state.isDescriptionEmpty && !state.isReasonSelectionError && state.distance <= 100) {
+                        state = state.copy(
+                            isNetworkCalling = true
                         )
-                    ).onSuccess {
-                        state = state.copy(isLoading = false)
-                        _uiEvent.send(
-                            UiEvent.ShowSnackbar(
-                                UiText.DynamicString(
-                                    it.message
+
+
+                        outletUseCases.outletCheckOutUseCase(
+                            OutletCheckOutModel(
+                                id = event.outletID,
+                                outletStatusId = state.outletStatusId,
+                                statusRemarks = state.description,
+                                latitude = state.myLatitude,
+                                longitude = state.myLongitude
+                            )
+                        ).onSuccess {
+                            state = state.copy(
+                                isNetworkCalling = false,
+                                selectedReason = "Select reason",
+                                description = ""
+                            )
+                            _uiEvent.send(
+                                UiEvent.ShowSnackbar(
+                                    UiText.DynamicString(
+                                        it.message
+                                    )
                                 )
                             )
+                        }.onFailure {
+                            state = state.copy(isNetworkCalling = false)
+                            _uiEvent.send(
+                                UiEvent.ShowSnackbar(
+                                    UiText.DynamicString(
+                                        it.message.toString()
+                                    )
+                                )
+                            )
+                        }
+                    } else if (state.distance > 100) {
+                        state = state.copy(
+                            isNetworkCalling = false
                         )
-                    }.onFailure {
-                        state = state.copy(isLoading = false)
                         _uiEvent.send(
                             UiEvent.ShowSnackbar(
                                 UiText.DynamicString(
-                                    it.message.toString()
+                                    "You are more than 100 m away from outlet"
                                 )
                             )
                         )

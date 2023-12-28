@@ -92,4 +92,5 @@
     <string name="get_current_location">Get current location</string>
     <string name="search">Search</string>
     <string name="refresh">refresh</string>
+    <string name="distance_from_outlet">Distance from outlet</string>
 </resources>
