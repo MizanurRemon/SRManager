@@ -198,6 +198,32 @@ class OutletAddViewModel @Inject constructor(
                 )
             }
 
+            is OutletAddEvent.OnEthnicityDropDownClick -> {
+                state = state.copy(
+                    isEthnicityExpanded = !state.isEthnicityExpanded
+                )
+            }
+
+            is OutletAddEvent.OnEthnicitySelection -> {
+                state = state.copy(
+                    isEthnicityExpanded = false,
+                    ethnicity = event.value
+                )
+            }
+
+            is OutletAddEvent.OnPaymentDropDownClick -> {
+                state = state.copy(
+                    isPaymentOptionsExpanded = !state.isPaymentOptionsExpanded
+                )
+            }
+
+            is OutletAddEvent.OnPaymentOptionSelection -> {
+                state = state.copy(
+                    paymentOption = event.value,
+                    isPaymentOptionsExpanded = false
+                )
+            }
+
         }
     }
 }

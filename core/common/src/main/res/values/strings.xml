@@ -93,4 +93,6 @@
     <string name="search">Search</string>
     <string name="refresh">refresh</string>
     <string name="distance_from_outlet">Distance from outlet</string>
+    <string name="shop_ethnicity">Shop Ethnicity</string>
+    <string name="payment_options">Payment Options</string>
 </resources>

@@ -51,10 +51,17 @@ const val INSTAGRAM_URL = "https://www.instagram.com/internet_politie"
 
 val AGE_LIST = listOf("-18", "18-34", "35-60", "60+")
 
-val REPORT_SUBJECT_LIST = listOf(
-    CommonR.string.report,
-    CommonR.string.address,
-    CommonR.string.app_name
+val ETCHNICITIES = listOf(
+    "Malayu",
+    "Chines",
+    "Indian",
+    "Bangla",
+    "Others"
+)
+
+val PAYMENT_OPTIONS = listOf(
+    "Cash",
+    "Credit"
 )
 
 enum class LanguageTagEnum(val tag: String) {

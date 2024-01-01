@@ -1,50 +1,32 @@
 package com.srmanager.outlet_presentation.outlet_add
 
 import android.annotation.SuppressLint
-import android.net.Uri
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.sharp.DateRange
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -53,12 +35,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 import androidx.hilt.navigation.compose.hiltViewModel
-import coil.compose.rememberImagePainter
-import com.srmanager.core.common.util.CoilImageGetter
+import com.srmanager.core.common.util.ETCHNICITIES
+import com.srmanager.core.common.util.PAYMENT_OPTIONS
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.base64ToImage
-import com.srmanager.core.common.util.getBitmapFromImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.components.LoadingDialog
@@ -139,9 +121,12 @@ fun OutletAddScreen(
                         style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                         modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
                     )
-                    TextField(value = viewModel.state.outletName,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                    TextField(
+                        value = viewModel.state.outletName,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
@@ -174,8 +159,8 @@ fun OutletAddScreen(
                                     color = ColorTextFieldPlaceholder,
                                 )
                             )
-                        })
-
+                        },
+                    )
 
                     Text(
                         text = stringResource(id = CommonR.string.owner_name),
@@ -184,8 +169,10 @@ fun OutletAddScreen(
                     )
 
                     TextField(value = viewModel.state.ownerName,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
@@ -222,6 +209,85 @@ fun OutletAddScreen(
 
 
                     Text(
+                        text = stringResource(id = CommonR.string.shop_ethnicity),
+                        style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                        modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
+                    )
+
+
+                    ExposedDropdownMenuBox(
+                        expanded = viewModel.state.isEthnicityExpanded,
+                        onExpandedChange = {
+
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+
+
+                        TextField(
+                            value = viewModel.state.ethnicity,
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = {
+                                Icon(
+                                    if (viewModel.state.isEthnicityExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                                    contentDescription = "",
+                                    tint = APP_DEFAULT_COLOR,
+                                    modifier = Modifier.clickable {
+                                        viewModel.onEvent(OutletAddEvent.OnEthnicityDropDownClick)
+                                    }
+                                )
+                            },
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                disabledContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                            ),
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                                .height(54.dp)
+                                .clip(RoundedCornerShape(10.dp))
+                                .border(
+                                    width = 1.dp,
+                                    shape = RoundedCornerShape(10.dp),
+                                    color = Color.LightGray
+                                ),
+                            placeholder = {
+                                Text(
+                                    text = ETCHNICITIES[0],
+                                    style = TextStyle(
+                                        color = ColorTextFieldPlaceholder,
+                                    )
+                                )
+                            }
+                        )
+
+                        ExposedDropdownMenu(
+                            modifier = Modifier
+                                .background(color = Color.White)
+                                .exposedDropdownSize(),
+                            expanded = viewModel.state.isEthnicityExpanded,
+                            onDismissRequest = {
+                                viewModel.onEvent(OutletAddEvent.OnEthnicityDropDownClick)
+                            }) {
+                            ETCHNICITIES.forEach { label ->
+                                DropdownMenuItem(text = {
+                                    Text(
+                                        text = label,
+                                        color = Color.Black
+                                    )
+                                }, onClick = {
+                                    viewModel.onEvent(OutletAddEvent.OnEthnicitySelection(label))
+                                }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
+                            }
+                        }
+                    }
+
+
+                    Text(
                         text = stringResource(id = CommonR.string.date_of_birth),
                         style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                         modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
@@ -229,8 +295,10 @@ fun OutletAddScreen(
 
                     TextField(value = viewModel.state.birthdate,
                         readOnly = true,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
@@ -286,8 +354,10 @@ fun OutletAddScreen(
 
                     TextField(
                         value = viewModel.state.phone1,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
@@ -333,8 +403,10 @@ fun OutletAddScreen(
 
                     TextField(
                         value = viewModel.state.phone2,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
@@ -379,8 +451,10 @@ fun OutletAddScreen(
 
                     TextField(
                         value = viewModel.state.tradeLicense,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
@@ -425,8 +499,10 @@ fun OutletAddScreen(
 
                     TextField(value = viewModel.state.tlcExpiryDate,
                         readOnly = true,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
@@ -482,8 +558,10 @@ fun OutletAddScreen(
 
                     TextField(
                         value = viewModel.state.vatTRN,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
@@ -519,6 +597,83 @@ fun OutletAddScreen(
                         },
                     )
 
+                    Text(
+                        text = stringResource(id = CommonR.string.payment_options),
+                        style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                        modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
+                    )
+
+
+                    ExposedDropdownMenuBox(
+                        expanded = viewModel.state.isPaymentOptionsExpanded,
+                        onExpandedChange = {
+
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+
+
+                        TextField(
+                            value = viewModel.state.paymentOption,
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = {
+                                Icon(
+                                    if (viewModel.state.isPaymentOptionsExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                                    contentDescription = "",
+                                    tint = APP_DEFAULT_COLOR,
+                                    modifier = Modifier.clickable {
+                                        viewModel.onEvent(OutletAddEvent.OnPaymentDropDownClick)
+                                    }
+                                )
+                            },
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                disabledContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                            ),
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                                .height(54.dp)
+                                .clip(RoundedCornerShape(10.dp))
+                                .border(
+                                    width = 1.dp,
+                                    shape = RoundedCornerShape(10.dp),
+                                    color = Color.LightGray
+                                ),
+                            placeholder = {
+                                Text(
+                                    text = PAYMENT_OPTIONS[0],
+                                    style = TextStyle(
+                                        color = ColorTextFieldPlaceholder,
+                                    )
+                                )
+                            }
+                        )
+
+                        ExposedDropdownMenu(
+                            modifier = Modifier
+                                .background(color = Color.White),
+                            expanded = viewModel.state.isPaymentOptionsExpanded,
+                            onDismissRequest = {
+                                viewModel.onEvent(OutletAddEvent.OnPaymentDropDownClick)
+                            }) {
+                            PAYMENT_OPTIONS.forEach { label ->
+                                DropdownMenuItem(text = {
+                                    Text(
+                                        text = label,
+                                        color = Color.Black
+                                    )
+                                }, onClick = {
+                                    viewModel.onEvent(OutletAddEvent.OnPaymentOptionSelection(label))
+                                })
+                            }
+                        }
+                    }
+
 
 
                     Text(
@@ -529,8 +684,10 @@ fun OutletAddScreen(
 
                     TextField(
                         value = viewModel.state.address,
-                        colors = TextFieldDefaults.textFieldColors(
-                            containerColor = Color.White,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
                             focusedIndicatorColor = Color.Transparent,
                             unfocusedIndicatorColor = Color.Transparent,
                         ),
