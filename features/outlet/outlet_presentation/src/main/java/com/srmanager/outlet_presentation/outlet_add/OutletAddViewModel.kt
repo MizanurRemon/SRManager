@@ -5,8 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.srmanager.auth_presentation.isEmailValid
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import com.srmanager.auth_presentation.isPhoneNumberValid
+import com.srmanager.core.common.util.MARKET_NAMES
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.fileImageUriToBase64
@@ -33,14 +35,23 @@ class OutletAddViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            locationDao.getLocation().collect {
-                if (it.isNotEmpty()) {
-                    state = state.copy(
-                        address = it[0].address.toString(),
-                        latitude = it[0].latitude.toString(),
-                        longitude = it[0].longitude.toString()
-                    )
+            launch {
+                locationDao.getLocation().collect {
+                    if (it.isNotEmpty()) {
+                        state = state.copy(
+                            address = it[0].address.toString(),
+                            latitude = it[0].latitude.toString(),
+                            longitude = it[0].longitude.toString()
+                        )
+                    }
                 }
+            }
+
+            launch {
+                state = state.copy(
+                    marketName = MARKET_NAMES[0],
+                    marketNameList = MARKET_NAMES
+                )
             }
         }
     }
@@ -52,7 +63,7 @@ class OutletAddViewModel @Inject constructor(
             is OutletAddEvent.OnSubmitButtonClick -> {
                 viewModelScope.launch {
                     state = state.copy(isLoading = true)
-                    if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty() || state.image.isEmpty()) {
+                    if (state.email.isEmpty() || state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty() || state.image.isEmpty()) {
                         state = state.copy(
                             isOutletNameError = state.outletName.isEmpty(),
                             isOwnerNameError = state.ownerName.isEmpty(),
@@ -74,7 +85,8 @@ class OutletAddViewModel @Inject constructor(
                             isPhone2Error = false,
                             isTradeLicenseError = false,
                             isVatTrnError = false,
-                            isImageError = false
+                            isImageError = false,
+                            isEmailError = false
                         )
 
 
@@ -91,7 +103,12 @@ class OutletAddViewModel @Inject constructor(
                                 vat = state.vatTRN,
                                 address = state.address,
                                 latitude = state.latitude,
-                                longitude = state.longitude
+                                longitude = state.longitude,
+                                marketName = state.marketName,
+                                ethnicity = state.ethnicity,
+                                email = state.email,
+                                routeName = state.routeName,
+                                paymentOptions = state.paymentOption
                             )
                         ).onSuccess {
 
@@ -106,7 +123,8 @@ class OutletAddViewModel @Inject constructor(
                                 tradeLicense = "",
                                 tlcExpiryDate = "",
                                 vatTRN = "",
-                                address = ""
+                                address = "",
+                                email = ""
                             )
                             _uiEvent.send(
                                 UiEvent.Success
@@ -221,6 +239,39 @@ class OutletAddViewModel @Inject constructor(
                 state = state.copy(
                     paymentOption = event.value,
                     isPaymentOptionsExpanded = false
+                )
+            }
+
+            is OutletAddEvent.OnRouteNameDropDownClick -> {
+                state = state.copy(
+                    isRouteNameExpanded = !state.isRouteNameExpanded
+                )
+            }
+
+            is OutletAddEvent.OnRouteNameSelection -> {
+                state = state.copy(
+                    isRouteNameExpanded = false,
+                    routeName = event.value
+                )
+            }
+
+            is OutletAddEvent.OnEmailEnter -> {
+                state = state.copy(
+                    email = event.value,
+                    isEmailError = event.value.isEmpty() || !isEmailValid(event.value)
+                )
+            }
+
+            is OutletAddEvent.OnMarketNameSelection -> {
+                state = state.copy(
+                    isMarketNameExpanded = false,
+                    marketName = event.value
+                )
+            }
+
+            is OutletAddEvent.OnMarketNameDropDownClick -> {
+                state = state.copy(
+                    isMarketNameExpanded = !state.isMarketNameExpanded
                 )
             }
 

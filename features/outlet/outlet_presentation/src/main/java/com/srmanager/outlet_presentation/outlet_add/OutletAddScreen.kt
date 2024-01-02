@@ -33,19 +33,12 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.srmanager.core.common.util.ETCHNICITIES
-import com.srmanager.core.common.util.PAYMENT_OPTIONS
-import com.srmanager.core.common.util.UiEvent
-import com.srmanager.core.common.util.base64ToImage
+import com.srmanager.core.common.util.*
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.r
-import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
-import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
-import com.srmanager.core.designsystem.theme.ImagePickerDialog
-import com.srmanager.core.designsystem.theme.MyDatePickerDialog
-import com.srmanager.core.designsystem.theme.smallBodyTextStyle
+import com.srmanager.core.designsystem.theme.*
 import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
 
@@ -203,6 +196,137 @@ fun OutletAddScreen(
                             )
                         })
 
+                    Text(
+                        text = stringResource(id = CommonR.string.email),
+                        style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                        modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
+                    )
+
+                    TextField(value = viewModel.state.email,
+                        colors = TextFieldDefaults.colors(
+                            focusedContainerColor = Color.White,
+                            unfocusedContainerColor = Color.White,
+                            disabledContainerColor = Color.White,
+                            focusedIndicatorColor = Color.Transparent,
+                            unfocusedIndicatorColor = Color.Transparent,
+                        ),
+                        keyboardOptions = KeyboardOptions(
+                            keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
+                        ),
+                        keyboardActions = KeyboardActions(onDone = {
+                            keyboardController?.hide()
+
+                            defaultKeyboardAction(ImeAction.Done)
+                        }),
+                        onValueChange = {
+                            viewModel.onEvent(OutletAddEvent.OnEmailEnter(it))
+                        },
+
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(54.dp)
+                            .clip(RoundedCornerShape(10.dp))
+                            .border(
+                                width = 1.dp,
+                                shape = RoundedCornerShape(10.dp),
+                                color = if (viewModel.state.isEmailError) Color.Red else Color.LightGray
+                            ),
+
+                        placeholder = {
+                            Text(
+                                text = stringResource(id = CommonR.string.enter_email),
+                                style = TextStyle(
+                                    color = ColorTextFieldPlaceholder,
+                                )
+                            )
+                        })
+
+
+                    Text(
+                        text = stringResource(id = CommonR.string.market_name),
+                        style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                        modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
+                    )
+
+
+                    ExposedDropdownMenuBox(
+                        expanded = viewModel.state.isMarketNameExpanded,
+                        onExpandedChange = {
+
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+
+
+                        TextField(
+                            value = viewModel.state.marketName,
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = {
+                                Icon(
+                                    if (viewModel.state.isMarketNameExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                                    contentDescription = "",
+                                    tint = APP_DEFAULT_COLOR,
+                                    modifier = Modifier.clickable {
+                                        viewModel.onEvent(OutletAddEvent.OnMarketNameDropDownClick)
+                                    }
+                                )
+                            },
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                disabledContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                            ),
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                                .height(54.dp)
+                                .clip(RoundedCornerShape(10.dp))
+                                .border(
+                                    width = 1.dp,
+                                    shape = RoundedCornerShape(10.dp),
+                                    color = Color.LightGray
+                                ),
+                            placeholder = {
+                                Text(
+                                    text = MARKET_NAMES[0],
+                                    style = TextStyle(
+                                        color = ColorTextFieldPlaceholder,
+                                    )
+                                )
+                            }
+                        )
+
+                        ExposedDropdownMenu(
+                            modifier = Modifier
+                                .background(color = Color.White)
+                                .exposedDropdownSize(),
+                            expanded = viewModel.state.isMarketNameExpanded,
+                            onDismissRequest = {
+                                viewModel.onEvent(OutletAddEvent.OnMarketNameDropDownClick)
+                            }) {
+                            Text(
+                                text = stringResource(CommonR.string.select_market),
+                                modifier = Modifier.padding(start = 20.r()),
+                                style = subHeading1TextStyle.copy(color = Color.Black)
+                            )
+
+                            Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                            viewModel.state.marketNameList.forEach { label ->
+                                DropdownMenuItem(text = {
+                                    Text(
+                                        text = label,
+                                        color = Color.Black
+                                    )
+                                }, onClick = {
+                                    viewModel.onEvent(OutletAddEvent.OnMarketNameSelection(label))
+                                }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
+                            }
+                        }
+                    }
+
 
                     Text(
                         text = stringResource(id = CommonR.string.shop_ethnicity),
@@ -218,7 +342,6 @@ fun OutletAddScreen(
                         },
                         modifier = Modifier.fillMaxWidth()
                     ) {
-
 
                         TextField(
                             value = viewModel.state.ethnicity,
@@ -269,6 +392,13 @@ fun OutletAddScreen(
                             onDismissRequest = {
                                 viewModel.onEvent(OutletAddEvent.OnEthnicityDropDownClick)
                             }) {
+                            Text(
+                                text = stringResource(CommonR.string.select_ethnicity),
+                                modifier = Modifier.padding(start = 20.r()),
+                                style = subHeading1TextStyle.copy(color = Color.Black)
+                            )
+
+                            Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
                             ETCHNICITIES.forEach { label ->
                                 DropdownMenuItem(text = {
                                     Text(
@@ -277,6 +407,91 @@ fun OutletAddScreen(
                                     )
                                 }, onClick = {
                                     viewModel.onEvent(OutletAddEvent.OnEthnicitySelection(label))
+                                }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
+                            }
+                        }
+                    }
+
+                    Text(
+                        text = stringResource(id = CommonR.string.route_name),
+                        style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                        modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
+                    )
+
+
+                    ExposedDropdownMenuBox(
+                        expanded = viewModel.state.isRouteNameExpanded,
+                        onExpandedChange = {
+
+                        },
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+
+
+                        TextField(
+                            value = viewModel.state.routeName,
+                            onValueChange = {},
+                            readOnly = true,
+                            trailingIcon = {
+                                Icon(
+                                    if (viewModel.state.isRouteNameExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                                    contentDescription = "",
+                                    tint = APP_DEFAULT_COLOR,
+                                    modifier = Modifier.clickable {
+                                        viewModel.onEvent(OutletAddEvent.OnRouteNameDropDownClick)
+                                    }
+                                )
+                            },
+                            colors = TextFieldDefaults.colors(
+                                focusedContainerColor = Color.White,
+                                unfocusedContainerColor = Color.White,
+                                disabledContainerColor = Color.White,
+                                focusedIndicatorColor = Color.Transparent,
+                                unfocusedIndicatorColor = Color.Transparent,
+                            ),
+                            modifier = Modifier
+                                .menuAnchor()
+                                .fillMaxWidth()
+                                .height(54.dp)
+                                .clip(RoundedCornerShape(10.dp))
+                                .border(
+                                    width = 1.dp,
+                                    shape = RoundedCornerShape(10.dp),
+                                    color = Color.LightGray
+                                ),
+                            placeholder = {
+                                Text(
+                                    text = ROUTE_NAMES[0],
+                                    style = TextStyle(
+                                        color = ColorTextFieldPlaceholder,
+                                    )
+                                )
+                            }
+                        )
+
+                        ExposedDropdownMenu(
+                            modifier = Modifier
+                                .background(color = Color.White)
+                                .exposedDropdownSize(),
+                            expanded = viewModel.state.isRouteNameExpanded,
+                            onDismissRequest = {
+                                viewModel.onEvent(OutletAddEvent.OnRouteNameDropDownClick)
+                            }) {
+                            Text(
+                                text = stringResource(CommonR.string.select_route),
+                                modifier = Modifier.padding(start = 20.r()),
+                                style = subHeading1TextStyle.copy(color = Color.Black)
+                            )
+
+                            Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                            ROUTE_NAMES.forEach { label ->
+                                DropdownMenuItem(text = {
+                                    Text(
+                                        text = label,
+                                        color = Color.Black
+                                    )
+                                }, onClick = {
+                                    viewModel.onEvent(OutletAddEvent.OnRouteNameSelection(label))
                                 }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
                             }
                         }
@@ -657,6 +872,13 @@ fun OutletAddScreen(
                             onDismissRequest = {
                                 viewModel.onEvent(OutletAddEvent.OnPaymentDropDownClick)
                             }) {
+                            Text(
+                                text = stringResource(CommonR.string.select_payment_option),
+                                modifier = Modifier.padding(start = 20.r()),
+                                style = subHeading1TextStyle.copy(color = Color.Black)
+                            )
+
+                            Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
                             PAYMENT_OPTIONS.forEach { label ->
                                 DropdownMenuItem(text = {
                                     Text(

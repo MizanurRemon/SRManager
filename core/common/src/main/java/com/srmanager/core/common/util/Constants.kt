@@ -64,23 +64,11 @@ val PAYMENT_OPTIONS = listOf(
     "Credit"
 )
 
-enum class LanguageTagEnum(val tag: String) {
-    English("en"),
-    Dutch("nl"),
-    German("de"),
-    Spanish("es"),
-    French("fr"),
-    Italiano("it"),
-}
+val ROUTE_NAMES = listOf(
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+)
 
-enum class LanguageListEnum(val lang: String) {
-    English("English"),
-    Nederlands("Dutch"),
-    Deutsch("German"),
-    Español("Spanish"),
-    Français("French"),
-    Italiano("Italiano"),
-}
+val MARKET_NAMES = listOf("Jamuna", "Basundhara", "Gulisthan", "DOHS Shopping Mall")
 
 
 fun intent(browserPackage: String, redirectUrl: String): Intent {

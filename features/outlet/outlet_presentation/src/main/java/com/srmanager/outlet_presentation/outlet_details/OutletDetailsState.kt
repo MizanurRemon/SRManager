@@ -1,5 +1,8 @@
 package com.srmanager.outlet_presentation.outlet_details
 
+import com.srmanager.core.common.util.ETCHNICITIES
+import com.srmanager.core.common.util.PAYMENT_OPTIONS
+import com.srmanager.core.common.util.ROUTE_NAMES
 import javax.annotation.concurrent.Immutable
 
 
@@ -17,6 +20,11 @@ data class OutletDetailsState(
     val address: String = "",
     val latitude: String = "",
     val longitude: String = "",
+    val ethnicity: String = "",
+    val paymentOption: String = "",
+    val routeName: String = "",
+    val marketName : String = "",
+    val email : String = "",
     val isOutletNameError: Boolean = false,
     val isOwnerNameError: Boolean = false,
     val isBirthDateError: Boolean = false,

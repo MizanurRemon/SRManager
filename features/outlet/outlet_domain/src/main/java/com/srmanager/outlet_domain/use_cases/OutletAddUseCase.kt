@@ -23,7 +23,12 @@ class OutletAddUseCase(private val outletRepository: OutletRepository) {
                 vat = outletAddModel.vat,
                 address = outletAddModel.address,
                 latitude = outletAddModel.latitude,
-                longitude = outletAddModel.longitude
+                longitude = outletAddModel.longitude,
+                marketName = outletAddModel.marketName,
+                ethnicity = outletAddModel.ethnicity,
+                email = outletAddModel.email,
+                routeName = outletAddModel.routeName,
+                paymentOptions = outletAddModel.paymentOptions
             )
         )
     }

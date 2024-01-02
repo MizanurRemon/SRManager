@@ -127,7 +127,12 @@ class OutletDetailsViewModel @Inject constructor(
                                 vat = state.vatTRN,
                                 address = state.address,
                                 latitude = state.latitude,
-                                longitude = state.longitude
+                                longitude = state.longitude,
+                                marketName = state.marketName,
+                                ethnicity = state.ethnicity,
+                                email = state.email,
+                                routeName = state.routeName,
+                                paymentOptions = state.paymentOption
                             )
                         ).onSuccess {
                             state = state.copy(
