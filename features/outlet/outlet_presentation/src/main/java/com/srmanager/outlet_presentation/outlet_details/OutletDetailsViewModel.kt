@@ -5,13 +5,16 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.srmanager.auth_presentation.isEmailValid
 import com.srmanager.auth_presentation.isPhoneNumberValid
+import com.srmanager.core.common.util.MARKET_NAMES
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletAddModel
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
+import com.srmanager.outlet_presentation.outlet_add.OutletAddEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -29,6 +32,19 @@ class OutletDetailsViewModel @Inject constructor(
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
+
+    init {
+        loadMarketNames()
+    }
+
+    private fun loadMarketNames() {
+        viewModelScope.launch {
+            state = state.copy(
+                marketName = MARKET_NAMES[0],
+                marketNameList = MARKET_NAMES
+            )
+        }
+    }
 
     fun getOutletDetails(outletID: String) {
         viewModelScope.launch {
@@ -232,6 +248,65 @@ class OutletDetailsViewModel @Inject constructor(
 
             is OutletDetailsEvent.OnGettingCurrentLocation -> {
                 getCurrentLocation()
+            }
+
+            is OutletDetailsEvent.OnEthnicityDropDownClick -> {
+                state = state.copy(
+                    isEthnicityExpanded = !state.isEthnicityExpanded
+                )
+            }
+
+            is OutletDetailsEvent.OnEthnicitySelection -> {
+                state = state.copy(
+                    isEthnicityExpanded = false,
+                    ethnicity = event.value
+                )
+            }
+
+            is OutletDetailsEvent.OnPaymentDropDownClick -> {
+                state = state.copy(
+                    isPaymentOptionsExpanded = !state.isPaymentOptionsExpanded
+                )
+            }
+
+            is OutletDetailsEvent.OnPaymentOptionSelection -> {
+                state = state.copy(
+                    paymentOption = event.value,
+                    isPaymentOptionsExpanded = false
+                )
+            }
+
+            is OutletDetailsEvent.OnRouteNameDropDownClick -> {
+                state = state.copy(
+                    isRouteNameExpanded = !state.isRouteNameExpanded
+                )
+            }
+
+            is OutletDetailsEvent.OnRouteNameSelection -> {
+                state = state.copy(
+                    isRouteNameExpanded = false,
+                    routeName = event.value
+                )
+            }
+
+            is OutletDetailsEvent.OnEmailEnter -> {
+                state = state.copy(
+                    email = event.value,
+                    isEmailError = event.value.isEmpty() || !isEmailValid(event.value)
+                )
+            }
+
+            is OutletDetailsEvent.OnMarketNameSelection -> {
+                state = state.copy(
+                    isMarketNameExpanded = false,
+                    marketName = event.value
+                )
+            }
+
+            is OutletDetailsEvent.OnMarketNameDropDownClick -> {
+                state = state.copy(
+                    isMarketNameExpanded = !state.isMarketNameExpanded
+                )
             }
 
         }

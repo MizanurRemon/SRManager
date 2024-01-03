@@ -22,10 +22,6 @@ data class OutletAddState(
     val routeName: String = ROUTE_NAMES[0],
     val marketName: String = "",
     val email: String = "",
-    val marketNameList: List<String> = emptyList(),
-    val isEmailError: Boolean = false,
-    val isEthnicityError: Boolean = false,
-    val isEthnicityExpanded: Boolean = false,
     val isOutletNameError: Boolean = false,
     val isOwnerNameError: Boolean = false,
     val isBirthDateError: Boolean = false,
@@ -40,5 +36,9 @@ data class OutletAddState(
     val isLoading: Boolean = false,
     val isPaymentOptionsExpanded: Boolean = false,
     val isRouteNameExpanded: Boolean = false,
-    val isMarketNameExpanded: Boolean = false
+    val isMarketNameExpanded: Boolean = false,
+    val marketNameList: List<String> = emptyList(),
+    val isEmailError: Boolean = false,
+    val isEthnicityError: Boolean = false,
+    val isEthnicityExpanded: Boolean = false
 )

@@ -56,6 +56,8 @@ class OutletAddViewModel @Inject constructor(
         }
     }
 
+
+
     fun onEvent(event: OutletAddEvent) {
         when (event) {
 

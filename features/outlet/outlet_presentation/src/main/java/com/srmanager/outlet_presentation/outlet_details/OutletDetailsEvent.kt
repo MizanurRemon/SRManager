@@ -17,6 +17,14 @@ sealed class OutletDetailsEvent {
     data class OnAddressEnter(val value: String) : OutletDetailsEvent()
     data class OnImageSelection(val value: Uri, val contentResolver: ContentResolver) :
         OutletDetailsEvent()
-
     object OnGettingCurrentLocation: OutletDetailsEvent()
+    data class OnEmailEnter(val value: String): OutletDetailsEvent()
+    object OnEthnicityDropDownClick : OutletDetailsEvent()
+    data class OnEthnicitySelection(val value: String): OutletDetailsEvent()
+    data class OnPaymentOptionSelection(val value : String): OutletDetailsEvent()
+    object OnPaymentDropDownClick: OutletDetailsEvent()
+    object OnRouteNameDropDownClick: OutletDetailsEvent()
+    data class OnRouteNameSelection(val value: String): OutletDetailsEvent()
+    object OnMarketNameDropDownClick: OutletDetailsEvent()
+    data class OnMarketNameSelection(val value: String): OutletDetailsEvent()
 }

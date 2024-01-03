@@ -36,5 +36,12 @@ data class OutletDetailsState(
     val isAddressError: Boolean = false,
     val isImageError: Boolean = false,
     val image: String = "",
-    val isLoading : Boolean = false
+    val isLoading : Boolean = false,
+    val isPaymentOptionsExpanded: Boolean = false,
+    val isRouteNameExpanded: Boolean = false,
+    val isMarketNameExpanded: Boolean = false,
+    val marketNameList: List<String> = emptyList(),
+    val isEmailError: Boolean = false,
+    val isEthnicityError: Boolean = false,
+    val isEthnicityExpanded: Boolean = false
 )
