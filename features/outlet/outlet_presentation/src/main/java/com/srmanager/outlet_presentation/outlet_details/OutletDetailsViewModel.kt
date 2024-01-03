@@ -14,7 +14,6 @@ import com.srmanager.core.common.util.fileImageUriToBase64
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletAddModel
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
-import com.srmanager.outlet_presentation.outlet_add.OutletAddEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -40,7 +39,7 @@ class OutletDetailsViewModel @Inject constructor(
     private fun loadMarketNames() {
         viewModelScope.launch {
             state = state.copy(
-                marketName = MARKET_NAMES[0],
+                //marketName = MARKET_NAMES[0],
                 marketNameList = MARKET_NAMES
             )
         }
