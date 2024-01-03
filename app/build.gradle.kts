@@ -96,7 +96,7 @@ android {
         variant.outputs
             .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
             .forEach { output ->
-                val formatter = DateTimeFormatter.ofPattern("ddMMyy_hhmm")
+                val formatter = DateTimeFormatter.ofPattern("ddMMyy_HHmm")
                 val formattedDate = LocalDateTime.now().format(formatter)
                 val outputFileName =
                     "SRM_${formattedDate}.apk"
