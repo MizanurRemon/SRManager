@@ -39,7 +39,6 @@ class OutletDetailsViewModel @Inject constructor(
     private fun loadMarketNames() {
         viewModelScope.launch {
             state = state.copy(
-                //marketName = MARKET_NAMES[0],
                 marketNameList = MARKET_NAMES
             )
         }
@@ -62,7 +61,11 @@ class OutletDetailsViewModel @Inject constructor(
                     vatTRN = response.data.vat.toString(),
                     address = response.data.address.toString(),
                     latitude = response.data.latitude.toString(),
-                    longitude = response.data.longitude.toString()
+                    longitude = response.data.longitude.toString(),
+                    marketName = "",
+                    routeName = "",
+                    email = "",
+                    paymentOption = ""
                 )
 
             }.onFailure {
