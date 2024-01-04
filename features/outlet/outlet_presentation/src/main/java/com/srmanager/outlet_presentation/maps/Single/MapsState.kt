@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.maps
+package com.srmanager.outlet_presentation.maps.Single
 
 data class MapsState(
     var latitude: Double = 0.0,

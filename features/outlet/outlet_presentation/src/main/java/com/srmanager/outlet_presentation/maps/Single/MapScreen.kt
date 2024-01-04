@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.maps
+package com.srmanager.outlet_presentation.maps.Single
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -29,7 +29,7 @@ import com.srmanager.core.network.dto.Outlet
 
 
 @Composable
-fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel(),  outletDetails: Outlet? = null) {
+fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel(), outletDetails: Outlet? = null) {
     val context = LocalContext.current
     var polylinePoints by remember { mutableStateOf(emptyList<LatLng>()) }
 

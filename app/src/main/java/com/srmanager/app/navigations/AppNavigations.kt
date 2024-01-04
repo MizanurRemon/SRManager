@@ -23,8 +23,9 @@ import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.network.dto.Outlet
 import com.srmanager.order_presentation.order.OrderScreen
 import com.srmanager.outlet_presentation.dashboard.OutletDashboardScreen
+import com.srmanager.outlet_presentation.maps.Multiple.AllOutletMapScreen
 import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
-import com.srmanager.outlet_presentation.maps.MapScreen
+import com.srmanager.outlet_presentation.maps.Single.MapScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
@@ -60,7 +61,7 @@ fun MainApp(
             }
 
             composable(route = Route.HOME) {
-                HomeScreen(navController)
+                HomeScreen(navController, onMapClick = {navController.navigate(Route.OUTLET_MAP)}, onOutletClick = { navController.navigate(Route.OUTLET) })
             }
 
 
@@ -149,6 +150,12 @@ fun MainApp(
                     },
                     outletDetails = outletDetails
                 )
+            }
+
+            composable(route = Route.OUTLET_MAP) {
+                AllOutletMapScreen(onBack = {
+                    navController.navigateUp()
+                })
             }
 
         }

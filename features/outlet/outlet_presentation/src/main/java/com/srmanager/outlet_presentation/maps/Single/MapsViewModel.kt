@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.maps
+package com.srmanager.outlet_presentation.maps.Single
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -6,7 +6,6 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.database.dao.LocationDao
-import com.srmanager.outlet_presentation.outlet_add.OutletAddState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
