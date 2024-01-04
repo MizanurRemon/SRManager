@@ -51,8 +51,8 @@ fun MapScreen(onBack: () -> Unit, viewModel: MapsViewModel = hiltViewModel(), ou
         ) {
             Marker(
                 state = MarkerState(position = destination),
-                title = "London",
-                snippet = "Marker in Big Ben",
+                title = outletDetails.outletName,
+                snippet = outletDetails.ownerName,
                 icon = BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
             )
 
