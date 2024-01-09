@@ -10,6 +10,7 @@ import com.srmanager.core.network.util.NetworkHandler
 import com.srmanager.outlet_domain.model.CheckOutStatusResponse
 
 import com.srmanager.outlet_domain.model.CommonResponse
+import com.srmanager.outlet_domain.model.MarketResponse
 import com.srmanager.outlet_domain.model.OutletDetailsResponse
 import com.srmanager.outlet_domain.model.OutletResponse
 
@@ -89,6 +90,22 @@ class OutletRepositoryImpl(
         return if (networkHandler.isNetworkAvailable()) {
             try {
                 val responseDto = outletRemoteDataSource.checkout(checkOutRequest)
+                val response = responseDto.toResponse()
+                Result.success(response)
+            } catch (e: Exception) {
+                Result.failure(e)
+            }
+        } else {
+            val throwable =
+                Throwable(message = "No internet connection available")
+            Result.failure(throwable)
+        }
+    }
+
+    override suspend fun getMarkets(): Result<MarketResponse> {
+        return if (networkHandler.isNetworkAvailable()) {
+            try {
+                val responseDto = outletRemoteDataSource.getMarkets()
                 val response = responseDto.toResponse()
                 Result.success(response)
             } catch (e: Exception) {

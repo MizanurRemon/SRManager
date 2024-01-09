@@ -5,5 +5,6 @@ data class OutletUseCases(
     val outletListUseCases: OutletListUseCase,
     val outletDetailsUseCases: OutletDetailsUseCases,
     val checkOutStatusUseCase: CheckOutStatusUseCase,
-    val outletCheckOutUseCase: OutletCheckOutUseCase
+    val outletCheckOutUseCase: OutletCheckOutUseCase,
+    val outletMarketUseCase: OutletMarketUseCase
 )

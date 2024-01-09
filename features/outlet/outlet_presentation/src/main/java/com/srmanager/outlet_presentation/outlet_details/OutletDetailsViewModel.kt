@@ -1,5 +1,6 @@
 package com.srmanager.outlet_presentation.outlet_details
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -38,9 +39,12 @@ class OutletDetailsViewModel @Inject constructor(
 
     private fun loadMarketNames() {
         viewModelScope.launch {
-            state = state.copy(
-                marketNameList = MARKET_NAMES
-            )
+            outletUseCases.outletMarketUseCase().onSuccess {
+                state = state.copy(
+                    marketNameList = it.data
+                )
+            }.onFailure { }
+
         }
     }
 
@@ -63,9 +67,10 @@ class OutletDetailsViewModel @Inject constructor(
                     latitude = response.data.latitude.toString(),
                     longitude = response.data.longitude.toString(),
                     marketName = "",
-                    routeName = "",
-                    email = "",
-                    paymentOption = ""
+                    routeName = response.data.routeName ?: "",
+                    email = response.data.ownerEmail.toString(),
+                    paymentOption = response.data.paymentTerms.toString(),
+                    ethnicity = response.data.shopEthnicity.toString()
                 )
 
             }.onFailure {

@@ -6,6 +6,7 @@ import com.srmanager.outlet_domain.use_cases.OutletAddUseCase
 import com.srmanager.outlet_domain.use_cases.OutletCheckOutUseCase
 import com.srmanager.outlet_domain.use_cases.OutletDetailsUseCases
 import com.srmanager.outlet_domain.use_cases.OutletListUseCase
+import com.srmanager.outlet_domain.use_cases.OutletMarketUseCase
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.Module
 import dagger.Provides
@@ -26,7 +27,8 @@ class OutletDomainModule {
             outletListUseCases = OutletListUseCase(outletRepository),
             outletDetailsUseCases = OutletDetailsUseCases(outletRepository),
             checkOutStatusUseCase = CheckOutStatusUseCase(outletRepository),
-            outletCheckOutUseCase = OutletCheckOutUseCase(outletRepository)
+            outletCheckOutUseCase = OutletCheckOutUseCase(outletRepository),
+            outletMarketUseCase = OutletMarketUseCase(outletRepository)
         )
     }
 }

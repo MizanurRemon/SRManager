@@ -22,4 +22,6 @@ interface PrivateApiService {
 
     @POST("bsol/api/outlet/checkout")
     suspend fun checkout(@Body request: CheckOutRequest): CommonResponseDto
+    @POST("bsol/api/outlet/market")
+    suspend fun getMarkets(): MarketDto
 }

@@ -333,14 +333,14 @@ fun OutletDetailsScreen(
                     )
 
                     Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
-                    viewModel.state.marketNameList.forEach { label ->
+                    viewModel.state.marketNameList.forEach { response ->
                         DropdownMenuItem(text = {
                             Text(
-                                text = label,
+                                text = response.text.toString(),
                                 color = Color.Black
                             )
                         }, onClick = {
-                            viewModel.onEvent(OutletDetailsEvent.OnMarketNameSelection(label))
+                            viewModel.onEvent(OutletDetailsEvent.OnMarketNameSelection(response.text.toString()))
                         }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
                     }
                 }

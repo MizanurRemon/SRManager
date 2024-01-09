@@ -3,6 +3,7 @@ package com.srmanager.outlet_presentation.outlet_details
 import com.srmanager.core.common.util.ETCHNICITIES
 import com.srmanager.core.common.util.PAYMENT_OPTIONS
 import com.srmanager.core.common.util.ROUTE_NAMES
+import com.srmanager.core.network.dto.MarketItem
 import javax.annotation.concurrent.Immutable
 
 
@@ -40,7 +41,7 @@ data class OutletDetailsState(
     val isPaymentOptionsExpanded: Boolean = false,
     val isRouteNameExpanded: Boolean = false,
     val isMarketNameExpanded: Boolean = false,
-    val marketNameList: List<String> = emptyList(),
+    val marketNameList: List<MarketItem> = emptyList(),
     val isEmailError: Boolean = false,
     val isEthnicityError: Boolean = false,
     val isEthnicityExpanded: Boolean = false
