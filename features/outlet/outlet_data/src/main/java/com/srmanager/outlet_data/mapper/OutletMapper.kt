@@ -64,12 +64,13 @@ fun OutletDetailsDto.toResponse(): OutletDetailsResponse {
             shopEthnicity = data?.shopEthnicity ?: "",
             routeName = data?.routeName ?: "",
             ownerEmail = data?.ownerEmail ?: "",
-            paymentTerms = data?.paymentTerms ?: ""
+            paymentTerms = data?.paymentTerms ?: "",
+            marketId = data?.marketId ?: 0
         )
     )
 }
 
-fun MarketDto.toResponse(): MarketResponse{
+fun MarketDto.toResponse(): MarketResponse {
     return MarketResponse(
         data = data
     )

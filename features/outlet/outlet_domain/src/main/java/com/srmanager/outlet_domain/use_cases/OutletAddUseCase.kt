@@ -1,7 +1,6 @@
 package com.srmanager.outlet_domain.use_cases
 
 
-import android.util.Log
 import com.srmanager.outlet_domain.repository.OutletRepository
 import com.srmanager.core.network.model.OutletAddRequest
 import com.srmanager.outlet_domain.model.CommonResponse
@@ -24,11 +23,11 @@ class OutletAddUseCase(private val outletRepository: OutletRepository) {
                 address = outletAddModel.address,
                 latitude = outletAddModel.latitude,
                 longitude = outletAddModel.longitude,
-                marketName = outletAddModel.marketName,
-                ethnicity = outletAddModel.ethnicity,
-                email = outletAddModel.email,
+                marketId = outletAddModel.marketID,
+                shopEthnicity = outletAddModel.ethnicity,
+                ownerEmail = outletAddModel.email,
                 routeName = outletAddModel.routeName,
-                paymentOptions = outletAddModel.paymentOptions
+                paymentTerms = outletAddModel.paymentOptions
             )
         )
     }

@@ -17,7 +17,7 @@ data class OutletAddModel(
     var address: String,
     var latitude: String,
     var longitude: String,
-    var marketName: String,
+    var marketID: Int,
     val ethnicity: String,
     val email: String,
     val paymentOptions: String,

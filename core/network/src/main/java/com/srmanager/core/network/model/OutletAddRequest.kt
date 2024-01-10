@@ -18,9 +18,9 @@ data class OutletAddRequest(
     var address: String,
     var latitude: String,
     var longitude: String,
-    var marketName: String,
-    var ethnicity : String,
-    var email : String,
+    var marketId: Int,
+    var shopEthnicity : String,
+    var ownerEmail : String,
     var routeName : String,
-    var paymentOptions : String
+    var paymentTerms : String
 )

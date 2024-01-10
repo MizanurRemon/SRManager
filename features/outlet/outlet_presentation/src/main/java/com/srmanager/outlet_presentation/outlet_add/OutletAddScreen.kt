@@ -313,15 +313,21 @@ fun OutletAddScreen(
                                 style = subHeading1TextStyle.copy(color = Color.Black)
                             )
 
-                            Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
-                            viewModel.state.marketNameList.forEach { label ->
+                            Spacer(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.r())
+                                    .background(color = Color.Black)
+                                    .height(1.r())
+                            )
+                            viewModel.state.marketNameList.forEach { response ->
                                 DropdownMenuItem(text = {
                                     Text(
-                                        text = label,
+                                        text = response.text.toString(),
                                         color = Color.Black
                                     )
                                 }, onClick = {
-                                    viewModel.onEvent(OutletAddEvent.OnMarketNameSelection(label))
+                                    viewModel.onEvent(OutletAddEvent.OnMarketNameSelection(response.text.toString()))
                                 }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
                             }
                         }
@@ -398,7 +404,13 @@ fun OutletAddScreen(
                                 style = subHeading1TextStyle.copy(color = Color.Black)
                             )
 
-                            Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                            Spacer(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.r())
+                                    .background(color = Color.Black)
+                                    .height(1.r())
+                            )
                             ETCHNICITIES.forEach { label ->
                                 DropdownMenuItem(text = {
                                     Text(
@@ -483,7 +495,13 @@ fun OutletAddScreen(
                                 style = subHeading1TextStyle.copy(color = Color.Black)
                             )
 
-                            Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                            Spacer(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.r())
+                                    .background(color = Color.Black)
+                                    .height(1.r())
+                            )
                             ROUTE_NAMES.forEach { label ->
                                 DropdownMenuItem(text = {
                                     Text(
@@ -878,7 +896,13 @@ fun OutletAddScreen(
                                 style = subHeading1TextStyle.copy(color = Color.Black)
                             )
 
-                            Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                            Spacer(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 10.r())
+                                    .background(color = Color.Black)
+                                    .height(1.r())
+                            )
                             PAYMENT_OPTIONS.forEach { label ->
                                 DropdownMenuItem(text = {
                                     Text(

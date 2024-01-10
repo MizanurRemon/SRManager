@@ -10,24 +10,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/MarketDto.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/model/MarketResponse.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletMarketUseCase.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/OutletDetailsDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/OutletDetailsDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSource/remote/OutletRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSource/remote/OutletRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSourceImpl/remote/OutletRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/dataSourceImpl/remote/OutletRemoteDataSourceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/OutletAddRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/OutletAddRequest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/mapper/OutletMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/mapper/OutletMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/repository/OutletRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/repository/OutletRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/di/OutletDomainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/di/OutletDomainModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/repository/OutletRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/repository/OutletRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletUseCases.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletUseCases.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/model/OutletAddModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/model/OutletAddModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletAddUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletAddUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,9 +104,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="bedd112b-bac2-4985-9118-92425f03ae83" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material3/material3/1.0.1/e90f5af2fdc04ac29257713d2ee94800d0262b17/material3-1.0.1-sources.jar!/androidx/compose/material3/TextFieldDefaults.kt" root0="FORCE_HIGHLIGHTING" />
@@ -657,6 +649,7 @@
       <workItem from="1704522737313" duration="562000" />
       <workItem from="1704687921529" duration="631000" />
       <workItem from="1704798915745" duration="126000" />
+      <workItem from="1704869225972" duration="13000" />
     </task>
     <task id="LOCAL-00283" summary="ui">
       <created>1701156141845</created>
@@ -1001,7 +994,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="373" />
+    <option name="localTasksCounter" value="374" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

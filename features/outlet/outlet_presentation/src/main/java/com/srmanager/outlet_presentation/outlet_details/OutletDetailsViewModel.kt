@@ -8,7 +8,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.auth_presentation.isEmailValid
 import com.srmanager.auth_presentation.isPhoneNumberValid
+import com.srmanager.core.common.util.ETCHNICITIES
 import com.srmanager.core.common.util.MARKET_NAMES
+import com.srmanager.core.common.util.PAYMENT_OPTIONS
+import com.srmanager.core.common.util.ROUTE_NAMES
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.fileImageUriToBase64
@@ -19,6 +22,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 
@@ -66,11 +70,21 @@ class OutletDetailsViewModel @Inject constructor(
                     address = response.data.address.toString(),
                     latitude = response.data.latitude.toString(),
                     longitude = response.data.longitude.toString(),
-                    marketName = "",
-                    routeName = response.data.routeName ?: "",
+                    marketName = when (response.data.marketId) {
+                        0 -> {
+                            state.marketNameList.first().text.toString()
+                        }
+                        else -> {
+                            state.marketNameList.first {
+                                it.id == response.data.marketId
+                            }.text.toString()
+                        }
+                    },
+                    marketID = response.data.marketId!!.toInt(),
+                    routeName = response.data.routeName!!.ifEmpty { ROUTE_NAMES[0] },
                     email = response.data.ownerEmail.toString(),
-                    paymentOption = response.data.paymentTerms.toString(),
-                    ethnicity = response.data.shopEthnicity.toString()
+                    paymentOption = response.data.paymentTerms!!.ifEmpty { PAYMENT_OPTIONS[0] },
+                    ethnicity = response.data.shopEthnicity!!.ifEmpty { ETCHNICITIES[0] }
                 )
 
             }.onFailure {
@@ -110,32 +124,26 @@ class OutletDetailsViewModel @Inject constructor(
 
             is OutletDetailsEvent.OnSubmitButtonClick -> {
                 viewModelScope.launch {
-                    if (state.outletName.isEmpty() || state.ownerName.isEmpty() || state.birthdate.isEmpty() || state.phone1.isEmpty() || state.tradeLicense.isEmpty() || state.vatTRN.isEmpty() || state.image.isEmpty()) {
-                        state = state.copy(
-                            isOutletNameError = state.outletName.isEmpty(),
-                            isOwnerNameError = state.ownerName.isEmpty(),
-                            isBirthDateError = state.birthdate.isEmpty(),
-                            isPhone1Error = state.phone1.isEmpty(),
-                            isTradeLicenseError = state.tradeLicense.isEmpty(),
-                            isVatTrnError = state.vatTRN.isEmpty(),
-                            isImageError = state.image.isEmpty()
-                        )
-                    } else {
+                    state = state.copy(
+                        isOutletNameError = state.outletName.isEmpty(),
+                        isOwnerNameError = state.ownerName.isEmpty(),
+                        isBirthDateError = state.birthdate.isEmpty(),
+                        isPhone1Error = state.phone1.isEmpty() || !isPhoneNumberValid(state.phone1),
+                        isPhone2Error = state.phone2.isNotEmpty() && !isPhoneNumberValid(state.phone2),
+                        isTradeLicenseError = state.tradeLicense.isEmpty(),
+                        isVatTrnError = state.vatTRN.isEmpty(),
+                        isImageError = state.image.isEmpty(),
+                        isLoading = false,
+                        isEmailError = state.email.isEmpty() || !isEmailValid(state.email),
+                        isExpiryDateError = state.tlcExpiryDate.isEmpty()
+                    )
 
-
-                        state = state.copy(
-                            isOutletNameError = false,
-                            isOwnerNameError = false,
-                            isBirthDateError = false,
-                            isPhone1Error = false,
-                            isPhone2Error = false,
-                            isTradeLicenseError = false,
-                            isVatTrnError = false,
-                            isImageError = false,
-                            isLoading = true
-                        )
-
-                        //outlet update
+                    if (!state.isOutletNameError && !state.isOwnerNameError
+                        && !state.isBirthDateError && !state.isPhone1Error
+                        && !state.isPhone2Error && !state.isTradeLicenseError
+                        && !state.isVatTrnError && !state.isImageError && !state.isEmailError
+                    ) {
+                        state = state.copy(isLoading = true)
                         outletUseCases.outletAddUseCase(
                             OutletAddModel(
                                 id = event.outletID,
@@ -151,18 +159,21 @@ class OutletDetailsViewModel @Inject constructor(
                                 address = state.address,
                                 latitude = state.latitude,
                                 longitude = state.longitude,
-                                marketName = state.marketName,
+                                marketID = state.marketNameList.first {
+                                    it.text.toString().lowercase(Locale.ROOT).equals(
+                                        state.marketName.lowercase(Locale.ROOT),
+                                        ignoreCase = true
+                                    )
+                                }.id!!.toInt(),
                                 ethnicity = state.ethnicity,
                                 email = state.email,
                                 routeName = state.routeName,
                                 paymentOptions = state.paymentOption
                             )
                         ).onSuccess {
+
                             state = state.copy(
-                                isLoading = false
-                            )
-                            _uiEvent.send(
-                                UiEvent.Success
+                                isLoading = false,
                             )
 
                             _uiEvent.send(
@@ -173,10 +184,7 @@ class OutletDetailsViewModel @Inject constructor(
                                 )
                             )
                         }.onFailure {
-                            state = state.copy(
-                                isLoading = false
-                            )
-
+                            state = state.copy(isLoading = false)
                             _uiEvent.send(
                                 UiEvent.ShowSnackbar(
                                     UiText.DynamicString(
@@ -185,7 +193,6 @@ class OutletDetailsViewModel @Inject constructor(
                                 )
                             )
                         }
-
                     }
                 }
             }
@@ -306,6 +313,10 @@ class OutletDetailsViewModel @Inject constructor(
             is OutletDetailsEvent.OnMarketNameSelection -> {
                 state = state.copy(
                     isMarketNameExpanded = false,
+                    marketID = state.marketNameList.first {
+                        it.text.toString().lowercase(Locale.ROOT)
+                            .equals(event.value.lowercase(Locale.ROOT), ignoreCase = true)
+                    }.id!!.toInt(),
                     marketName = event.value
                 )
             }

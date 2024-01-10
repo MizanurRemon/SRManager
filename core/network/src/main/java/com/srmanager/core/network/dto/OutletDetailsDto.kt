@@ -37,5 +37,6 @@ data class OutletProfile(
     var createdBy: Int? = null,
     var outletName: String? = null,
     var lastVisited: String? = null,
-    var vat: String? = null
+    var vat: String? = null,
+    var marketId: Int? = null
 )

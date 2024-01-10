@@ -1,8 +1,6 @@
 package com.srmanager.outlet_presentation.outlet_details
 
-import com.srmanager.core.common.util.ETCHNICITIES
-import com.srmanager.core.common.util.PAYMENT_OPTIONS
-import com.srmanager.core.common.util.ROUTE_NAMES
+
 import com.srmanager.core.network.dto.MarketItem
 import javax.annotation.concurrent.Immutable
 
@@ -26,6 +24,7 @@ data class OutletDetailsState(
     val routeName: String = "",
     val marketName : String = "",
     val email : String = "",
+    val marketID : Int = 0,
     val isOutletNameError: Boolean = false,
     val isOwnerNameError: Boolean = false,
     val isBirthDateError: Boolean = false,

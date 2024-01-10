@@ -4,6 +4,7 @@ import com.srmanager.core.common.util.ETCHNICITIES
 import com.srmanager.core.common.util.MARKET_NAMES
 import com.srmanager.core.common.util.PAYMENT_OPTIONS
 import com.srmanager.core.common.util.ROUTE_NAMES
+import com.srmanager.core.network.dto.MarketItem
 
 data class OutletAddState(
     val outletName: String = "",
@@ -22,6 +23,7 @@ data class OutletAddState(
     val routeName: String = ROUTE_NAMES[0],
     val marketName: String = "",
     val email: String = "",
+    val marketID : Int = 0,
     val isOutletNameError: Boolean = false,
     val isOwnerNameError: Boolean = false,
     val isBirthDateError: Boolean = false,
@@ -37,7 +39,7 @@ data class OutletAddState(
     val isPaymentOptionsExpanded: Boolean = false,
     val isRouteNameExpanded: Boolean = false,
     val isMarketNameExpanded: Boolean = false,
-    val marketNameList: List<String> = emptyList(),
+    val marketNameList: List<MarketItem> = emptyList(),
     val isEmailError: Boolean = false,
     val isEthnicityError: Boolean = false,
     val isEthnicityExpanded: Boolean = false
