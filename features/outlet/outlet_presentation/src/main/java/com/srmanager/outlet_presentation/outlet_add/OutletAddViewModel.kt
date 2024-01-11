@@ -74,8 +74,8 @@ class OutletAddViewModel @Inject constructor(
                         isOutletNameError = state.outletName.isEmpty(),
                         isOwnerNameError = state.ownerName.isEmpty(),
                         isBirthDateError = state.birthdate.isEmpty(),
-                        isPhone1Error = state.phone1.isEmpty() || !isPhoneNumberValid(state.phone1),
-                        isPhone2Error = state.phone2.isNotEmpty() && !isPhoneNumberValid(state.phone2),
+                        isPhone1Error = state.phone1.isEmpty() ,//|| !isPhoneNumberValid(state.phone1),
+                        //isPhone2Error = state.phone2.isNotEmpty() && !isPhoneNumberValid(state.phone2),
                         isTradeLicenseError = state.tradeLicense.isEmpty(),
                         isVatTrnError = state.vatTRN.isEmpty(),
                         isImageError = state.image.isEmpty(),
@@ -85,8 +85,7 @@ class OutletAddViewModel @Inject constructor(
                     )
 
                     if (!state.isOutletNameError && !state.isOwnerNameError
-                        && !state.isBirthDateError && !state.isPhone1Error
-                        && !state.isPhone2Error && !state.isTradeLicenseError
+                        && !state.isBirthDateError && !state.isPhone1Error && !state.isTradeLicenseError
                         && !state.isVatTrnError && !state.isImageError && !state.isEmailError
                     ) {
                         state = state.copy(isLoading = true)
@@ -184,14 +183,14 @@ class OutletAddViewModel @Inject constructor(
             is OutletAddEvent.OnMobileNo1Enter -> {
                 state = state.copy(
                     phone1 = event.value,
-                    isPhone1Error = event.value.isEmpty() || !isPhoneNumberValid(event.value)
+                    isPhone1Error = event.value.isEmpty()// || !isPhoneNumberValid(event.value)
                 )
             }
 
             is OutletAddEvent.OnMobileNo2Enter -> {
                 state = state.copy(
                     phone2 = event.value,
-                    isPhone2Error = event.value.isNotEmpty() && !isPhoneNumberValid(event.value)
+                   // isPhone2Error = event.value.isNotEmpty() && !isPhoneNumberValid(event.value)
                 )
             }
 
