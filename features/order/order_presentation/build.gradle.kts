@@ -18,4 +18,5 @@ dependencies {
     implementation(project(Modules.common))
     implementation(project(Modules.ui))
     implementation(Compose.material3)
+    implementation(project(Modules.order_domain))
 }

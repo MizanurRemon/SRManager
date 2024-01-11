@@ -26,6 +26,8 @@
             <option value="$PROJECT_DIR$/features/auth/auth_domain" />
             <option value="$PROJECT_DIR$/features/auth/auth_presentation" />
             <option value="$PROJECT_DIR$/features/order" />
+            <option value="$PROJECT_DIR$/features/order/order_data" />
+            <option value="$PROJECT_DIR$/features/order/order_domain" />
             <option value="$PROJECT_DIR$/features/order/order_presentation" />
             <option value="$PROJECT_DIR$/features/outlet" />
             <option value="$PROJECT_DIR$/features/outlet/outlet_data" />

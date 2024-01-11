@@ -141,6 +141,8 @@ dependencies {
 
     implementation(project(Modules.report_presentation))
 
+    implementation(project(Modules.order_data))
+    implementation(project(Modules.order_domain))
     implementation(project(Modules.order_presentation))
 
     //Compose

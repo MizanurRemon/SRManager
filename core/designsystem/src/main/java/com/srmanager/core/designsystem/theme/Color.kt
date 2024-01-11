@@ -3,12 +3,8 @@ package com.srmanager.core.designsystem.theme
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 
-val ColorAppBackground = Color(0xFFEBEBEB)
 val ColorPrimaryDark = Color(0xFF005DFF)
-val ColorPrimaryLight = Color(0xFFE0EBFF)
 val ColorError = Color(0xFFFF0000)
-val ColorSuccess = Color(0xff7EBA1D)
-val ColorDivider = Color(0xffE3E3E3)
 val ColorTextPrimary = Color(0xff021561)
 val ColorTextSecondary = Color(0xff606888)
 val ColorTextFieldPlaceholder = Color(0xffA7AEC1)
@@ -17,6 +13,7 @@ val DISABLED_COLOR = Color(0xFF91B9FF)
 val LIGHT_BLACK = Color(0xFF858585)
 val SOCIAL_ICON_BORDER_C0LOR = Color(0xFFB7D4FF)
 val APP_DEFAULT_COLOR = Color(0xFF00C344)
+val APP_DEFAULT_COLOR_LIGHT = Color(0xFFCBFFDD)
 val APP_DEFAULT_BUTTON_COLOR = Color(0xFF00C344)
 val DRAWER_SELECTED =  Color(0x16512E91)
 val DRAWER_BG = Color(0xFF00C344)

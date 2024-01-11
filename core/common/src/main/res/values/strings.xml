@@ -102,4 +102,6 @@
     <string name="enter_email">Enter email</string>
     <string name="market_name">Market Name</string>
     <string name="select_market">Select Market</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
 </resources>

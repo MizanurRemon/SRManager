@@ -31,6 +31,8 @@ object Modules {
     const val outlet_domain = ":features:outlet:outlet_domain"
     const val outlet_presentation = ":features:outlet:outlet_presentation"
 
+    const val order_data = ":features:order:order_data"
+    const val order_domain = ":features:order:order_domain"
     const val order_presentation = ":features:order:order_presentation"
 
     const val report_domain = ":features:report:report_domain"
