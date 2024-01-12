@@ -1,9 +1,11 @@
 package com.srmanager.order_presentation
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import com.srmanager.core.common.util.DATE_FORMAT
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.order_domain.model.OrderItem
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,6 +15,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import javax.inject.Inject
 
+@SuppressLint("SimpleDateFormat")
 @HiltViewModel
 class OrderViewModel @Inject constructor() : ViewModel() {
     private val _uiEvent = Channel<UiEvent>()
@@ -23,8 +26,8 @@ class OrderViewModel @Inject constructor() : ViewModel() {
 
     init {
         state = state.copy(
-            startDate = SimpleDateFormat("dd-MM-yyyy").format(Date()),
-            endDate = SimpleDateFormat("dd-MM-yyyy").format(Date())
+            startDate = SimpleDateFormat(DATE_FORMAT).format(Date()),
+            endDate = SimpleDateFormat(DATE_FORMAT).format(Date())
 
         )
         getOrderItem()
