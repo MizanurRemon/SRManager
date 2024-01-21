@@ -1,4 +1,4 @@
-package com.srmanager.order_presentation
+package com.srmanager.order_presentation.order
 
 import com.srmanager.order_domain.model.OrderItem
 

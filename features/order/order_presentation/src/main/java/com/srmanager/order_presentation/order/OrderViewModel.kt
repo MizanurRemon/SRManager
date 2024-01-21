@@ -1,4 +1,4 @@
-package com.srmanager.order_presentation
+package com.srmanager.order_presentation.order
 
 import android.annotation.SuppressLint
 import androidx.compose.runtime.getValue

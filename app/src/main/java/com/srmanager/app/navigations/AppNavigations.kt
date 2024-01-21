@@ -21,7 +21,8 @@ import com.srmanager.app.home.HomeScreen
 import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.network.dto.Outlet
-import com.srmanager.order_presentation.OrderScreen
+import com.srmanager.order_presentation.order.OrderScreen
+import com.srmanager.order_presentation.products.OrderProductsScreen
 import com.srmanager.outlet_presentation.dashboard.OutletDashboardScreen
 import com.srmanager.outlet_presentation.maps.Multiple.AllOutletMapScreen
 import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
@@ -61,7 +62,10 @@ fun MainApp(
             }
 
             composable(route = Route.HOME) {
-                HomeScreen(navController, onMapClick = {navController.navigate(Route.OUTLET_MAP)}, onOutletClick = { navController.navigate(Route.OUTLET) })
+                HomeScreen(
+                    navController,
+                    onMapClick = { navController.navigate(Route.OUTLET_MAP) },
+                    onOutletClick = { navController.navigate(Route.OUTLET) })
             }
 
 
@@ -116,6 +120,8 @@ fun MainApp(
             composable(route = Route.ORDER) {
                 OrderScreen(onBack = {
                     navController.navigateUp()
+                }, onAddClick = {
+                    navController.navigate(Route.PRODUCTS_ITEMS)
                 })
             }
 
@@ -154,6 +160,13 @@ fun MainApp(
 
             composable(route = Route.OUTLET_MAP) {
                 AllOutletMapScreen(onBack = {
+                    navController.navigateUp()
+                })
+            }
+
+
+            composable(route = Route.PRODUCTS_ITEMS) {
+                OrderProductsScreen(onBack = {
                     navController.navigateUp()
                 })
             }
