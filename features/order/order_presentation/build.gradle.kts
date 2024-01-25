@@ -18,5 +18,10 @@ dependencies {
     implementation(project(Modules.common))
     implementation(project(Modules.ui))
     implementation(Compose.material3)
+    implementation(project(Modules.network))
+
     implementation(project(Modules.order_domain))
+
+   /* implementation ("com.github.JoelKanyi:ComposeSignature:1.0.3")
+    implementation("se.warting.signature:signature-pad")*/
 }

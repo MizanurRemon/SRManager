@@ -10,15 +10,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/OrderProductsScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetDropDown.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/PathState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/DrawingCanvas.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/res/drawable/ic_sign_here.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureEvent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureState.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/navigation/Route.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/navigation/Route.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/OrderEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderEvent.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/OrderScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/OrderState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/OrderViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,9 +69,9 @@
         <option value="valueResourceFile" />
         <option value="Kotlin Sealed Class" />
         <option value="Class" />
-        <option value="Kotlin Class" />
-        <option value="Kotlin Data Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Data Class" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -102,7 +110,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="bedd112b-bac2-4985-9118-92425f03ae83" />
+    <option name="defaultAccountId" value="6df592f5-df50-4dbf-a37e-c736e437449b" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material3/material3/1.0.1/e90f5af2fdc04ac29257713d2ee94800d0262b17/material3-1.0.1-sources.jar!/androidx/compose/material3/TextFieldDefaults.kt" root0="FORCE_HIGHLIGHTING" />
@@ -148,7 +156,7 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;jbr-17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/remon/Projects/Android/srmanager&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/remon/Projects/Android/srmanager/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature&quot;,
     &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1693848167557&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -174,20 +182,21 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature" />
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/drawable" />
       <recent name="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain" />
       <recent name="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data" />
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/raw" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/raw" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components" />
       <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order" />
       <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation" />
       <recent name="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/Multiple" />
       <recent name="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/Single" />
-      <recent name="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/dashboard" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.srmanager.core.designsystem" />
       <recent name="com.srmanager.outlet_presentation.OutletAdd" />
       <recent name="com.srmanager.app.navigations" />
       <recent name="com.internetpolice.settings_presentation.screens.language" />
@@ -1008,7 +1017,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="378" />
+    <option name="localTasksCounter" value="379" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1041,7 +1050,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add social urls" />
     <MESSAGE value="icon updated" />
     <MESSAGE value="icon click enable" />
     <MESSAGE value="fix UI" />
@@ -1066,7 +1074,8 @@
     <MESSAGE value="Entry and edit fixed" />
     <MESSAGE value="order ui" />
     <MESSAGE value="phone number validation removed" />
-    <option name="LAST_COMMIT_MESSAGE" value="phone number validation removed" />
+    <MESSAGE value="new" />
+    <option name="LAST_COMMIT_MESSAGE" value="new" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>

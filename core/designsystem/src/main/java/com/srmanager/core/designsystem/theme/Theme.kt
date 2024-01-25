@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.widget.TextView
@@ -18,6 +19,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -30,6 +34,9 @@ import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.layout.boundsInRoot
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,6 +51,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.graphics.applyCanvas
 import androidx.core.text.HtmlCompat
 import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -51,14 +59,19 @@ import com.srmanager.core.common.util.CoilImageGetter
 import com.srmanager.core.common.util.convertMillisToDate
 import com.srmanager.core.common.util.currentDate
 import com.srmanager.core.designsystem.BuildConfig
+import com.srmanager.core.designsystem.PathState
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
+import com.srmanager.core.designsystem.components.DrawingCanvas
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.w
+import se.warting.signaturepad.SignaturePadAdapter
+import se.warting.signaturepad.SignaturePadView
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Objects
+import kotlin.math.roundToInt
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
@@ -107,12 +120,6 @@ fun Modifier.conditional(condition: Boolean, modifier: Modifier.() -> Modifier):
     }
 }
 
-fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
-    clickable(indication = null,
-        interactionSource = remember { MutableInteractionSource() }) {
-        onClick()
-    }
-}
 
 @OptIn(ExperimentalLayoutApi::class)
 fun Modifier.clearFocusOnKeyboardDismiss(): Modifier = composed {
@@ -743,7 +750,7 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
                             .fillMaxWidth()
                             .height(1.r())
                             .background(color = Color.Gray)
-                            //.padding(vertical = 5.r())
+                        //.padding(vertical = 5.r())
                     )
 
                     Row(
@@ -890,35 +897,102 @@ fun GpsStatusDialog(openDialog: MutableState<Boolean>, onClick: () -> Unit) {
     }
 }
 
+@ExperimentalComposeUiApi
+@Composable
+fun SignatureDialog(
+    isDialogOpen: MutableState<Boolean>,
+    onSave: (image: Bitmap) -> Unit
+) {
+    var signaturePadAdapter: SignaturePadAdapter? = null
+    if (isDialogOpen.value) {
+        Dialog(
+            onDismissRequest = { isDialogOpen.value = true }, //outside click listener set false
+            properties = DialogProperties(usePlatformDefaultWidth = false) // set Dialog fullView
+        ) {
+            val view = LocalView.current //get current view
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(20.r())
+                    .background(color = Color.White, shape = RoundedCornerShape(10.r()))
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(250.r())
+                        .padding(20.r())
+                        .clip(RoundedCornerShape(10.r()))
+                        .border(
+                            width = 1.r(),
+                            color = Color.Black,
+                            shape = RoundedCornerShape(10.r())
+                        ),
+                ) {
+
+                    SignaturePadView(
+                        onReady = {
+                            signaturePadAdapter = it
+                        }, modifier = Modifier
+                            .fillMaxSize()
+
+                    )
+
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 20.r()).padding(bottom = 20.r()),
+                ) {
+
+
+                    AppCancelButtonCompose(
+                        titleStringResId = CommonR.string.clear,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(40.r())
+                    ) {
+                        signaturePadAdapter?.clear()
+                    }
+
+                    Spacer(
+                        modifier = Modifier
+                            .width(20.r())
+                    )
+
+                    AppActionButtonCompose(
+                        stringId = CommonR.string.save,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(40.r())
+                    ) {
+                        isDialogOpen.value = false
+                        onSave(signaturePadAdapter?.getTransparentSignatureBitmap()!!)
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
 @SuppressLint("UnrememberedMutableState")
 @Composable
 @Preview
 fun PreviewShowPopup() {
-    val openDialog = remember { mutableStateOf(false) }
-    /* ShowPopup(
-         openDialog = openDialog,
-         titleResId = CommonR.string.delete_account,
-         descriptionResId = CommonR.string.delete_my_account_info,
-         dismissTextResId = CommonR.string.cancel,
-         confirmTextResId = CommonR.string.delete_account,
-         important = true
-     ) {
+    val paths = remember {
+        mutableStateOf(mutableListOf<PathState>())
+    }
 
-     }*/
+    val isDialogOpen = remember { mutableStateOf(true) }
 
-    /*    ShowPopUpWithImage(
-            openDialog = openDialog,
-            titleResId = CommonR.string.permission_not_granted,
-            descriptionResId = CommonR.string.permission_not_granted_text,
-            dismissTextResId = CommonR.string.go_back,
-            confirmTextResId = CommonR.string.yes_i_am_sure,
-            contentImage = DesignSystemR.drawable.ic_police_cross
-        )*/
+    SignatureDialog(
+        isDialogOpen = isDialogOpen,
+        onSave = {
 
-     MyDatePickerDialog(onDateSelected = {}, openDialog)
-
-    //ImagePickerDialog(openDialog, onDoneClick = {})
-    //GpsStatusDialog(openDialog, onClick = {})
+        }
+    )
 }
 
 

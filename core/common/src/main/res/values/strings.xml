@@ -104,4 +104,9 @@
     <string name="select_market">Select Market</string>
     <string name="start">Start</string>
     <string name="end">End</string>
+    <string name="clear">Clear</string>
+    <string name="save">Save</string>
+    <string name="customer_sign">Customer Signature</string>
+    <string name="sr_signature">SR Signature</string>
+    <string name="tap_here_to_sign">Tap here to sign</string>
 </resources>

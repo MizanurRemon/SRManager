@@ -23,6 +23,7 @@ import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.network.dto.Outlet
 import com.srmanager.order_presentation.order.OrderScreen
 import com.srmanager.order_presentation.products.OrderProductsScreen
+import com.srmanager.order_presentation.signature.SignatureScreen
 import com.srmanager.outlet_presentation.dashboard.OutletDashboardScreen
 import com.srmanager.outlet_presentation.maps.Multiple.AllOutletMapScreen
 import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
@@ -43,7 +44,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.SIGNATURE_SCREEN,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -167,6 +168,12 @@ fun MainApp(
 
             composable(route = Route.PRODUCTS_ITEMS) {
                 OrderProductsScreen(onBack = {
+                    navController.navigateUp()
+                })
+            }
+
+            composable(route = Route.SIGNATURE_SCREEN) {
+                SignatureScreen(onBack = {
                     navController.navigateUp()
                 })
             }

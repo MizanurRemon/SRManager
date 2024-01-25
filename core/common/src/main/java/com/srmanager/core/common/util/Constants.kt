@@ -14,14 +14,13 @@ import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import java.io.ByteArrayOutputStream
-import java.text.DecimalFormat
+import java.nio.charset.StandardCharsets
 import java.text.SimpleDateFormat
 import java.util.Date
 import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
-import com.srmanager.core.common.R as CommonR
 
 
 const val INTERNAL_ERROR = -1
@@ -201,5 +200,28 @@ fun calculationDistance(
         return String.format("%.2f", distance).toDouble()
     } catch (e: Exception) {
         return 0.0
+    }
+}
+
+fun bitMapToString(bitmap: Bitmap): String {
+    return try {
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos)
+        val b = baos.toByteArray()
+        return Base64.encodeToString(b, Base64.DEFAULT)
+    } catch (e: Exception) {
+        ""
+    }
+}
+
+
+fun SVGToBase64(input: String): String {
+    try {
+        val bytes = input.toByteArray()
+        return Base64.encodeToString(bytes, Base64.DEFAULT)
+    }catch (e: Exception){
+        Log.d("dataxx", "SVGToBase64: $e")
+
+        return ""
     }
 }

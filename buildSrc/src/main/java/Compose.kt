@@ -60,4 +60,6 @@ object Compose {
     const val MAPS_COMPOSE = "com.google.maps.android:maps-compose:2.7.2"
     const val PLAY_SERVICES_MAPS = "com.google.android.gms:play-services-maps:18.2.0"
     const val ACCOMPANIST_SWIPE_REFRRESH =  "com.google.accompanist:accompanist-swiperefresh:0.27.0"
+    const val COMPOSE_SIGNATURE = "com.github.JoelKanyi:ComposeSignature:1.0.3"
+    const val SIGNATURE_PAD = "com.github.gcacace:signature-pad:1.3.1"
 }
