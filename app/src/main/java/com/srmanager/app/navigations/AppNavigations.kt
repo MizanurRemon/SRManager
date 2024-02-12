@@ -44,7 +44,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SIGNATURE_SCREEN,
+            startDestination = Route.PRODUCTS_ITEMS,
             modifier = Modifier.padding(innerPadding)
         ) {
 
