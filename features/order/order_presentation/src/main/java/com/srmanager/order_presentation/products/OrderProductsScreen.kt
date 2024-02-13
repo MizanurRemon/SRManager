@@ -114,6 +114,12 @@ fun OrderProductsScreen(
                                             !product.isSelected
                                         )
                                     )
+                                },
+                                onIncrementClick = {
+                                    viewModel.onEvent(OrderProductsEvent.OnIncrementEvent(product.id))
+                                },
+                                onDecrementClick = {
+                                    viewModel.onEvent(OrderProductsEvent.OnDecrementEvent(product.id))
                                 }
                             )
                         }
@@ -129,11 +135,11 @@ fun OrderProductsScreen(
 @Composable
 fun ItemCompose(
     product: Products,
-    onItemClick: () -> Unit
+    onItemClick: () -> Unit,
+    onIncrementClick: () -> Unit,
+    onDecrementClick: () -> Unit
 ) {
-    val selectedItemCount = remember {
-        mutableIntStateOf(1)
-    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -251,9 +257,11 @@ fun ItemCompose(
                 Row(verticalAlignment = Alignment.CenterVertically) {
 
                     IconButton(onClick = {
-                        if (selectedItemCount.value < product.stock) {
-                            selectedItemCount.value++
+
+                        if (product.selectedItemCount < product.stock) {
+                            onIncrementClick()
                         }
+
                     }, modifier = Modifier.size(20.r())) {
                         Box(
                             modifier = Modifier.border(
@@ -272,15 +280,15 @@ fun ItemCompose(
                     Spacer(modifier = Modifier.width(20.r()))
 
                     Text(
-                        text = "${selectedItemCount.value} / ${product.stock}",
+                        text = "${product.selectedItemCount} / ${product.stock}",
                         style = bodyRegularTextStyle.copy(color = Color.Black, fontSize = 14.ssp())
                     )
 
                     Spacer(modifier = Modifier.width(20.r()))
 
                     IconButton(onClick = {
-                        if (selectedItemCount.value > 1) {
-                            selectedItemCount.value--
+                        if (product.selectedItemCount > 1) {
+                            onDecrementClick()
                         }
                     }, modifier = Modifier.size(20.r())) {
                         Box(
@@ -340,6 +348,6 @@ fun PreviewItemCompose() {
             price = 75.20,
             unit = "piece",
             image = "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
-        ), onItemClick = {}
+        ), onItemClick = {}, onIncrementClick = {}, onDecrementClick = {}
     )
 }

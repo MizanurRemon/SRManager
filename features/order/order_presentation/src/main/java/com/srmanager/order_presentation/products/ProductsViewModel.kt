@@ -1,6 +1,5 @@
 package com.srmanager.order_presentation.products
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,7 +12,6 @@ import com.srmanager.order_domain.model.Products
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -45,7 +43,7 @@ class ProductsViewModel @Inject constructor(private val productsDao: ProductsDao
                             unit = item.unit,
                             image = item.image,
                             isSelected = false,
-                            isSelectedItemCount = 1
+                            selectedItemCount = 1
                         )
                     )
                 }
@@ -62,7 +60,7 @@ class ProductsViewModel @Inject constructor(private val productsDao: ProductsDao
                             unit = product.unit,
                             image = product.image,
                             isSelected = product.isSelected,
-                            isSelectedItemCount = product.isSelectedItemCount
+                            selectedItemCount = product.selectedItemCount
                         )
                     })
                 }
@@ -77,11 +75,15 @@ class ProductsViewModel @Inject constructor(private val productsDao: ProductsDao
             }
 
             is OrderProductsEvent.OnIncrementEvent -> {
-
+                viewModelScope.launch(Dispatchers.Default) {
+                    productsDao.increaseProductItem(event.id)
+                }
             }
 
             is OrderProductsEvent.OnDecrementEvent -> {
-
+                viewModelScope.launch(Dispatchers.Default) {
+                    productsDao.decreaseProductItem(event.id)
+                }
             }
 
             is OrderProductsEvent.OnItemClickEvent -> {

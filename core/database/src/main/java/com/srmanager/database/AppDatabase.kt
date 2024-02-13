@@ -12,7 +12,7 @@ import com.srmanager.database.entity.UserEntity
 @Database(
     entities = [UserEntity::class, LocationEntity::class, ProductsEntity::class],
     exportSchema = false,
-    version = 10
+    version = 11
 )
 abstract class AppDatabase : RoomDatabase() {
     abstract val userDao: UserDao

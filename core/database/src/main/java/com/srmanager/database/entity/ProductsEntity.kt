@@ -14,5 +14,5 @@ data class ProductsEntity(
     var unit: String,
     var image: String,
     var isSelected: Boolean,
-    var isSelectedItemCount: Int
+    var selectedItemCount: Int
 )

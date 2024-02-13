@@ -8,5 +8,5 @@ data class Products(
     var unit: String,
     var image: String,
     var isSelected: Boolean = false,
-    var isSelectedItemCount: Int = 1
+    var selectedItemCount: Int = 1
 )
