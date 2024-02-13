@@ -20,6 +20,11 @@ dependencies {
     implementation(Compose.material3)
     implementation(project(Modules.network))
 
+    implementation(project(Modules.database))
+    implementation(project(Modules.datastore))
+    implementation(Compose.DATASTORE_PREFERENCES)
+
+
     implementation(project(Modules.order_domain))
 
    /* implementation ("com.github.JoelKanyi:ComposeSignature:1.0.3")

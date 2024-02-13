@@ -7,5 +7,6 @@ data class Products(
     var price: Double,
     var unit: String,
     var image: String,
-    var selectedItemCount : Int = 1
+    var isSelected: Boolean = false,
+    var isSelectedItemCount: Int = 1
 )

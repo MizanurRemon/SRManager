@@ -4,5 +4,6 @@ import com.srmanager.order_domain.model.Products
 
 data class ProductsState(
     var productsList: List<Products> = emptyList(),
-    var isLoading: Boolean = false
+    var isLoading: Boolean = false,
+    var isNextButtonEnabled: Boolean = false
 )

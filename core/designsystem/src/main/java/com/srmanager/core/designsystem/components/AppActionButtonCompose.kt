@@ -54,7 +54,7 @@ fun AppActionButtonCompose(
             .conditional(borderColor != null) {
                 return@conditional border(
                     borderWidth,
-                    ColorPrimaryDark,
+                    APP_DEFAULT_BUTTON_COLOR,
                     shape = RoundedCornerShape(cornerRadius),
                 )
             }
