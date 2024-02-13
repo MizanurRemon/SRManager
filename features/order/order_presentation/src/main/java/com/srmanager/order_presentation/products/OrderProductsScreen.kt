@@ -56,7 +56,11 @@ import com.srmanager.core.designsystem.theme.subHeading1TextStyle
 import com.srmanager.order_domain.model.Products
 
 @Composable
-fun OrderProductsScreen(onBack: () -> Unit, viewModel: ProductsViewModel = hiltViewModel()) {
+fun OrderProductsScreen(
+    onBack: () -> Unit,
+    viewModel: ProductsViewModel = hiltViewModel(),
+    onNextClick: () -> Unit
+) {
     Scaffold(topBar = {
         AppToolbarCompose(
             onClick = { onBack() },
@@ -71,7 +75,7 @@ fun OrderProductsScreen(onBack: () -> Unit, viewModel: ProductsViewModel = hiltV
                 .padding(bottom = 20.r(), top = 10.r()),
             enable = viewModel.state.isNextButtonEnabled
         ) {
-
+            onNextClick()
         }
     }) { innerPadding ->
         Column(

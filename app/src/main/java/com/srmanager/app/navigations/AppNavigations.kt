@@ -44,7 +44,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.PRODUCTS_ITEMS,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -169,6 +169,8 @@ fun MainApp(
             composable(route = Route.PRODUCTS_ITEMS) {
                 OrderProductsScreen(onBack = {
                     navController.navigateUp()
+                }, onNextClick = {
+                    navController.navigate(Route.SIGNATURE_SCREEN)
                 })
             }
 
