@@ -110,4 +110,9 @@
     <string name="sr_signature">SR Signature</string>
     <string name="tap_here_to_sign">Tap here to sign</string>
     <string name="next">Next</string>
+    <string name="price">Price</string>
+    <string name="stock">Stock</string>
+    <string name="mrp_price">MRP Price</string>
+    <string name="whole_sale_price">Whole Sale Price</string>
+    <string name="last_purchase_price">Last Purchase Price</string>
 </resources>

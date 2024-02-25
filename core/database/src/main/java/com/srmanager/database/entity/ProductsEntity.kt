@@ -7,12 +7,14 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "products")
 data class ProductsEntity(
     @PrimaryKey(autoGenerate = true)
-    var id: Int,
-    var title: String,
-    var stock: Int,
-    var price: Double,
-    var unit: String,
-    var image: String,
+    val id: Long,
+    val title: String,
+    val mrpPrice: Double,
+    val wholeSalePrice: Double,
+    val lastPurchasePrice: Double,
+    val vatPercentage: Double,
+    val price: Double,
+    val availableQuantity: Double,
     var isSelected: Boolean,
     var selectedItemCount: Int
 )
