@@ -16,4 +16,5 @@ object Route {
     const val OUTLET_MAP = "outlet_map"
     const val PRODUCTS_ITEMS = "products_item"
     const val SIGNATURE_SCREEN = "signature_screen"
+    const val SELECTED_PRODUCTS_SCREEN = "selected_products_screen"
 }

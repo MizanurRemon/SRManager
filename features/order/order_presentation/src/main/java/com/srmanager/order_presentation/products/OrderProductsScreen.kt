@@ -70,7 +70,7 @@ fun OrderProductsScreen(
             stringId = CommonR.string.next,
             modifier = Modifier
                 .padding(horizontal = 40.r())
-                .padding(bottom = 20.r(), top = 10.r()),
+                .padding(bottom = 30.r(), top = 10.r()),
             enable = viewModel.state.isNextButtonEnabled
         ) {
             onNextClick()

@@ -12,6 +12,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -23,6 +24,8 @@ import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.network.dto.Outlet
 import com.srmanager.order_presentation.order.OrderScreen
 import com.srmanager.order_presentation.products.OrderProductsScreen
+import com.srmanager.order_presentation.selected_products.SelectedProductsScreen
+import com.srmanager.order_presentation.selected_products.SelectedProductsViewModel
 import com.srmanager.order_presentation.signature.SignatureScreen
 import com.srmanager.outlet_presentation.dashboard.OutletDashboardScreen
 import com.srmanager.outlet_presentation.maps.Multiple.AllOutletMapScreen
@@ -170,7 +173,7 @@ fun MainApp(
                 OrderProductsScreen(onBack = {
                     navController.navigateUp()
                 }, onNextClick = {
-                    navController.navigate(Route.SIGNATURE_SCREEN)
+                    navController.navigate(Route.SELECTED_PRODUCTS_SCREEN)
                 })
             }
 
@@ -178,6 +181,17 @@ fun MainApp(
                 SignatureScreen(onBack = {
                     navController.navigateUp()
                 })
+            }
+
+            composable(route = Route.SELECTED_PRODUCTS_SCREEN) {
+                val viewModel = hiltViewModel<SelectedProductsViewModel>()
+                SelectedProductsScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    state = viewModel.state,
+                    onEvent = viewModel::onEvent
+                )
             }
 
         }

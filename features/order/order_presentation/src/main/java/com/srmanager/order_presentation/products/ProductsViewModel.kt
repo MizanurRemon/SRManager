@@ -59,14 +59,15 @@ class ProductsViewModel @Inject constructor(
                         )
                     }
                 }.onFailure {
-                    state.copy(isLoading = false, isNextButtonEnabled = false)
+                    state.copy(isLoading = false)
                 }
             }
 
             launch(Dispatchers.Default) {
                 productsDao.getProducts().collect {
                     state = state.copy(
-                        isLoading = false, productsList = it.map { product ->
+                        isLoading = false,
+                        productsList = it.map { product ->
                             Product(
                                 title = product.title,
                                 id = product.id,
@@ -82,6 +83,13 @@ class ProductsViewModel @Inject constructor(
                         })
                 }
             }
+
+
+            launch(Dispatchers.Default) {
+
+                state = state.copy(isNextButtonEnabled = productsDao.getSelectedItemCount() > 0)
+            }
+
         }
     }
 

@@ -28,4 +28,8 @@ interface ProductsDao {
     @Query("UPDATE products SET selectedItemCount = selectedItemCount - 1.0  WHERE id = :id")
     fun decreaseProductItem(id: Long)
 
+
+    @Query("SELECT * from products WHERE isSelected == true")
+    fun getSelectedProducts(): Flow<List<ProductsEntity>>
+
 }
