@@ -190,7 +190,10 @@ fun MainApp(
                         navController.navigateUp()
                     },
                     state = viewModel.state,
-                    onEvent = viewModel::onEvent
+                    onEvent = viewModel::onEvent,
+                    onNextClick = {
+                        navController.navigate(Route.SIGNATURE_SCREEN)
+                    }
                 )
             }
 

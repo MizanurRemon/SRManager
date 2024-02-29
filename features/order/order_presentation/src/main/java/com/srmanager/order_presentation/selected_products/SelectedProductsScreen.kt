@@ -37,6 +37,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
+import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
@@ -51,7 +52,8 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 fun SelectedProductsScreen(
     onBack: () -> Unit,
     state: SelectedProductsState,
-    onEvent: (SelectedProductEvent) -> Unit
+    onEvent: (SelectedProductEvent) -> Unit,
+    onNextClick: () -> Unit
 ) {
     Scaffold(topBar = {
         AppToolbarCompose(
@@ -59,6 +61,15 @@ fun SelectedProductsScreen(
             icon = DesignSystemR.drawable.ic_back,
             title = CommonR.string.back
         )
+    }, bottomBar = {
+        AppActionButtonCompose(
+            stringId = CommonR.string.next,
+            modifier = Modifier
+                .padding(horizontal = 40.r())
+                .padding(bottom = 30.r(), top = 10.r()),
+        ) {
+            onNextClick()
+        }
     }, content = { innerPadding ->
         Column(modifier = Modifier.padding(innerPadding)) {
             Column(
@@ -109,7 +120,7 @@ fun ItemCompose(
         }
 
         withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | "+ stringResource(id = CommonR.string.price) + ": ")
+            append(" | " + stringResource(id = CommonR.string.price) + ": ")
         }
 
 
@@ -124,7 +135,7 @@ fun ItemCompose(
 
 
         withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | "+ stringResource(id = CommonR.string.mrp_price) + ": ")
+            append(" | " + stringResource(id = CommonR.string.mrp_price) + ": ")
         }
 
 
@@ -138,7 +149,7 @@ fun ItemCompose(
         }
 
         withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | "+ stringResource(id = CommonR.string.whole_sale_price) + ": ")
+            append(" | " + stringResource(id = CommonR.string.whole_sale_price) + ": ")
         }
 
 
@@ -152,7 +163,7 @@ fun ItemCompose(
         }
 
         withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | "+ stringResource(id = CommonR.string.last_purchase_price) + ": ")
+            append(" | " + stringResource(id = CommonR.string.last_purchase_price) + ": ")
         }
 
 
@@ -210,7 +221,11 @@ fun ItemCompose(
 
                 Text(
                     text = annotatedText,
-                    style = bodyRegularTextStyle.copy(fontSize = 14.ssp(), color = Color.Black, textAlign = TextAlign.Start)
+                    style = bodyRegularTextStyle.copy(
+                        fontSize = 14.ssp(),
+                        color = Color.Black,
+                        textAlign = TextAlign.Start
+                    )
                 )
                 Spacer(modifier = Modifier.height(10.r()))
 
@@ -276,5 +291,5 @@ fun ItemCompose(
 fun PreviewSelectedProductsScreen() {
     SelectedProductsScreen(onBack = {
 
-    }, state = SelectedProductsState(), onEvent = { })
+    }, state = SelectedProductsState(), onEvent = { }, onNextClick = {})
 }
