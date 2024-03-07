@@ -16,6 +16,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -40,7 +41,7 @@ class ProductsViewModel @Inject constructor(
         state = state.copy(isLoading = true)
         viewModelScope.launch(Dispatchers.Default) {
             delay(2000)
-            launch {
+            launch(Dispatchers.Default) {
                 orderUseCases.productsUseCases().onSuccess {
                     it.products.forEach { item ->
                         productsDao.insertProducts(
@@ -64,23 +65,25 @@ class ProductsViewModel @Inject constructor(
             }
 
             launch(Dispatchers.Default) {
-                productsDao.getProducts().collect {
-                    state = state.copy(
-                        isLoading = false,
-                        productsList = it.map { product ->
-                            Product(
-                                title = product.title,
-                                id = product.id,
-                                mrpPrice = product.mrpPrice,
-                                wholeSalePrice = product.wholeSalePrice,
-                                lastPurchasePrice = product.lastPurchasePrice,
-                                vatPercentage = product.vatPercentage,
-                                price = product.price,
-                                availableQuantity = product.availableQuantity,
-                                isSelected = product.isSelected,
-                                selectedItemCount = product.selectedItemCount
-                            )
-                        })
+                withContext(Dispatchers.IO){
+                    productsDao.getProducts().collect {
+                        state = state.copy(
+                            isLoading = false,
+                            productsList = it.map { product ->
+                                Product(
+                                    title = product.title,
+                                    id = product.id,
+                                    mrpPrice = product.mrpPrice,
+                                    wholeSalePrice = product.wholeSalePrice,
+                                    lastPurchasePrice = product.lastPurchasePrice,
+                                    vatPercentage = product.vatPercentage,
+                                    price = product.price,
+                                    availableQuantity = product.availableQuantity,
+                                    isSelected = product.isSelected,
+                                    selectedItemCount = product.selectedItemCount
+                                )
+                            })
+                    }
                 }
             }
 

@@ -9,7 +9,7 @@ import com.srmanager.core.network.dto.OutletDataDto
 import com.srmanager.core.network.dto.OutletDetailsDto
 import com.srmanager.core.network.dto.OutletProfile
 import com.srmanager.outlet_domain.model.CheckOutStatusResponse
-import com.srmanager.outlet_domain.model.CommonResponse
+import com.srmanager.core.common.model.CommonResponse
 import com.srmanager.outlet_domain.model.MarketResponse
 import com.srmanager.outlet_domain.model.OutletDetailsResponse
 import com.srmanager.outlet_domain.model.OutletResponse

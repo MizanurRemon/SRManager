@@ -1,10 +1,6 @@
 package com.srmanager.app.navigations
 
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.provider.Settings
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -17,8 +13,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.app.home.HomeScreen
+import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.network.dto.Outlet
@@ -27,12 +23,13 @@ import com.srmanager.order_presentation.products.OrderProductsScreen
 import com.srmanager.order_presentation.selected_products.SelectedProductsScreen
 import com.srmanager.order_presentation.selected_products.SelectedProductsViewModel
 import com.srmanager.order_presentation.signature.SignatureScreen
+import com.srmanager.order_presentation.signature.SignatureViewModel
 import com.srmanager.outlet_presentation.dashboard.OutletDashboardScreen
 import com.srmanager.outlet_presentation.maps.Multiple.AllOutletMapScreen
-import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
 import com.srmanager.outlet_presentation.maps.Single.MapScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
+import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
 import com.srmanager.report_presentation.report.ReportScreen
 
@@ -47,7 +44,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.PRODUCTS_ITEMS,
+            startDestination = Route.SIGNATURE_SCREEN,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -178,9 +175,14 @@ fun MainApp(
             }
 
             composable(route = Route.SIGNATURE_SCREEN) {
-                SignatureScreen(onBack = {
-                    navController.navigateUp()
-                })
+                val viewModel = hiltViewModel<SignatureViewModel>()
+                SignatureScreen(
+                    state = viewModel.state,
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent,
+                    onBack = {
+                        navController.navigateUp()
+                    })
             }
 
             composable(route = Route.SELECTED_PRODUCTS_SCREEN) {
@@ -199,21 +201,6 @@ fun MainApp(
 
         }
     }
-
-}
-
-fun openOverlaySettings(context: Context) {
-    val intent = Intent(
-        Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.packageName)
-    )
-    context.startActivity(intent)
-}
-
-
-fun openAccessibilitySettings(context: Context) {
-    val intent = Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)
-    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    context.startActivity(intent)
 
 }
 

@@ -20,5 +20,6 @@ data class Product(
     val price: Double,
     val availableQuantity: Double,
     val selectedItemCount: Int = 1,
-    val isSelected : Boolean = false
+    val isSelected : Boolean = false,
+    val selectedItemTotalPrice : Double = 0.0
 )

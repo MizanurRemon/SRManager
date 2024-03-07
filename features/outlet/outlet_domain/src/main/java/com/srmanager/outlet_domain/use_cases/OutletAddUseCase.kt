@@ -3,7 +3,7 @@ package com.srmanager.outlet_domain.use_cases
 
 import com.srmanager.outlet_domain.repository.OutletRepository
 import com.srmanager.core.network.model.OutletAddRequest
-import com.srmanager.outlet_domain.model.CommonResponse
+import com.srmanager.core.common.model.CommonResponse
 import com.srmanager.outlet_domain.model.OutletAddModel
 
 class OutletAddUseCase(private val outletRepository: OutletRepository) {

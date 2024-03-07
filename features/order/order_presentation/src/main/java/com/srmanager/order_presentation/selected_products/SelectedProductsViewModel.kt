@@ -13,13 +13,15 @@ import com.srmanager.order_presentation.products.ProductsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
-class SelectedProductsViewModel @Inject constructor(private val productsDao: ProductsDao) : ViewModel() {
+class SelectedProductsViewModel @Inject constructor(private val productsDao: ProductsDao) :
+    ViewModel() {
     var state by mutableStateOf(SelectedProductsState())
         private set
 
@@ -31,23 +33,27 @@ class SelectedProductsViewModel @Inject constructor(private val productsDao: Pro
     }
 
     private fun loadProducts() {
-        viewModelScope.launch (Dispatchers.Default){
-            productsDao.getSelectedProducts().collect{response->
-                state = state.copy(productsList = response.map {product->
-                    Product(
-                        title = product.title,
-                        id = product.id,
-                        mrpPrice = product.mrpPrice,
-                        wholeSalePrice = product.wholeSalePrice,
-                        lastPurchasePrice = product.lastPurchasePrice,
-                        vatPercentage = product.vatPercentage,
-                        price = product.price,
-                        availableQuantity = product.availableQuantity,
-                        isSelected = product.isSelected,
-                        selectedItemCount = product.selectedItemCount
-                    )
-                })
+        viewModelScope.launch(Dispatchers.Default) {
+             productsDao.getSelectedProducts().collect{
+                state = state.copy(
+                    productsList  = it.map { product ->
+                        Product(
+                            title = product.title,
+                            id = product.id,
+                            mrpPrice = product.mrpPrice,
+                            wholeSalePrice = product.wholeSalePrice,
+                            lastPurchasePrice = product.lastPurchasePrice,
+                            vatPercentage = product.vatPercentage,
+                            price = product.price,
+                            availableQuantity = product.availableQuantity,
+                            isSelected = product.isSelected,
+                            selectedItemCount = product.selectedItemCount
+                        )
+                    }
+                )
             }
+
+
         }
     }
 

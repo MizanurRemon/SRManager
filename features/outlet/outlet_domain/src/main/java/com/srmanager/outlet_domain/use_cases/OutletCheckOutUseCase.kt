@@ -1,7 +1,7 @@
 package com.srmanager.outlet_domain.use_cases
 
 import com.srmanager.core.network.model.CheckOutRequest
-import com.srmanager.outlet_domain.model.CommonResponse
+import com.srmanager.core.common.model.CommonResponse
 import com.srmanager.outlet_domain.model.OutletCheckOutModel
 import com.srmanager.outlet_domain.repository.OutletRepository
 

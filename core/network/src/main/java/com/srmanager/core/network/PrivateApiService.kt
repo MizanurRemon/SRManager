@@ -27,4 +27,7 @@ interface PrivateApiService {
 
     @GET("bsol/api/products")
     suspend fun getProducts(): ProductsDto
+
+    @POST("bsol/api/order")
+    suspend fun createOrder(@Body request : OrderRequest): CommonResponseDto
 }

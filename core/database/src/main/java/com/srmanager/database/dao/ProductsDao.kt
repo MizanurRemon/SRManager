@@ -16,20 +16,20 @@ interface ProductsDao {
     @Query("SELECT * from products")
     fun getProducts(): Flow<List<ProductsEntity>>
 
-    @Query("UPDATE products SET isSelected= :isSelected WHERE id = :id")
+    @Query("UPDATE products SET isSelected= :isSelected, selectedItemTotalPrice = selectedItemCount * mrpPrice WHERE id = :id")
     fun updateIsSelectedStatus(id: Long, isSelected: Boolean)
 
     @Query("SELECT COUNT(*) from products WHERE isSelected = 1")
     fun getSelectedItemCount(): Int
 
-    @Query("UPDATE products SET selectedItemCount = selectedItemCount + 1.0  WHERE id = :id")
+    @Query("UPDATE products SET selectedItemCount = selectedItemCount + 1.0, selectedItemTotalPrice = selectedItemCount * mrpPrice  WHERE id = :id")
     fun increaseProductItem(id: Long)
 
-    @Query("UPDATE products SET selectedItemCount = selectedItemCount - 1.0  WHERE id = :id")
+    @Query("UPDATE products SET selectedItemCount = selectedItemCount - 1.0, selectedItemTotalPrice = selectedItemCount * mrpPrice  WHERE id = :id")
     fun decreaseProductItem(id: Long)
 
 
-    @Query("SELECT * from products WHERE isSelected == true")
+    @Query("SELECT * from products WHERE isSelected")
     fun getSelectedProducts(): Flow<List<ProductsEntity>>
 
 }

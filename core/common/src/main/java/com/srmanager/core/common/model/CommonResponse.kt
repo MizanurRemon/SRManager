@@ -1,4 +1,4 @@
-package com.srmanager.outlet_domain.model
+package com.srmanager.core.common.model
 
 data class CommonResponse(
     val message : String = ""
