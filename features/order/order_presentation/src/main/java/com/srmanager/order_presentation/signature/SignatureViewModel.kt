@@ -52,7 +52,7 @@ class SignatureViewModel @Inject constructor(private val productsDao: ProductsDa
                                 availableQuantity = product.availableQuantity,
                                 isSelected = product.isSelected,
                                 selectedItemCount = product.selectedItemCount,
-                                selectedItemTotalPrice = product.selectedItemTotalPrice
+                                selectedItemTotalPrice = product.formatTotalPrice().toDouble()
                             )
 
                         }, total = products.sumOf {

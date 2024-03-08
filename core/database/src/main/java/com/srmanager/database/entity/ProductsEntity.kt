@@ -2,9 +2,10 @@ package com.srmanager.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import androidx.room.TypeConverter
 import androidx.room.TypeConverters
 import com.srmanager.database.util.TypeConverterHelper
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 
 @Entity(tableName = "products")
@@ -22,4 +23,13 @@ data class ProductsEntity(
     var isSelected: Boolean,
     var selectedItemCount: Int,
     var selectedItemTotalPrice: Double = 0.0
-)
+){
+    fun formatTotalPrice(): String {
+        return String.format("%.2f", selectedItemTotalPrice)
+    }
+
+    fun formatTotalPriceUsingBigDecimal(): String {
+        val bd = BigDecimal(selectedItemTotalPrice).setScale(2, RoundingMode.HALF_UP)
+        return bd.toString()
+    }
+}
