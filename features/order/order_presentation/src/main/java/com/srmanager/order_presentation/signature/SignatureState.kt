@@ -7,5 +7,10 @@ data class SignatureState(
     /*val srSign: String = ""*/
     var productsList: List<Product> = arrayListOf(),
     val total :Double = 0.0,
-    val orderDate: String = ""
+    val orderDate: String = "",
+    val name : String = "",
+    val contact: String= "",
+    val orderNo : String = "",
+    val outletID : Int = 0,
+    val srID: Int = 0
 )

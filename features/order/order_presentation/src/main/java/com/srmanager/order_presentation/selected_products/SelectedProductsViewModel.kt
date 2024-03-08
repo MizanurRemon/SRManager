@@ -14,8 +14,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -33,10 +35,10 @@ class SelectedProductsViewModel @Inject constructor(private val productsDao: Pro
     }
 
     private fun loadProducts() {
-        viewModelScope.launch(Dispatchers.Default) {
-             productsDao.getSelectedProducts().collect{
+        /*viewModelScope.launch(Dispatchers.Default) {
+            productsDao.getSelectedProducts().collect {
                 state = state.copy(
-                    productsList  = it.map { product ->
+                    productsList = it.map { product ->
                         Product(
                             title = product.title,
                             id = product.id,
@@ -52,8 +54,28 @@ class SelectedProductsViewModel @Inject constructor(private val productsDao: Pro
                     }
                 )
             }
-
-
+        }*/
+        viewModelScope.launch(Dispatchers.Default) {
+            withContext(Dispatchers.Default) {
+                productsDao.getSelectedProducts().collect {
+                    state = state.copy(
+                        productsList = it.map { product ->
+                            Product(
+                                title = product.title,
+                                id = product.id,
+                                mrpPrice = product.mrpPrice,
+                                wholeSalePrice = product.wholeSalePrice,
+                                lastPurchasePrice = product.lastPurchasePrice,
+                                vatPercentage = product.vatPercentage,
+                                price = product.price,
+                                availableQuantity = product.availableQuantity,
+                                isSelected = product.isSelected,
+                                selectedItemCount = product.selectedItemCount
+                            )
+                        }
+                    )
+                }
+            }
         }
     }
 

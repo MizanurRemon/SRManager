@@ -22,6 +22,7 @@ import com.srmanager.order_presentation.order.OrderScreen
 import com.srmanager.order_presentation.products.OrderProductsScreen
 import com.srmanager.order_presentation.selected_products.SelectedProductsScreen
 import com.srmanager.order_presentation.selected_products.SelectedProductsViewModel
+import com.srmanager.order_presentation.signature.SignatureEvent
 import com.srmanager.order_presentation.signature.SignatureScreen
 import com.srmanager.order_presentation.signature.SignatureViewModel
 import com.srmanager.outlet_presentation.dashboard.OutletDashboardScreen
@@ -44,7 +45,7 @@ fun MainApp(
     Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SIGNATURE_SCREEN,
+            startDestination = Route.SPLASH,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -176,12 +177,17 @@ fun MainApp(
 
             composable(route = Route.SIGNATURE_SCREEN) {
                 val viewModel = hiltViewModel<SignatureViewModel>()
+
+                viewModel.onEvent(SignatureEvent.OnOutletIDEvent(value = outletDetails!!.id))
+
                 SignatureScreen(
                     state = viewModel.state,
                     uiEvent = viewModel.uiEvent,
                     onEvent = viewModel::onEvent,
                     onBack = {
                         navController.navigateUp()
+                    }, onSuccess = {
+                        navController.navigate(Route.OUTLET)
                     })
             }
 

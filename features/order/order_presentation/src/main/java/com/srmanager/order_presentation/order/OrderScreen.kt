@@ -223,9 +223,8 @@ fun PreviewOrderItem() {
     OrderItemCompose(item)
 }
 
-/*
 @Composable
 @Preview
 fun PreviewOrderScreen() {
-    //OrderScreen (onBack = {})
-}*/
+    OrderScreen (onBack = {}, onAddClick = {})
+}

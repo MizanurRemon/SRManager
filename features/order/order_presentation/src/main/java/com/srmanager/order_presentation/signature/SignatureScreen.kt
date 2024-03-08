@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,7 +34,6 @@ import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.SignatureDialog
-import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyXSBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyXSRegularTextStyle
 import com.srmanager.core.network.dto.Product
@@ -52,7 +49,8 @@ fun SignatureScreen(
     onBack: () -> Unit,
     state: SignatureState,
     uiEvent: Flow<UiEvent>,
-    onEvent: (SignatureEvent) -> Unit
+    onEvent: (SignatureEvent) -> Unit,
+    onSuccess: () -> Unit
 ) {
 
     val isCustomerDialogOpen = remember { mutableStateOf(false) }
@@ -75,6 +73,15 @@ fun SignatureScreen(
                 .padding(20.r())
             //.verticalScroll(rememberScrollState())
         ) {
+            InfoItem(title = CommonR.string.outlet_id, value = state.outletID.toString())
+
+            InfoItem(title = CommonR.string.sr_id, value = state.srID.toString())
+
+            InfoItem(title = CommonR.string.name, value = state.name)
+
+            InfoItem(title = CommonR.string.contact, value = state.contact)
+
+            InfoItem(title = CommonR.string.order_no, value = state.orderNo)
 
             InfoItem(title = CommonR.string.date, value = state.orderDate)
 
@@ -85,9 +92,11 @@ fun SignatureScreen(
                     .height(1.r())
             )
 
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 5.r())) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 5.r())
+            ) {
                 Text(
                     text = stringResource(id = CommonR.string.product_id),
                     modifier = Modifier.width(120.r()),
@@ -122,91 +131,49 @@ fun SignatureScreen(
 
             Spacer(modifier = Modifier.height(20.r()))
 
-            Box(
+            Column(
                 modifier = Modifier
-                    .height(100.r())
-                    .width(150.r())
-                    .border(
-                        width = 1.r(),
-                        color = Color.LightGray,
-                        shape = RoundedCornerShape(10.r())
-                    )
-                    .background(color = Color.White)
-                    .clickable {
-                        isCustomerDialogOpen.value = true
-                    }
                     .align(alignment = Alignment.End)
+                    .width(150.r()),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
+                Box(
+                    modifier = Modifier
+                        .height(100.r())
+                        .fillMaxWidth()
+                        .background(color = Color(0xFFF5F5F5))
+                        .clickable {
+                            isCustomerDialogOpen.value = true
+                        }
 
-                if (state.customerSign.isEmpty()) {
-                    Text(
-                        text = stringResource(id = CommonR.string.sign_here),
-                        modifier = Modifier.align(
-                            Alignment.Center
-                        ),
-                        style = bodyBoldTextStyle
-                    )
-                } else {
+                ) {
 
-                    Image(
-                        bitmap = base64ToImage(state.customerSign).asImageBitmap(),
-                        contentDescription = "",
-                        modifier = Modifier
-                            .align(Alignment.Center)
-                            .fillMaxHeight()
-                    )
-
+                    if (state.customerSign.isNotEmpty()) {
+                        Image(
+                            bitmap = base64ToImage(state.customerSign).asImageBitmap(),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .fillMaxHeight()
+                        )
+                    }
                 }
 
+                Spacer(
+                    modifier = Modifier
+                        .height(1.r())
+                        .fillMaxWidth()
+                        .background(color = Color.LightGray)
+                )
 
+                Text(
+                    text = stringResource(id = CommonR.string.sign_here),
+                    style = bodyXSBoldTextStyle,
+                    modifier = Modifier.padding(top = 5.r())
+                )
             }
 
             Spacer(modifier = Modifier.height(10.r()))
-
-            /*  Text(
-                  text = stringResource(id = CommonR.string.sr_signature),
-                  style = subHeading1TextStyle
-              )
-              Box(
-                  modifier = Modifier
-                      .fillMaxWidth()
-                      .height(200.r())
-                      .padding(20.r())
-                      .border(
-                          width = 1.r(),
-                          color = Color.LightGray,
-                          shape = RoundedCornerShape(10.r())
-                      )
-                      .background(color = Color.White)
-                      .clickable {
-                          isSrDialogOpen.value = true
-                      }
-              ) {
-
-                  if (state.srSign.isEmpty()) {
-
-                      Text(
-                          text = stringResource(id = CommonR.string.tap_here_to_sign),
-                          modifier = Modifier.align(
-                              Alignment.Center
-                          ),
-                          style = bodyBoldTextStyle
-                      )
-                  } else {
-
-                      Image(
-                          bitmap = base64ToImage(state.srSign).asImageBitmap(),
-                          contentDescription = "",
-                          modifier = Modifier
-                              .align(Alignment.Center)
-                              .fillMaxHeight()
-                      )
-
-                  }
-
-
-              }
-  */
 
             AppActionButtonCompose(
                 stringId = CommonR.string.done,
@@ -214,7 +181,7 @@ fun SignatureScreen(
                     .fillMaxWidth()
                     .padding(vertical = 10.r())
             ) {
-
+onSuccess()
             }
 
         }
@@ -337,8 +304,9 @@ fun PreviewSignatureScreen() {
                 selectedItemTotalPrice = 5.5
             )
         )
-    ), uiEvent = flow { }, onEvent = {})
-}
+    ), uiEvent = flow { }, onEvent = {}) {
 
+    }
+}
 
 

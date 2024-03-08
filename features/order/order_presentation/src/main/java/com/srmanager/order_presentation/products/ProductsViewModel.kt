@@ -65,7 +65,7 @@ class ProductsViewModel @Inject constructor(
             }
 
             launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO){
+                withContext(Dispatchers.IO) {
                     productsDao.getProducts().collect {
                         state = state.copy(
                             isLoading = false,
@@ -89,8 +89,11 @@ class ProductsViewModel @Inject constructor(
 
 
             launch(Dispatchers.Default) {
-
-                state = state.copy(isNextButtonEnabled = productsDao.getSelectedItemCount() > 0)
+                withContext(Dispatchers.IO) {
+                    productsDao.getSelectedItemCount().collect {
+                        state = state.copy(isNextButtonEnabled = it > 0)
+                    }
+                }
             }
 
         }
@@ -119,7 +122,11 @@ class ProductsViewModel @Inject constructor(
 
                     productsDao.updateIsSelectedStatus(id = event.id, isSelected = event.isSelected)
 
-                    state = state.copy(isNextButtonEnabled = productsDao.getSelectedItemCount() > 0)
+                    productsDao.getSelectedItemCount().collect { itemCount ->
+
+                        state = state.copy(isNextButtonEnabled = itemCount > 0)
+                    }
+
                 }
             }
         }

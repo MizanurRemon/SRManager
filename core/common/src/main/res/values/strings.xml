@@ -122,4 +122,10 @@
     <string name="mrp">MRP</string>
     <string name="total">Total</string>
     <string name="date">Date</string>
+    <string name="name">Name</string>
+    <string name="contact">Contact</string>
+    <string name="order_no">Order No</string>
+    <string name="create_order">Create Order</string>
+    <string name="sr_id">Sr ID</string>
+    <string name="outlet_id">Outlet ID</string>
 </resources>

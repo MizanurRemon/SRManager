@@ -9,7 +9,7 @@ class TypeConverterHelper {
 
     @TypeConverter
     fun toDouble(value: String?): Double {
-        return value?.toDouble() ?: 0.0 // Or any default value you prefer
+        return value?.toDouble() ?: 0.0
     }
 
     @TypeConverter

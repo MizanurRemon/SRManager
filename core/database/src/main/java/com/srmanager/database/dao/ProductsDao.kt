@@ -20,7 +20,7 @@ interface ProductsDao {
     fun updateIsSelectedStatus(id: Long, isSelected: Boolean)
 
     @Query("SELECT COUNT(*) from products WHERE isSelected = 1")
-    fun getSelectedItemCount(): Int
+    fun getSelectedItemCount(): Flow<Int>
 
     @Query("UPDATE products SET selectedItemCount = selectedItemCount + 1.0, selectedItemTotalPrice = selectedItemCount * mrpPrice  WHERE id = :id")
     fun increaseProductItem(id: Long)

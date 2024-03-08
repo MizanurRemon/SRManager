@@ -10,37 +10,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/util/TypeConverterHelper.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/OrderRequest.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_domain/src/main/java/com/srmanager/order_domain/model/CreateOrderModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/features/order/order_domain/src/main/java/com/srmanager/order_domain/use_case/CreateOrderUseCases.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/AppDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/AppDatabase.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/dao/ProductsDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/dao/ProductsDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/entity/ProductsEntity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/entity/ProductsEntity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PrivateApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/ProductsDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/ProductsDto.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_data/src/main/java/com/srmanager/order_data/dataSource/remote/OrderRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_data/src/main/java/com/srmanager/order_data/dataSource/remote/OrderRemoteDataSource.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_data/src/main/java/com/srmanager/order_data/dataSourceImpl/remote/OrderRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_data/src/main/java/com/srmanager/order_data/dataSourceImpl/remote/OrderRemoteDataSourceImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_data/src/main/java/com/srmanager/order_data/mapper/OrderMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_data/src/main/java/com/srmanager/order_data/mapper/OrderMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_data/src/main/java/com/srmanager/order_data/repository/OrderRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_data/src/main/java/com/srmanager/order_data/repository/OrderRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_domain/src/main/java/com/srmanager/order_domain/di/OrderDomainModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_domain/src/main/java/com/srmanager/order_domain/di/OrderDomainModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_domain/src/main/java/com/srmanager/order_domain/repository/OrderRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_domain/src/main/java/com/srmanager/order_domain/repository/OrderRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/order/order_domain/src/main/java/com/srmanager/order_domain/use_case/OrderUseCases.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_domain/src/main/java/com/srmanager/order_domain/use_case/OrderUseCases.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/util/TypeConverterHelper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/util/TypeConverterHelper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/selected_products/SelectedProductsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/selected_products/SelectedProductsViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureEvent.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/mapper/OutletMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/mapper/OutletMapper.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/repository/OutletRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data/repository/OutletRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/model/CommonResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/model/CommonResponse.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/repository/OutletRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/repository/OutletRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletAddUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletAddUseCase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletCheckOutUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain/use_cases/OutletCheckOutUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/dashboard/OutletDashboardScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/dashboard/OutletDashboardScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +33,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/remon/.android/avd/Medium_Phone_API_33.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[33220fdb]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -1037,7 +1020,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="388" />
+    <option name="localTasksCounter" value="389" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

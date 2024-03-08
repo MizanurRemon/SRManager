@@ -83,7 +83,7 @@ fun GridItem(
             .clickable {
                 onGridItemClick(response.route, outletDetails)
             }
-            .padding(10.r()),
+            .padding(5.r()),
         colors = CardDefaults.cardColors(
             containerColor = APP_DEFAULT_COLOR,
         ),
@@ -120,5 +120,6 @@ fun GridItem(
 @Composable
 @Preview
 fun PreviewOutletDashboardScreen() {
-    //OutletDashboardScreen(onBack = {}, onGridItemClick = {})
+    OutletDashboardScreen(onBack = {}, onGridItemClick = { route: String, outletDetails: Outlet? ->
+    })
 }

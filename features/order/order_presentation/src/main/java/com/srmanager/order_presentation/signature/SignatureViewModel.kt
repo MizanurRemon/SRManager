@@ -68,7 +68,12 @@ class SignatureViewModel @Inject constructor(private val productsDao: ProductsDa
                         DateTimeFormatter.ofPattern(
                             DATE_FORMAT
                         )
-                    )
+                    ),
+                    orderNo = LocalDateTime.now().format(
+                        DateTimeFormatter.ofPattern(
+                            "yyMMddhhmmss"
+                        )
+                    ),
                 )
             }
         }
@@ -90,6 +95,12 @@ class SignatureViewModel @Inject constructor(private val productsDao: ProductsDa
 
             is SignatureEvent.OnDoneEvent -> {
 
+            }
+
+            is SignatureEvent.OnOutletIDEvent-> {
+                state = state.copy(
+                    outletID = event.value
+                )
             }
         }
     }

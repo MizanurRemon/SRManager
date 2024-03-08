@@ -16,7 +16,7 @@ import com.srmanager.database.util.TypeConverterHelper
     exportSchema = false,
     version = 13
 )
-@TypeConverters(TypeConverterHelper::class)
+
 abstract class AppDatabase : RoomDatabase() {
     abstract val userDao: UserDao
     abstract val locationDao: LocationDao
