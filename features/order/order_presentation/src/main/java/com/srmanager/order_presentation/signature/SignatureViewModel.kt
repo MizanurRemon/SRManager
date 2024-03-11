@@ -11,23 +11,27 @@ import com.srmanager.core.common.util.DATE_FORMAT
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.bitMapToString
 import com.srmanager.core.network.dto.Product
+import com.srmanager.core.network.model.OrderDetail
 import com.srmanager.core.network.model.OrderInformation
 import com.srmanager.database.dao.ProductsDao
+import com.srmanager.order_domain.model.CreateOrderModel
+import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.Date
 import javax.inject.Inject
 
 @SuppressLint("SimpleDateFormat")
 @HiltViewModel
-class SignatureViewModel @Inject constructor(private val productsDao: ProductsDao) : ViewModel() {
+class SignatureViewModel @Inject constructor(
+    private val productsDao: ProductsDao,
+    private val orderUseCases: OrderUseCases
+) : ViewModel() {
     var state by mutableStateOf(SignatureState())
         private set
 
@@ -94,10 +98,37 @@ class SignatureViewModel @Inject constructor(private val productsDao: ProductsDa
             }
 
             is SignatureEvent.OnDoneEvent -> {
+                viewModelScope.launch {
+                    orderUseCases.createOrderUseCases(
+                        CreateOrderModel(
+                            orderInformation = OrderInformation(
+                                customerSignature = state.customerSign,
+                                outletId = state.outletID.toLong(),
+                                customerId = state.srID.toLong(),
+                                customerName = state.name,
+                                contactNo = state.contact,
+                                orderNo = state.orderNo,
+                                orderDate = state.orderDate,
+                                totalAmount = state.total.toLong(),
+                            ),
+                            orderDetails = state.productsList.map { product ->
+                                OrderDetail(
+                                    productId = product.id,
+                                    quantity = product.selectedItemCount.toLong(),
+                                    mrp = product.mrpPrice,
+                                    totalProductAmount = product.selectedItemTotalPrice.toLong(),
+                                )
+                            }
+                        )
+                    ).onSuccess {
 
+                    }.onFailure {
+
+                    }
+                }
             }
 
-            is SignatureEvent.OnOutletIDEvent-> {
+            is SignatureEvent.OnOutletIDEvent -> {
                 state = state.copy(
                     outletID = event.value
                 )
