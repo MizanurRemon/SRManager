@@ -16,8 +16,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -25,6 +28,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +36,7 @@ import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.base64ToImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
+import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.SignatureDialog
 import com.srmanager.core.designsystem.theme.bodyXSBoldTextStyle
@@ -50,13 +55,41 @@ fun SignatureScreen(
     state: SignatureState,
     uiEvent: Flow<UiEvent>,
     onEvent: (SignatureEvent) -> Unit,
-    onSuccess: () -> Unit
+    onSuccess: () -> Unit,
+    snackbarHostState: SnackbarHostState,
 ) {
 
     val isCustomerDialogOpen = remember { mutableStateOf(false) }
     val isSrDialogOpen = remember {
         mutableStateOf(false)
     }
+
+    val context = LocalContext.current
+
+    LaunchedEffect(key1 = true) {
+        uiEvent.collect { event ->
+            when (event) {
+                is UiEvent.Success -> {
+
+
+                }
+
+                is UiEvent.ShowSnackbar -> {
+                    snackbarHostState.showSnackbar(
+                        message = event.message.asString(context),
+                        duration = SnackbarDuration.Short,
+                    )
+                }
+
+                is UiEvent.NavigateUp -> {
+
+                }
+            }
+
+        }
+
+    }
+
 
 
     Scaffold(topBar = {
@@ -181,7 +214,7 @@ fun SignatureScreen(
                     .fillMaxWidth()
                     .padding(vertical = 10.r())
             ) {
-onSuccess()
+                onEvent(SignatureEvent.OnDoneEvent)
             }
 
         }
@@ -204,6 +237,12 @@ onSuccess()
                 onEvent(SignatureEvent.OnSRSignEvent(it))
             }
         )
+    }
+
+    if (state.isLoading) {
+        LoadingDialog {
+
+        }
     }
 
 
@@ -304,9 +343,14 @@ fun PreviewSignatureScreen() {
                 selectedItemTotalPrice = 5.5
             )
         )
-    ), uiEvent = flow { }, onEvent = {}) {
-
-    }
+    ),
+        uiEvent = flow { },
+        onEvent = {},
+        snackbarHostState = remember {
+            SnackbarHostState()
+        },
+        onSuccess = {}
+    )
 }
 
 

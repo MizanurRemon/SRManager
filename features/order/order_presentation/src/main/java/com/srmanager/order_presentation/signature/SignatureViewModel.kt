@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.DATE_FORMAT
 import com.srmanager.core.common.util.UiEvent
+import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.bitMapToString
 import com.srmanager.core.network.dto.Product
 import com.srmanager.core.network.model.OrderDetail
@@ -99,31 +100,70 @@ class SignatureViewModel @Inject constructor(
 
             is SignatureEvent.OnDoneEvent -> {
                 viewModelScope.launch {
-                    orderUseCases.createOrderUseCases(
-                        CreateOrderModel(
-                            orderInformation = OrderInformation(
-                                customerSignature = state.customerSign,
-                                outletId = state.outletID.toLong(),
-                                customerId = state.srID.toLong(),
-                                customerName = state.name,
-                                contactNo = state.contact,
-                                orderNo = state.orderNo,
-                                orderDate = state.orderDate,
-                                totalAmount = state.total.toLong(),
-                            ),
-                            orderDetails = state.productsList.map { product ->
-                                OrderDetail(
-                                    productId = product.id,
-                                    quantity = product.selectedItemCount.toLong(),
-                                    mrp = product.mrpPrice,
-                                    totalProductAmount = product.selectedItemTotalPrice.toLong(),
+
+                    state = state.copy(
+                        isLoading = true,
+                        isOrderReady = state.customerSign.isNotEmpty() && state.outletID != 0 && state.srID != 0
+                                && state.name.isNotEmpty() && state.contact.isNotEmpty() && state.orderNo.isNotEmpty()
+                                && state.orderDate.isNotEmpty() && state.total != 0.0
+                    )
+
+                    when {
+                        state.isOrderReady -> {
+                            orderUseCases.createOrderUseCases(
+                                CreateOrderModel(
+                                    orderInformation = OrderInformation(
+                                        customerSignature = state.customerSign,
+                                        outletId = state.outletID.toLong(),
+                                        customerId = state.srID.toLong(),
+                                        customerName = state.name,
+                                        contactNo = state.contact,
+                                        orderNo = state.orderNo,
+                                        orderDate = state.orderDate,
+                                        totalAmount = state.total.toLong(),
+                                    ),
+                                    orderDetails = state.productsList.map { product ->
+                                        OrderDetail(
+                                            productId = product.id,
+                                            quantity = product.selectedItemCount.toLong(),
+                                            mrp = product.mrpPrice,
+                                            totalProductAmount = product.selectedItemTotalPrice.toLong(),
+                                        )
+                                    }
+                                )
+                            ).onSuccess {
+                                state = state.copy(
+                                    isLoading = false
+                                )
+
+                            }.onFailure {
+                                state = state.copy(
+                                    isLoading = false
+                                )
+
+                                _uiEvent.send(
+                                    UiEvent.ShowSnackbar(
+                                        UiText.DynamicString(
+                                            it.message.toString()
+                                        )
+                                    )
                                 )
                             }
-                        )
-                    ).onSuccess {
+                        }
 
-                    }.onFailure {
+                        else -> {
+                            state = state.copy(
+                                isLoading = false
+                            )
 
+                            _uiEvent.send(
+                                UiEvent.ShowSnackbar(
+                                    UiText.DynamicString(
+                                        "can't create order, missing data"
+                                    )
+                                )
+                            )
+                        }
                     }
                 }
             }

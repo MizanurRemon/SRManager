@@ -12,5 +12,7 @@ data class SignatureState(
     val contact: String= "",
     val orderNo : String = "",
     val outletID : Int = 0,
-    val srID: Int = 0
+    val srID: Int = 0,
+    val isOrderReady : Boolean = false,
+    val isLoading : Boolean = false
 )

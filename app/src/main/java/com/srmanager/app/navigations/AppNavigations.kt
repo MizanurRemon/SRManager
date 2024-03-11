@@ -188,7 +188,9 @@ fun MainApp(
                         navController.navigateUp()
                     }, onSuccess = {
                         navController.navigate(Route.OUTLET)
-                    })
+                    },
+                    snackbarHostState = snackBarHostState
+                )
             }
 
             composable(route = Route.SELECTED_PRODUCTS_SCREEN) {
