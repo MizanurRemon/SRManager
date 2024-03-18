@@ -11,11 +11,19 @@
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/navigations/AppNavigations.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/PublicNetworkModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/PublicNetworkModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/interceptor/PublicInterceptor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/interceptor/PublicInterceptor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/OrderRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/OrderRequest.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureState.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_checkout/OutletCheckoutScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_checkout/OutletCheckoutScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1012,7 +1020,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="392" />
+    <option name="localTasksCounter" value="393" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

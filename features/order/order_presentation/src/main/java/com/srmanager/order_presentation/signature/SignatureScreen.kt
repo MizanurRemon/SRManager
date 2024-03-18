@@ -108,12 +108,6 @@ fun SignatureScreen(
         ) {
             InfoItem(title = CommonR.string.outlet_id, value = state.outletID.toString())
 
-            InfoItem(title = CommonR.string.sr_id, value = state.srID.toString())
-
-            InfoItem(title = CommonR.string.name, value = state.name)
-
-            InfoItem(title = CommonR.string.contact, value = state.contact)
-
             InfoItem(title = CommonR.string.order_no, value = state.orderNo)
 
             InfoItem(title = CommonR.string.date, value = state.orderDate)

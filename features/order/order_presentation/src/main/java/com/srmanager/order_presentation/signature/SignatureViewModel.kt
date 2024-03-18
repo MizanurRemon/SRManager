@@ -103,8 +103,7 @@ class SignatureViewModel @Inject constructor(
 
                     state = state.copy(
                         isLoading = true,
-                        isOrderReady = state.customerSign.isNotEmpty() && state.outletID != 0 && state.srID != 0
-                                && state.name.isNotEmpty() && state.contact.isNotEmpty() && state.orderNo.isNotEmpty()
+                        isOrderReady = state.customerSign.isNotEmpty() && state.outletID != 0 && state.orderNo.isNotEmpty()
                                 && state.orderDate.isNotEmpty() && state.total != 0.0
                     )
 
@@ -115,9 +114,6 @@ class SignatureViewModel @Inject constructor(
                                     orderInformation = OrderInformation(
                                         customerSignature = state.customerSign,
                                         outletId = state.outletID.toLong(),
-                                        customerId = state.srID.toLong(),
-                                        customerName = state.name,
-                                        contactNo = state.contact,
                                         orderNo = state.orderNo,
                                         orderDate = state.orderDate,
                                         totalAmount = state.total.toLong(),

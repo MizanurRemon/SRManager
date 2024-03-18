@@ -3,13 +3,11 @@ package com.srmanager.outlet_presentation.outlet_add
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.text.toLowerCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.auth_presentation.isEmailValid
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
-import com.srmanager.auth_presentation.isPhoneNumberValid
-import com.srmanager.core.common.util.ETCHNICITIES
+import com.srmanager.core.common.util.ETHNICITIES
 import com.srmanager.core.common.util.PAYMENT_OPTIONS
 import com.srmanager.core.common.util.ROUTE_NAMES
 import com.srmanager.core.common.util.UiEvent
@@ -132,7 +130,7 @@ class OutletAddViewModel @Inject constructor(
                                 paymentOption = PAYMENT_OPTIONS[0],
                                 marketID = state.marketNameList.first().id!!.toInt(),
                                 marketName = state.marketNameList.first().text.toString(),
-                                ethnicity = ETCHNICITIES[0],
+                                ethnicity = ETHNICITIES[0],
                                 routeName = ROUTE_NAMES[0]
                             )
                             _uiEvent.send(

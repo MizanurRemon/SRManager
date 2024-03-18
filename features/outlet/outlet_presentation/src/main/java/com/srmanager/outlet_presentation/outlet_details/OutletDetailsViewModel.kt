@@ -1,15 +1,12 @@
 package com.srmanager.outlet_presentation.outlet_details
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.auth_presentation.isEmailValid
-import com.srmanager.auth_presentation.isPhoneNumberValid
-import com.srmanager.core.common.util.ETCHNICITIES
-import com.srmanager.core.common.util.MARKET_NAMES
+import com.srmanager.core.common.util.ETHNICITIES
 import com.srmanager.core.common.util.PAYMENT_OPTIONS
 import com.srmanager.core.common.util.ROUTE_NAMES
 import com.srmanager.core.common.util.UiEvent
@@ -84,7 +81,7 @@ class OutletDetailsViewModel @Inject constructor(
                     routeName = response.data.routeName!!.ifEmpty { ROUTE_NAMES[0] },
                     email = response.data.ownerEmail.toString(),
                     paymentOption = response.data.paymentTerms!!.ifEmpty { PAYMENT_OPTIONS[0] },
-                    ethnicity = response.data.shopEthnicity!!.ifEmpty { ETCHNICITIES[0] }
+                    ethnicity = response.data.shopEthnicity!!.ifEmpty { ETHNICITIES[0] }
                 )
 
             }.onFailure {

@@ -394,7 +394,7 @@ fun OutletDetailsScreen(
                         ),
                     placeholder = {
                         Text(
-                            text = ETCHNICITIES[0],
+                            text = ETHNICITIES[0],
                             style = TextStyle(
                                 color = ColorTextFieldPlaceholder,
                             )
@@ -417,7 +417,7 @@ fun OutletDetailsScreen(
                     )
 
                     Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
-                    ETCHNICITIES.forEach { label ->
+                    ETHNICITIES.forEach { label ->
                         DropdownMenuItem(text = {
                             Text(
                                 text = label,

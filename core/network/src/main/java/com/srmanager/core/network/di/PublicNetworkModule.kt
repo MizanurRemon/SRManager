@@ -1,11 +1,10 @@
 package com.srmanager.core.network.di
 
-import com.srmanager.core.datastore.PreferenceDataStoreHelper
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.srmanager.core.network.PublicApiService
 import com.srmanager.core.network.di.qualifier.PublicNetwork
 import com.srmanager.core.network.interceptor.PublicInterceptor
 import com.srmanager.core.network.util.ResultCallAdapterFactory
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,8 +25,8 @@ object PublicNetworkModule {
     @Provides
     @Singleton
     @PublicNetwork(TypeEnum.INTERCEPTOR)
-    fun provideInterceptor(preferenceDataStoreHelper: PreferenceDataStoreHelper): PublicInterceptor {
-        return PublicInterceptor(preferenceDataStoreHelper)
+    fun provideInterceptor(): PublicInterceptor {
+        return PublicInterceptor()
     }
 
     @Provides
@@ -52,7 +51,7 @@ object PublicNetworkModule {
         return Retrofit.Builder().baseUrl(RestConfig.LOCAL_URL).callFactory(okHttpClient)
             .addCallAdapterFactory(ResultCallAdapterFactory()).addConverterFactory(
                 @OptIn(ExperimentalSerializationApi::class) Json {
-                    ignoreUnknownKeys = true;
+                    ignoreUnknownKeys = true
                     isLenient = true
 
                 }.asConverterFactory("application/json".toMediaType())
