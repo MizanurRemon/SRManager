@@ -4,8 +4,6 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <option name="testRunner" value="GRADLE" />
-        <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="gradleJvm" value="jbr-17" />
         <option name="modules">
@@ -27,16 +25,19 @@
             <option value="$PROJECT_DIR$/features/auth/auth_data" />
             <option value="$PROJECT_DIR$/features/auth/auth_domain" />
             <option value="$PROJECT_DIR$/features/auth/auth_presentation" />
+            <option value="$PROJECT_DIR$/features/order" />
+            <option value="$PROJECT_DIR$/features/order/order_data" />
+            <option value="$PROJECT_DIR$/features/order/order_domain" />
+            <option value="$PROJECT_DIR$/features/order/order_presentation" />
+            <option value="$PROJECT_DIR$/features/outlet" />
+            <option value="$PROJECT_DIR$/features/outlet/outlet_data" />
+            <option value="$PROJECT_DIR$/features/outlet/outlet_domain" />
+            <option value="$PROJECT_DIR$/features/outlet/outlet_presentation" />
             <option value="$PROJECT_DIR$/features/report" />
-            <option value="$PROJECT_DIR$/features/report/report_data" />
-            <option value="$PROJECT_DIR$/features/report/report_domain" />
             <option value="$PROJECT_DIR$/features/report/report_presentation" />
-            <option value="$PROJECT_DIR$/features/settings" />
-            <option value="$PROJECT_DIR$/features/settings/settings_data" />
-            <option value="$PROJECT_DIR$/features/settings/settings_domain" />
-            <option value="$PROJECT_DIR$/features/settings/settings_presentation" />
           </set>
         </option>
+        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

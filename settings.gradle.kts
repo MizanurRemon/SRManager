@@ -3,6 +3,9 @@ pluginManagement {
         google()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
+        maven {
+            url=uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+
         gradlePluginPortal()
     }
 }
@@ -12,6 +15,9 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         maven { setUrl("https://jitpack.io") }
+        maven {
+            url=uri("https://oss.sonatype.org/content/repositories/snapshots/") }
+
     }
 }
 rootProject.name = "SRManager"
@@ -25,11 +31,12 @@ include(":core:datastore")
 include(":core:database")
 include(":features:auth:auth_data")
 include(":features:auth:auth_domain")
-include(":features:report:report_presentation")
-include(":features:report:report_data")
-include(":features:report:report_domain")
-include(":features:settings:settings_data")
-include(":features:settings:settings_domain")
-include(":features:settings:settings_presentation")
 include(":core:data")
 include(":core:domain")
+include(":features:outlet:outlet_presentation")
+include(":features:report:report_presentation")
+include(":features:outlet:outlet_data")
+include(":features:outlet:outlet_domain")
+include(":features:order:order_presentation")
+include(":features:order:order_domain")
+include(":features:order:order_data")

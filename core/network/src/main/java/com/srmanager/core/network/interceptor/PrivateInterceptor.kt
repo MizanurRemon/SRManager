@@ -29,7 +29,7 @@ class PrivateInterceptor(private val preferenceDataStoreHelper: PreferenceDataSt
                 PreferenceDataStoreConstants.ACCESS_TOKEN,
                 ""
             )
-            if (!RestConfig.validateToken(token)) {
+           /* if (!RestConfig.validateToken(token)) {
                 val refreshToken = preferenceDataStoreHelper.getFirstPreference(
                     PreferenceDataStoreConstants.REFRESH_TOKEN, ""
                 )
@@ -54,7 +54,7 @@ class PrivateInterceptor(private val preferenceDataStoreHelper: PreferenceDataSt
 
                 } catch (_: Exception) {
                 }
-            }
+            }*/
             return@runBlocking token
 
         }
@@ -62,7 +62,7 @@ class PrivateInterceptor(private val preferenceDataStoreHelper: PreferenceDataSt
         val newRequest =
             originalRequest.newBuilder()
                 .header("Authorization", "Bearer $authToken")
-                .addHeader("App-Type", "APP-ANDROID")
+                //.addHeader("App-Type", "APP-ANDROID")
                 .build()
         return chain.proceed(newRequest)
     }
@@ -75,7 +75,7 @@ class PrivateInterceptor(private val preferenceDataStoreHelper: PreferenceDataSt
         val okHttpClient = OkHttpClient.Builder().addInterceptor(loggingInterceptor).build()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl(RestConfig.SERVER_URL_EN)
+            .baseUrl(RestConfig.LOCAL_URL)
             .addConverterFactory(
                 @OptIn(ExperimentalSerializationApi::class)
                 Json {

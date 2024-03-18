@@ -10,5 +10,6 @@ data class HomeState(
     val rank: String = "",
     val avatarUrl:String="",
     val userScore:Int=0,
-    val searchText: String = ""
+    val searchText: String = "",
+    val address: String = ""
 )

@@ -1,11 +1,17 @@
 package com.srmanager.core.designsystem.theme
 
+import android.Manifest
+import android.annotation.SuppressLint
+import android.content.Context
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Build
-import android.view.Gravity
 import android.widget.TextView
-import androidx.annotation.DrawableRes
+import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -13,6 +19,9 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,6 +34,9 @@ import androidx.compose.ui.focus.onFocusEvent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Path
+import androidx.compose.ui.layout.boundsInRoot
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -32,19 +44,35 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import androidx.compose.ui.window.DialogWindowProvider
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
+import androidx.core.graphics.applyCanvas
 import androidx.core.text.HtmlCompat
+import coil.compose.rememberImagePainter
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.srmanager.core.common.util.CoilImageGetter
+import com.srmanager.core.common.util.convertMillisToDate
+import com.srmanager.core.common.util.currentDate
+import com.srmanager.core.designsystem.BuildConfig
+import com.srmanager.core.designsystem.PathState
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
-import com.srmanager.core.designsystem.h
+import com.srmanager.core.designsystem.components.DrawingCanvas
+import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.w
-import com.srmanager.core.ui.DevicePreviews
+import se.warting.signaturepad.SignaturePadAdapter
+import se.warting.signaturepad.SignaturePadView
+import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Objects
+import kotlin.math.roundToInt
+import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 
 private val DarkColorScheme = darkColorScheme(
@@ -58,12 +86,15 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun InternetPoliceTheme(
+fun BaseTheme(
     darkTheme: Boolean = false,//isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
     val systemUiController = rememberSystemUiController()
     systemUiController.setStatusBarColor(Color.White)
+    systemUiController.setSystemBarsColor(
+        color = APP_DEFAULT_COLOR
+    )
     val colorScheme = when {
         Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
@@ -89,12 +120,6 @@ fun Modifier.conditional(condition: Boolean, modifier: Modifier.() -> Modifier):
     }
 }
 
-fun Modifier.noRippleClickable(onClick: () -> Unit): Modifier = composed {
-    clickable(indication = null,
-        interactionSource = remember { MutableInteractionSource() }) {
-        onClick()
-    }
-}
 
 @OptIn(ExperimentalLayoutApi::class)
 fun Modifier.clearFocusOnKeyboardDismiss(): Modifier = composed {
@@ -571,273 +596,6 @@ fun ShowPopup(
 }
 
 
-@OptIn(ExperimentalComposeUiApi::class)
-@Composable
-fun ShowPopUpWithImage(
-    openDialog: MutableState<Boolean>,
-    @StringRes titleResId: Int,
-    @StringRes descriptionResId: Int,
-    @StringRes dismissTextResId: Int,
-    @StringRes confirmTextResId: Int,
-    @DrawableRes contentImage: Int,
-    sureClick: () -> Unit
-) {
-
-    if (openDialog.value) {
-        Dialog(
-            properties = DialogProperties(
-                dismissOnBackPress = false,
-                dismissOnClickOutside = false,
-                usePlatformDefaultWidth = false
-            ),
-            onDismissRequest = {
-                openDialog.value = false
-            },
-        ) {
-
-
-            Surface(
-                color = Color.White,
-                shape = RoundedCornerShape(32.dp),
-                modifier = Modifier
-                    .padding(30.dp)
-                    .fillMaxWidth()
-            ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = 20.dp, top = 30.dp, end = 20.dp, bottom = 30.dp),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) {
-
-                    Text(
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 20.dp, end = 20.dp),
-                        text = stringResource(id = titleResId),
-                        style = subHeading1TextStyle
-                    )
-
-                    Divider(color = Color.Transparent, modifier = Modifier.height(30.h()))
-
-                    Text(
-                        textAlign = TextAlign.Center,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(start = 20.dp, end = 20.dp),
-                        text = stringResource(id = descriptionResId).parseBold(),
-                        style = bodyRegularTextStyle.copy(color = ColorTextSecondary)
-                    )
-
-                    Divider(color = Color.Transparent, modifier = Modifier.height(30.h()))
-
-                    Image(
-                        painter = painterResource(id = contentImage),
-                        contentDescription = "",
-                        modifier = Modifier.height(250.dp),
-                    )
-
-                    Divider(color = Color.Transparent, modifier = Modifier.height(30.h()))
-
-                    Row(
-                        modifier = Modifier
-                            .padding(top = 20.dp)
-                            .fillMaxWidth()
-                    ) {
-                        Button(
-                            colors = ButtonDefaults.buttonColors(ColorPrimaryDark),
-                            onClick = {
-                                openDialog.value = false
-                            },
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(52.h())
-                        ) {
-                            Text(
-                                modifier = Modifier.padding(5.dp),
-                                text = stringResource(id = dismissTextResId),
-                                style = TextStyle(
-                                    color = Color.White,
-                                    fontFamily = fontRoboto,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 14.sp,
-                                    letterSpacing = .5.sp
-                                )
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(12.w()))
-                        Button(
-                            shape = RoundedCornerShape(30.dp),
-                            border = BorderStroke(1.dp, Color.Red),
-                            colors = ButtonDefaults.buttonColors(Color.White),
-                            onClick = {
-                                //openDialog.value = false
-                                sureClick()
-                            },
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(52.h())
-                        ) {
-                            Text(
-                                modifier = Modifier.padding(5.dp),
-                                text = stringResource(id = confirmTextResId),
-                                style = TextStyle(
-                                    color = Color.Red,
-                                    fontFamily = fontRoboto,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 14.sp,
-                                    letterSpacing = .5.sp,
-                                    textAlign = TextAlign.Center
-                                )
-                            )
-                        }
-                    }
-
-                }
-
-
-            }
-        }
-    }
-}
-
-
-@OptIn(ExperimentalComposeUiApi::class)
-@Composable
-fun ConsentPopUp(
-    openDialog: MutableState<Boolean>,
-    cancelClick: () -> Unit,
-    agreeClick: () -> Unit
-) {
-
-    if (openDialog.value) {
-        Dialog(
-            properties = DialogProperties(
-                dismissOnBackPress = false,
-                dismissOnClickOutside = false,
-                usePlatformDefaultWidth = false
-            ),
-            onDismissRequest = {
-                openDialog.value = false
-            }
-        ) {
-
-            val dialogWindowProvider = LocalView.current.parent as DialogWindowProvider
-            dialogWindowProvider.window.setGravity(Gravity.BOTTOM)
-
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(shape = RoundedCornerShape(topStart = 32.w(), topEnd = 32.w()))
-                    .background(brush = AppBrush)
-            ) {
-                Column(
-                    modifier = Modifier
-                        .padding(top = 30.h(), bottom = 54.h())
-                        .padding(horizontal = 37.w())
-                        .fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-
-                ) {
-                    Text(
-                        text = stringResource(id = CommonR.string.note_on_privacy),
-                        style = subHeading1TextStyle,
-                        modifier = Modifier.padding(horizontal = 37.w())
-                    )
-
-                    Spacer(modifier = Modifier.height(25.h()))
-
-                    Text(
-                        modifier = Modifier.padding(horizontal = 19.w()),
-                        text = stringResource(id = CommonR.string.enabling_accessibility_service).parseBold(),
-                        style = bodyMediumTextStyle.copy(
-                            color = ColorTextSecondary,
-                            fontSize = 16.ssp(),
-                            lineHeight = 25.ssp(),
-                            fontWeight = FontWeight.Light
-                        ),
-                        textAlign = TextAlign.Center,
-                    )
-
-                    Spacer(modifier = Modifier.height(20.h()))
-
-                    Text(
-                        modifier = Modifier.padding(horizontal = 19.w()),
-                        text = stringResource(id = CommonR.string.never_access_or_share_data_text).parseBold(),
-                        style = bodyMediumTextStyle.copy(
-                            color = ColorTextSecondary,
-                            fontSize = 16.ssp(),
-                            lineHeight = 25.ssp(),
-                            fontWeight = FontWeight.Light
-                        ),
-                        textAlign = TextAlign.Center,
-                    )
-
-                    Row(
-                        modifier = Modifier
-                            .padding(top = 20.h())
-                            .fillMaxWidth()
-                    ) {
-                        Button(
-                            shape = RoundedCornerShape(30.dp),
-                            border = BorderStroke(2.dp, ColorPrimaryDark),
-                            colors = ButtonDefaults.buttonColors(Color.White),
-                            onClick = {
-                                cancelClick()
-                            },
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(52.h())
-                        ) {
-                            Text(
-                                modifier = Modifier.padding(5.dp),
-                                text = stringResource(id = CommonR.string.go_back),
-                                style = TextStyle(
-                                    color = ColorPrimaryDark,
-                                    fontFamily = fontRoboto,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 14.sp,
-                                    letterSpacing = .5.sp,
-                                    textAlign = TextAlign.Center
-                                )
-                            )
-                        }
-                        Spacer(modifier = Modifier.width(12.w()))
-                        Button(
-                            colors = ButtonDefaults.buttonColors(ColorPrimaryDark),
-                            onClick = {
-                                agreeClick()
-                            },
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(52.h())
-                        ) {
-                            Text(
-                                modifier = Modifier.padding(5.dp),
-                                text = stringResource(id = CommonR.string.i_agree),
-                                style = TextStyle(
-                                    color = Color.White,
-                                    fontFamily = fontRoboto,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 14.sp,
-                                    letterSpacing = .5.sp
-                                )
-                            )
-                        }
-                    }
-                }
-
-
-            }
-
-        }
-
-    }
-}
-
-
 @Composable
 fun HtmlToTextWithImage(text: String, modifier: Modifier = Modifier) {
     AndroidView(
@@ -857,30 +615,385 @@ fun HtmlToTextWithImage(text: String, modifier: Modifier = Modifier) {
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-@DevicePreviews
-fun PreviewShowPopup() {
-    val openDialog = remember { mutableStateOf(true) }
-    /* ShowPopup(
-         openDialog = openDialog,
-         titleResId = CommonR.string.delete_account,
-         descriptionResId = CommonR.string.delete_my_account_info,
-         dismissTextResId = CommonR.string.cancel,
-         confirmTextResId = CommonR.string.delete_account,
-         important = true
-     ) {
+fun MyDatePickerDialog(
+    onDateSelected: (String) -> Unit,
+    openDialog: MutableState<Boolean>,
+) {
+    val datePickerState = rememberDatePickerState(
+        selectableDates = object : SelectableDates {
+            override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                return true
+            }
+        })
 
-     }*/
+    val selectedDate = datePickerState.selectedDateMillis?.let {
+        convertMillisToDate(it)
+    } ?: currentDate()
 
-    /*    ShowPopUpWithImage(
-            openDialog = openDialog,
-            titleResId = CommonR.string.permission_not_granted,
-            descriptionResId = CommonR.string.permission_not_granted_text,
-            dismissTextResId = CommonR.string.go_back,
-            confirmTextResId = CommonR.string.yes_i_am_sure,
-            contentImage = DesignSystemR.drawable.ic_police_cross
-        )*/
 
-    ConsentPopUp(openDialog = openDialog, cancelClick = {}, agreeClick = {})
+    if (openDialog.value) {
+        DatePickerDialog(
+            onDismissRequest = { openDialog.value = false },
+            confirmButton = {
+                Button(onClick = {
+                    onDateSelected(selectedDate)
+                    openDialog.value = false
+                }) {
+                    Text(text = stringResource(id = CommonR.string.done))
+                }
+            },
+            dismissButton = {
+                Button(onClick = {
+                    openDialog.value = false
+                }) {
+                    Text(text = stringResource(id = CommonR.string.dissmiss))
+                }
+            }
+        ) {
+            DatePicker(
+                title = {
+                    Text(
+                        modifier = Modifier.padding(20.r()),
+                        text = stringResource(id = CommonR.string.pick_date)
+                    )
+                },
+                state = datePickerState,
+            )
+        }
+    }
 }
+
+@Composable
+fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> Unit) {
+
+    val context = LocalContext.current
+    var imageUri by remember {
+        mutableStateOf<Uri?>(null)
+    }
+
+    val file = context.createImageFile()
+    val uri = FileProvider.getUriForFile(
+        Objects.requireNonNull(context),
+        context.packageName + ".provider", file
+    )
+
+    val cameraLauncher =
+        rememberLauncherForActivityResult(ActivityResultContracts.TakePicture()) {
+            imageUri = uri
+        }
+
+    val permissionLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) {
+        if (it) {
+            Toast.makeText(context, "Permission Granted", Toast.LENGTH_SHORT).show()
+            cameraLauncher.launch(uri)
+        } else {
+            Toast.makeText(context, "Permission Denied", Toast.LENGTH_SHORT).show()
+        }
+
+    }
+
+    val galleryLauncher =
+        rememberLauncherForActivityResult(contract = ActivityResultContracts.GetContent()) { uri: Uri? ->
+            imageUri = uri!!
+        }
+
+
+    if (openDialog.value) {
+        Dialog(
+            onDismissRequest = { openDialog.value = false },
+            properties = DialogProperties(
+                dismissOnBackPress = false,
+                dismissOnClickOutside = false,
+                usePlatformDefaultWidth = false
+            )
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(40.w())
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(10.dp)
+                    )
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+
+
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(250.r())
+                            .padding(bottom = 10.r())
+                    ) {
+                        Image(
+                            painter = if (imageUri == null) painterResource(id = DesignSystemR.drawable.ic_camera) else rememberImagePainter(
+                                data = imageUri
+                            ),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .fillMaxHeight()
+                                .padding(10.r())
+                        )
+                    }
+
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(1.r())
+                            .background(color = Color.Gray)
+                        //.padding(vertical = 5.r())
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 10.r()),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceEvenly
+                    ) {
+
+                        Icon(
+                            painter = painterResource(id = DesignSystemR.drawable.ic_check),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.r())
+                                .clickable {
+                                    if (imageUri == null) {
+                                        Toast
+                                            .makeText(
+                                                context,
+                                                "Please select image",
+                                                Toast.LENGTH_SHORT
+                                            )
+                                            .show()
+                                    } else {
+                                        openDialog.value = false
+                                        onDoneClick(imageUri!!)
+                                    }
+                                },
+                            tint = Color.Green
+                        )
+
+                        Icon(
+                            painter = painterResource(id = DesignSystemR.drawable.ic_camera),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.r())
+                                .clickable {
+                                    val permissionCheckResult = ContextCompat.checkSelfPermission(
+                                        context,
+                                        Manifest.permission.CAMERA
+                                    )
+
+                                    if (permissionCheckResult == PackageManager.PERMISSION_GRANTED) {
+                                        cameraLauncher.launch(uri)
+                                    } else {
+                                        permissionLauncher.launch(Manifest.permission.CAMERA)
+                                    }
+                                }
+                        )
+
+                        Icon(
+                            painter = painterResource(id = DesignSystemR.drawable.ic_gallery),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.r())
+                                .clickable {
+                                    galleryLauncher.launch("image/*")
+                                },
+                        )
+
+                        Icon(
+                            painter = painterResource(id = DesignSystemR.drawable.ic_cross),
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(30.r())
+                                .clickable {
+                                    openDialog.value = false
+                                },
+                            tint = Color.Red
+                        )
+
+                    }
+
+                }
+            }
+        }
+    }
+
+}
+
+fun Context.createImageFile(): File {
+    // Create an image file name
+    val timeStamp = SimpleDateFormat("yyMMddHHmmss").format(Date())
+    val imageFileName = "JPEG_" + timeStamp + "_"
+    return File.createTempFile(
+        imageFileName,
+        ".jpg",
+        externalCacheDir
+    )
+}
+
+@Composable
+fun GpsStatusDialog(openDialog: MutableState<Boolean>, onClick: () -> Unit) {
+    if (!openDialog.value) {
+        Dialog(properties = DialogProperties(
+            dismissOnBackPress = false,
+            dismissOnClickOutside = false,
+            usePlatformDefaultWidth = false
+        ),
+            onDismissRequest = {
+                openDialog.value = false
+            }) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(40.w())
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(32.dp)
+                    )
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                ) {
+
+                    Text(
+                        text = stringResource(id = CommonR.string.gps_disabled),
+                        style = subHeading1TextStyle.copy(textAlign = TextAlign.Start),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(10.r()))
+
+                    Text(
+                        text = stringResource(id = CommonR.string.gps_disabled_text),
+                        style = bodyRegularTextStyle.copy(textAlign = TextAlign.Start),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+
+                        Spacer(modifier = Modifier.weight(1f))
+
+                        TextButton(onClick = { onClick() }) {
+                            Text(text = stringResource(id = CommonR.string.got_it))
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@ExperimentalComposeUiApi
+@Composable
+fun SignatureDialog(
+    isDialogOpen: MutableState<Boolean>,
+    onSave: (image: Bitmap) -> Unit
+) {
+    var signaturePadAdapter: SignaturePadAdapter? = null
+    if (isDialogOpen.value) {
+        Dialog(
+            onDismissRequest = { isDialogOpen.value = true }, //outside click listener set false
+            properties = DialogProperties(usePlatformDefaultWidth = false) // set Dialog fullView
+        ) {
+            val view = LocalView.current //get current view
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    .padding(20.r())
+                    .background(color = Color.White, shape = RoundedCornerShape(10.r()))
+            ) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(250.r())
+                        .padding(20.r())
+                        .clip(RoundedCornerShape(10.r()))
+                        .border(
+                            width = 1.r(),
+                            color = Color.Black,
+                            shape = RoundedCornerShape(10.r())
+                        ),
+                ) {
+
+                    SignaturePadView(
+                        onReady = {
+                            signaturePadAdapter = it
+                        }, modifier = Modifier
+                            .fillMaxSize()
+
+                    )
+
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 20.r()).padding(bottom = 20.r()),
+                ) {
+
+
+                    AppCancelButtonCompose(
+                        titleStringResId = CommonR.string.clear,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(40.r())
+                    ) {
+                        signaturePadAdapter?.clear()
+                    }
+
+                    Spacer(
+                        modifier = Modifier
+                            .width(20.r())
+                    )
+
+                    AppActionButtonCompose(
+                        stringId = CommonR.string.save,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(40.r())
+                    ) {
+                        isDialogOpen.value = false
+                        onSave(signaturePadAdapter?.getTransparentSignatureBitmap()!!)
+                    }
+
+
+                }
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+@SuppressLint("UnrememberedMutableState")
+@Composable
+@Preview
+fun PreviewShowPopup() {
+    val paths = remember {
+        mutableStateOf(mutableListOf<PathState>())
+    }
+
+    val isDialogOpen = remember { mutableStateOf(true) }
+
+    SignatureDialog(
+        isDialogOpen = isDialogOpen,
+        onSave = {
+
+        }
+    )
+}
+
+
 

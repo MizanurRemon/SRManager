@@ -1,5 +1,7 @@
 import java.util.Properties
 import java.io.FileInputStream
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 plugins {
     id("com.android.application")
@@ -15,6 +17,10 @@ keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 android {
     namespace = ProjectConfig.appId
     compileSdk = ProjectConfig.compileSdk
+
+   /* dexOptions {
+        preDexLibraries = false
+    }*/
 
     defaultConfig {
         applicationId = ProjectConfig.appId
@@ -85,17 +91,19 @@ android {
 
     }
 
-//    applicationVariants.all {
-//        val variant = this
-//        variant.outputs
-//            .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
-//            .forEach { output ->
-//                val outputFileName =
-//                    "IP_${variant.baseName}_${variant.versionName}_march20.apk"
-//                println("OutputFileName: $outputFileName")
-//                output.outputFileName = outputFileName
-//            }
-//    }
+    applicationVariants.all {
+        val variant = this
+        variant.outputs
+            .map { it as com.android.build.gradle.internal.api.BaseVariantOutputImpl }
+            .forEach { output ->
+                val formatter = DateTimeFormatter.ofPattern("ddMMyy_HHmm")
+                val formattedDate = LocalDateTime.now().format(formatter)
+                val outputFileName =
+                    "SRM_${formattedDate}.apk"
+                output.outputFileName = outputFileName
+            }
+    }
+
 
 }
 
@@ -105,7 +113,6 @@ dependencies {
     implementation(AndroidX.appCompat)
     implementation(Compose.viewModelCompose)
     implementation(Coil.coilCompose)
-    implementation(Exoplayer.exoPlayer)
 
     implementation(Hilt.hiltAndroidVersion)
     kapt(Hilt.hiltCompiler)
@@ -116,16 +123,27 @@ dependencies {
 
     implementation(Coroutines.coroutines)
 
-    implementation(project(Modules.domain))
-    implementation(project(Modules.data))
-    implementation(project(Modules.auth_presentation))
-    implementation(project(Modules.auth_domain))
-    implementation(project(Modules.auth_data))
     implementation(project(Modules.common))
     implementation(project(Modules.network))
     implementation(project(Modules.database))
     implementation(project(Modules.datastore))
     implementation(project(Modules.designsystem))
+    implementation(project(Modules.domain))
+    implementation(project(Modules.data))
+
+    implementation(project(Modules.auth_presentation))
+    implementation(project(Modules.auth_domain))
+    implementation(project(Modules.auth_data))
+
+    implementation(project(Modules.outlet_presentation))
+    implementation(project(Modules.outlet_domain))
+    implementation(project(Modules.outlet_data))
+
+    implementation(project(Modules.report_presentation))
+
+    implementation(project(Modules.order_data))
+    implementation(project(Modules.order_domain))
+    implementation(project(Modules.order_presentation))
 
     //Compose
     implementation(Compose.compiler)
@@ -147,6 +165,8 @@ dependencies {
     implementation(Compose.GLIDE)
     androidTestImplementation("junit:junit:4.13.2")
     implementation(Compose.GLIDE)
+    implementation(Compose.play_service_location)
+    implementation(Compose.AccompanistPermissions)
 
     debugImplementation(Compose.uiTool)
 
@@ -154,6 +174,6 @@ dependencies {
     implementation(Compose.appUpdate)
     implementation(Compose.inAppUpdate)
 
-
+    implementation(Compose.Lottie)
 }
 

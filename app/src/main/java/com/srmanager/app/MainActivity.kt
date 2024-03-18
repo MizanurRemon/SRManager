@@ -1,18 +1,23 @@
 package com.srmanager.app
 
+import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.IntentSender.SendIntentException
+import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkRequest
 import android.os.Bundle
+import android.provider.Settings
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.mutableStateOf
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.appupdate.AppUpdateInfo
 import com.google.android.play.core.appupdate.AppUpdateManager
@@ -22,19 +27,43 @@ import com.google.android.play.core.install.InstallStateUpdatedListener
 import com.google.android.play.core.install.model.AppUpdateType
 import com.google.android.play.core.install.model.InstallStatus
 import com.google.android.play.core.install.model.UpdateAvailability
+import com.srmanager.app.GPS.GpsStatus
 import com.srmanager.app.connectivity.NetworkCallbackImpl
 import com.srmanager.app.connectivity.NetworkStatusScreen
-import com.srmanager.app.navigations.IPApp
-
+import com.srmanager.app.location.LocationLiveData
+import com.srmanager.app.navigations.MainApp
 import com.srmanager.core.designsystem.deviceHeight
 import com.srmanager.core.designsystem.deviceWidth
-import com.srmanager.core.designsystem.theme.InternetPoliceTheme
+import com.srmanager.core.designsystem.theme.BaseTheme
+import com.srmanager.core.designsystem.theme.GpsStatusDialog
+import com.srmanager.database.dao.LocationDao
+import com.srmanager.database.entity.LocationEntity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private val gpsStatus = mutableStateOf(true)
+    private val permissionGranted = mutableStateOf(true)
+
+
+    private val permissionsToRequest = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION,
+    )
+
+    private lateinit var locationLiveData: LocationLiveData
+
+    @Inject
+    lateinit var locationDao: LocationDao
+
+    private val REQUEST_LOCATION = 12
     private var newIntent: Intent? = null
 
     private var appUpdateManager: AppUpdateManager? = null
@@ -49,7 +78,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adjustFontScale(resources.configuration)
@@ -60,16 +88,44 @@ class MainActivity : AppCompatActivity() {
             (heightPixels / density).toInt()
         }
 
-
+        permissionGranted.value = checkPermissionsGranted()
 
         setContent {
-            InternetPoliceTheme {
-                IPApp()
+
+            BaseTheme {
+                MainApp()
                 NetworkStatusScreen()
+                if (permissionGranted.value) {
+                    GpsStatus(gpsStatus = gpsStatus)
+
+                    if (!gpsStatus.value) {
+                        GpsStatusDialog(openDialog = gpsStatus, onClick = {
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        })
+                    }
+                }
             }
         }
 
+        //checkLocationPermission()
         checkForAppUpdate()
+    }
+
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun getLocation() {
+        locationLiveData = LocationLiveData(application)
+        locationLiveData.observeForever {
+
+            GlobalScope.launch(Dispatchers.IO) {
+                locationDao.insertLocation(
+                    LocationEntity(
+                        latitude = it.latitude.toString(),
+                        longitude = it.longitude.toString(),
+                        address = it.address.toString()
+                    )
+                )
+            }
+        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -82,10 +138,14 @@ class MainActivity : AppCompatActivity() {
         newIntent?.let {
 
             setContent {
-                IPApp()
+                MainApp()
+
             }
             newIntent = null
+
         }
+
+        checkLocationPermission()
     }
 
     override fun onStart() {
@@ -170,10 +230,52 @@ class MainActivity : AppCompatActivity() {
             wm.defaultDisplay.getMetrics(metrics)
             metrics.scaledDensity = configuration.fontScale * metrics.density
 
-            //baseContext.resources.updateConfiguration(configuration, metrics)
             baseContext.applicationContext.createConfigurationContext(it)
             baseContext.resources.displayMetrics.setTo(metrics)
 
         }
     }
+
+
+    private fun checkLocationPermission() {
+        if (!checkPermissionsGranted()) {
+            ActivityCompat.requestPermissions(
+                this,
+                permissionsToRequest,
+                REQUEST_LOCATION
+            )
+        } else {
+            getLocation()
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            REQUEST_LOCATION -> {
+                if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    permissionGranted.value = true
+                    getLocation()
+                } else {
+                    checkLocationPermission()
+                }
+                return
+            }
+        }
+    }
+
+    private fun checkPermissionsGranted(): Boolean {
+
+        return ActivityCompat.checkSelfPermission(
+            this, Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(
+                    this, Manifest.permission.ACCESS_COARSE_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
+    }
+
 }

@@ -9,11 +9,29 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="" />
+    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/home/HomeViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/PublicNetworkModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/PublicNetworkModule.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/interceptor/PublicInterceptor.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/interceptor/PublicInterceptor.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/OrderRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/model/OrderRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_add/OutletAddViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletDetailsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet_details/OutletdetailsScreen.kt" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[33220fdb]" />
   <component name="ExternalProjectsData">
@@ -42,9 +60,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile_vertical" />
-        <option value="resourceFile" />
-        <option value="Kotlin Sealed Class" />
         <option value="Kotlin Object" />
+        <option value="resourceFile" />
+        <option value="valueResourceFile" />
+        <option value="Kotlin Sealed Class" />
+        <option value="Class" />
+        <option value="Kotlin Interface" />
         <option value="Kotlin File" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin Class" />
@@ -71,24 +92,25 @@
         </map>
       </branch-storage>
     </favorite-branches>
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="remon &lt;remonmizanur@gmail.com&gt;" />
+        <option value="MizanurRemon &lt;remonmizanur@gmail.com&gt;" />
+      </list>
+    </option>
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="2.2-no-premium" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="6df592f5-df50-4dbf-a37e-c736e437449b" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material3/material3/1.0.1/e90f5af2fdc04ac29257713d2ee94800d0262b17/material3-1.0.1-sources.jar!/androidx/compose/material3/TextFieldDefaults.kt" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-de/strings.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-es/strings.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-fr/strings.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-it/strings.xml" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values-nl/strings.xml" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -97,55 +119,92 @@
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2UwOJ3e61sNuQt4aE9mZuI7LkXL" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "BundleExportedModule": "InternetPolice.app",
-    "ExportBundle.BundlePathForInternetPolice.app": "/home/remon/Projects/Android/internet-politie-android-app/app",
-    "Git.Branch.Popup.ShowAllRemotes": "true",
-    "PROJECT_TRUSTED_KEY": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "ScreenRecorder.SavePath": "/home/remon/Desktop",
-    "android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED": "TextView",
-    "cidr.known.project.marker": "true",
-    "com.google.services.firebase.aqiPopupShown": "true",
-    "last_directory_selection": "/home/remon/Projects/Android/internet-politie-android-app/core/designsystem/src/main/res/drawable",
-    "last_opened_file_path": "/home/remon/Projects/Android/srmanager",
-    "memory.settings.postsync.last.time.stamp": "1693848167557",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.17",
-    "project.structure.side.proportion": "0.2",
-    "recommended.upgrade.do.not.ask.for.project": "true",
-    "settings.editor.selected.configurable": "emulator"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Android App.app.executor&quot;: &quot;Run&quot;,
+    &quot;BundleExportedModule&quot;: &quot;InternetPolice.app&quot;,
+    &quot;ExportBundle.BundlePathForInternetPolice.app&quot;: &quot;/home/remon/Projects/Android/internet-politie-android-app/app&quot;,
+    &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
+    &quot;Notification.DisplayName-DoNotAsk-Deploy&quot;: &quot;Deploy&quot;,
+    &quot;Notification.DoNotAsk-Deploy&quot;: &quot;true&quot;,
+    &quot;PROJECT_TRUSTED_KEY&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ScreenRecorder.SavePath&quot;: &quot;/home/remon/Desktop&quot;,
+    &quot;android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED&quot;: &quot;TextView&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.google.services.firebase.aqiPopupShown&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;develop&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;jbr-17&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/remon/Projects/Android/srmanager&quot;,
+    &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1693848167557&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;recommended.upgrade.do.not.ask.for.project&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "ExportApk.BuildVariants": [
-      "release"
+  &quot;keyToStringList&quot;: {
+    &quot;ExportApk.BuildVariants&quot;: [
+      &quot;release&quot;
     ],
-    "com.android.tools.idea.sqlite.queryhistory": [
-      "SELECT * FROM user",
-      "UPDATE user SET email = \"re\""
+    &quot;com.android.tools.idea.sqlite.queryhistory&quot;: [
+      &quot;SELECT * from products WHERE isSelected == true&quot;,
+      &quot;SELECT * from products WHERE isSelected == false&quot;,
+      &quot;UPDATE products SET selectedItemCount = selectedItemCount - 1  WHERE id = 1&quot;,
+      &quot;UPDATE products SET selectedItemCount = selectedItemCount + 1 WHERE id = 1&quot;,
+      &quot;UPDATE products SET isSelectedItemCount = isSelectedItemCount + 1 WHERE id = 4&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature" />
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/drawable" />
+      <recent name="$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain" />
+      <recent name="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data" />
+      <recent name="$PROJECT_DIR$/core/designsystem/src/main/res/raw" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/features/settings/settings_presentation/src/main/java/com/internetpolice/settings_presentation/screens/language" />
-      <recent name="$PROJECT_DIR$/features/profile/profile_presentation/src/main/java/com/internetpolice/profile_presentation/email_update" />
+      <recent name="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components" />
+      <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order" />
+      <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation" />
+      <recent name="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/Multiple" />
+      <recent name="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/Single" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.srmanager.core.common.model" />
+      <recent name="com.srmanager.core.designsystem" />
+      <recent name="com.srmanager.outlet_presentation.OutletAdd" />
+      <recent name="com.srmanager.app.navigations" />
       <recent name="com.internetpolice.settings_presentation.screens.language" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.srmanager.outlet_presentation.maps.Multiple" />
+      <recent name="com.srmanager.core.designsystem" />
     </key>
   </component>
   <component name="RunManager" selected="Android App.app">
@@ -159,6 +218,7 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -167,7 +227,7 @@
       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -215,73 +275,6 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PreviewAlwaysProtectedScreen" type="ComposePreviewRunConfiguration" temporary="true">
-      <module name="InternetPolice.features.auth.auth_presentation" />
-      <option name="DEPLOY" value="true" />
-      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
-      <option name="DEPLOY_AS_INSTANT" value="false" />
-      <option name="ARTIFACT_NAME" value="" />
-      <option name="PM_INSTALL_OPTIONS" value="" />
-      <option name="ALL_USERS" value="false" />
-      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
-      <option name="CLEAR_APP_STORAGE" value="false" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.auth_presentation.screens.AlwaysProtectedScreenKt.PreviewAlwaysProtectedScreen" />
-      <option name="MODE" value="specific_activity" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
-        <option name="DEBUG_SANDBOX_SDK" value="false" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
-        <option name="DEBUG_SANDBOX_SDK" value="false" />
-      </Hybrid>
-      <Java>
-        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
-        <option name="DEBUG_SANDBOX_SDK" value="false" />
-      </Java>
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
-        <option name="DEBUG_SANDBOX_SDK" value="false" />
-      </Native>
-      <Profilers>
-        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
-        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
-        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-      </Profilers>
-      <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
-      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
-      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <compose-preview-run-configuration composable-fqn="com.internetpolice.auth_presentation.screens.AlwaysProtectedScreenKt.PreviewAlwaysProtectedScreen" />
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="PreviewNotificationScreen" type="ComposePreviewRunConfiguration" temporary="true">
       <module name="InternetPolice.features.notification.notification_presentation" />
       <option name="DEPLOY" value="true" />
@@ -292,6 +285,7 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.notification_presentation.NotificationScreenKt.PreviewNotificationScreen" />
       <option name="MODE" value="specific_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -300,7 +294,7 @@
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -359,6 +353,7 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.app.permission.PermissionScreenKt.PreviewPermissionMainScreen" />
       <option name="MODE" value="specific_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -367,7 +362,7 @@
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -416,6 +411,74 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PreviewShowPopup (1)" type="ComposePreviewRunConfiguration" temporary="true">
+      <module name="SRManager.core.designsystem" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.srmanager.core.designsystem.theme.ThemeKt.PreviewShowPopup" />
+      <option name="MODE" value="specific_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <compose-preview-run-configuration composable-fqn="com.srmanager.core.designsystem.theme.ThemeKt.PreviewShowPopup" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="PreviewShowPopup" type="ComposePreviewRunConfiguration" temporary="true">
       <module name="InternetPolice.core.designsystem" />
       <option name="DEPLOY" value="true" />
@@ -426,6 +489,7 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.core.designsystem.theme.ThemeKt.PreviewShowPopup" />
       <option name="MODE" value="specific_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -434,7 +498,7 @@
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -493,6 +557,7 @@
       <option name="ALL_USERS" value="false" />
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.app.waring.WarningScreenKt.PreviewWarningScreen" />
       <option name="MODE" value="specific_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
@@ -501,7 +566,7 @@
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
+      <option name="DEBUGGER_TYPE" value="Java" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -563,17 +628,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Compose Preview.PreviewWarningScreen" />
-        <item itemvalue="Compose Preview.PreviewShowPopup" />
-        <item itemvalue="Compose Preview.PreviewPermissionMainScreen" />
-        <item itemvalue="Compose Preview.PreviewNotificationScreen" />
-        <item itemvalue="Compose Preview.PreviewAlwaysProtectedScreen" />
-      </list>
-    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-17.0.9-jbr-17.0.9-f644763e9732-3f62daea" />
+        <option value="jdk-17.0.9-jbr-17.0.9-f644763e9732-ef93ccb6" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="" />
@@ -581,365 +648,411 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1693847100736</updated>
+      <workItem from="1703172670983" duration="2181000" />
+      <workItem from="1703176082685" duration="6041000" />
+      <workItem from="1703738042297" duration="11000" />
+      <workItem from="1704095806589" duration="2103000" />
+      <workItem from="1704098043291" duration="48000" />
+      <workItem from="1704098099350" duration="243000" />
+      <workItem from="1704101251557" duration="2439000" />
+      <workItem from="1704134401981" duration="334000" />
+      <workItem from="1704165067812" duration="7302000" />
+      <workItem from="1704180749759" duration="117000" />
+      <workItem from="1704184591233" duration="286000" />
+      <workItem from="1704194926753" duration="4000" />
+      <workItem from="1704206709417" duration="690000" />
+      <workItem from="1704252855442" duration="3666000" />
+      <workItem from="1704262724873" duration="64000" />
+      <workItem from="1704263740082" duration="5000" />
+      <workItem from="1704346479748" duration="5730000" />
+      <workItem from="1704522737313" duration="562000" />
+      <workItem from="1704687921529" duration="631000" />
+      <workItem from="1704798915745" duration="126000" />
+      <workItem from="1704869225972" duration="13000" />
+      <workItem from="1704949840224" duration="1447000" />
+      <workItem from="1704951304837" duration="3399000" />
+      <workItem from="1704961249128" duration="340000" />
+      <workItem from="1705031290454" duration="1425000" />
+      <workItem from="1705853002829" duration="961000" />
+      <workItem from="1707814003992" duration="1949000" />
+      <workItem from="1707887499057" duration="1308000" />
     </task>
-    <task id="LOCAL-00202" summary="WARNING URL">
-      <created>1697628519031</created>
-      <option name="number" value="00202" />
-      <option name="presentableId" value="LOCAL-00202" />
+    <task id="LOCAL-00283" summary="ui">
+      <created>1701156141845</created>
+      <option name="number" value="00283" />
+      <option name="presentableId" value="LOCAL-00283" />
       <option name="project" value="LOCAL" />
-      <updated>1697628519031</updated>
+      <updated>1701156141845</updated>
     </task>
-    <task id="LOCAL-00203" summary="WARNING ui modify">
-      <created>1697689790324</created>
-      <option name="number" value="00203" />
-      <option name="presentableId" value="LOCAL-00203" />
+    <task id="LOCAL-00284" summary="ui">
+      <created>1701162240382</created>
+      <option name="number" value="00284" />
+      <option name="presentableId" value="LOCAL-00284" />
       <option name="project" value="LOCAL" />
-      <updated>1697689790324</updated>
+      <updated>1701162240382</updated>
     </task>
-    <task id="LOCAL-00204" summary="WARNING ui modify">
-      <created>1697694494463</created>
-      <option name="number" value="00204" />
-      <option name="presentableId" value="LOCAL-00204" />
+    <task id="LOCAL-00285" summary="ui">
+      <created>1701164137595</created>
+      <option name="number" value="00285" />
+      <option name="presentableId" value="LOCAL-00285" />
       <option name="project" value="LOCAL" />
-      <updated>1697694494463</updated>
+      <updated>1701164137595</updated>
     </task>
-    <task id="LOCAL-00205" summary="WARNING ui modify">
-      <created>1697694649242</created>
-      <option name="number" value="00205" />
-      <option name="presentableId" value="LOCAL-00205" />
+    <task id="LOCAL-00286" summary="ui">
+      <created>1701165097629</created>
+      <option name="number" value="00286" />
+      <option name="presentableId" value="LOCAL-00286" />
       <option name="project" value="LOCAL" />
-      <updated>1697694649242</updated>
+      <updated>1701165097629</updated>
     </task>
-    <task id="LOCAL-00206" summary="avatar">
-      <created>1697700417080</created>
-      <option name="number" value="00206" />
-      <option name="presentableId" value="LOCAL-00206" />
+    <task id="LOCAL-00287" summary="ui">
+      <created>1701165662420</created>
+      <option name="number" value="00287" />
+      <option name="presentableId" value="LOCAL-00287" />
       <option name="project" value="LOCAL" />
-      <updated>1697700417080</updated>
+      <updated>1701165662420</updated>
     </task>
-    <task id="LOCAL-00207" summary="registration annoted string">
-      <created>1697703435360</created>
-      <option name="number" value="00207" />
-      <option name="presentableId" value="LOCAL-00207" />
+    <task id="LOCAL-00288" summary="ui">
+      <created>1701168880368</created>
+      <option name="number" value="00288" />
+      <option name="presentableId" value="LOCAL-00288" />
       <option name="project" value="LOCAL" />
-      <updated>1697703435360</updated>
+      <updated>1701168881252</updated>
     </task>
-    <task id="LOCAL-00208" summary="request param added">
-      <created>1697703771688</created>
-      <option name="number" value="00208" />
-      <option name="presentableId" value="LOCAL-00208" />
+    <task id="LOCAL-00289" summary="ui">
+      <created>1701170216276</created>
+      <option name="number" value="00289" />
+      <option name="presentableId" value="LOCAL-00289" />
       <option name="project" value="LOCAL" />
-      <updated>1697703771688</updated>
+      <updated>1701170216276</updated>
     </task>
-    <task id="LOCAL-00209" summary="request param added">
-      <created>1697705719864</created>
-      <option name="number" value="00209" />
-      <option name="presentableId" value="LOCAL-00209" />
+    <task id="LOCAL-00290" summary="ui">
+      <created>1701170361647</created>
+      <option name="number" value="00290" />
+      <option name="presentableId" value="LOCAL-00290" />
       <option name="project" value="LOCAL" />
-      <updated>1697705719864</updated>
+      <updated>1701170361648</updated>
     </task>
-    <task id="LOCAL-00210" summary="request param added">
-      <created>1697706070690</created>
-      <option name="number" value="00210" />
-      <option name="presentableId" value="LOCAL-00210" />
+    <task id="LOCAL-00291" summary="ui">
+      <created>1701171917774</created>
+      <option name="number" value="00291" />
+      <option name="presentableId" value="LOCAL-00291" />
       <option name="project" value="LOCAL" />
-      <updated>1697706070690</updated>
+      <updated>1701171917774</updated>
     </task>
-    <task id="LOCAL-00211" summary="request param added">
-      <created>1697712634344</created>
-      <option name="number" value="00211" />
-      <option name="presentableId" value="LOCAL-00211" />
+    <task id="LOCAL-00292" summary="UPD">
+      <created>1701232400382</created>
+      <option name="number" value="00292" />
+      <option name="presentableId" value="LOCAL-00292" />
       <option name="project" value="LOCAL" />
-      <updated>1697712634344</updated>
+      <updated>1701232400383</updated>
     </task>
-    <task id="LOCAL-00212" summary="Device Type Header added">
-      <created>1697716732160</created>
-      <option name="number" value="00212" />
-      <option name="presentableId" value="LOCAL-00212" />
+    <task id="LOCAL-00293" summary="UPD">
+      <created>1701235893592</created>
+      <option name="number" value="00293" />
+      <option name="presentableId" value="LOCAL-00293" />
       <option name="project" value="LOCAL" />
-      <updated>1697716732160</updated>
+      <updated>1701235893592</updated>
     </task>
-    <task id="LOCAL-00213" summary="send otp pop up">
-      <created>1697785202684</created>
-      <option name="number" value="00213" />
-      <option name="presentableId" value="LOCAL-00213" />
+    <task id="LOCAL-00294" summary="UPD">
+      <created>1701240479843</created>
+      <option name="number" value="00294" />
+      <option name="presentableId" value="LOCAL-00294" />
       <option name="project" value="LOCAL" />
-      <updated>1697785202685</updated>
+      <updated>1701240479843</updated>
     </task>
-    <task id="LOCAL-00214" summary="notification screen permission screen UI modified">
-      <created>1697795449861</created>
-      <option name="number" value="00214" />
-      <option name="presentableId" value="LOCAL-00214" />
+    <task id="LOCAL-00295" summary="UPD">
+      <created>1701242294850</created>
+      <option name="number" value="00295" />
+      <option name="presentableId" value="LOCAL-00295" />
       <option name="project" value="LOCAL" />
-      <updated>1697795449861</updated>
+      <updated>1701242294850</updated>
     </task>
-    <task id="LOCAL-00215" summary="notification screen permission screen UI modified">
-      <created>1697795612626</created>
-      <option name="number" value="00215" />
-      <option name="presentableId" value="LOCAL-00215" />
+    <task id="LOCAL-00296" summary="SRM">
+      <created>1701256620429</created>
+      <option name="number" value="00296" />
+      <option name="presentableId" value="LOCAL-00296" />
       <option name="project" value="LOCAL" />
-      <updated>1697795612627</updated>
+      <updated>1701256620429</updated>
     </task>
-    <task id="LOCAL-00216" summary="AlwaysProtectedScreen UI modified">
-      <created>1697796361121</created>
-      <option name="number" value="00216" />
-      <option name="presentableId" value="LOCAL-00216" />
+    <task id="LOCAL-00297" summary="SRM">
+      <created>1701257101444</created>
+      <option name="number" value="00297" />
+      <option name="presentableId" value="LOCAL-00297" />
       <option name="project" value="LOCAL" />
-      <updated>1697796361121</updated>
+      <updated>1701257101444</updated>
     </task>
-    <task id="LOCAL-00217" summary="auth screen">
-      <created>1698038785699</created>
-      <option name="number" value="00217" />
-      <option name="presentableId" value="LOCAL-00217" />
+    <task id="LOCAL-00298" summary="SRM">
+      <created>1701257216335</created>
+      <option name="number" value="00298" />
+      <option name="presentableId" value="LOCAL-00298" />
       <option name="project" value="LOCAL" />
-      <updated>1698038785699</updated>
+      <updated>1701257216335</updated>
     </task>
-    <task id="LOCAL-00218" summary="new details content scrap">
-      <created>1698056491038</created>
-      <option name="number" value="00218" />
-      <option name="presentableId" value="LOCAL-00218" />
+    <task id="LOCAL-00299" summary="SRM">
+      <created>1701257417079</created>
+      <option name="number" value="00299" />
+      <option name="presentableId" value="LOCAL-00299" />
       <option name="project" value="LOCAL" />
-      <updated>1698056491038</updated>
+      <updated>1701257417079</updated>
     </task>
-    <task id="LOCAL-00219" summary="add social urls">
-      <created>1698058485454</created>
-      <option name="number" value="00219" />
-      <option name="presentableId" value="LOCAL-00219" />
+    <task id="LOCAL-00300" summary="SRM">
+      <created>1701258420432</created>
+      <option name="number" value="00300" />
+      <option name="presentableId" value="LOCAL-00300" />
       <option name="project" value="LOCAL" />
-      <updated>1698058485454</updated>
+      <updated>1701258420432</updated>
     </task>
-    <task id="LOCAL-00220" summary="icon updated">
-      <created>1698062200349</created>
-      <option name="number" value="00220" />
-      <option name="presentableId" value="LOCAL-00220" />
+    <task id="LOCAL-00301" summary="SRM">
+      <created>1701316419983</created>
+      <option name="number" value="00301" />
+      <option name="presentableId" value="LOCAL-00301" />
       <option name="project" value="LOCAL" />
-      <updated>1698062200349</updated>
+      <updated>1701316419983</updated>
     </task>
-    <task id="LOCAL-00221" summary="icon updated">
-      <created>1698062676958</created>
-      <option name="number" value="00221" />
-      <option name="presentableId" value="LOCAL-00221" />
+    <task id="LOCAL-00302" summary="SRM">
+      <created>1701316505392</created>
+      <option name="number" value="00302" />
+      <option name="presentableId" value="LOCAL-00302" />
       <option name="project" value="LOCAL" />
-      <updated>1698062676958</updated>
+      <updated>1701316505392</updated>
     </task>
-    <task id="LOCAL-00222" summary="icon click enable">
-      <created>1698062899866</created>
-      <option name="number" value="00222" />
-      <option name="presentableId" value="LOCAL-00222" />
+    <task id="LOCAL-00303" summary="SRM">
+      <created>1701317062121</created>
+      <option name="number" value="00303" />
+      <option name="presentableId" value="LOCAL-00303" />
       <option name="project" value="LOCAL" />
-      <updated>1698062899866</updated>
+      <updated>1701317062121</updated>
     </task>
-    <task id="LOCAL-00223" summary="icon click enable">
-      <created>1698063002206</created>
-      <option name="number" value="00223" />
-      <option name="presentableId" value="LOCAL-00223" />
+    <task id="LOCAL-00304" summary="SRM">
+      <created>1701318321976</created>
+      <option name="number" value="00304" />
+      <option name="presentableId" value="LOCAL-00304" />
       <option name="project" value="LOCAL" />
-      <updated>1698063002206</updated>
+      <updated>1701318321976</updated>
     </task>
-    <task id="LOCAL-00224" summary="fix UI">
-      <created>1698229903167</created>
-      <option name="number" value="00224" />
-      <option name="presentableId" value="LOCAL-00224" />
+    <task id="LOCAL-00305" summary="SRM">
+      <created>1701318880121</created>
+      <option name="number" value="00305" />
+      <option name="presentableId" value="LOCAL-00305" />
       <option name="project" value="LOCAL" />
-      <updated>1698229903167</updated>
+      <updated>1701318880121</updated>
     </task>
-    <task id="LOCAL-00225" summary="fix UI">
-      <created>1698231127920</created>
-      <option name="number" value="00225" />
-      <option name="presentableId" value="LOCAL-00225" />
+    <task id="LOCAL-00306" summary="SRM">
+      <created>1701320447360</created>
+      <option name="number" value="00306" />
+      <option name="presentableId" value="LOCAL-00306" />
       <option name="project" value="LOCAL" />
-      <updated>1698231127920</updated>
+      <updated>1701320447360</updated>
     </task>
-    <task id="LOCAL-00226" summary="fix UI">
-      <created>1698231554159</created>
-      <option name="number" value="00226" />
-      <option name="presentableId" value="LOCAL-00226" />
+    <task id="LOCAL-00307" summary="SRM">
+      <created>1701408327274</created>
+      <option name="number" value="00307" />
+      <option name="presentableId" value="LOCAL-00307" />
       <option name="project" value="LOCAL" />
-      <updated>1698231554159</updated>
+      <updated>1701408327274</updated>
     </task>
-    <task id="LOCAL-00227" summary="fix UI">
-      <created>1698293834312</created>
-      <option name="number" value="00227" />
-      <option name="presentableId" value="LOCAL-00227" />
+    <task id="LOCAL-00308" summary="SRM">
+      <created>1701410144750</created>
+      <option name="number" value="00308" />
+      <option name="presentableId" value="LOCAL-00308" />
       <option name="project" value="LOCAL" />
-      <updated>1698293834313</updated>
+      <updated>1701410144750</updated>
     </task>
-    <task id="LOCAL-00228" summary="fix UI">
-      <created>1698293935500</created>
-      <option name="number" value="00228" />
-      <option name="presentableId" value="LOCAL-00228" />
+    <task id="LOCAL-00309" summary="SRM">
+      <created>1701411401498</created>
+      <option name="number" value="00309" />
+      <option name="presentableId" value="LOCAL-00309" />
       <option name="project" value="LOCAL" />
-      <updated>1698293935501</updated>
+      <updated>1701411401498</updated>
     </task>
-    <task id="LOCAL-00229" summary="fix UI">
-      <created>1698294264163</created>
-      <option name="number" value="00229" />
-      <option name="presentableId" value="LOCAL-00229" />
+    <task id="LOCAL-00310" summary="SRM">
+      <created>1701597485015</created>
+      <option name="number" value="00310" />
+      <option name="presentableId" value="LOCAL-00310" />
       <option name="project" value="LOCAL" />
-      <updated>1698294264163</updated>
+      <updated>1701597485016</updated>
     </task>
-    <task id="LOCAL-00230" summary="fix null">
-      <created>1698302436061</created>
-      <option name="number" value="00230" />
-      <option name="presentableId" value="LOCAL-00230" />
+    <task id="LOCAL-00311" summary="SRM">
+      <created>1701622475023</created>
+      <option name="number" value="00311" />
+      <option name="presentableId" value="LOCAL-00311" />
       <option name="project" value="LOCAL" />
-      <updated>1698302436061</updated>
+      <updated>1701622475023</updated>
     </task>
-    <task id="LOCAL-00231" summary="rest config">
-      <created>1698307939359</created>
-      <option name="number" value="00231" />
-      <option name="presentableId" value="LOCAL-00231" />
+    <task id="LOCAL-00312" summary="SRM">
+      <created>1701624628751</created>
+      <option name="number" value="00312" />
+      <option name="presentableId" value="LOCAL-00312" />
       <option name="project" value="LOCAL" />
-      <updated>1698307939359</updated>
+      <updated>1701624628752</updated>
     </task>
-    <task id="LOCAL-00232" summary="rest config">
-      <created>1698308845108</created>
-      <option name="number" value="00232" />
-      <option name="presentableId" value="LOCAL-00232" />
+    <task id="LOCAL-00313" summary="SRM">
+      <created>1701626218119</created>
+      <option name="number" value="00313" />
+      <option name="presentableId" value="LOCAL-00313" />
       <option name="project" value="LOCAL" />
-      <updated>1698308845108</updated>
+      <updated>1701626218119</updated>
     </task>
-    <task id="LOCAL-00233" summary="langugae sync">
-      <created>1698389729269</created>
-      <option name="number" value="00233" />
-      <option name="presentableId" value="LOCAL-00233" />
+    <task id="LOCAL-00314" summary="SRM">
+      <created>1701664111425</created>
+      <option name="number" value="00314" />
+      <option name="presentableId" value="LOCAL-00314" />
       <option name="project" value="LOCAL" />
-      <updated>1698389729269</updated>
+      <updated>1701664111425</updated>
     </task>
-    <task id="LOCAL-00234" summary="langugae sync">
-      <created>1698397671744</created>
-      <option name="number" value="00234" />
-      <option name="presentableId" value="LOCAL-00234" />
+    <task id="LOCAL-00315" summary="SRM">
+      <created>1701668576882</created>
+      <option name="number" value="00315" />
+      <option name="presentableId" value="LOCAL-00315" />
       <option name="project" value="LOCAL" />
-      <updated>1698397671744</updated>
+      <updated>1701668576882</updated>
     </task>
-    <task id="LOCAL-00235" summary="language updated">
-      <created>1698402587212</created>
-      <option name="number" value="00235" />
-      <option name="presentableId" value="LOCAL-00235" />
+    <task id="LOCAL-00316" summary="SRM">
+      <created>1701669708855</created>
+      <option name="number" value="00316" />
+      <option name="presentableId" value="LOCAL-00316" />
       <option name="project" value="LOCAL" />
-      <updated>1698402587212</updated>
+      <updated>1701669708855</updated>
     </task>
-    <task id="LOCAL-00236" summary="language updated">
-      <created>1698657752650</created>
-      <option name="number" value="00236" />
-      <option name="presentableId" value="LOCAL-00236" />
+    <task id="LOCAL-00317" summary="SRM">
+      <created>1701678575699</created>
+      <option name="number" value="00317" />
+      <option name="presentableId" value="LOCAL-00317" />
       <option name="project" value="LOCAL" />
-      <updated>1698657752650</updated>
+      <updated>1701678575699</updated>
     </task>
-    <task id="LOCAL-00237" summary="ip auth">
-      <created>1698657922733</created>
-      <option name="number" value="00237" />
-      <option name="presentableId" value="LOCAL-00237" />
+    <task id="LOCAL-00318" summary="SRM">
+      <created>1701680425538</created>
+      <option name="number" value="00318" />
+      <option name="presentableId" value="LOCAL-00318" />
       <option name="project" value="LOCAL" />
-      <updated>1698657922733</updated>
+      <updated>1701680425538</updated>
     </task>
-    <task id="LOCAL-00238" summary="draft process">
-      <created>1698743243649</created>
-      <option name="number" value="00238" />
-      <option name="presentableId" value="LOCAL-00238" />
+    <task id="LOCAL-00319" summary="SRM">
+      <created>1701689385095</created>
+      <option name="number" value="00319" />
+      <option name="presentableId" value="LOCAL-00319" />
       <option name="project" value="LOCAL" />
-      <updated>1698743243650</updated>
+      <updated>1701689385095</updated>
     </task>
-    <task id="LOCAL-00239" summary="draft process">
-      <created>1698744212928</created>
-      <option name="number" value="00239" />
-      <option name="presentableId" value="LOCAL-00239" />
+    <task id="LOCAL-00320" summary="SRM">
+      <created>1701689929923</created>
+      <option name="number" value="00320" />
+      <option name="presentableId" value="LOCAL-00320" />
       <option name="project" value="LOCAL" />
-      <updated>1698744212928</updated>
+      <updated>1701689929923</updated>
     </task>
-    <task id="LOCAL-00240" summary="consent dialog">
-      <created>1698754000240</created>
-      <option name="number" value="00240" />
-      <option name="presentableId" value="LOCAL-00240" />
+    <task id="LOCAL-00321" summary="SRM">
+      <created>1701754377530</created>
+      <option name="number" value="00321" />
+      <option name="presentableId" value="LOCAL-00321" />
       <option name="project" value="LOCAL" />
-      <updated>1698754000240</updated>
+      <updated>1701754377531</updated>
     </task>
-    <task id="LOCAL-00241" summary="consent dialog">
-      <created>1698814360996</created>
-      <option name="number" value="00241" />
-      <option name="presentableId" value="LOCAL-00241" />
+    <task id="LOCAL-00322" summary="SRM">
+      <created>1701757879006</created>
+      <option name="number" value="00322" />
+      <option name="presentableId" value="LOCAL-00322" />
       <option name="project" value="LOCAL" />
-      <updated>1698814360996</updated>
+      <updated>1701757879006</updated>
     </task>
-    <task id="LOCAL-00242" summary="consent dialog">
-      <created>1698820278756</created>
-      <option name="number" value="00242" />
-      <option name="presentableId" value="LOCAL-00242" />
+    <task id="LOCAL-00323" summary="SRM">
+      <created>1701758146306</created>
+      <option name="number" value="00323" />
+      <option name="presentableId" value="LOCAL-00323" />
       <option name="project" value="LOCAL" />
-      <updated>1698820278756</updated>
+      <updated>1701758146306</updated>
     </task>
-    <task id="LOCAL-00243" summary="consent dialog">
-      <created>1698823806053</created>
-      <option name="number" value="00243" />
-      <option name="presentableId" value="LOCAL-00243" />
+    <task id="LOCAL-00324" summary="SRM">
+      <created>1701759689552</created>
+      <option name="number" value="00324" />
+      <option name="presentableId" value="LOCAL-00324" />
       <option name="project" value="LOCAL" />
-      <updated>1698823806053</updated>
+      <updated>1701759689552</updated>
     </task>
-    <task id="LOCAL-00244" summary="consent dialog">
-      <created>1698823825077</created>
-      <option name="number" value="00244" />
-      <option name="presentableId" value="LOCAL-00244" />
+    <task id="LOCAL-00325" summary="SRM">
+      <created>1701759725477</created>
+      <option name="number" value="00325" />
+      <option name="presentableId" value="LOCAL-00325" />
       <option name="project" value="LOCAL" />
-      <updated>1698823825077</updated>
+      <updated>1701759725477</updated>
     </task>
-    <task id="LOCAL-00245" summary="language issue">
-      <created>1698914411868</created>
-      <option name="number" value="00245" />
-      <option name="presentableId" value="LOCAL-00245" />
+    <task id="LOCAL-00326" summary="SRM">
+      <created>1701768822714</created>
+      <option name="number" value="00326" />
+      <option name="presentableId" value="LOCAL-00326" />
       <option name="project" value="LOCAL" />
-      <updated>1698914411869</updated>
+      <updated>1701768822714</updated>
     </task>
-    <task id="LOCAL-00246" summary="sign up ui issue">
-      <created>1698994128306</created>
-      <option name="number" value="00246" />
-      <option name="presentableId" value="LOCAL-00246" />
+    <task id="LOCAL-00327" summary="SRM">
+      <created>1701769079346</created>
+      <option name="number" value="00327" />
+      <option name="presentableId" value="LOCAL-00327" />
       <option name="project" value="LOCAL" />
-      <updated>1698994128307</updated>
+      <updated>1701769079346</updated>
     </task>
-    <task id="LOCAL-00247" summary="scaling fixed">
-      <created>1699249213883</created>
-      <option name="number" value="00247" />
-      <option name="presentableId" value="LOCAL-00247" />
+    <task id="LOCAL-00328" summary="SRM">
+      <created>1701775363541</created>
+      <option name="number" value="00328" />
+      <option name="presentableId" value="LOCAL-00328" />
       <option name="project" value="LOCAL" />
-      <updated>1699249213883</updated>
+      <updated>1701775363542</updated>
     </task>
-    <task id="LOCAL-00248" summary="img fix">
-      <created>1699250111596</created>
-      <option name="number" value="00248" />
-      <option name="presentableId" value="LOCAL-00248" />
+    <task id="LOCAL-00329" summary="SRM">
+      <created>1701775411767</created>
+      <option name="number" value="00329" />
+      <option name="presentableId" value="LOCAL-00329" />
       <option name="project" value="LOCAL" />
-      <updated>1699250111597</updated>
+      <updated>1701775411767</updated>
     </task>
-    <task id="LOCAL-00249" summary="img fix">
-      <created>1699251257523</created>
-      <option name="number" value="00249" />
-      <option name="presentableId" value="LOCAL-00249" />
+    <task id="LOCAL-00330" summary="SRM">
+      <created>1701854926912</created>
+      <option name="number" value="00330" />
+      <option name="presentableId" value="LOCAL-00330" />
       <option name="project" value="LOCAL" />
-      <updated>1699251257523</updated>
+      <updated>1701854926913</updated>
     </task>
-    <task id="LOCAL-00250" summary="img fix">
-      <created>1699254400269</created>
-      <option name="number" value="00250" />
-      <option name="presentableId" value="LOCAL-00250" />
+    <task id="LOCAL-00331" summary="SRM">
+      <created>1701940797312</created>
+      <option name="number" value="00331" />
+      <option name="presentableId" value="LOCAL-00331" />
       <option name="project" value="LOCAL" />
-      <updated>1699254400270</updated>
+      <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="251" />
+    <option name="localTasksCounter" value="393" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="WARNING ui modify" />
-    <MESSAGE value="avatar" />
-    <MESSAGE value="registration annoted string" />
-    <MESSAGE value="request param added" />
-    <MESSAGE value="Device Type Header added" />
-    <MESSAGE value="send otp pop up" />
-    <MESSAGE value="notification screen permission screen UI modified" />
-    <MESSAGE value="AlwaysProtectedScreen UI modified" />
-    <MESSAGE value="auth screen" />
-    <MESSAGE value="new details content scrap" />
-    <MESSAGE value="add social urls" />
     <MESSAGE value="icon updated" />
     <MESSAGE value="icon click enable" />
     <MESSAGE value="fix UI" />
@@ -954,7 +1067,18 @@
     <MESSAGE value="sign up ui issue" />
     <MESSAGE value="scaling fixed" />
     <MESSAGE value="img fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="img fix" />
+    <MESSAGE value="upt" />
+    <MESSAGE value="date picker" />
+    <MESSAGE value="re arrange" />
+    <MESSAGE value="ui" />
+    <MESSAGE value="UPD" />
+    <MESSAGE value="distance checkout" />
+    <MESSAGE value="SRM" />
+    <MESSAGE value="Entry and edit fixed" />
+    <MESSAGE value="order ui" />
+    <MESSAGE value="phone number validation removed" />
+    <MESSAGE value="new" />
+    <option name="LAST_COMMIT_MESSAGE" value="new" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
 </project>

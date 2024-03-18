@@ -1,6 +1,7 @@
 object Compose {
+    const val play_service_location = "com.google.android.gms:play-services-location:21.0.1"
     const val composeVersion = "1.3.3"
-    const val materialVersion = "1.0.1"
+    const val materialVersion = "1.2.0-alpha02"
     const val composeCompilerVersion = "1.4.2"
     const val material3 = "androidx.compose.material3:material3:${materialVersion}"
     const val ui = "androidx.compose.ui:ui:$composeVersion"
@@ -46,4 +47,19 @@ object Compose {
     const val GUAVA = "com.google.guava:guava:30.1.1-jre"
     const val COMPOSE_SCREENSHOT = "com.github.SmartToolFactory:Compose-Screenshot:1.0.3"
     const val JSOUP = "org.jsoup:jsoup:1.13.1"
+
+    private const val maxkeppelerVersion = "1.0.2"
+    const val maxkeppelerSheetsCore =
+        "com.maxkeppeler.sheets-compose-dialogs:core:$maxkeppelerVersion"
+    const val maxkeppelerSheetsCalendar =
+        "com.maxkeppeler.sheets-compose-dialogs:calendar:$maxkeppelerVersion"
+
+    const val Lottie = "com.airbnb.android:lottie-compose:6.0.1"
+    const val AccompanistPermissions = "com.google.accompanist:accompanist-permissions:0.24.13-rc"
+    const val MAPS = "com.google.maps.android:maps-ktx:3.1.0"
+    const val MAPS_COMPOSE = "com.google.maps.android:maps-compose:2.7.2"
+    const val PLAY_SERVICES_MAPS = "com.google.android.gms:play-services-maps:18.2.0"
+    const val ACCOMPANIST_SWIPE_REFRRESH =  "com.google.accompanist:accompanist-swiperefresh:0.27.0"
+    const val COMPOSE_SIGNATURE = "com.github.JoelKanyi:ComposeSignature:1.0.3"
+    const val SIGNATURE_PAD = "com.github.gcacace:signature-pad:1.3.1"
 }

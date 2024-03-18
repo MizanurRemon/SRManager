@@ -7,5 +7,6 @@ data class CommonErrorModel(
     val timestamp: Long = 0,
     val status: Int = 0,
     val error: String? = null,
-    val description: List<String> = emptyList<String>()
+    val description: List<String> = emptyList<String>(),
+    val message: String? = null
 )

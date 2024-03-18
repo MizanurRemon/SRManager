@@ -3,6 +3,8 @@ package com.srmanager.database.di
 import android.app.Application
 import androidx.room.Room
 import com.srmanager.database.AppDatabase
+import com.srmanager.database.dao.LocationDao
+import com.srmanager.database.dao.ProductsDao
 import com.srmanager.database.dao.UserDao
 import dagger.Module
 import dagger.Provides
@@ -26,4 +28,17 @@ object DatabaseModule {
     fun provideUserDao(appDatabase: AppDatabase): UserDao {
         return appDatabase.userDao
     }
+
+    @Provides
+    @Singleton
+    fun provideLocationDao(appDatabase: AppDatabase): LocationDao{
+        return appDatabase.locationDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideProductsDao(appDatabase: AppDatabase): ProductsDao{
+        return appDatabase.productsDao
+    }
+
 }

@@ -21,18 +21,9 @@ class AuthDomainModule {
         passwordValidate: PasswordValidationResult,
     ): AuthUseCases {
         return AuthUseCases(
-            postRegistrationData = RegistrationUseCase(authRepository),
             emailValidate = emailValidate,
             passwordValidate = passwordValidate,
-            verifyTokenUseCase = VerifyTokenUseCase(authRepository),
-            resendVerificationEmilUseCase = ResendVerificationEmilUseCase(authRepository),
-            loginUseCase = LoginUseCase(authRepository),
-            resetPasswordUseCase = ResetPasswordUseCase(authRepository),
-            resetPasswordLinkSendUseCase = ResetPasswordLinkSendUseCase(authRepository),
-            updateEmailUseCase = UpdateEmailUseCase(authRepository),
-            authenticationDraftUseCase = AuthenticationDraftUseCase(authRepository),
-            draftVerificationUseCases = DraftVerificationUseCases(authRepository),
-            draftUserTokenVerifyUseCase = DraftUserTokenVerifyUseCases(authRepository)
+            loginUseCase = LoginUseCase(authRepository)
         )
     }
 }

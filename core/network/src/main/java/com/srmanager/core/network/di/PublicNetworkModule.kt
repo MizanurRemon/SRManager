@@ -1,11 +1,10 @@
 package com.srmanager.core.network.di
 
-import com.srmanager.core.datastore.PreferenceDataStoreHelper
+import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.srmanager.core.network.PublicApiService
 import com.srmanager.core.network.di.qualifier.PublicNetwork
 import com.srmanager.core.network.interceptor.PublicInterceptor
 import com.srmanager.core.network.util.ResultCallAdapterFactory
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -26,18 +25,18 @@ object PublicNetworkModule {
     @Provides
     @Singleton
     @PublicNetwork(TypeEnum.INTERCEPTOR)
-    fun provideInterceptor(preferenceDataStoreHelper: PreferenceDataStoreHelper): PublicInterceptor {
-        return PublicInterceptor(preferenceDataStoreHelper)
+    fun provideInterceptor(): PublicInterceptor {
+        return PublicInterceptor()
     }
 
     @Provides
     @Singleton
     @PublicNetwork(TypeEnum.OKHTTP)
-    fun provideOkHttpClient(@PublicNetwork(TypeEnum.INTERCEPTOR) authInterceptor: PublicInterceptor): OkHttpClient {
+    fun provideOkHttpClient(@PublicNetwork(TypeEnum.INTERCEPTOR) interceptor: PublicInterceptor): OkHttpClient {
         return OkHttpClient.Builder().apply {
             val httpLoggingInterceptor = HttpLoggingInterceptor()
             httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            this.addInterceptor(httpLoggingInterceptor)
+            this.addInterceptor(httpLoggingInterceptor).addInterceptor(interceptor)
                 .connectTimeout(60, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
         }.build()
@@ -49,10 +48,10 @@ object PublicNetworkModule {
     fun provideRetrofit(
         @PublicNetwork(TypeEnum.OKHTTP) okHttpClient: OkHttpClient,
     ): Retrofit {
-        return Retrofit.Builder().baseUrl(RestConfig.SERVER_URL_EN).callFactory(okHttpClient)
+        return Retrofit.Builder().baseUrl(RestConfig.LOCAL_URL).callFactory(okHttpClient)
             .addCallAdapterFactory(ResultCallAdapterFactory()).addConverterFactory(
                 @OptIn(ExperimentalSerializationApi::class) Json {
-                    ignoreUnknownKeys = true;
+                    ignoreUnknownKeys = true
                     isLenient = true
 
                 }.asConverterFactory("application/json".toMediaType())
@@ -68,7 +67,5 @@ object PublicNetworkModule {
     ): PublicApiService {
         return retrofit.create(PublicApiService::class.java)
     }
-
-
 }
 
