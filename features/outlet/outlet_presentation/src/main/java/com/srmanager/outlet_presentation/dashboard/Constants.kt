@@ -25,7 +25,7 @@ val OUTLET_DASHBOARD_MENUS = listOf(
     DashboardItemsResponse(
         icon = DesignSystemR.drawable.ic_cart,
         title = CommonR.string.order,
-        route = Route.ORDER
+        route = Route.PRODUCTS_ITEMS
     ),
 
     DashboardItemsResponse(

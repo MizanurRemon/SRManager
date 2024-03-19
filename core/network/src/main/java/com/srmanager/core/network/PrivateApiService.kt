@@ -30,4 +30,7 @@ interface PrivateApiService {
 
     @POST("bsol/api/order")
     suspend fun createOrder(@Body request : OrderRequest): CommonResponseDto
+
+    @GET("bsol/api/order")
+    suspend fun fetchOrders(): OrderDataDto
 }

@@ -1,10 +1,9 @@
 package com.srmanager.order_presentation.order
 
-import com.srmanager.order_domain.model.OrderItem
-
+import com.srmanager.core.network.dto.Order
 data class OrderState(
     val isLoading: Boolean = false,
-    val orderList: List<OrderItem> = emptyList(),
+    val orderList: List<Order> = emptyList(),
     val startDate: String = "",
     val endDate: String = ""
 )

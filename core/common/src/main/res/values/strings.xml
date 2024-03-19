@@ -130,4 +130,5 @@
     <string name="outlet_id">Outlet ID</string>
     <string name="success">Sucess</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="my_order">My Order</string>
 </resources>
