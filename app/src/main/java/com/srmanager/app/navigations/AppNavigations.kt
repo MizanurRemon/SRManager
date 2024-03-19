@@ -123,7 +123,11 @@ fun MainApp(
                 OrderScreen(onBack = {
                     navController.navigateUp()
                 }, onAddClick = {
-                    navController.navigate(Route.PRODUCTS_ITEMS)
+                    navController.navigate(Route.PRODUCTS_ITEMS){
+                        popUpTo(Route.ORDER){
+                            inclusive = true
+                        }
+                    }
                 })
             }
 
@@ -171,14 +175,18 @@ fun MainApp(
                 OrderProductsScreen(onBack = {
                     navController.navigateUp()
                 }, onNextClick = {
-                    navController.navigate(Route.SELECTED_PRODUCTS_SCREEN)
+                    navController.navigate(Route.SELECTED_PRODUCTS_SCREEN){
+                        popUpTo(Route.PRODUCTS_ITEMS){
+                            inclusive = true
+                        }
+                    }
                 })
             }
 
             composable(route = Route.SIGNATURE_SCREEN) {
                 val viewModel = hiltViewModel<SignatureViewModel>()
 
-                viewModel.onEvent(SignatureEvent.OnOutletIDEvent(value = outletDetails!!.id))
+                viewModel.onEvent(SignatureEvent.OnOutletDetailsEvent(id = outletDetails!!.id, contactNo = outletDetails!!.mobileNo))
 
                 SignatureScreen(
                     state = viewModel.state,
@@ -187,7 +195,11 @@ fun MainApp(
                     onBack = {
                         navController.navigateUp()
                     }, onSuccess = {
-                        navController.navigate(Route.OUTLET)
+                        navController.navigate(Route.ORDER){
+                            popUpTo(Route.SIGNATURE_SCREEN){
+                                inclusive = true
+                            }
+                        }
                     },
                     snackbarHostState = snackBarHostState
                 )
@@ -202,7 +214,11 @@ fun MainApp(
                     state = viewModel.state,
                     onEvent = viewModel::onEvent,
                     onNextClick = {
-                        navController.navigate(Route.SIGNATURE_SCREEN)
+                        navController.navigate(Route.SIGNATURE_SCREEN){
+                            popUpTo(Route.SELECTED_PRODUCTS_SCREEN){
+                                inclusive = true
+                            }
+                        }
                     }
                 )
             }

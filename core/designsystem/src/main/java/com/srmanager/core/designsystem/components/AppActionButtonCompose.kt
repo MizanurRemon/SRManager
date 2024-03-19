@@ -1,7 +1,8 @@
 package com.srmanager.core.designsystem.components
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -15,14 +16,14 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.srmanager.core.common.R as CommonR
+import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_BUTTON_COLOR
 import com.srmanager.core.designsystem.theme.ColorPrimaryDark
 import com.srmanager.core.designsystem.theme.DISABLED_COLOR
 import com.srmanager.core.designsystem.theme.conditional
 import com.srmanager.core.designsystem.theme.fontRoboto
+import com.srmanager.core.common.R as CommonR
 
 
 @Composable
@@ -37,20 +38,23 @@ fun AppActionButtonCompose(
 ) {
 
 
-    val cornerRadius = 37.dp
-    val borderWidth = 1.dp
-    return Button(
+    val cornerRadius = 37.r()
+    val borderWidth = 1.r()
+    Button(
         onClick = {
             if (enable)
                 onActionButtonClick()
         },
         enabled = enable,
-        colors = ButtonDefaults.buttonColors(containerColor = bgColor, disabledContainerColor = DISABLED_COLOR),
+        colors = ButtonDefaults.buttonColors(
+            containerColor = bgColor,
+            disabledContainerColor = DISABLED_COLOR
+        ),
         modifier = modifier
             .fillMaxWidth()
-            .height(52.dp)
+            .wrapContentHeight()
             .clip(RoundedCornerShape(cornerRadius))
-           // .background(color = bgColor)
+            // .background(color = bgColor)
             .conditional(borderColor != null) {
                 return@conditional border(
                     borderWidth,

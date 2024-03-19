@@ -37,8 +37,9 @@ import com.srmanager.core.common.util.base64ToImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.components.LoadingDialog
+import com.srmanager.core.designsystem.components.SignatureDialog
+import com.srmanager.core.designsystem.components.WarningDialogCompose
 import com.srmanager.core.designsystem.r
-import com.srmanager.core.designsystem.theme.SignatureDialog
 import com.srmanager.core.designsystem.theme.bodyXSBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyXSRegularTextStyle
 import com.srmanager.core.network.dto.Product
@@ -70,8 +71,7 @@ fun SignatureScreen(
         uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> {
-
-
+                    onSuccess
                 }
 
                 is UiEvent.ShowSnackbar -> {
@@ -108,7 +108,7 @@ fun SignatureScreen(
         ) {
             InfoItem(title = CommonR.string.outlet_id, value = state.outletID.toString())
 
-            InfoItem(title = CommonR.string.order_no, value = state.orderNo)
+            InfoItem(title = CommonR.string.contact, value = state.contact)
 
             InfoItem(title = CommonR.string.date, value = state.orderDate)
 
@@ -239,6 +239,19 @@ fun SignatureScreen(
         }
     }
 
+    if (state.orderSuccessDialog) {
+        WarningDialogCompose(
+            message = CommonR.string.success,
+            buttonText = CommonR.string.done,
+            image = DesignSystemR.drawable.ic_success,
+            isDialogOpen = remember {
+                mutableStateOf(true)
+            },
+            onClick = {
+                onSuccess()
+            }
+        )
+    }
 
 }
 
@@ -304,6 +317,7 @@ fun ProductItemCompose(product: Product) {
                 .height(1.r())
         )
     }
+
 
 }
 

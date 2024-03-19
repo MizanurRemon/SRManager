@@ -128,4 +128,6 @@
     <string name="create_order">Create Order</string>
     <string name="sr_id">Sr ID</string>
     <string name="outlet_id">Outlet ID</string>
+    <string name="success">Sucess</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 </resources>

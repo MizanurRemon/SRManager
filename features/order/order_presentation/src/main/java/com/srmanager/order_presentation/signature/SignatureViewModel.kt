@@ -2,12 +2,12 @@ package com.srmanager.order_presentation.signature
 
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.srmanager.core.common.util.DATE_FORMAT
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.bitMapToString
@@ -22,7 +22,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -42,7 +41,7 @@ class SignatureViewModel @Inject constructor(
     init {
         viewModelScope.launch(Dispatchers.Default) {
             launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO) {
+                try {
                     productsDao.getSelectedProducts().collect { products ->
 
                         state = state.copy(productsList = products.map { product ->
@@ -64,6 +63,8 @@ class SignatureViewModel @Inject constructor(
                             it.selectedItemTotalPrice
                         })
                     }
+                } catch (e: Exception) {
+                    Log.d("dataxx", e.message.toString())
                 }
             }
 
@@ -71,12 +72,7 @@ class SignatureViewModel @Inject constructor(
                 state = state.copy(
                     orderDate = LocalDateTime.now().format(
                         DateTimeFormatter.ofPattern(
-                            DATE_FORMAT
-                        )
-                    ),
-                    orderNo = LocalDateTime.now().format(
-                        DateTimeFormatter.ofPattern(
-                            "yyMMddhhmmss"
+                            "yyyy-MM-dd HH:mm:ss"
                         )
                     ),
                 )
@@ -103,7 +99,7 @@ class SignatureViewModel @Inject constructor(
 
                     state = state.copy(
                         isLoading = true,
-                        isOrderReady = state.customerSign.isNotEmpty() && state.outletID != 0 && state.orderNo.isNotEmpty()
+                        isOrderReady = state.customerSign.isNotEmpty() && state.outletID != 0
                                 && state.orderDate.isNotEmpty() && state.total != 0.0
                     )
 
@@ -114,9 +110,10 @@ class SignatureViewModel @Inject constructor(
                                     orderInformation = OrderInformation(
                                         customerSignature = state.customerSign,
                                         outletId = state.outletID.toLong(),
-                                        orderNo = state.orderNo,
+                                        //orderNo = state.orderNo,
                                         orderDate = state.orderDate,
                                         totalAmount = state.total.toLong(),
+                                        contactNo = state.contact
                                     ),
                                     orderDetails = state.productsList.map { product ->
                                         OrderDetail(
@@ -129,7 +126,8 @@ class SignatureViewModel @Inject constructor(
                                 )
                             ).onSuccess {
                                 state = state.copy(
-                                    isLoading = false
+                                    isLoading = false,
+                                    orderSuccessDialog = true
                                 )
 
                             }.onFailure {
@@ -164,9 +162,10 @@ class SignatureViewModel @Inject constructor(
                 }
             }
 
-            is SignatureEvent.OnOutletIDEvent -> {
+            is SignatureEvent.OnOutletDetailsEvent -> {
                 state = state.copy(
-                    outletID = event.value
+                    outletID = event.id,
+                    contact = event.contactNo
                 )
             }
         }
