@@ -13,8 +13,8 @@ interface ProductsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertProducts(productEntity: ProductsEntity)
 
-    @Query("SELECT * from products")
-    fun getProducts(): Flow<List<ProductsEntity>>
+    @Query("SELECT * from products WHERE title LIKE '%' || :key ||'%'")
+    fun getProducts(key : String): Flow<List<ProductsEntity>>
 
     @Query("UPDATE products SET isSelected= :isSelected, selectedItemTotalPrice = selectedItemCount * mrpPrice WHERE id = :id")
     fun updateIsSelectedStatus(id: Long, isSelected: Boolean)
@@ -31,5 +31,8 @@ interface ProductsDao {
 
     @Query("SELECT * from products WHERE isSelected")
     fun getSelectedProducts(): Flow<List<ProductsEntity>>
+
+    @Query("UPDATE products SET selectedItemCount =:qty, selectedItemTotalPrice = selectedItemCount * mrpPrice  WHERE id = :id")
+    fun updateProductItem(id: Long, qty: Int)
 
 }

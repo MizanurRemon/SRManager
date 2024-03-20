@@ -66,7 +66,7 @@ class ProductsViewModel @Inject constructor(
 
             launch(Dispatchers.Default) {
                 withContext(Dispatchers.IO) {
-                    productsDao.getProducts().collect {
+                    productsDao.getProducts(key = "").collect {
                         state = state.copy(
                             isLoading = false,
                             productsList = it.map { product ->
@@ -127,6 +127,38 @@ class ProductsViewModel @Inject constructor(
                         state = state.copy(isNextButtonEnabled = itemCount > 0)
                     }
 
+                }
+            }
+
+            is OrderProductsEvent.OnSearchEvent -> {
+                state = state.copy(searchKey = event.key)
+                viewModelScope.launch(Dispatchers.Default) {
+                    withContext(Dispatchers.IO) {
+                        productsDao.getProducts(key = event.key).collect {
+                            state = state.copy(
+                                isLoading = false,
+                                productsList = it.map { product ->
+                                    Product(
+                                        title = product.title,
+                                        id = product.id,
+                                        mrpPrice = product.mrpPrice,
+                                        wholeSalePrice = product.wholeSalePrice,
+                                        lastPurchasePrice = product.lastPurchasePrice,
+                                        vatPercentage = product.vatPercentage,
+                                        price = product.price,
+                                        availableQuantity = product.availableQuantity,
+                                        isSelected = product.isSelected,
+                                        selectedItemCount = product.selectedItemCount
+                                    )
+                                })
+                        }
+                    }
+                }
+            }
+
+            is OrderProductsEvent.OnQuantityInput -> {
+                viewModelScope.launch(Dispatchers.Default) {
+                    productsDao.updateProductItem(id = event.id, qty = event.qty)
                 }
             }
         }

@@ -144,34 +144,6 @@ fun ItemCompose(
             append("${product.mrpPrice}")
         }
 
-        withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | " + stringResource(id = CommonR.string.whole_sale_price) + ": ")
-        }
-
-
-        withStyle(
-            style = SpanStyle(
-                color = Color.Black,
-                fontWeight = FontWeight.W700,
-            )
-        ) {
-            append("${product.wholeSalePrice}")
-        }
-
-        withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | " + stringResource(id = CommonR.string.last_purchase_price) + ": ")
-        }
-
-
-        withStyle(
-            style = SpanStyle(
-                color = Color.Black,
-                fontWeight = FontWeight.W700,
-            )
-        ) {
-            append("${product.lastPurchasePrice}")
-        }
-
     }
 
     Card(
