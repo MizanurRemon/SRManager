@@ -22,6 +22,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
@@ -39,29 +40,31 @@ class SignatureViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch{
             launch(Dispatchers.Default) {
                 try {
-                    productsDao.getSelectedProducts().collect { products ->
+                    withContext(Dispatchers.IO){
+                        productsDao.getSelectedProducts().collect { products ->
 
-                        state = state.copy(productsList = products.map { product ->
-                            Product(
-                                title = product.title,
-                                id = product.id,
-                                mrpPrice = product.mrpPrice,
-                                wholeSalePrice = product.wholeSalePrice,
-                                lastPurchasePrice = product.lastPurchasePrice,
-                                vatPercentage = product.vatPercentage,
-                                price = product.price,
-                                availableQuantity = product.availableQuantity,
-                                isSelected = product.isSelected,
-                                selectedItemCount = product.selectedItemCount,
-                                selectedItemTotalPrice = product.formatTotalPrice().toDouble()
-                            )
+                            state = state.copy(productsList = products.map { product ->
+                                Product(
+                                    title = product.title,
+                                    id = product.id,
+                                    mrpPrice = product.mrpPrice,
+                                    wholeSalePrice = product.wholeSalePrice,
+                                    lastPurchasePrice = product.lastPurchasePrice,
+                                    vatPercentage = product.vatPercentage,
+                                    price = product.price,
+                                    availableQuantity = product.availableQuantity,
+                                    isSelected = product.isSelected,
+                                    selectedItemCount = product.selectedItemCount,
+                                    selectedItemTotalPrice = product.selectedItemTotalPrice//product.formatTotalPrice().toDouble()
+                                )
 
-                        }, total = products.sumOf {
-                            it.selectedItemTotalPrice
-                        })
+                            }, total = products.sumOf {
+                                it.selectedItemTotalPrice
+                            })
+                        }
                     }
                 } catch (e: Exception) {
                     Log.d("dataxx", e.message.toString())
