@@ -35,26 +35,7 @@ class SelectedProductsViewModel @Inject constructor(private val productsDao: Pro
     }
 
     private fun loadProducts() {
-        /*viewModelScope.launch(Dispatchers.Default) {
-            productsDao.getSelectedProducts().collect {
-                state = state.copy(
-                    productsList = it.map { product ->
-                        Product(
-                            title = product.title,
-                            id = product.id,
-                            mrpPrice = product.mrpPrice,
-                            wholeSalePrice = product.wholeSalePrice,
-                            lastPurchasePrice = product.lastPurchasePrice,
-                            vatPercentage = product.vatPercentage,
-                            price = product.price,
-                            availableQuantity = product.availableQuantity,
-                            isSelected = product.isSelected,
-                            selectedItemCount = product.selectedItemCount
-                        )
-                    }
-                )
-            }
-        }*/
+
         viewModelScope.launch(Dispatchers.Default) {
             withContext(Dispatchers.Default) {
                 productsDao.getSelectedProducts().collect {

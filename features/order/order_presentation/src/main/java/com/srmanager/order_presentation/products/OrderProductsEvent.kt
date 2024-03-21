@@ -6,5 +6,5 @@ sealed class OrderProductsEvent {
     data class OnDecrementEvent(val id: Long) : OrderProductsEvent()
     data class OnItemClickEvent(val id: Long, val isSelected: Boolean) : OrderProductsEvent()
     data class OnSearchEvent(val key: String) : OrderProductsEvent()
-    data class OnQuantityInput(val qty: Int, val id: Long) : OrderProductsEvent()
+    data class OnQuantityInput(val qty: Double, val id: Long) : OrderProductsEvent()
 }

@@ -11,6 +11,11 @@
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/dao/ProductsDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/dao/ProductsDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/OrderProductsEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/OrderProductsEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/OrderProductsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/OrderProductsScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/selected_products/SelectedProductsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/selected_products/SelectedProductsViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature/SignatureViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,12 +37,7 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="SRManager" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -141,7 +141,7 @@
     "jdk.selected.JAVA_MODULE": "jbr-17",
     "kotlin-language-version-configured": "true",
     "last_directory_selection": "/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable",
-    "last_opened_file_path": "/home/remon/Projects/Android/internet-politie-android-app",
+    "last_opened_file_path": "/home/remon/Projects/Android/srmanager",
     "memory.settings.postsync.last.time.stamp": "1693848167557",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -160,11 +160,11 @@
       "release"
     ],
     "com.android.tools.idea.sqlite.queryhistory": [
+      "DELETE FROM products",
       "SELECT * from products WHERE title  LIKE  '%0045%'",
       "SELECT * from products WHERE title  LIKE  '%Hide%'",
       "SELECT * from products WHERE title  LIKE  '%Ch%'",
-      "SELECT * from products WHERE title  LIKE  '%M%'",
-      "SELECT * from products WHERE title  LIKE  'M'"
+      "SELECT * from products WHERE title  LIKE  '%M%'"
     ]
   }
 }]]></component>
@@ -1008,7 +1008,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="397" />
+    <option name="localTasksCounter" value="398" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

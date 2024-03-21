@@ -33,6 +33,9 @@ interface ProductsDao {
     fun getSelectedProducts(): Flow<List<ProductsEntity>>
 
     @Query("UPDATE products SET selectedItemCount =:qty, selectedItemTotalPrice = selectedItemCount * mrpPrice  WHERE id = :id")
-    fun updateProductItem(id: Long, qty: Int)
+    fun updateProductItem(id: Long, qty: Double)
+
+    @Query("DELETE FROm products")
+    fun deleteAll()
 
 }

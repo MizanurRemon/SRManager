@@ -33,6 +33,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -256,6 +258,10 @@ fun ItemCompose(
 
     }
 
+    val qty = remember {
+        mutableStateOf(product.selectedItemCount.toString())
+    }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -358,25 +364,40 @@ fun ItemCompose(
                     Spacer(modifier = Modifier.width(20.r()))
 
                     TextField(
-                        value = product.selectedItemCount.toString(),
+                        value = qty.value,
                         onValueChange = {
 
-                            if (it.isNotEmpty() && (it.toDouble() < product.availableQuantity)) {
-                                onEvent(
-                                    OrderProductsEvent.OnQuantityInput(
-                                        id = product.id,
-                                        qty = it.toInt()
+                            qty.value = it
+
+                            when {
+                                it.isNotEmpty() && (it.toDouble() < product.availableQuantity) -> {
+                                    onEvent(
+                                        OrderProductsEvent.OnQuantityInput(
+                                            id = product.id,
+                                            qty = it.toDouble()
+                                        )
                                     )
-                                )
+                                }
+
+                                it.isNotEmpty() && (it.toDouble() > product.availableQuantity) -> {
+                                    onEvent(
+                                        OrderProductsEvent.OnQuantityInput(
+                                            id = product.id,
+                                            qty = product.availableQuantity
+                                        )
+                                    )
+                                }
                             }
 
-                            if (it.isEmpty()) {
-                                onEvent(
-                                    OrderProductsEvent.OnQuantityInput(
-                                        id = product.id,
-                                        qty = 1
+                            when {
+                                it.isEmpty() -> {
+                                    onEvent(
+                                        OrderProductsEvent.OnQuantityInput(
+                                            id = product.id,
+                                            qty = 1.0
+                                        )
                                     )
-                                )
+                                }
                             }
                         },
                         textStyle = bodyRegularTextStyle.copy(

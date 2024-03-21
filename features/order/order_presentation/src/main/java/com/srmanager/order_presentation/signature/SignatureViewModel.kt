@@ -20,6 +20,7 @@ import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,32 +41,37 @@ class SignatureViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-        viewModelScope.launch{
+        viewModelScope.launch {
             launch(Dispatchers.Default) {
                 try {
-                    withContext(Dispatchers.IO){
-                        productsDao.getSelectedProducts().collect { products ->
 
-                            state = state.copy(productsList = products.map { product ->
-                                Product(
-                                    title = product.title,
-                                    id = product.id,
-                                    mrpPrice = product.mrpPrice,
-                                    wholeSalePrice = product.wholeSalePrice,
-                                    lastPurchasePrice = product.lastPurchasePrice,
-                                    vatPercentage = product.vatPercentage,
-                                    price = product.price,
-                                    availableQuantity = product.availableQuantity,
-                                    isSelected = product.isSelected,
-                                    selectedItemCount = product.selectedItemCount,
-                                    selectedItemTotalPrice = product.selectedItemTotalPrice//product.formatTotalPrice().toDouble()
-                                )
-
-                            }, total = products.sumOf {
-                                it.selectedItemTotalPrice
-                            })
-                        }
+                    val products = productsDao.getSelectedProducts().first()
+                    val newProductsList = products.map { product ->
+                        Product(
+                            title = product.title,
+                            id = product.id,
+                            mrpPrice = product.mrpPrice,
+                            wholeSalePrice = product.wholeSalePrice,
+                            lastPurchasePrice = product.lastPurchasePrice,
+                            vatPercentage = product.vatPercentage,
+                            price = product.price,
+                            availableQuantity = product.availableQuantity,
+                            isSelected = product.isSelected,
+                            selectedItemCount = product.selectedItemCount,
+                            selectedItemTotalPrice = String.format(
+                                "%.2f",
+                                product.selectedItemTotalPrice
+                            ).toDouble()
+                        )
                     }
+                    val newTotal = products.sumOf {
+                        String.format("%.2f", it.selectedItemTotalPrice).toDouble()
+                    }
+
+                    withContext(Dispatchers.Main) {
+                        state = state.copy(productsList = newProductsList, total = newTotal)
+                    }
+
                 } catch (e: Exception) {
                     Log.d("dataxx", e.message.toString())
                 }

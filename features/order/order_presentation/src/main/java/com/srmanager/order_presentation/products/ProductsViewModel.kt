@@ -14,6 +14,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -40,52 +41,61 @@ class ProductsViewModel @Inject constructor(
     private fun loadProducts() {
         state = state.copy(isLoading = true)
         viewModelScope.launch(Dispatchers.Default) {
+            productsDao.deleteAll()
             delay(2000)
-            launch(Dispatchers.Default) {
+            launch(Dispatchers.IO) {
+
                 orderUseCases.productsUseCases().onSuccess {
-                    it.products.forEach { item ->
-                        productsDao.insertProducts(
-                            ProductsEntity(
-                                id = item.id,
-                                title = item.title,
-                                mrpPrice = item.mrpPrice,
-                                wholeSalePrice = item.wholeSalePrice,
-                                lastPurchasePrice = item.lastPurchasePrice,
-                                vatPercentage = item.vatPercentage,
-                                price = item.price,
-                                availableQuantity = item.availableQuantity,
-                                isSelected = false,
-                                selectedItemCount = 1
+
+                    //state = state.copy(isLoading = false, productsList = it.products)
+
+                    withContext(Dispatchers.Default) {
+                        it.products.forEach { item ->
+                            productsDao.insertProducts(
+                                ProductsEntity(
+                                    id = item.id,
+                                    title = item.title,
+                                    mrpPrice = item.mrpPrice,
+                                    wholeSalePrice = item.wholeSalePrice,
+                                    lastPurchasePrice = item.lastPurchasePrice,
+                                    vatPercentage = item.vatPercentage,
+                                    price = item.price,
+                                    availableQuantity = item.availableQuantity,
+                                    isSelected = false,
+                                    selectedItemCount = 1
+                                )
                             )
-                        )
+                        }
                     }
                 }.onFailure {
-                    state.copy(isLoading = false)
+                    state = state.copy(isLoading = false)
                 }
             }
 
-            launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO) {
-                    productsDao.getProducts(key = "").collect {
-                        state = state.copy(
-                            isLoading = false,
-                            productsList = it.map { product ->
-                                Product(
-                                    title = product.title,
-                                    id = product.id,
-                                    mrpPrice = product.mrpPrice,
-                                    wholeSalePrice = product.wholeSalePrice,
-                                    lastPurchasePrice = product.lastPurchasePrice,
-                                    vatPercentage = product.vatPercentage,
-                                    price = product.price,
-                                    availableQuantity = product.availableQuantity,
-                                    isSelected = product.isSelected,
-                                    selectedItemCount = product.selectedItemCount
-                                )
-                            })
-                    }
-                }
-            }
+                  launch(Dispatchers.Default) {
+                      withContext(Dispatchers.Default) {
+                         productsDao.getProducts(key = state.searchKey).collect{
+                             state = state.copy(
+                                 isLoading = false,
+                                 searchKey = "",
+                                 productsList = it.map { product ->
+                                     Product(
+                                         title = product.title,
+                                         id = product.id,
+                                         mrpPrice = product.mrpPrice,
+                                         wholeSalePrice = product.wholeSalePrice,
+                                         lastPurchasePrice = product.lastPurchasePrice,
+                                         vatPercentage = product.vatPercentage,
+                                         price = product.price,
+                                         availableQuantity = product.availableQuantity,
+                                         isSelected = product.isSelected,
+                                         selectedItemCount = product.selectedItemCount
+                                     )
+                                 })
+                         }
+
+                      }
+                  }
 
 
             launch(Dispatchers.Default) {
@@ -133,25 +143,24 @@ class ProductsViewModel @Inject constructor(
             is OrderProductsEvent.OnSearchEvent -> {
                 state = state.copy(searchKey = event.key)
                 viewModelScope.launch(Dispatchers.Default) {
-                    withContext(Dispatchers.IO) {
-                        productsDao.getProducts(key = event.key).collect {
-                            state = state.copy(
-                                isLoading = false,
-                                productsList = it.map { product ->
-                                    Product(
-                                        title = product.title,
-                                        id = product.id,
-                                        mrpPrice = product.mrpPrice,
-                                        wholeSalePrice = product.wholeSalePrice,
-                                        lastPurchasePrice = product.lastPurchasePrice,
-                                        vatPercentage = product.vatPercentage,
-                                        price = product.price,
-                                        availableQuantity = product.availableQuantity,
-                                        isSelected = product.isSelected,
-                                        selectedItemCount = product.selectedItemCount
-                                    )
-                                })
-                        }
+                    withContext(Dispatchers.Default) {
+                        val products = productsDao.getProducts(key = event.key).first()
+                        state = state.copy(
+                            isLoading = false,
+                            productsList = products.map { product ->
+                                Product(
+                                    title = product.title,
+                                    id = product.id,
+                                    mrpPrice = product.mrpPrice,
+                                    wholeSalePrice = product.wholeSalePrice,
+                                    lastPurchasePrice = product.lastPurchasePrice,
+                                    vatPercentage = product.vatPercentage,
+                                    price = product.price,
+                                    availableQuantity = product.availableQuantity,
+                                    isSelected = product.isSelected,
+                                    selectedItemCount = product.selectedItemCount
+                                )
+                            })
                     }
                 }
             }
