@@ -61,9 +61,6 @@ fun SignatureScreen(
 ) {
 
     val isCustomerDialogOpen = remember { mutableStateOf(false) }
-    val isSrDialogOpen = remember {
-        mutableStateOf(false)
-    }
 
     val context = LocalContext.current
 
@@ -71,7 +68,7 @@ fun SignatureScreen(
         uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> {
-                    onSuccess
+                    onSuccess()
                 }
 
                 is UiEvent.ShowSnackbar -> {
@@ -219,16 +216,6 @@ fun SignatureScreen(
             isDialogOpen = isCustomerDialogOpen,
             onSave = {
                 onEvent(SignatureEvent.OnCustomerSignEvent(it))
-            }
-        )
-    }
-
-
-    if (isSrDialogOpen.value) {
-        SignatureDialog(
-            isDialogOpen = isSrDialogOpen,
-            onSave = {
-                onEvent(SignatureEvent.OnSRSignEvent(it))
             }
         )
     }

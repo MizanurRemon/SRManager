@@ -2,7 +2,6 @@ package com.srmanager.order_presentation.signature
 
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -72,8 +71,8 @@ class SignatureViewModel @Inject constructor(
                         state = state.copy(productsList = newProductsList, total = newTotal)
                     }
 
-                } catch (e: Exception) {
-                    Log.d("dataxx", e.message.toString())
+                } catch (_: Exception) {
+
                 }
             }
 
@@ -97,12 +96,6 @@ class SignatureViewModel @Inject constructor(
                 )
             }
 
-            is SignatureEvent.OnSRSignEvent -> {
-                state = state.copy(
-                    //srSign = bitMapToString(event.value)
-                )
-            }
-
             is SignatureEvent.OnDoneEvent -> {
                 viewModelScope.launch {
 
@@ -119,7 +112,6 @@ class SignatureViewModel @Inject constructor(
                                     orderInformation = OrderInformation(
                                         customerSignature = state.customerSign,
                                         outletId = state.outletID.toLong(),
-                                        //orderNo = state.orderNo,
                                         orderDate = state.orderDate,
                                         totalAmount = state.total.toLong(),
                                         contactNo = state.contact
