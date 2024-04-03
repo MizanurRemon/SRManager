@@ -6,11 +6,20 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.provider.Browser
 import android.util.Base64
+import android.util.Log
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.text.HtmlCompat
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import kotlin.math.atan2
@@ -78,10 +87,6 @@ fun openExternalLink(url: String, context: Context) {
     } catch (_: Exception) {
 
     }
-}
-
-fun convertHtmlToText(text: String): String {
-    return HtmlCompat.fromHtml(text, 0).toString()
 }
 
 fun convertMillisToDate(millis: Long): String {

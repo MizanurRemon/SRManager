@@ -1,6 +1,7 @@
 package com.srmanager.order_presentation.products
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -56,7 +57,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
+import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
@@ -66,7 +67,7 @@ import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import com.srmanager.core.designsystem.theme.subHeading1TextStyle
 import com.srmanager.core.network.dto.Product
-import kotlin.reflect.KFunction1
+import kotlinx.coroutines.flow.Flow
 import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
 
@@ -74,8 +75,10 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 @Composable
 fun OrderProductsScreen(
     onBack: () -> Unit,
-    viewModel: ProductsViewModel = hiltViewModel(),
-    onNextClick: () -> Unit
+    onNextClick: () -> Unit,
+    state: ProductsState,
+    uiEvent: Flow<UiEvent>,
+    onEvent: (OrderProductsEvent) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -91,7 +94,7 @@ fun OrderProductsScreen(
             modifier = Modifier
                 .padding(horizontal = 40.r())
                 .padding(bottom = 30.r(), top = 10.r()),
-            enable = viewModel.state.isNextButtonEnabled
+            enable = state.isNextButtonEnabled
         ) {
             onNextClick()
         }
@@ -106,9 +109,9 @@ fun OrderProductsScreen(
             Spacer(modifier = Modifier.height(10.r()))
 
             TextField(
-                value = viewModel.state.searchKey,
+                value = state.searchKey,
                 onValueChange = {
-                    viewModel.onEvent(OrderProductsEvent.OnSearchEvent(it))
+                    onEvent(OrderProductsEvent.OnSearchEvent(it))
                 },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
@@ -153,7 +156,7 @@ fun OrderProductsScreen(
                 contentAlignment = Alignment.TopCenter,
             ) {
 
-                if (viewModel.state.isLoading) {
+                if (state.isLoading) {
                     CircularProgressIndicator(
                         strokeWidth = 2.dp,
                         color = APP_DEFAULT_COLOR,
@@ -167,13 +170,13 @@ fun OrderProductsScreen(
                             .verticalScroll(rememberScrollState())
                             .padding(bottom = 20.r())
                     ) {
-                        viewModel.state.productsList.forEach { product ->
+                        state.productsList.forEach { product ->
                             Spacer(modifier = Modifier.height(10.r()))
 
                             ItemCompose(
                                 product = product,
                                 onItemClick = {
-                                    viewModel.onEvent(
+                                    onEvent(
                                         OrderProductsEvent.OnItemClickEvent(
                                             product.id,
                                             !product.isSelected
@@ -181,14 +184,14 @@ fun OrderProductsScreen(
                                     )
                                 },
                                 onIncrementClick = {
-                                    viewModel.onEvent(OrderProductsEvent.OnIncrementEvent(product.id))
+                                    onEvent(OrderProductsEvent.OnIncrementEvent(product.id))
                                 },
                                 onDecrementClick = {
-                                    viewModel.onEvent(OrderProductsEvent.OnDecrementEvent(product.id))
+                                    onEvent(OrderProductsEvent.OnDecrementEvent(product.id))
                                 },
                                 keyboardController = keyboardController,
-                                state = viewModel.state,
-                                onEvent = viewModel::onEvent
+                                state = state,
+                                onEvent = onEvent
                             )
                         }
                     }
@@ -209,7 +212,7 @@ fun ItemCompose(
     onDecrementClick: () -> Unit,
     keyboardController: SoftwareKeyboardController?,
     state: ProductsState,
-    onEvent: KFunction1<OrderProductsEvent, Unit>
+    onEvent: (OrderProductsEvent) -> Unit
 ) {
 
     val annotatedText = buildAnnotatedString {
@@ -344,6 +347,7 @@ fun ItemCompose(
 
                         if (product.selectedItemCount < product.availableQuantity) {
                             onIncrementClick()
+                            qty.value = product.selectedItemCount.toString()
                         }
 
                     }, modifier = Modifier.size(20.r())) {

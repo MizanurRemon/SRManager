@@ -17,10 +17,10 @@ class OrderRepositoryImpl(
     private val orderRemoteDataSource: OrderRemoteDataSource,
     private val networkHandler: NetworkHandler
 ) : OrderRepository {
-    override suspend fun getProducts(): Result<ProductsResponse> {
+    override suspend fun getProducts(outletID: String): Result<ProductsResponse> {
         return if (networkHandler.isNetworkAvailable()) {
             try {
-                val responseDto = orderRemoteDataSource.getProducts()
+                val responseDto = orderRemoteDataSource.getProducts(outletID = outletID)
                 Result.success(responseDto.toResponse())
             } catch (e: Exception) {
                 val throwable =

@@ -12,8 +12,8 @@ class OrderRemoteDataSourceImpl(
     private val publicApiService: PublicApiService,
     private val privateApiService: PrivateApiService
 ) : OrderRemoteDataSource {
-    override suspend fun getProducts(): ProductsDto {
-        return privateApiService.getProducts()
+    override suspend fun getProducts(outletID: String): ProductsDto {
+        return privateApiService.getProducts(outletID = outletID)
     }
 
     override suspend fun createOrder(orderRequest: OrderRequest): CommonResponseDto {

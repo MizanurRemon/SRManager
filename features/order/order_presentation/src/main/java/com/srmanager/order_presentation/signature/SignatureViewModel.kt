@@ -11,10 +11,7 @@ import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.bitMapToString
 import com.srmanager.core.network.dto.Product
-import com.srmanager.core.network.model.OrderDetail
-import com.srmanager.core.network.model.OrderInformation
 import com.srmanager.database.dao.ProductsDao
-import com.srmanager.order_domain.model.CreateOrderModel
 import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -107,7 +104,11 @@ class SignatureViewModel @Inject constructor(
 
                     when {
                         state.isOrderReady -> {
-                            orderUseCases.createOrderUseCases(
+                            state = state.copy(
+                                isLoading = false,
+                                orderSuccessDialog = true
+                            )
+                            /*orderUseCases.createOrderUseCases(
                                 CreateOrderModel(
                                     orderInformation = OrderInformation(
                                         customerSignature = state.customerSign,
@@ -143,7 +144,7 @@ class SignatureViewModel @Inject constructor(
                                         )
                                     )
                                 )
-                            }
+                            }*/
                         }
 
                         else -> {
@@ -168,6 +169,10 @@ class SignatureViewModel @Inject constructor(
                     outletID = event.id,
                     contact = event.contactNo
                 )
+            }
+
+            is SignatureEvent.OnPdfGenerate -> {
+
             }
         }
     }

@@ -39,9 +39,11 @@ import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.components.SignatureDialog
 import com.srmanager.core.designsystem.components.WarningDialogCompose
+import com.srmanager.core.designsystem.generatePDF
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.bodyXSBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyXSRegularTextStyle
+import com.srmanager.core.designsystem.theme.subHeading1TextStyle
 import com.srmanager.core.network.dto.Product
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -59,6 +61,7 @@ fun SignatureScreen(
     onSuccess: () -> Unit,
     snackbarHostState: SnackbarHostState,
 ) {
+
 
     val isCustomerDialogOpen = remember { mutableStateOf(false) }
 
@@ -153,6 +156,7 @@ fun SignatureScreen(
 
             InfoItem(title = CommonR.string.total, value = state.total.toString())
 
+
             Spacer(modifier = Modifier.height(20.r()))
 
             Column(
@@ -236,6 +240,8 @@ fun SignatureScreen(
             },
             onClick = {
                 onSuccess()
+
+                generatePDF(context, state.outletID, state.orderDate, state.contact, state.productsList, state.total)
             }
         )
     }
@@ -306,6 +312,25 @@ fun ProductItemCompose(product: Product) {
     }
 
 
+}
+
+
+@Composable
+fun PdfContentCompose() {
+    Column(
+        modifier = Modifier
+            .background(color = Color.White)
+            .padding(10.r())
+            .fillMaxWidth()
+    ) {
+        Text(text = "PDF", style = subHeading1TextStyle)
+    }
+}
+
+@Composable
+@Preview
+fun PreviewPdfContentCompose() {
+    PdfContentCompose()
 }
 
 @Composable

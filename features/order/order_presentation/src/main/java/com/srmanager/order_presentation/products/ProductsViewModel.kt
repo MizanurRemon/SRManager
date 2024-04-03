@@ -45,9 +45,7 @@ class ProductsViewModel @Inject constructor(
             delay(2000)
             launch(Dispatchers.IO) {
 
-                orderUseCases.productsUseCases().onSuccess {
-
-                    //state = state.copy(isLoading = false, productsList = it.products)
+                orderUseCases.productsUseCases(outletID = state.outletID).onSuccess {
 
                     withContext(Dispatchers.Default) {
                         it.products.forEach { item ->
@@ -72,30 +70,30 @@ class ProductsViewModel @Inject constructor(
                 }
             }
 
-                  launch(Dispatchers.Default) {
-                      withContext(Dispatchers.Default) {
-                         productsDao.getProducts(key = state.searchKey).collect{
-                             state = state.copy(
-                                 isLoading = false,
-                                 searchKey = "",
-                                 productsList = it.map { product ->
-                                     Product(
-                                         title = product.title,
-                                         id = product.id,
-                                         mrpPrice = product.mrpPrice,
-                                         wholeSalePrice = product.wholeSalePrice,
-                                         lastPurchasePrice = product.lastPurchasePrice,
-                                         vatPercentage = product.vatPercentage,
-                                         price = product.price,
-                                         availableQuantity = product.availableQuantity,
-                                         isSelected = product.isSelected,
-                                         selectedItemCount = product.selectedItemCount
-                                     )
-                                 })
-                         }
+            launch(Dispatchers.Default) {
+                withContext(Dispatchers.Default) {
+                    productsDao.getProducts(key = state.searchKey).collect {
+                        state = state.copy(
+                            isLoading = false,
+                            searchKey = "",
+                            productsList = it.map { product ->
+                                Product(
+                                    title = product.title,
+                                    id = product.id,
+                                    mrpPrice = product.mrpPrice,
+                                    wholeSalePrice = product.wholeSalePrice,
+                                    lastPurchasePrice = product.lastPurchasePrice,
+                                    vatPercentage = product.vatPercentage,
+                                    price = product.price,
+                                    availableQuantity = product.availableQuantity,
+                                    isSelected = product.isSelected,
+                                    selectedItemCount = product.selectedItemCount
+                                )
+                            })
+                    }
 
-                      }
-                  }
+                }
+            }
 
 
             launch(Dispatchers.Default) {
@@ -169,6 +167,12 @@ class ProductsViewModel @Inject constructor(
                 viewModelScope.launch(Dispatchers.Default) {
                     productsDao.updateProductItem(id = event.id, qty = event.qty)
                 }
+            }
+
+            is OrderProductsEvent.OnSetOutletID -> {
+                state = state.copy(
+                    outletID = event.id
+                )
             }
         }
     }

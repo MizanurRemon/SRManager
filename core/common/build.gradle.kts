@@ -14,4 +14,5 @@ android {
 dependencies {
     implementation(Compose.COIL)
     implementation(Compose.GUAVA)
+    implementation(Compose.ui)
 }

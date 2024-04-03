@@ -19,7 +19,9 @@ import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.network.dto.Outlet
 import com.srmanager.order_presentation.order.OrderScreen
+import com.srmanager.order_presentation.products.OrderProductsEvent
 import com.srmanager.order_presentation.products.OrderProductsScreen
+import com.srmanager.order_presentation.products.ProductsViewModel
 import com.srmanager.order_presentation.selected_products.SelectedProductsScreen
 import com.srmanager.order_presentation.selected_products.SelectedProductsViewModel
 import com.srmanager.order_presentation.signature.SignatureEvent
@@ -182,6 +184,10 @@ fun MainApp(
 
 
             composable(route = Route.PRODUCTS_ITEMS) {
+                val viewModel = hiltViewModel<ProductsViewModel>()
+
+                viewModel.onEvent(OrderProductsEvent.OnSetOutletID(id = outletDetails!!.id.toString()))
+
                 OrderProductsScreen(onBack = {
                     navController.navigateUp()
                 }, onNextClick = {
@@ -190,7 +196,10 @@ fun MainApp(
                             inclusive = true
                         }
                     }
-                })
+                }, state = viewModel.state,
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent
+                )
             }
 
             composable(route = Route.SIGNATURE_SCREEN) {

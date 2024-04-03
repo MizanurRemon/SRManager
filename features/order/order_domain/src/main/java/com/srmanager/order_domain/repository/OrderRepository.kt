@@ -7,7 +7,7 @@ import com.srmanager.order_domain.model.OrderResponse
 import com.srmanager.order_domain.model.ProductsResponse
 
 interface OrderRepository {
-    suspend fun getProducts(): Result<ProductsResponse>
+    suspend fun getProducts(outletID: String): Result<ProductsResponse>
     suspend fun createOrder(orderRequest: OrderRequest): Result<CommonResponse>
      suspend fun fetchOrders(): Result<OrderResponse>
 }
