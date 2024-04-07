@@ -1,5 +1,6 @@
 package com.srmanager.outlet_data.mapper
 
+import com.srmanager.core.common.model.CommonResponse
 import com.srmanager.core.common.util.DATE_FORMAT
 import com.srmanager.core.common.util.changeDateFormat
 import com.srmanager.core.network.dto.CheckOutStatusDto
@@ -9,7 +10,6 @@ import com.srmanager.core.network.dto.OutletDataDto
 import com.srmanager.core.network.dto.OutletDetailsDto
 import com.srmanager.core.network.dto.OutletProfile
 import com.srmanager.outlet_domain.model.CheckOutStatusResponse
-import com.srmanager.core.common.model.CommonResponse
 import com.srmanager.outlet_domain.model.MarketResponse
 import com.srmanager.outlet_domain.model.OutletDetailsResponse
 import com.srmanager.outlet_domain.model.OutletResponse
@@ -65,7 +65,8 @@ fun OutletDetailsDto.toResponse(): OutletDetailsResponse {
             routeName = data?.routeName ?: "",
             ownerEmail = data?.ownerEmail ?: "",
             paymentTerms = data?.paymentTerms ?: "",
-            marketId = data?.marketId ?: 0
+            marketId = data?.marketId ?: 0,
+            billingAddress = data?.billingAddress ?: ""
         )
     )
 }

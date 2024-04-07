@@ -21,5 +21,6 @@ data class OutletAddModel(
     val ethnicity: String,
     val email: String,
     val paymentOptions: String,
-    var routeName: String
+    var routeName: String,
+    var billingAddress: String
 )

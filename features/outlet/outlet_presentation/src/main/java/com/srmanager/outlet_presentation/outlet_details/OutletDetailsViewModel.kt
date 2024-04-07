@@ -16,6 +16,7 @@ import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletAddModel
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -36,6 +37,7 @@ class OutletDetailsViewModel @Inject constructor(
 
     init {
         loadMarketNames()
+
     }
 
     private fun loadMarketNames() {
@@ -49,8 +51,8 @@ class OutletDetailsViewModel @Inject constructor(
         }
     }
 
-    fun getOutletDetails(outletID: String) {
-        viewModelScope.launch {
+    private fun getOutletDetails(outletID: String) {
+        viewModelScope.launch() {
             state = state.copy(isLoading = true)
             outletUseCases.outletDetailsUseCases(outletID = outletID).onSuccess { response ->
                 state = state.copy(
@@ -81,7 +83,8 @@ class OutletDetailsViewModel @Inject constructor(
                     routeName = response.data.routeName!!.ifEmpty { ROUTE_NAMES[0] },
                     email = response.data.ownerEmail.toString(),
                     paymentOption = response.data.paymentTerms!!.ifEmpty { PAYMENT_OPTIONS[0] },
-                    ethnicity = response.data.shopEthnicity!!.ifEmpty { ETHNICITIES[0] }
+                    ethnicity = response.data.shopEthnicity!!.ifEmpty { ETHNICITIES[0] },
+                    billingAddress = response.data.billingAddress ?: ""
                 )
 
             }.onFailure {
@@ -164,7 +167,8 @@ class OutletDetailsViewModel @Inject constructor(
                                 ethnicity = state.ethnicity,
                                 email = state.email,
                                 routeName = state.routeName,
-                                paymentOptions = state.paymentOption
+                                paymentOptions = state.paymentOption,
+                                billingAddress = state.billingAddress
                             )
                         ).onSuccess {
 
@@ -249,6 +253,10 @@ class OutletDetailsViewModel @Inject constructor(
                 state = state.copy(address = event.value)
             }
 
+            is OutletDetailsEvent.OnBillingAddressEnter-> {
+                state = state.copy(billingAddress = event.value)
+            }
+
             is OutletDetailsEvent.OnImageSelection -> {
                 state = state.copy(
                     image = fileImageUriToBase64(event.value, event.contentResolver),
@@ -321,6 +329,18 @@ class OutletDetailsViewModel @Inject constructor(
                 state = state.copy(
                     isMarketNameExpanded = !state.isMarketNameExpanded
                 )
+            }
+
+            is OutletDetailsEvent.OnOutletIdSetup-> {
+                if (state.id != event.outletID) {
+                    // Update state with the new outlet ID
+                    state = state.copy(
+                        id = event.outletID
+                    )
+
+                    // Fetch outlet details only if the outlet ID has changed
+                    getOutletDetails(event.outletID.toString())
+                }
             }
 
         }

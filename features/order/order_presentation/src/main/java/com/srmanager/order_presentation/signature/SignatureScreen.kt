@@ -1,6 +1,7 @@
 package com.srmanager.order_presentation.signature
 
 import android.annotation.SuppressLint
+import android.graphics.Picture
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -61,8 +62,6 @@ fun SignatureScreen(
     onSuccess: () -> Unit,
     snackbarHostState: SnackbarHostState,
 ) {
-
-
     val isCustomerDialogOpen = remember { mutableStateOf(false) }
 
     val context = LocalContext.current
@@ -231,6 +230,7 @@ fun SignatureScreen(
     }
 
     if (state.orderSuccessDialog) {
+
         WarningDialogCompose(
             message = CommonR.string.success,
             buttonText = CommonR.string.done,
@@ -242,11 +242,34 @@ fun SignatureScreen(
                 onSuccess()
 
                 generatePDF(context, state.outletID, state.orderDate, state.contact, state.productsList, state.total)
+                //saveBitmapAsPDF(bitmap = bitmap!!, context = context)
             }
         )
     }
 
 }
+
+@Composable
+fun PdfComposable() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Color.White)
+    ) {
+        Text(
+            text = "PDF",
+            style = subHeading1TextStyle,
+            modifier = Modifier.padding(10.r())
+        )
+    }
+}
+
+@Composable
+@Preview
+fun PreviewComposable(){
+    PdfComposable()
+}
+
 
 @Composable
 fun InfoItem(@StringRes title: Int, value: String) {
@@ -314,24 +337,6 @@ fun ProductItemCompose(product: Product) {
 
 }
 
-
-@Composable
-fun PdfContentCompose() {
-    Column(
-        modifier = Modifier
-            .background(color = Color.White)
-            .padding(10.r())
-            .fillMaxWidth()
-    ) {
-        Text(text = "PDF", style = subHeading1TextStyle)
-    }
-}
-
-@Composable
-@Preview
-fun PreviewPdfContentCompose() {
-    PdfContentCompose()
-}
 
 @Composable
 @Preview

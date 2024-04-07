@@ -1,22 +1,20 @@
 package com.srmanager.core.designsystem
 
-import android.app.Activity
 import android.content.Context
-import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import android.text.TextPaint
+import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import android.widget.Toast
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.ComposeView
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.srmanager.core.network.dto.Product
@@ -25,6 +23,8 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
+private const val rowHeight = 30f // Adjust row height as needed
+private val columnWidths = listOf(100f, 200f, 100f, 100f, 100f, 100f)
 
 fun generatePDF(
     context: Context,
@@ -45,9 +45,9 @@ fun generatePDF(
     val myPage = pdfDocument.startPage(myPageInfo)
 
     val canvas: Canvas = myPage.canvas
-    val bitmap: Bitmap? = drawableToBitmap(context.resources.getDrawable(R.drawable.app_icon))
+    /*val bitmap: Bitmap? = drawableToBitmap(context.resources.getDrawable(R.drawable.app_icon))
     val scaleBitmap: Bitmap? = Bitmap.createScaledBitmap(bitmap!!, 60, 60, false)
-    canvas.drawBitmap(scaleBitmap!!, 40f, 40f, paint)
+    canvas.drawBitmap(scaleBitmap!!, 40f, 40f, paint)*/
 
     title.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
     title.textSize = 20f
@@ -57,44 +57,72 @@ fun generatePDF(
     normalText.textSize = 15f
     normalText.color = ContextCompat.getColor(context, R.color.black)
 
-    canvas.drawText("SR Manager", 400f, 60f, title)
+ /*   canvas.drawText("SR Manager", 400f, 60f, title)
     canvas.drawText("Make it Easy", 400f, 80f, normalText)
-
+*/
     paint.setColor(ContextCompat.getColor(context, R.color.black)) // Set line color
     paint.strokeWidth = 2f // Set line width
     canvas.drawLine(40f, 120f, pageWidth.toFloat() - 40f, 120f, normalText)
 
-    canvas.drawText("Outlet ID: $outletID", 40f, 140f, normalText)
-    canvas.drawText("Contact: $contact", 40f, 160f, normalText)
-    canvas.drawText("Order Date : $orderDate", 40f, 180f, normalText)
+    canvas.drawText("Outlet ID: $outletID", 42f, 140f, normalText)
+    canvas.drawText("Contact: $contact", 42f, 160f, normalText)
+    canvas.drawText("Order Date : $orderDate", 42f, 180f, normalText)
 
+    canvas.drawLine(40f, 190f, pageWidth.toFloat() - 40f, 190f, normalText)
 
-    val startX = 40f
-    val startY = 200f
+    canvas.drawLine(40f, 192f, pageWidth.toFloat() - 40f, 192f, normalText)
+
+    canvas.drawLine(40f, 120f, 40f, 190f, normalText)
+
+    canvas.drawLine(pageWidth.toFloat() - 40f, 120f, pageWidth.toFloat() - 40f, 190f, normalText)
+
+    canvas.drawLine(pageWidth.toFloat()/2, 120f, pageWidth.toFloat() /2, 190f, normalText)
+    /*val startX = 40f
+    val startY = 250f
     val rowHeight = 20f
     val columnWidth = 150f
 
 // Header
     canvas.drawText("Product ID", startX, startY, normalText)
-    canvas.drawText("Price", startX + columnWidth, startY, normalText)
-    canvas.drawText("MRP Price", startX + columnWidth * 2, startY, normalText)
-    canvas.drawText("Total", startX + columnWidth * 3, startY, normalText)
+    canvas.drawText("Title", startX + 100f, startY, normalText)
+    canvas.drawText("Quantity", startX + columnWidth * 2, startY, normalText)
+    canvas.drawText("Price", startX + columnWidth * 3, startY, normalText)
+    canvas.drawText("MRP Price", startX + columnWidth * 4, startY, normalText)
+    canvas.drawText("Total", startX + columnWidth * 5, startY, normalText)
 
+    val textPaint = TextPaint()
 // Draw product list
     var yPosition = startY
     productsList.forEachIndexed { index, product ->
         yPosition += rowHeight
         canvas.drawText(product.id.toString(), startX, yPosition + 5f, normalText)
-        canvas.drawText(product.price.toString(), startX + columnWidth, yPosition + 5f, normalText)
+        canvas.drawText(
+            TextUtils.ellipsize(product.title, textPaint, startX + 100f, TextUtils.TruncateAt.END).toString(),
+            startX + 100f,
+            yPosition + 5f,
+            normalText
+        )
+        canvas.drawText(
+            product.availableQuantity.toString(),
+            startX + columnWidth*2,
+            yPosition + 5f,
+            normalText
+        )
+        canvas.drawText(
+            product.price.toString(),
+            startX + columnWidth * 3,
+            yPosition + 5f,
+            normalText
+        )
         canvas.drawText(
             product.mrpPrice.toString(),
-            startX + columnWidth * 2,
+            startX + columnWidth * 4,
             yPosition + 5f,
             normalText
         )
         canvas.drawText(
             product.selectedItemTotalPrice.toString(),
-            startX + columnWidth * 3,
+            startX + columnWidth * 5,
             yPosition + 5f,
             normalText
         )
@@ -116,7 +144,63 @@ fun generatePDF(
 
 // Draw total at the end
     yPosition += rowHeight
-    canvas.drawText("Total: $total", startX, yPosition + 20f, normalText)
+    canvas.drawText("Total", startX, yPosition + 20f, normalText)
+
+    canvas.drawText("$total", startX + columnWidth * 4, yPosition + 20f, normalText)*/
+
+    val normalTextPaint = TextPaint().apply {
+        textSize = 16f // Adjust text size as needed
+        color = Color.BLACK // Adjust text color as needed
+    }
+
+    val headerTextPaint = TextPaint().apply {
+        textSize = 16f // Adjust text size as needed
+        color = Color.BLACK // Adjust text color as needed
+        isFakeBoldText = true // Make the header text bold
+    }
+
+    canvas.apply {
+        val startX = 40f
+        var startY = 250f
+
+        // Draw header
+        drawTableRow(
+            startX, startY, headerTextPaint, listOf(
+                "Product ID", "Title", "Quantity", "Price", "MRP Price", "Total"
+            ), true
+        )
+
+        // Draw a line after header
+        drawLine(startX, startY + 10f, startX + columnWidths.sum(), startY + 10f, paint)
+
+        // Draw product list
+        productsList.forEach { product ->
+            startY += rowHeight
+            drawTableRow(
+                startX, startY, normalTextPaint, listOf(
+                    product.id.toString(),
+                    TextUtils.ellipsize(
+                        product.title,
+                        normalTextPaint,
+                        columnWidths[1] - 20f,
+                        TextUtils.TruncateAt.END
+                    ).toString(),
+                    product.availableQuantity.toString(),
+                    product.price.toString(),
+                    product.mrpPrice.toString(),
+                    product.selectedItemTotalPrice.toString()
+                ), isDrawLine = true
+            )
+        }
+
+        // Draw total at the end
+        startY += rowHeight
+        drawTableRow(
+            startX, startY, normalTextPaint, listOf(
+                "Total", "", "", "", "", String.format("%.2f", total)
+            ), isDrawLine = false
+        )
+    }
 
     pdfDocument.finishPage(myPage)
 
@@ -171,80 +255,28 @@ fun generateFileName(fileName: String): String {
     return fileName + SimpleDateFormat("yyMMddHHmmss").format(Calendar.getInstance().time)
 }
 
-fun renderComposableToBitmap(activity: Activity, content: @Composable () -> Unit): Bitmap {
-    // Create a ComposeView and set its content to the Composable function
-    val composeView = ComposeView(activity).apply {
-        setContent {
-            content()
-        }
+
+private fun Canvas.drawTableRow(
+    startX: Float,
+    yPosition: Float,
+    paint: Paint,
+    rowData: List<String>,
+    isDrawLine: Boolean
+) {
+    var x = startX
+    rowData.forEachIndexed { index, text ->
+        drawText(text, x, yPosition, paint)
+        x += columnWidths[index]
     }
 
-    // Measure and layout the view
-    composeView.measure(
-        View.MeasureSpec.makeMeasureSpec(1080, View.MeasureSpec.EXACTLY),
-        View.MeasureSpec.makeMeasureSpec(1920, View.MeasureSpec.EXACTLY)
-    )
-    composeView.layout(0, 0, composeView.measuredWidth, composeView.measuredHeight)
-
-    // Capture the ComposeView as a Bitmap
-    return captureComposeView(composeView)
-}
-
-fun captureComposeView(composeView: ComposeView): Bitmap {
-    val bitmap = Bitmap.createBitmap(composeView.width, composeView.height, Bitmap.Config.ARGB_8888)
-    val canvas = Canvas(bitmap)
-    composeView.draw(canvas)
-    return bitmap
-}
-
-fun saveBitmapAsPDF(bitmap: Bitmap, context: Context) {
-    val pdfDocument = PdfDocument()
-    val pageInfo = PdfDocument.PageInfo.Builder(bitmap.width, bitmap.height, 1).create()
-    val page = pdfDocument.startPage(pageInfo)
-
-    val canvas = page.canvas
-    canvas.drawBitmap(bitmap, 0f, 0f, null)
-    pdfDocument.finishPage(page)
-
-    val dir = File(
-        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-        "SRManager"
-    )
-
-    if (!dir.exists()) {
-        dir.mkdir()
+    // Draw horizontal lines
+    if (isDrawLine){
+        drawLine(
+            startX,
+            yPosition + rowHeight + 5f,
+            startX + columnWidths.sum(),
+            yPosition + rowHeight + 5f,
+            paint
+        )
     }
-
-    val file = File(dir, generateFileName("srm") + ".pdf")
-
-    try {
-        pdfDocument.writeTo(FileOutputStream(file))
-        Toast.makeText(
-            context,
-            "PDF file generated successfully at ${file.path.toString()}",
-            Toast.LENGTH_SHORT
-        ).show()
-    } catch (ex: Exception) {
-        Log.d("dataxx", ex.message.toString())
-    }
-    pdfDocument.close()
-
-    // Open the PDF
-    val uri = FileProvider.getUriForFile(context, "${context.packageName}.provider", file)
-    val intent = Intent(Intent.ACTION_VIEW).apply {
-        setDataAndType(uri, "application/pdf")
-        flags = Intent.FLAG_GRANT_READ_URI_PERMISSION
-    }
-    context.startActivity(intent)
-}
-
-fun getActivity(context: Context?): Activity? {
-    var currentContext = context
-    while (currentContext is ContextWrapper) {
-        if (currentContext is Activity) {
-            return currentContext
-        }
-        currentContext = currentContext.baseContext
-    }
-    return null
 }

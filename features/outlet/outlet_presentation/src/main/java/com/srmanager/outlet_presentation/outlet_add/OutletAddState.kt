@@ -23,6 +23,8 @@ data class OutletAddState(
     val marketName: String = "",
     val email: String = "",
     val marketID : Int = 0,
+    val billingAddress : String = "",
+    val isBillingAddressSameAsAddress : Boolean = false,
     val isOutletNameError: Boolean = false,
     val isOwnerNameError: Boolean = false,
     val isBirthDateError: Boolean = false,

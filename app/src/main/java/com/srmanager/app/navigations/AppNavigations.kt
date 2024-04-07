@@ -32,8 +32,11 @@ import com.srmanager.outlet_presentation.maps.Multiple.AllOutletMapScreen
 import com.srmanager.outlet_presentation.maps.Single.MapScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
+import com.srmanager.outlet_presentation.outlet_add.OutletAddViewModel
 import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
+import com.srmanager.outlet_presentation.outlet_details.OutletDetailsEvent
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
+import com.srmanager.outlet_presentation.outlet_details.OutletDetailsViewModel
 import com.srmanager.report_presentation.report.ReportScreen
 
 @Composable
@@ -112,16 +115,27 @@ fun MainApp(
             }
 
             composable(route = Route.OUTLET_ADD) {
+                val viewmodel = hiltViewModel<OutletAddViewModel>()
                 OutletAddScreen(
                     snackbarHostState = snackBarHostState,
-                    onBack = { navController.navigateUp() })
+                    onBack = { navController.navigateUp() },
+                    state = viewmodel.state,
+                    uiEvent = viewmodel.uiEvent,
+                    onEvent = viewmodel::onEvent
+                )
             }
 
             composable(route = Route.OUTLET_DETAILS) {
+                val viewModel = hiltViewModel<OutletDetailsViewModel>()
+                viewModel.onEvent(OutletDetailsEvent.OnOutletIdSetup(outletID = outletDetails!!.id))
+
+
                 OutletDetailsScreen(
                     snackbarHostState = snackBarHostState,
                     onBack = { navController.navigateUp() },
-                    outletDetails = outletDetails
+                    state = viewModel.state,
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent
                 )
             }
 

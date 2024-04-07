@@ -15,6 +15,8 @@ sealed class OutletAddEvent {
     data class OnDatePick(val value: String) : OutletAddEvent()
     data class OnExpiryDateEnter(val value: String) : OutletAddEvent()
     data class OnAddressEnter(val value: String) : OutletAddEvent()
+    data class OnBillingAddressEnter(val value: String) : OutletAddEvent()
+    data class OnIsBillingAddressSameAsAddressEvent(val value: Boolean): OutletAddEvent()
     data class OnEmailEnter(val value: String): OutletAddEvent()
     data class OnImageSelection(val value: Uri, val contentResolver: ContentResolver) :
         OutletAddEvent()

@@ -61,11 +61,14 @@ class SignatureViewModel @Inject constructor(
                         )
                     }
                     val newTotal = products.sumOf {
-                        String.format("%.2f", it.selectedItemTotalPrice).toDouble()
+                        it.selectedItemTotalPrice
                     }
 
                     withContext(Dispatchers.Main) {
-                        state = state.copy(productsList = newProductsList, total = newTotal)
+                        state = state.copy(
+                            productsList = newProductsList,
+                            total = String.format("%.2f", newTotal).toDouble()
+                        )
                     }
 
                 } catch (_: Exception) {
