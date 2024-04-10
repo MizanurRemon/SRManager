@@ -26,9 +26,21 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-
+val pageHeight = 1120
+val pageWidth = 792
 private const val rowHeight = 30f // Adjust row height as needed
-private val columnWidths = listOf(100f, 200f, 100f, 100f, 100f, 100f)
+private val columnWidths = listOf(
+    (pageWidth / 12).toFloat(),
+    ((pageWidth / 12) * 3).toFloat()-20f,
+    (pageWidth / 12).toFloat(),
+    (pageWidth / 12).toFloat(),
+    (pageWidth / 12).toFloat(),
+    (pageWidth / 12).toFloat(),
+    (pageWidth / 12).toFloat(),
+    (pageWidth / 12).toFloat(),
+    (pageWidth / 12).toFloat()
+)
+
 
 fun generatePDF(
     context: Context,
@@ -40,18 +52,17 @@ fun generatePDF(
     orderDetails: List<OrderItem>
 ) {
     val normalTextPaint = TextPaint().apply {
-        textSize = 16f // Adjust text size as needed
+        textSize = 12f // Adjust text size as needed
         color = Color.BLACK // Adjust text color as needed
     }
 
     val headerTextPaint = TextPaint().apply {
-        textSize = 16f // Adjust text size as needed
+        textSize = 12f // Adjust text size as needed
         color = Color.BLACK // Adjust text color as needed
         isFakeBoldText = true // Make the header text bold
     }
 
-    val pageHeight = 1120
-    val pageWidth = 792
+
     val pdfDocument = PdfDocument()
     val paint = Paint()
     val title = Paint()
@@ -73,11 +84,11 @@ fun generatePDF(
     canvas.drawBitmap(scaleBitmap!!, 40f, 40f, paint)*/
 
     title.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
-    title.textSize = 20f
+    title.textSize = 12f
     title.color = ContextCompat.getColor(context, R.color.black)
 
     normalText.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
-    normalText.textSize = 15f
+    normalText.textSize = 12f
     normalText.color = ContextCompat.getColor(context, R.color.black)
 
 
@@ -204,7 +215,7 @@ fun generatePDF(
         // Draw header
         drawTableRow(
             startX, startY, headerTextPaint, listOf(
-                "Code", "Title", "Quantity", "Price", "MRP Price", "Net Amount"
+                "Code", "Title", "Qty", "MRP", "Dis. %", "Dis. Amt", "After Dis.", "GST", "Net Amt"
             ), true, columnWidths
         )
 
@@ -224,8 +235,11 @@ fun generatePDF(
                         TextUtils.TruncateAt.END
                     ).toString(),
                     orderItem.quantity.toString(),
-                    orderItem.price.toString(),
                     orderItem.mrp.toString(),
+                    orderItem.discountPercentage.toString(),
+                    orderItem.discountAmount.toString(),
+                    orderItem.afterDiscount.toString(),
+                    orderItem.vatAmount.toString(),
                     orderItem.netAmount.toString()
                 ), isDrawLine = true, columnWidths
             )
@@ -237,7 +251,7 @@ fun generatePDF(
             startX, startY, normalTextPaint, listOf(
                 "Total", "", orderDetails.sumOf {
                     it.quantity
-                }.toString(), "", "", String.format("%.2f", total)
+                }.toString(), "", "","","", "", String.format("%.2f", total)
             ), isDrawLine = false, columnWidths
         )
 
@@ -245,31 +259,63 @@ fun generatePDF(
 
         drawLine(startX + columnWidths[0], 280f, startX + columnWidths[0], startY + 5f, normalText)
         drawLine(
-            startX + columnWidths[0] + columnWidths[1],
+            startX + columnWidths.slice(0 until  1).sum(),
             280f,
-            startX + columnWidths[0] + columnWidths[1],
+            startX + columnWidths.slice(0 until  1).sum(),
             startY + 5f,
             normalText
         )
         drawLine(
-            startX + columnWidths[0] + columnWidths[1] + columnWidths[2],
+            startX + columnWidths.slice(0 until  2).sum(),
             280f,
-            startX + columnWidths[0] + columnWidths[1] + columnWidths[2],
+            startX + columnWidths.slice(0 until  2).sum(),
             startY + 5f,
             normalText
         )
         drawLine(
-            startX + columnWidths[0] + columnWidths[1] + columnWidths[2] + columnWidths[3],
+            startX + columnWidths.slice(0 until  3).sum(),
             280f,
-            startX + columnWidths[0] + columnWidths[1] + columnWidths[2] + columnWidths[3],
+            startX + columnWidths.slice(0 until  3).sum(),
             startY + 5f,
             normalText
         )
 
         drawLine(
-            startX + columnWidths[0] + columnWidths[1] + columnWidths[2] + columnWidths[3] + columnWidths[4],
+            startX + columnWidths.slice(0 until  4).sum(),
             280f,
-            startX + columnWidths[0] + columnWidths[1] + columnWidths[2] + columnWidths[3] + columnWidths[4],
+            startX + columnWidths.slice(0 until  4).sum(),
+            startY + 5f,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidths.slice(0 until  5).sum(),
+            280f,
+            startX + columnWidths.slice(0 until  5).sum(),
+            startY + 5f,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidths.slice(0 until  6).sum(),
+            280f,
+            startX + columnWidths.slice(0 until  6).sum(),
+            startY + 5f,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidths.slice(0 until  7).sum(),
+            280f,
+            startX + columnWidths.slice(0 until  7).sum(),
+            startY + 5f,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidths.slice(0 until  8).sum(),
+            280f,
+            startX + columnWidths.slice(0 until  8).sum(),
             startY + 5f,
             normalText
         )
