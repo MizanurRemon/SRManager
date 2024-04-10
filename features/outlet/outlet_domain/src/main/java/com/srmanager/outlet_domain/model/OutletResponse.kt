@@ -4,7 +4,7 @@ import com.srmanager.core.network.dto.Outlet
 
 
 data class OutletResponse(
-    var data: ArrayList<Outlet> = arrayListOf()
+    var data: List<Outlet> = arrayListOf()
 )
 
 

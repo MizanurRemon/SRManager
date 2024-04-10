@@ -200,7 +200,7 @@ fun MainApp(
             composable(route = Route.PRODUCTS_ITEMS) {
                 val viewModel = hiltViewModel<ProductsViewModel>()
 
-                viewModel.onEvent(OrderProductsEvent.OnSetOutletID(id = outletDetails!!.id.toString()))
+                viewModel.onEvent(OrderProductsEvent.OnSetOutletID(id = outletDetails!!.id.toString(), customerId = outletDetails!!.customerId.toString()))
 
                 OrderProductsScreen(onBack = {
                     navController.navigateUp()

@@ -1,7 +1,6 @@
 package com.srmanager.order_presentation.signature
 
 import android.annotation.SuppressLint
-import android.graphics.Picture
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -241,7 +240,7 @@ fun SignatureScreen(
             onClick = {
                 onSuccess()
 
-                generatePDF(context, state.outletID, state.orderDate, state.contact, state.productsList, state.total)
+                generatePDF(context, state.outletID, state.orderDate, state.contact, state.productsList, state.total, state.orderDetails)
                 //saveBitmapAsPDF(bitmap = bitmap!!, context = context)
             }
         )

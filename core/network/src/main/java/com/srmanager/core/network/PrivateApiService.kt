@@ -4,6 +4,7 @@ import com.srmanager.core.network.dto.CheckOutStatusDto
 import com.srmanager.core.network.dto.CommonResponseDto
 import com.srmanager.core.network.dto.MarketDto
 import com.srmanager.core.network.dto.OrderDataDto
+import com.srmanager.core.network.dto.OrderDetailsDto
 import com.srmanager.core.network.dto.OutletDataDto
 import com.srmanager.core.network.dto.OutletDetailsDto
 import com.srmanager.core.network.dto.ProductsDto
@@ -40,7 +41,7 @@ interface PrivateApiService {
 
     @GET("bsol/api/products")
     suspend fun getProducts(
-        @Query("outletId") outletID: String
+        @Query("customerId") customerId: String
     ): ProductsDto
 
     @POST("bsol/api/order")
@@ -48,4 +49,9 @@ interface PrivateApiService {
 
     @GET("bsol/api/order")
     suspend fun fetchOrders(): OrderDataDto
+
+    @GET("bsol/api/order/details/{orderId}")
+    suspend fun orderDetails(
+        @Path("orderId") orderId: String
+    ): OrderDetailsDto
 }

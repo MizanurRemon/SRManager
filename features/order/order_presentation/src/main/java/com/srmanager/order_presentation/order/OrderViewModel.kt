@@ -41,7 +41,7 @@ class OrderViewModel @Inject constructor(
     private fun getOrderItem() {
         state = state.copy(isLoading = true)
         viewModelScope.launch {
-            orderUseCases.oderFetchUseCases().onSuccess {
+            orderUseCases.orderFetchUseCases().onSuccess {
                 state = state.copy(
                     isLoading = false,
                     orderList = it.data

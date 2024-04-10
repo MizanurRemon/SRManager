@@ -1,5 +1,6 @@
 package com.srmanager.order_presentation.signature
 
+import com.srmanager.core.network.dto.OrderItem
 import com.srmanager.core.network.dto.Product
 
 data class SignatureState(
@@ -11,5 +12,6 @@ data class SignatureState(
     val isOrderReady : Boolean = false,
     val isLoading : Boolean = false,
     val contact : String = "",
-    val orderSuccessDialog : Boolean = false
+    val orderSuccessDialog : Boolean = false,
+    val orderDetails: List<OrderItem> = emptyList()
 )

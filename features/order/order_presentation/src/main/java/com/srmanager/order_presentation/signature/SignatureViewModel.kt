@@ -10,8 +10,12 @@ import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.bitMapToString
+import com.srmanager.core.network.dto.OrderItem
 import com.srmanager.core.network.dto.Product
+import com.srmanager.core.network.model.OrderDetail
+import com.srmanager.core.network.model.OrderInformation
 import com.srmanager.database.dao.ProductsDao
+import com.srmanager.order_domain.model.CreateOrderModel
 import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -109,9 +113,9 @@ class SignatureViewModel @Inject constructor(
                         state.isOrderReady -> {
                             state = state.copy(
                                 isLoading = false,
-                                orderSuccessDialog = true
+                                orderSuccessDialog = false,
                             )
-                            /*orderUseCases.createOrderUseCases(
+                            orderUseCases.createOrderUseCases(
                                 CreateOrderModel(
                                     orderInformation = OrderInformation(
                                         customerSignature = state.customerSign,
@@ -135,6 +139,28 @@ class SignatureViewModel @Inject constructor(
                                     orderSuccessDialog = true
                                 )
 
+                                orderUseCases.orderDetailsUseCase(orderID = it.orderId.toString())
+                                    .onSuccess {response->
+                                        state = state.copy(
+                                            isLoading = false,
+                                            orderSuccessDialog = true,
+                                            orderDetails = response.data
+                                        )
+                                    }.onFailure {error->
+                                        state = state.copy(
+                                            isLoading = false
+                                        )
+
+                                        _uiEvent.send(
+                                            UiEvent.ShowSnackbar(
+                                                UiText.DynamicString(
+                                                    error.message.toString()
+                                                )
+                                            )
+                                        )
+                                    }
+
+
                             }.onFailure {
                                 state = state.copy(
                                     isLoading = false
@@ -147,7 +173,7 @@ class SignatureViewModel @Inject constructor(
                                         )
                                     )
                                 )
-                            }*/
+                            }
                         }
 
                         else -> {
@@ -181,3 +207,52 @@ class SignatureViewModel @Inject constructor(
     }
 
 }
+
+val orderDetailList = listOf(
+    OrderItem(
+        id = 27,
+        orderNo = "24040001",
+        orderDate = "10-04-2024",
+        outletAddress = "Q9XG+QWM, Dhaka 1210, Bangladesh",
+        billingAddress = "Q9XG+QWM, Dhaka 1210, Bangladesh",
+        salesMan = "Remon",
+        salesManMobile = "01729210380",
+        customerCode = "C-0001",
+        customerName = "Matador",
+        paymentType = "Cash",
+        productCode = "0015",
+        productName = "Mehran Turmeric Powder 200gm",
+        unit = "1 Pcs",
+        quantity = 1,
+        mrp = 4.76,
+        price = 4.0,
+        discountAmount = 0,
+        discountPercentage = 0,
+        afterDiscount = 4.76,
+        vatAmount = 0,
+        netAmount = 4.76
+    ),
+    OrderItem(
+        id = 27,
+        orderNo = "24040001",
+        orderDate = "10-04-2024",
+        outletAddress = "Q9XG+QWM, Dhaka 1210, Bangladesh",
+        billingAddress = "Q9XG+QWM, Dhaka 1210, Bangladesh",
+        salesMan = "Remon",
+        salesManMobile = "01729210380",
+        customerCode = "C-0001",
+        customerName = "Matador",
+        paymentType = "Cash",
+        productCode = "0015",
+        productName = "Mehran Turmeric Powder 200gm",
+        unit = "1 Pcs",
+        quantity = 1,
+        mrp = 4.76,
+        price = 4.0,
+        discountAmount = 0,
+        discountPercentage = 0,
+        afterDiscount = 4.76,
+        vatAmount = 0,
+        netAmount = 4.76
+    ),
+)

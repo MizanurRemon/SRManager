@@ -34,7 +34,6 @@ class ProductsViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-
         loadProducts()
     }
 
@@ -45,7 +44,7 @@ class ProductsViewModel @Inject constructor(
             delay(2000)
             launch(Dispatchers.IO) {
 
-                orderUseCases.productsUseCases(outletID = state.outletID).onSuccess {
+                orderUseCases.productsUseCases(customerId = state.customerID).onSuccess {
 
                     withContext(Dispatchers.Default) {
                         it.products.forEach { item ->
@@ -171,7 +170,8 @@ class ProductsViewModel @Inject constructor(
 
             is OrderProductsEvent.OnSetOutletID -> {
                 state = state.copy(
-                    outletID = event.id
+                    outletID = event.id,
+                    customerID = event.customerId
                 )
             }
         }

@@ -30,7 +30,7 @@ class OutletViewModel @Inject constructor(private val outletUseCases: OutletUseC
 
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
-    var outletList: List<Outlet> = emptyList()
+    private var outletList: List<Outlet> = emptyList()
 
     init {
         getOutletList()

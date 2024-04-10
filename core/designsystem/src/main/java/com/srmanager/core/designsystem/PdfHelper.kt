@@ -11,17 +11,21 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
+import android.text.Layout
+import android.text.StaticLayout
 import android.text.TextPaint
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.srmanager.core.network.dto.OrderItem
 import com.srmanager.core.network.dto.Product
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
+
 
 private const val rowHeight = 30f // Adjust row height as needed
 private val columnWidths = listOf(100f, 200f, 100f, 100f, 100f, 100f)
@@ -32,14 +36,33 @@ fun generatePDF(
     orderDate: String,
     contact: String,
     productsList: List<Product>,
-    total: Double
+    total: Double,
+    orderDetails: List<OrderItem>
 ) {
+    val normalTextPaint = TextPaint().apply {
+        textSize = 16f // Adjust text size as needed
+        color = Color.BLACK // Adjust text color as needed
+    }
+
+    val headerTextPaint = TextPaint().apply {
+        textSize = 16f // Adjust text size as needed
+        color = Color.BLACK // Adjust text color as needed
+        isFakeBoldText = true // Make the header text bold
+    }
+
     val pageHeight = 1120
     val pageWidth = 792
     val pdfDocument = PdfDocument()
     val paint = Paint()
     val title = Paint()
     val normalText = Paint()
+
+    val columnWidthForSalesMan = listOf(
+        (pageWidth / 4).toFloat(),
+        (pageWidth / 4).toFloat(),
+        (pageWidth / 4).toFloat(),
+        (pageWidth / 4).toFloat()
+    )
 
     val myPageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
     val myPage = pdfDocument.startPage(myPageInfo)
@@ -57,139 +80,154 @@ fun generatePDF(
     normalText.textSize = 15f
     normalText.color = ContextCompat.getColor(context, R.color.black)
 
- /*   canvas.drawText("SR Manager", 400f, 60f, title)
-    canvas.drawText("Make it Easy", 400f, 80f, normalText)
-*/
+
     paint.setColor(ContextCompat.getColor(context, R.color.black)) // Set line color
     paint.strokeWidth = 2f // Set line width
+
+    canvas.drawText("Order No: ", 40f, 80f, headerTextPaint)
+
+    canvas.drawText(orderDetails[0].orderNo, 130f, 80f, normalTextPaint)
+
+    canvas.drawText("Order Date: ", 40f + pageWidth / 2, 80f, headerTextPaint)
+
+    canvas.drawText(orderDetails[0].orderDate, 130f + pageWidth / 2, 80f, normalTextPaint)
+
+    canvas.drawText("Customer Details", 40f, 110f, headerTextPaint)
+
     canvas.drawLine(40f, 120f, pageWidth.toFloat() - 40f, 120f, normalText)
 
-    canvas.drawText("Outlet ID: $outletID", 42f, 140f, normalText)
-    canvas.drawText("Contact: $contact", 42f, 160f, normalText)
-    canvas.drawText("Order Date : $orderDate", 42f, 180f, normalText)
+    canvas.drawText("SHIP TO", 42f, 140f, headerTextPaint)
+
+    val staticLayout = StaticLayout(
+        orderDetails[0].outletAddress,
+        normalTextPaint,
+        (pageWidth / 8) * 2,
+        Layout.Alignment.ALIGN_NORMAL,
+        1.0f,
+        0.0f,
+        false
+    )
+
+    canvas.save()
+    canvas.translate(40f + (pageWidth / 8) + 2f, 120f) // Move canvas to the desired position
+    staticLayout.draw(canvas)
+    canvas.restore()
+
+    canvas.drawText("BILL TO", (pageWidth.toFloat() / 2) + 2f, 140f, headerTextPaint)
+
+    val billStaticLayout = StaticLayout(
+        orderDetails[0].billingAddress,
+        normalTextPaint,
+        (pageWidth / 8) * 2,
+        Layout.Alignment.ALIGN_NORMAL,
+        1.0f,
+        0.0f,
+        false
+    )
+
+    canvas.save()
+    canvas.translate(
+        (pageWidth.toFloat() / 2) + (pageWidth / 8) + 2f,
+        120f
+    ) // Move canvas to the desired position
+    billStaticLayout.draw(canvas)
+    canvas.restore()
+
+
+    canvas.drawLine(
+        (pageWidth.toFloat() / 2) + (pageWidth / 8),
+        120f,
+        (pageWidth.toFloat() / 2) + (pageWidth / 8),
+        190f,
+        normalText
+    )
+
+    canvas.drawLine(40f + (pageWidth / 8), 120f, 40f + (pageWidth / 8), 190f, normalText)
 
     canvas.drawLine(40f, 190f, pageWidth.toFloat() - 40f, 190f, normalText)
-
-    canvas.drawLine(40f, 192f, pageWidth.toFloat() - 40f, 192f, normalText)
 
     canvas.drawLine(40f, 120f, 40f, 190f, normalText)
 
     canvas.drawLine(pageWidth.toFloat() - 40f, 120f, pageWidth.toFloat() - 40f, 190f, normalText)
 
-    canvas.drawLine(pageWidth.toFloat()/2, 120f, pageWidth.toFloat() /2, 190f, normalText)
-    /*val startX = 40f
-    val startY = 250f
-    val rowHeight = 20f
-    val columnWidth = 150f
+    canvas.drawLine(pageWidth.toFloat() / 2, 120f, pageWidth.toFloat() / 2, 190f, normalText)
 
-// Header
-    canvas.drawText("Product ID", startX, startY, normalText)
-    canvas.drawText("Title", startX + 100f, startY, normalText)
-    canvas.drawText("Quantity", startX + columnWidth * 2, startY, normalText)
-    canvas.drawText("Price", startX + columnWidth * 3, startY, normalText)
-    canvas.drawText("MRP Price", startX + columnWidth * 4, startY, normalText)
-    canvas.drawText("Total", startX + columnWidth * 5, startY, normalText)
+    canvas.drawLine(40f, 192f, pageWidth.toFloat() - 40f, 192f, normalText)
 
-    val textPaint = TextPaint()
-// Draw product list
-    var yPosition = startY
-    productsList.forEachIndexed { index, product ->
-        yPosition += rowHeight
-        canvas.drawText(product.id.toString(), startX, yPosition + 5f, normalText)
-        canvas.drawText(
-            TextUtils.ellipsize(product.title, textPaint, startX + 100f, TextUtils.TruncateAt.END).toString(),
-            startX + 100f,
-            yPosition + 5f,
-            normalText
-        )
-        canvas.drawText(
-            product.availableQuantity.toString(),
-            startX + columnWidth*2,
-            yPosition + 5f,
-            normalText
-        )
-        canvas.drawText(
-            product.price.toString(),
-            startX + columnWidth * 3,
-            yPosition + 5f,
-            normalText
-        )
-        canvas.drawText(
-            product.mrpPrice.toString(),
-            startX + columnWidth * 4,
-            yPosition + 5f,
-            normalText
-        )
-        canvas.drawText(
-            product.selectedItemTotalPrice.toString(),
-            startX + columnWidth * 5,
-            yPosition + 5f,
-            normalText
+    canvas.apply {
+        val startX = 40f
+        val startY = 210f
+
+        // Draw header
+        drawTableRow(
+            startX + 2f, startY, headerTextPaint, listOf(
+                "SALES MAN", "MOBILE", "CUST CODE", "PAYMENT"
+            ), false, columnWidthForSalesMan
         )
 
-        // Draw a line below each row (optional)
-        if (index < productsList.size - 1) {
-            canvas.drawLine(
-                startX,
-                yPosition + 10f,
-                pageWidth.toFloat() - startX,
-                yPosition + 10f,
-                paint
-            )
-        }
-    }
+        drawLine(startX, startY + 10f, columnWidthForSalesMan.sum() - 40f, startY + 10f, normalText)
 
-// Draw a line after the header
-    canvas.drawLine(startX, startY + 10f, pageWidth.toFloat() - startX, startY + 10f, paint)
+        drawLine(40f, 192f, 40f, 250f, normalText)
 
-// Draw total at the end
-    yPosition += rowHeight
-    canvas.drawText("Total", startX, yPosition + 20f, normalText)
+        drawLine(40f + (pageWidth / 4), 192f, 40f + (pageWidth / 4), 250f, normalText)
 
-    canvas.drawText("$total", startX + columnWidth * 4, yPosition + 20f, normalText)*/
+        drawLine(40f + (pageWidth / 4) * 2, 192f, 40f + (pageWidth / 4) * 2, 250f, normalText)
 
-    val normalTextPaint = TextPaint().apply {
-        textSize = 16f // Adjust text size as needed
-        color = Color.BLACK // Adjust text color as needed
-    }
+        drawLine(40f + (pageWidth / 4) * 3, 192f, 40f + (pageWidth / 4) * 3, 250f, normalText)
 
-    val headerTextPaint = TextPaint().apply {
-        textSize = 16f // Adjust text size as needed
-        color = Color.BLACK // Adjust text color as needed
-        isFakeBoldText = true // Make the header text bold
+        drawLine(pageWidth - 40f, 192f, pageWidth - 40f, 250f, normalText)
+
+        drawTableRow(
+            startX + 2f, startY + rowHeight, normalText, listOf(
+                orderDetails[0].salesMan,
+                orderDetails[0].salesManMobile,
+                orderDetails[0].customerCode,
+                orderDetails[0].paymentType
+            ), false, columnWidthForSalesMan
+        )
+
+        drawLine(
+            startX,
+            startY + rowHeight + 10f,
+            columnWidthForSalesMan.sum() - 40f,
+            startY + rowHeight + 10f,
+            normalText
+        )
     }
 
     canvas.apply {
         val startX = 40f
-        var startY = 250f
+        var startY = 300f
+
+        drawLine(startX, startY - 20f, startX + columnWidths.sum(), startY - 20f, normalText)
 
         // Draw header
         drawTableRow(
             startX, startY, headerTextPaint, listOf(
-                "Product ID", "Title", "Quantity", "Price", "MRP Price", "Total"
-            ), true
+                "Code", "Title", "Quantity", "Price", "MRP Price", "Net Amount"
+            ), true, columnWidths
         )
 
         // Draw a line after header
-        drawLine(startX, startY + 10f, startX + columnWidths.sum(), startY + 10f, paint)
+        drawLine(startX, startY + 10f, startX + columnWidths.sum(), startY + 10f, normalText)
 
         // Draw product list
-        productsList.forEach { product ->
+        orderDetails.forEach { orderItem ->
             startY += rowHeight
             drawTableRow(
                 startX, startY, normalTextPaint, listOf(
-                    product.id.toString(),
+                    orderItem.productCode,
                     TextUtils.ellipsize(
-                        product.title,
+                        orderItem.productName,
                         normalTextPaint,
                         columnWidths[1] - 20f,
                         TextUtils.TruncateAt.END
                     ).toString(),
-                    product.availableQuantity.toString(),
-                    product.price.toString(),
-                    product.mrpPrice.toString(),
-                    product.selectedItemTotalPrice.toString()
-                ), isDrawLine = true
+                    orderItem.quantity.toString(),
+                    orderItem.price.toString(),
+                    orderItem.mrp.toString(),
+                    orderItem.netAmount.toString()
+                ), isDrawLine = true, columnWidths
             )
         }
 
@@ -197,9 +235,52 @@ fun generatePDF(
         startY += rowHeight
         drawTableRow(
             startX, startY, normalTextPaint, listOf(
-                "Total", "", "", "", "", String.format("%.2f", total)
-            ), isDrawLine = false
+                "Total", "", orderDetails.sumOf {
+                    it.quantity
+                }.toString(), "", "", String.format("%.2f", total)
+            ), isDrawLine = false, columnWidths
         )
+
+        drawLine(startX, 280f, startX, startY + 5f, normalText)
+
+        drawLine(startX + columnWidths[0], 280f, startX + columnWidths[0], startY + 5f, normalText)
+        drawLine(
+            startX + columnWidths[0] + columnWidths[1],
+            280f,
+            startX + columnWidths[0] + columnWidths[1],
+            startY + 5f,
+            normalText
+        )
+        drawLine(
+            startX + columnWidths[0] + columnWidths[1] + columnWidths[2],
+            280f,
+            startX + columnWidths[0] + columnWidths[1] + columnWidths[2],
+            startY + 5f,
+            normalText
+        )
+        drawLine(
+            startX + columnWidths[0] + columnWidths[1] + columnWidths[2] + columnWidths[3],
+            280f,
+            startX + columnWidths[0] + columnWidths[1] + columnWidths[2] + columnWidths[3],
+            startY + 5f,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidths[0] + columnWidths[1] + columnWidths[2] + columnWidths[3] + columnWidths[4],
+            280f,
+            startX + columnWidths[0] + columnWidths[1] + columnWidths[2] + columnWidths[3] + columnWidths[4],
+            startY + 5f,
+            normalText
+        )
+        drawLine(
+            startX + columnWidths.sum(),
+            280f,
+            startX + columnWidths.sum(),
+            startY + 5f,
+            normalText
+        )
+
     }
 
     pdfDocument.finishPage(myPage)
@@ -261,16 +342,17 @@ private fun Canvas.drawTableRow(
     yPosition: Float,
     paint: Paint,
     rowData: List<String>,
-    isDrawLine: Boolean
+    isDrawLine: Boolean,
+    columnWidths: List<Float>
 ) {
     var x = startX
     rowData.forEachIndexed { index, text ->
-        drawText(text, x, yPosition, paint)
+        drawText(text, x + 2f, yPosition, paint)
         x += columnWidths[index]
     }
 
     // Draw horizontal lines
-    if (isDrawLine){
+    if (isDrawLine) {
         drawLine(
             startX,
             yPosition + rowHeight + 5f,
