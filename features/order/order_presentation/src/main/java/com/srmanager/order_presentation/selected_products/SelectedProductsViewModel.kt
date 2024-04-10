@@ -8,13 +8,9 @@ import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.network.dto.Product
 import com.srmanager.database.dao.ProductsDao
-import com.srmanager.order_presentation.products.OrderProductsEvent
-import com.srmanager.order_presentation.products.ProductsState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -69,13 +65,13 @@ class SelectedProductsViewModel @Inject constructor(private val productsDao: Pro
 
             is SelectedProductEvent.OnIncrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.increaseProductItem(event.id)
+                    productsDao.updateProductItem(event.id , event.selectedItemCount+1)
                 }
             }
 
             is SelectedProductEvent.OnDecrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.decreaseProductItem(event.id)
+                    productsDao.updateProductItem(event.id, event.selectedItemCount-1)
                 }
             }
         }

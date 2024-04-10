@@ -183,11 +183,21 @@ fun OrderProductsScreen(
                                         )
                                     )
                                 },
-                                onIncrementClick = {
-                                    onEvent(OrderProductsEvent.OnIncrementEvent(product.id))
+                                onIncrementClick = {itemCount->
+                                    onEvent(
+                                        OrderProductsEvent.OnIncrementEvent(
+                                            product.id,
+                                            itemCount
+                                        )
+                                    )
                                 },
-                                onDecrementClick = {
-                                    onEvent(OrderProductsEvent.OnDecrementEvent(product.id))
+                                onDecrementClick = {itemCount->
+                                    onEvent(
+                                        OrderProductsEvent.OnDecrementEvent(
+                                            product.id,
+                                            itemCount
+                                        )
+                                    )
                                 },
                                 keyboardController = keyboardController,
                                 state = state,
@@ -208,8 +218,8 @@ fun OrderProductsScreen(
 fun ItemCompose(
     product: Product,
     onItemClick: () -> Unit,
-    onIncrementClick: () -> Unit,
-    onDecrementClick: () -> Unit,
+    onIncrementClick: (itemCount:Int) -> Unit,
+    onDecrementClick: (itemCount:Int) -> Unit,
     keyboardController: SoftwareKeyboardController?,
     state: ProductsState,
     onEvent: (OrderProductsEvent) -> Unit
@@ -262,8 +272,10 @@ fun ItemCompose(
     }
 
     val qty = remember {
-        mutableStateOf(product.selectedItemCount.toString())
+        mutableStateOf("1")
     }
+
+    qty.value = product.selectedItemCount.toString()
 
     Card(
         modifier = Modifier
@@ -346,8 +358,7 @@ fun ItemCompose(
                     IconButton(onClick = {
 
                         if (product.selectedItemCount < product.availableQuantity) {
-                            onIncrementClick()
-                            qty.value = product.selectedItemCount.toString()
+                            onIncrementClick(product.selectedItemCount)
                         }
 
                     }, modifier = Modifier.size(20.r())) {
@@ -394,14 +405,14 @@ fun ItemCompose(
                             }
 
                             when {
-                                it.isEmpty() -> {
+                                /*it.isEmpty() -> {
                                     onEvent(
                                         OrderProductsEvent.OnQuantityInput(
                                             id = product.id,
                                             qty = 1.0
                                         )
                                     )
-                                }
+                                }*/
                             }
                         },
                         textStyle = bodyRegularTextStyle.copy(
@@ -445,7 +456,7 @@ fun ItemCompose(
 
                     IconButton(onClick = {
                         if (product.selectedItemCount > 1) {
-                            onDecrementClick()
+                            onDecrementClick(product.selectedItemCount)
                         }
                     }, modifier = Modifier.size(20.r())) {
                         Box(

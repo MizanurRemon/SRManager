@@ -1,5 +1,6 @@
 package com.srmanager.order_presentation.products
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -39,7 +40,7 @@ class ProductsViewModel @Inject constructor(
 
     private fun loadProducts() {
         state = state.copy(isLoading = true)
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
             productsDao.deleteAll()
             delay(2000)
             launch(Dispatchers.IO) {
@@ -69,9 +70,10 @@ class ProductsViewModel @Inject constructor(
                 }
             }
 
-            launch(Dispatchers.Default) {
+            launch {
                 withContext(Dispatchers.Default) {
                     productsDao.getProducts(key = state.searchKey).collect {
+                        Log.d("dataxx", "${it.toString()}")
                         state = state.copy(
                             isLoading = false,
                             searchKey = "",
@@ -114,13 +116,13 @@ class ProductsViewModel @Inject constructor(
 
             is OrderProductsEvent.OnIncrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.increaseProductItem(event.id)
+                    productsDao.updateProductItem(event.id, event.itemCount + 1)
                 }
             }
 
             is OrderProductsEvent.OnDecrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.decreaseProductItem(event.id)
+                    productsDao.updateProductItem(event.id, event.itemCount - 1)
                 }
             }
 
@@ -164,7 +166,7 @@ class ProductsViewModel @Inject constructor(
 
             is OrderProductsEvent.OnQuantityInput -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.updateProductItem(id = event.id, qty = event.qty)
+                    productsDao.updateProductItem(id = event.id, itemCount = event.qty.toInt())
                 }
             }
 
