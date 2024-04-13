@@ -17,21 +17,23 @@ import android.text.TextPaint
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
+import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.text.style.TextAlign
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import com.srmanager.core.common.util.base64ToImage
 import com.srmanager.core.network.dto.OrderItem
-import com.srmanager.core.network.dto.Product
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-val pageHeight = 1120
-val pageWidth = 792
+const val pageHeight = 1120
+const val pageWidth = 792
 private const val rowHeight = 30f // Adjust row height as needed
 private val columnWidths = listOf(
     (pageWidth / 12).toFloat(),
-    ((pageWidth / 12) * 3).toFloat()-20f,
+    ((pageWidth / 12) * 3).toFloat() - 20f,
     (pageWidth / 12).toFloat(),
     (pageWidth / 12).toFloat(),
     (pageWidth / 12).toFloat(),
@@ -44,12 +46,9 @@ private val columnWidths = listOf(
 
 fun generatePDF(
     context: Context,
-    outletID: Int,
-    orderDate: String,
-    contact: String,
-    productsList: List<Product>,
     total: Double,
-    orderDetails: List<OrderItem>
+    orderDetails: List<OrderItem>,
+    customerSign: String
 ) {
     val normalTextPaint = TextPaint().apply {
         textSize = 12f // Adjust text size as needed
@@ -61,7 +60,6 @@ fun generatePDF(
         color = Color.BLACK // Adjust text color as needed
         isFakeBoldText = true // Make the header text bold
     }
-
 
     val pdfDocument = PdfDocument()
     val paint = Paint()
@@ -79,9 +77,6 @@ fun generatePDF(
     val myPage = pdfDocument.startPage(myPageInfo)
 
     val canvas: Canvas = myPage.canvas
-    /*val bitmap: Bitmap? = drawableToBitmap(context.resources.getDrawable(R.drawable.app_icon))
-    val scaleBitmap: Bitmap? = Bitmap.createScaledBitmap(bitmap!!, 60, 60, false)
-    canvas.drawBitmap(scaleBitmap!!, 40f, 40f, paint)*/
 
     title.typeface = Typeface.create(Typeface.DEFAULT, Typeface.NORMAL)
     title.textSize = 12f
@@ -95,15 +90,19 @@ fun generatePDF(
     paint.setColor(ContextCompat.getColor(context, R.color.black)) // Set line color
     paint.strokeWidth = 2f // Set line width
 
-    canvas.drawText("Order No: ", 40f, 80f, headerTextPaint)
+    canvas.drawText("Order No: ", 40f, 60f, headerTextPaint)
 
-    canvas.drawText(orderDetails[0].orderNo, 130f, 80f, normalTextPaint)
+    canvas.drawText(orderDetails[0].orderNo, 130f, 60f, normalTextPaint)
 
-    canvas.drawText("Order Date: ", 40f + pageWidth / 2, 80f, headerTextPaint)
+    canvas.drawText("Order Date: ", 40f + pageWidth / 2, 60f, headerTextPaint)
 
-    canvas.drawText(orderDetails[0].orderDate, 130f + pageWidth / 2, 80f, normalTextPaint)
+    canvas.drawText(orderDetails[0].orderDate, 130f + pageWidth / 2, 60f, normalTextPaint)
 
-    canvas.drawText("Customer Details", 40f, 110f, headerTextPaint)
+    canvas.drawText("Customer Details", 40f, 90f, headerTextPaint)
+
+    canvas.drawText("Customer Name: ", 40f, 110f, normalTextPaint)
+
+    canvas.drawText("Remon", 40f + 120f, 110f, headerTextPaint)
 
     canvas.drawLine(40f, 120f, pageWidth.toFloat() - 40f, 120f, normalText)
 
@@ -251,7 +250,7 @@ fun generatePDF(
             startX, startY, normalTextPaint, listOf(
                 "Total", "", orderDetails.sumOf {
                     it.quantity
-                }.toString(), "", "","","", "", String.format("%.2f", total)
+                }.toString(), "", "", "", "", "", String.format("%.2f", total)
             ), isDrawLine = false, columnWidths
         )
 
@@ -259,63 +258,63 @@ fun generatePDF(
 
         drawLine(startX + columnWidths[0], 280f, startX + columnWidths[0], startY + 5f, normalText)
         drawLine(
-            startX + columnWidths.slice(0 until  1).sum(),
+            startX + columnWidths.slice(0 until 1).sum(),
             280f,
-            startX + columnWidths.slice(0 until  1).sum(),
+            startX + columnWidths.slice(0 until 1).sum(),
             startY + 5f,
             normalText
         )
         drawLine(
-            startX + columnWidths.slice(0 until  2).sum(),
+            startX + columnWidths.slice(0 until 2).sum(),
             280f,
-            startX + columnWidths.slice(0 until  2).sum(),
+            startX + columnWidths.slice(0 until 2).sum(),
             startY + 5f,
             normalText
         )
         drawLine(
-            startX + columnWidths.slice(0 until  3).sum(),
+            startX + columnWidths.slice(0 until 3).sum(),
             280f,
-            startX + columnWidths.slice(0 until  3).sum(),
-            startY + 5f,
-            normalText
-        )
-
-        drawLine(
-            startX + columnWidths.slice(0 until  4).sum(),
-            280f,
-            startX + columnWidths.slice(0 until  4).sum(),
+            startX + columnWidths.slice(0 until 3).sum(),
             startY + 5f,
             normalText
         )
 
         drawLine(
-            startX + columnWidths.slice(0 until  5).sum(),
+            startX + columnWidths.slice(0 until 4).sum(),
             280f,
-            startX + columnWidths.slice(0 until  5).sum(),
+            startX + columnWidths.slice(0 until 4).sum(),
             startY + 5f,
             normalText
         )
 
         drawLine(
-            startX + columnWidths.slice(0 until  6).sum(),
+            startX + columnWidths.slice(0 until 5).sum(),
             280f,
-            startX + columnWidths.slice(0 until  6).sum(),
+            startX + columnWidths.slice(0 until 5).sum(),
             startY + 5f,
             normalText
         )
 
         drawLine(
-            startX + columnWidths.slice(0 until  7).sum(),
+            startX + columnWidths.slice(0 until 6).sum(),
             280f,
-            startX + columnWidths.slice(0 until  7).sum(),
+            startX + columnWidths.slice(0 until 6).sum(),
             startY + 5f,
             normalText
         )
 
         drawLine(
-            startX + columnWidths.slice(0 until  8).sum(),
+            startX + columnWidths.slice(0 until 7).sum(),
             280f,
-            startX + columnWidths.slice(0 until  8).sum(),
+            startX + columnWidths.slice(0 until 7).sum(),
+            startY + 5f,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidths.slice(0 until 8).sum(),
+            280f,
+            startX + columnWidths.slice(0 until 8).sum(),
             startY + 5f,
             normalText
         )
@@ -325,6 +324,19 @@ fun generatePDF(
             startX + columnWidths.sum(),
             startY + 5f,
             normalText
+        )
+
+        val scaleBitmap: Bitmap? = Bitmap.createScaledBitmap(base64ToImage(customerSign), 60, 60, false)
+        canvas.drawBitmap(
+            scaleBitmap!!,
+            40f + columnWidths.slice(0 until 8).sum(),
+            startY + 30f,
+            paint
+        )
+
+        canvas.drawText(
+            "Signature", 40f + columnWidths.slice(0 until 8).sum(),
+            startY + 110f, normalTextPaint
         )
 
     }

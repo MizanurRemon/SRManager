@@ -113,7 +113,8 @@ class SignatureViewModel @Inject constructor(
                         state.isOrderReady -> {
                             state = state.copy(
                                 isLoading = false,
-                                orderSuccessDialog = false,
+                                orderSuccessDialog = true,
+                                orderDetails = orderDetailList
                             )
                             orderUseCases.createOrderUseCases(
                                 CreateOrderModel(

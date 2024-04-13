@@ -240,8 +240,7 @@ fun SignatureScreen(
             onClick = {
                 onSuccess()
 
-                generatePDF(context, state.outletID, state.orderDate, state.contact, state.productsList, state.total, state.orderDetails)
-                //saveBitmapAsPDF(bitmap = bitmap!!, context = context)
+                generatePDF(context, state.total, state.orderDetails, state.customerSign)
             }
         )
     }
