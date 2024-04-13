@@ -17,8 +17,6 @@ import android.text.TextPaint
 import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
-import androidx.compose.ui.graphics.asImageBitmap
-import androidx.compose.ui.text.style.TextAlign
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.srmanager.core.common.util.base64ToImage
@@ -326,18 +324,21 @@ fun generatePDF(
             normalText
         )
 
-        val scaleBitmap: Bitmap? = Bitmap.createScaledBitmap(base64ToImage(customerSign), 60, 60, false)
-        canvas.drawBitmap(
-            scaleBitmap!!,
-            40f + columnWidths.slice(0 until 8).sum(),
-            startY + 30f,
-            paint
-        )
 
         canvas.drawText(
             "Signature", 40f + columnWidths.slice(0 until 8).sum(),
-            startY + 110f, normalTextPaint
+            startY + 120f, normalTextPaint
         )
+
+        canvas.translate(
+            35f + columnWidths.slice(0 until 8).sum(),
+            startY + 20f
+        )
+        canvas.drawBitmap(
+            base64ToImage(customerSign), null,
+            android.graphics.RectF(0f, 0f, 100f, 100f), paint
+        )
+
 
     }
 

@@ -116,7 +116,7 @@ class SignatureViewModel @Inject constructor(
                                 orderSuccessDialog = true,
                                 orderDetails = orderDetailList
                             )
-                            orderUseCases.createOrderUseCases(
+                          /*  orderUseCases.createOrderUseCases(
                                 CreateOrderModel(
                                     orderInformation = OrderInformation(
                                         customerSignature = state.customerSign,
@@ -174,7 +174,7 @@ class SignatureViewModel @Inject constructor(
                                         )
                                     )
                                 )
-                            }
+                            }*/
                         }
 
                         else -> {

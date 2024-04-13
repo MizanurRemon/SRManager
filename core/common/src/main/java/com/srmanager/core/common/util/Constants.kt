@@ -6,20 +6,10 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.pdf.PdfDocument
 import android.net.Uri
 import android.provider.Browser
 import android.util.Base64
-import android.util.Log
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.ComposeView
-import androidx.compose.ui.platform.LocalContext
-import androidx.core.text.HtmlCompat
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.Date
 import kotlin.math.atan2
@@ -118,7 +108,13 @@ fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
 
 fun base64ToImage(imageString: String): Bitmap {
     val imageBytes = Base64.decode(imageString, Base64.DEFAULT)
-    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+    val options = BitmapFactory.Options().apply {
+        inScaled = false // Disable scaling
+        inDensity = 0 // Set density to default (original density)
+        inTargetDensity = 0 // Set target density to default (original density)
+    }
+
+    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size, options)
 }
 
 fun bitMapToString(bitmap: Bitmap): String {
