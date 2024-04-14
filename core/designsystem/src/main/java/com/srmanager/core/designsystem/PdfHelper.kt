@@ -1,14 +1,12 @@
 package com.srmanager.core.designsystem
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
-import android.graphics.drawable.BitmapDrawable
-import android.graphics.drawable.Drawable
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
 import android.text.Layout
@@ -100,7 +98,7 @@ fun generatePDF(
 
     canvas.drawText("Customer Name: ", 40f, 110f, normalTextPaint)
 
-    canvas.drawText("Remon", 40f + 120f, 110f, headerTextPaint)
+    canvas.drawText(orderDetails[0].customerName, 40f + 120f, 110f, headerTextPaint)
 
     canvas.drawLine(40f, 120f, pageWidth.toFloat() - 40f, 120f, normalText)
 
@@ -252,6 +250,20 @@ fun generatePDF(
             ), isDrawLine = false, columnWidths
         )
 
+        drawTableRow(
+            startX, startY + rowHeight, headerTextPaint, listOf(
+                orderDetails[0].inWords,
+                "",
+                "",
+                "",
+                "",
+                "",
+                "",
+                "Payable Amount: ${String.format("%.2f", total)}",
+                ""
+            ), false, columnWidths
+        )
+
         drawLine(startX, 280f, startX, startY + 5f, normalText)
 
         drawLine(startX + columnWidths[0], 280f, startX + columnWidths[0], startY + 5f, normalText)
@@ -359,7 +371,7 @@ fun generatePDF(
         pdfDocument.writeTo(FileOutputStream(file))
         Toast.makeText(
             context,
-            "PDF file generated successfully at ${file.path.toString()}",
+            "PDF file generated successfully at ${file.path}",
             Toast.LENGTH_SHORT
         ).show()
     } catch (ex: Exception) {
@@ -376,21 +388,7 @@ fun generatePDF(
     context.startActivity(intent)
 }
 
-fun drawableToBitmap(drawable: Drawable): Bitmap? {
-    if (drawable is BitmapDrawable) {
-        return drawable.bitmap
-    }
-    val bitmap = Bitmap.createBitmap(
-        drawable.intrinsicWidth,
-        drawable.intrinsicHeight,
-        Bitmap.Config.ARGB_8888
-    )
-    val canvas = Canvas(bitmap)
-    drawable.setBounds(0, 0, canvas.width, canvas.height)
-    drawable.draw(canvas)
-    return bitmap
-}
-
+@SuppressLint("SimpleDateFormat")
 fun generateFileName(fileName: String): String {
     return fileName + SimpleDateFormat("yyMMddHHmmss").format(Calendar.getInstance().time)
 }

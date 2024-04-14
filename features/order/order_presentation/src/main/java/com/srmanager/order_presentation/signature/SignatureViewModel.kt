@@ -113,7 +113,7 @@ class SignatureViewModel @Inject constructor(
                         state.isOrderReady -> {
                             state = state.copy(
                                 isLoading = false,
-                                orderSuccessDialog = false,
+                                orderSuccessDialog = false
                             )
                             orderUseCases.createOrderUseCases(
                                 CreateOrderModel(
@@ -230,7 +230,8 @@ val orderDetailList = listOf(
         discountPercentage = 0,
         afterDiscount = 4.76,
         vatAmount = 0,
-        netAmount = 4.76
+        netAmount = 4.76,
+        inWords = "Six Hundred And Seventy Six Only"
     ),
     OrderItem(
         id = 27,
@@ -253,6 +254,55 @@ val orderDetailList = listOf(
         discountPercentage = 0,
         afterDiscount = 4.76,
         vatAmount = 0,
-        netAmount = 4.76
+        netAmount = 4.76,
+        inWords = "Six Hundred And Seventy Six Only"
+    ),
+    OrderItem(
+        id = 27,
+        orderNo = "24040001",
+        orderDate = "10-04-2024",
+        outletAddress = "Q9XG+QWM, Dhaka 1210, Bangladesh",
+        billingAddress = "Q9XG+QWM, Dhaka 1210, Bangladesh",
+        salesMan = "Remon",
+        salesManMobile = "01729210380",
+        customerCode = "C-0001",
+        customerName = "Matador",
+        paymentType = "Cash",
+        productCode = "0015",
+        productName = "Mehran Turmeric Powder 200gm",
+        unit = "1 Pcs",
+        quantity = 1,
+        mrp = 4.76,
+        price = 4.0,
+        discountAmount = 0,
+        discountPercentage = 0,
+        afterDiscount = 4.76,
+        vatAmount = 0,
+        netAmount = 4.76,
+        inWords = "Six Hundred And Seventy Six Only"
+    ),
+    OrderItem(
+        id = 27,
+        orderNo = "24040001",
+        orderDate = "10-04-2024",
+        outletAddress = "Q9XG+QWM, Dhaka 1210, Bangladesh",
+        billingAddress = "Q9XG+QWM, Dhaka 1210, Bangladesh",
+        salesMan = "Remon",
+        salesManMobile = "01729210380",
+        customerCode = "C-0001",
+        customerName = "Matador",
+        paymentType = "Cash",
+        productCode = "0015",
+        productName = "Mehran Turmeric Powder 200gm",
+        unit = "1 Pcs",
+        quantity = 1,
+        mrp = 4.76,
+        price = 4.0,
+        discountAmount = 0,
+        discountPercentage = 0,
+        afterDiscount = 4.76,
+        vatAmount = 0,
+        netAmount = 4.76,
+        inWords = "Six Hundred And Seventy Six Only"
     ),
 )

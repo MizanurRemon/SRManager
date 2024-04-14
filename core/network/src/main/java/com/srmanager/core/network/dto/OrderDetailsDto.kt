@@ -31,5 +31,6 @@ data class OrderItem(
     val discountPercentage: Long,
     val afterDiscount: Double,
     val vatAmount: Long,
-    val netAmount: Double
+    val netAmount: Double,
+    val inWords: String
 )
