@@ -18,6 +18,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.srmanager.core.common.util.base64ToImage
+import com.srmanager.core.common.util.doubleToWords
 import com.srmanager.core.network.dto.OrderItem
 import java.io.File
 import java.io.FileOutputStream
@@ -252,7 +253,7 @@ fun generatePDF(
 
         drawTableRow(
             startX, startY + rowHeight, headerTextPaint, listOf(
-                orderDetails[0].inWords,
+                doubleToWords(String.format("%.2f", total).toDouble()),
                 "",
                 "",
                 "",
