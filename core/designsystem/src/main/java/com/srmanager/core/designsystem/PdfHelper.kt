@@ -3,10 +3,13 @@ package com.srmanager.core.designsystem
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Typeface
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.graphics.pdf.PdfDocument
 import android.os.Environment
 import android.text.Layout
@@ -41,22 +44,44 @@ private val columnWidths = listOf(
 )
 
 
+@SuppressLint("UseCompatLoadingForDrawables")
 fun generatePDF(
     context: Context,
     total: Double,
     orderDetails: List<OrderItem>,
     customerSign: String
 ) {
+    val headerBoldTextPaint = TextPaint().apply {
+        textSize = 20f // Adjust text size as needed
+        color = Color.BLACK // Adjust text color as needed
+        isFakeBoldText = true // Make the header text bold
+        textAlign = Paint.Align.RIGHT
+    }
+
+    val headerNormalTextPaint = TextPaint().apply {
+        textSize = 12f // Adjust text size as needed
+        color = Color.BLACK // Adjust text color as needed
+        textAlign = Paint.Align.RIGHT
+    }
+
     val normalTextPaint = TextPaint().apply {
         textSize = 12f // Adjust text size as needed
         color = Color.BLACK // Adjust text color as needed
     }
 
-    val headerTextPaint = TextPaint().apply {
+    val boldTextPaint = TextPaint().apply {
         textSize = 12f // Adjust text size as needed
         color = Color.BLACK // Adjust text color as needed
         isFakeBoldText = true // Make the header text bold
     }
+
+    val inWordsTextPaint = TextPaint().apply {
+        textSize = 12f // Adjust text size as needed
+        color = Color.BLACK // Adjust text color as needed
+        isFakeBoldText = true // Make the header text bold
+    }
+
+    val startYAxisPointAfterTop = 180f
 
     val pdfDocument = PdfDocument()
     val paint = Paint()
@@ -83,27 +108,77 @@ fun generatePDF(
     normalText.textSize = 12f
     normalText.color = ContextCompat.getColor(context, R.color.black)
 
+    val bitmap: Bitmap? =
+        drawableToBitmap(context.resources.getDrawable(R.drawable.ic_header_image))
+
+    canvas.drawBitmap(
+        bitmap!!, null,
+        android.graphics.RectF(40f, 20f, 150f, 150f), paint
+    )
+
+
+    canvas.drawText(
+        "Latino Marketing (M) SDN BHD".uppercase(),
+        pageWidth.toFloat() - 40f,
+        60f,
+        headerBoldTextPaint
+    )
+    canvas.drawText(
+        "Reg. No- (1484541-T), Bandar Sunway 47500,",
+        pageWidth.toFloat() - 40f,
+        60f + 20f,
+        headerNormalTextPaint
+    )
+    canvas.drawText(
+        "Subang Jaya, Selangor, Malaysia. Tel: +601131464097",
+        pageWidth.toFloat() - 40f,
+        60f + (20f * 2),
+        headerNormalTextPaint
+    )
+    canvas.drawText(
+        "Email:info@latino.com.my Web: www.latino.com.my",
+        pageWidth.toFloat() - 40f,
+        60f + (20f * 3),
+        headerNormalTextPaint
+    )
+
 
     paint.setColor(ContextCompat.getColor(context, R.color.black)) // Set line color
     paint.strokeWidth = 2f // Set line width
 
-    canvas.drawText("Order No: ", 40f, 60f, headerTextPaint)
+    canvas.drawText("Order No: ", 40f, startYAxisPointAfterTop, boldTextPaint)
 
-    canvas.drawText(orderDetails[0].orderNo, 130f, 60f, normalTextPaint)
+    canvas.drawText(orderDetails[0].orderNo, 130f, startYAxisPointAfterTop, normalTextPaint)
 
-    canvas.drawText("Order Date: ", 40f + pageWidth / 2, 60f, headerTextPaint)
+    canvas.drawText("Order Date: ", 40f + pageWidth / 2, startYAxisPointAfterTop, boldTextPaint)
 
-    canvas.drawText(orderDetails[0].orderDate, 130f + pageWidth / 2, 60f, normalTextPaint)
+    canvas.drawText(
+        orderDetails[0].orderDate,
+        130f + pageWidth / 2,
+        startYAxisPointAfterTop,
+        normalTextPaint
+    )
 
-    canvas.drawText("Customer Details", 40f, 90f, headerTextPaint)
+    canvas.drawText("Customer Details", 40f, startYAxisPointAfterTop + 30f, boldTextPaint)
 
-    canvas.drawText("Customer Name: ", 40f, 110f, normalTextPaint)
+    canvas.drawText("Customer Name: ", 40f, startYAxisPointAfterTop + 50f, normalTextPaint)
 
-    canvas.drawText(orderDetails[0].customerName, 40f + 120f, 110f, headerTextPaint)
+    canvas.drawText(
+        orderDetails[0].customerName,
+        40f + 120f,
+        startYAxisPointAfterTop + 50f,
+        boldTextPaint
+    )
 
-    canvas.drawLine(40f, 120f, pageWidth.toFloat() - 40f, 120f, normalText)
+    canvas.drawLine(
+        40f,
+        startYAxisPointAfterTop + 60f,
+        pageWidth.toFloat() - 40f,
+        startYAxisPointAfterTop + 60f,
+        normalText
+    )
 
-    canvas.drawText("SHIP TO", 42f, 140f, headerTextPaint)
+    canvas.drawText("SHIP TO", 42f, startYAxisPointAfterTop + 80f, boldTextPaint)
 
     val staticLayout = StaticLayout(
         orderDetails[0].outletAddress,
@@ -116,11 +191,19 @@ fun generatePDF(
     )
 
     canvas.save()
-    canvas.translate(40f + (pageWidth / 8) + 2f, 120f) // Move canvas to the desired position
+    canvas.translate(
+        40f + (pageWidth / 8) + 2f,
+        startYAxisPointAfterTop + 60f
+    ) // Move canvas to the desired position
     staticLayout.draw(canvas)
     canvas.restore()
 
-    canvas.drawText("BILL TO", (pageWidth.toFloat() / 2) + 2f, 140f, headerTextPaint)
+    canvas.drawText(
+        "BILL TO",
+        (pageWidth.toFloat() / 2) + 2f,
+        startYAxisPointAfterTop + 80f,
+        boldTextPaint
+    )
 
     val billStaticLayout = StaticLayout(
         orderDetails[0].billingAddress,
@@ -135,7 +218,7 @@ fun generatePDF(
     canvas.save()
     canvas.translate(
         (pageWidth.toFloat() / 2) + (pageWidth / 8) + 2f,
-        120f
+        startYAxisPointAfterTop + 60f
     ) // Move canvas to the desired position
     billStaticLayout.draw(canvas)
     canvas.restore()
@@ -143,46 +226,112 @@ fun generatePDF(
 
     canvas.drawLine(
         (pageWidth.toFloat() / 2) + (pageWidth / 8),
-        120f,
+        startYAxisPointAfterTop + 60f,
         (pageWidth.toFloat() / 2) + (pageWidth / 8),
-        190f,
+        startYAxisPointAfterTop + 130f,
         normalText
     )
 
-    canvas.drawLine(40f + (pageWidth / 8), 120f, 40f + (pageWidth / 8), 190f, normalText)
+    canvas.drawLine(
+        40f + (pageWidth / 8),
+        startYAxisPointAfterTop + 60f,
+        40f + (pageWidth / 8),
+        startYAxisPointAfterTop + 130f,
+        normalText
+    )
 
-    canvas.drawLine(40f, 190f, pageWidth.toFloat() - 40f, 190f, normalText)
+    canvas.drawLine(
+        40f,
+        startYAxisPointAfterTop + 130f,
+        pageWidth.toFloat() - 40f,
+        startYAxisPointAfterTop + 130f,
+        normalText
+    )
 
-    canvas.drawLine(40f, 120f, 40f, 190f, normalText)
+    canvas.drawLine(
+        40f,
+        startYAxisPointAfterTop + 60f,
+        40f,
+        startYAxisPointAfterTop + 130f,
+        normalText
+    )
 
-    canvas.drawLine(pageWidth.toFloat() - 40f, 120f, pageWidth.toFloat() - 40f, 190f, normalText)
+    canvas.drawLine(
+        pageWidth.toFloat() - 40f,
+        startYAxisPointAfterTop + 60f,
+        pageWidth.toFloat() - 40f,
+        startYAxisPointAfterTop + 130f,
+        normalText
+    )
 
-    canvas.drawLine(pageWidth.toFloat() / 2, 120f, pageWidth.toFloat() / 2, 190f, normalText)
+    canvas.drawLine(
+        pageWidth.toFloat() / 2,
+        startYAxisPointAfterTop + 60f,
+        pageWidth.toFloat() / 2,
+        startYAxisPointAfterTop + 130f,
+        normalText
+    )
 
-    canvas.drawLine(40f, 192f, pageWidth.toFloat() - 40f, 192f, normalText)
+    canvas.drawLine(
+        40f,
+        startYAxisPointAfterTop + 132f,
+        pageWidth.toFloat() - 40f,
+        startYAxisPointAfterTop + 132f,
+        normalText
+    )
 
     canvas.apply {
         val startX = 40f
-        val startY = 210f
+        val startY = startYAxisPointAfterTop + 150f
 
         // Draw header
         drawTableRow(
-            startX + 2f, startY, headerTextPaint, listOf(
+            startX + 2f, startY, boldTextPaint, listOf(
                 "SALES MAN", "MOBILE", "CUST CODE", "PAYMENT"
             ), false, columnWidthForSalesMan
         )
 
         drawLine(startX, startY + 10f, columnWidthForSalesMan.sum() - 40f, startY + 10f, normalText)
 
-        drawLine(40f, 192f, 40f, 250f, normalText)
+        drawLine(
+            40f,
+            startYAxisPointAfterTop + 132f,
+            40f,
+            startYAxisPointAfterTop + 190f,
+            normalText
+        )
 
-        drawLine(40f + (pageWidth / 4), 192f, 40f + (pageWidth / 4), 250f, normalText)
+        drawLine(
+            40f + (pageWidth / 4),
+            startYAxisPointAfterTop + 132f,
+            40f + (pageWidth / 4),
+            startYAxisPointAfterTop + 190f,
+            normalText
+        )
 
-        drawLine(40f + (pageWidth / 4) * 2, 192f, 40f + (pageWidth / 4) * 2, 250f, normalText)
+        drawLine(
+            40f + (pageWidth / 4) * 2,
+            startYAxisPointAfterTop + 132f,
+            40f + (pageWidth / 4) * 2,
+            startYAxisPointAfterTop + 190f,
+            normalText
+        )
 
-        drawLine(40f + (pageWidth / 4) * 3, 192f, 40f + (pageWidth / 4) * 3, 250f, normalText)
+        drawLine(
+            40f + (pageWidth / 4) * 3,
+            startYAxisPointAfterTop + 132f,
+            40f + (pageWidth / 4) * 3,
+            startYAxisPointAfterTop + 190f,
+            normalText
+        )
 
-        drawLine(pageWidth - 40f, 192f, pageWidth - 40f, 250f, normalText)
+        drawLine(
+            pageWidth - 40f,
+            startYAxisPointAfterTop + 132f,
+            pageWidth - 40f,
+            startYAxisPointAfterTop + 190f,
+            normalText
+        )
 
         drawTableRow(
             startX + 2f, startY + rowHeight, normalText, listOf(
@@ -204,13 +353,13 @@ fun generatePDF(
 
     canvas.apply {
         val startX = 40f
-        var startY = 300f
+        var startY = 240f + startYAxisPointAfterTop
 
         drawLine(startX, startY - 20f, startX + columnWidths.sum(), startY - 20f, normalText)
 
         // Draw header
         drawTableRow(
-            startX, startY, headerTextPaint, listOf(
+            startX, startY, boldTextPaint, listOf(
                 "Code", "Title", "Qty", "MRP", "Dis. %", "Dis. Amt", "After Dis.", "GST", "Net Amt"
             ), true, columnWidths
         )
@@ -244,63 +393,63 @@ fun generatePDF(
         // Draw total at the end
         startY += rowHeight
         drawTableRow(
-            startX, startY, normalTextPaint, listOf(
-                "Total", "", orderDetails.sumOf {
-                    it.quantity
-                }.toString(), "", "", "", "", "", String.format("%.2f", total)
+            startX, startY, boldTextPaint, listOf(
+                doubleToWords(String.format("%.2f", total).toDouble()).uppercase(),
+                "",
+                "",
+                "",
+                "",
+                "Total",
+                "",
+                "",
+                String.format("%.2f", total)
             ), isDrawLine = false, columnWidths
         )
 
-        drawTableRow(
-            startX, startY + rowHeight, headerTextPaint, listOf(
-                doubleToWords(String.format("%.2f", total).toDouble()),
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-                "Payable Amount: ${String.format("%.2f", total)}",
-                ""
-            ), false, columnWidths
+        //orderDetails.sumOf { it.quantity }.toString()
+
+        drawLine(startX, startYAxisPointAfterTop + 220f, startX, startY + 5f, normalText)
+
+        drawLine(
+            startX + columnWidths[0],
+            startYAxisPointAfterTop + 220f,
+            startX + columnWidths[0],
+            startY + 5f - rowHeight,
+            normalText
         )
-
-        drawLine(startX, 280f, startX, startY + 5f, normalText)
-
-        drawLine(startX + columnWidths[0], 280f, startX + columnWidths[0], startY + 5f, normalText)
         drawLine(
             startX + columnWidths.slice(0 until 1).sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.slice(0 until 1).sum(),
-            startY + 5f,
+            startY + 5f - rowHeight,
             normalText
         )
         drawLine(
             startX + columnWidths.slice(0 until 2).sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.slice(0 until 2).sum(),
-            startY + 5f,
+            startY + 5f - rowHeight,
             normalText
         )
         drawLine(
             startX + columnWidths.slice(0 until 3).sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.slice(0 until 3).sum(),
-            startY + 5f,
+            startY + 5f - rowHeight,
             normalText
         )
 
         drawLine(
             startX + columnWidths.slice(0 until 4).sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.slice(0 until 4).sum(),
-            startY + 5f,
+            startY + 5f-rowHeight,
             normalText
         )
 
         drawLine(
             startX + columnWidths.slice(0 until 5).sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.slice(0 until 5).sum(),
             startY + 5f,
             normalText
@@ -308,7 +457,7 @@ fun generatePDF(
 
         drawLine(
             startX + columnWidths.slice(0 until 6).sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.slice(0 until 6).sum(),
             startY + 5f,
             normalText
@@ -316,7 +465,7 @@ fun generatePDF(
 
         drawLine(
             startX + columnWidths.slice(0 until 7).sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.slice(0 until 7).sum(),
             startY + 5f,
             normalText
@@ -324,14 +473,14 @@ fun generatePDF(
 
         drawLine(
             startX + columnWidths.slice(0 until 8).sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.slice(0 until 8).sum(),
             startY + 5f,
             normalText
         )
         drawLine(
             startX + columnWidths.sum(),
-            280f,
+            startYAxisPointAfterTop + 220f,
             startX + columnWidths.sum(),
             startY + 5f,
             normalText
@@ -419,4 +568,19 @@ private fun Canvas.drawTableRow(
             paint
         )
     }
+}
+
+fun drawableToBitmap(drawable: Drawable): Bitmap? {
+    if (drawable is BitmapDrawable) {
+        return drawable.bitmap
+    }
+    val bitmap = Bitmap.createBitmap(
+        drawable.intrinsicWidth,
+        drawable.intrinsicHeight,
+        Bitmap.Config.ARGB_8888
+    )
+    val canvas = Canvas(bitmap)
+    drawable.setBounds(0, 0, canvas.width, canvas.height)
+    drawable.draw(canvas)
+    return bitmap
 }
