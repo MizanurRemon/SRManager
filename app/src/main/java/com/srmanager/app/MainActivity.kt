@@ -9,14 +9,17 @@ import android.content.pm.PackageManager
 import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkRequest
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import android.util.DisplayMetrics
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import com.google.android.gms.tasks.Task
 import com.google.android.play.core.appupdate.AppUpdateInfo
@@ -44,6 +47,42 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
+
+@RequiresApi(Build.VERSION_CODES.R)
+private fun foregroundPermissionApproved(context: Context): Boolean {
+    val writePermissionFlag = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+        context, Manifest.permission.WRITE_EXTERNAL_STORAGE
+    )
+    val readPermissionFlag = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+        context, Manifest.permission.READ_EXTERNAL_STORAGE
+    )
+
+    val managePermissionFlag = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+        context, Manifest.permission.MANAGE_EXTERNAL_STORAGE
+    )
+
+    return writePermissionFlag && readPermissionFlag && managePermissionFlag
+}
+
+@RequiresApi(Build.VERSION_CODES.R)
+private fun requestForegroundPermission(context: Context) {
+    val provideRationale = foregroundPermissionApproved(context = context)
+    if (provideRationale) {
+        ActivityCompat.requestPermissions(
+            context as Activity,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MANAGE_EXTERNAL_STORAGE),
+            REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
+        )
+    } else {
+        ActivityCompat.requestPermissions(
+            context as Activity,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
+            REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
+        )
+    }
+}
 
 
 @AndroidEntryPoint
@@ -93,6 +132,8 @@ class MainActivity : AppCompatActivity() {
         setContent {
 
             BaseTheme {
+                val context = LocalContext.current
+                requestForegroundPermission(context)
                 MainApp()
                 NetworkStatusScreen()
                 if (permissionGranted.value) {

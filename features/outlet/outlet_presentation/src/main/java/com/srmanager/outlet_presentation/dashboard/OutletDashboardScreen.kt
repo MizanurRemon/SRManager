@@ -54,7 +54,8 @@ fun OutletDashboardScreen(
                     .padding(innerPadding)
             ) {
                 LazyVerticalGrid(
-                    columns = GridCells.Adaptive(minSize = 128.r())
+                    columns = GridCells.Adaptive(minSize = 128.r()),
+                    modifier = Modifier.padding(10.r())
                 ) {
                     items(OUTLET_DASHBOARD_MENUS.size) { index ->
                         GridItem(

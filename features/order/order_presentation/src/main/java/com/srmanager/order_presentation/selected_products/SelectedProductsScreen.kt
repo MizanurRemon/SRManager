@@ -1,6 +1,7 @@
 package com.srmanager.order_presentation.selected_products
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -21,6 +22,8 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -79,11 +82,12 @@ fun SelectedProductsScreen(
                     ItemCompose(
                         product = product,
 
-                        onIncrementClick = {
-                            onEvent(SelectedProductEvent.OnIncrementEvent(product.id))
+                        onIncrementClick = { itemCount ->
+                            Log.d("dataxx", itemCount.toString())
+                            onEvent(SelectedProductEvent.OnIncrementEvent(product.id, itemCount))
                         },
-                        onDecrementClick = {
-                            onEvent(SelectedProductEvent.OnDecrementEvent(product.id))
+                        onDecrementClick = { itemCount ->
+                            onEvent(SelectedProductEvent.OnDecrementEvent(product.id, itemCount))
                         }
                     )
                 }
@@ -96,9 +100,13 @@ fun SelectedProductsScreen(
 @Composable
 fun ItemCompose(
     product: Product,
-    onIncrementClick: () -> Unit,
-    onDecrementClick: () -> Unit
+    onIncrementClick: (itemCount: Int) -> Unit,
+    onDecrementClick: (itemCount: Int) -> Unit
 ) {
+
+//    val iemCount = remember {
+//        mutableIntStateOf(product.selectedItemCount)
+//    }
 
     val annotatedText = buildAnnotatedString {
         withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
@@ -142,34 +150,6 @@ fun ItemCompose(
             )
         ) {
             append("${product.mrpPrice}")
-        }
-
-        withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | " + stringResource(id = CommonR.string.whole_sale_price) + ": ")
-        }
-
-
-        withStyle(
-            style = SpanStyle(
-                color = Color.Black,
-                fontWeight = FontWeight.W700,
-            )
-        ) {
-            append("${product.wholeSalePrice}")
-        }
-
-        withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | " + stringResource(id = CommonR.string.last_purchase_price) + ": ")
-        }
-
-
-        withStyle(
-            style = SpanStyle(
-                color = Color.Black,
-                fontWeight = FontWeight.W700,
-            )
-        ) {
-            append("${product.lastPurchasePrice}")
         }
 
     }
@@ -230,7 +210,7 @@ fun ItemCompose(
                     IconButton(onClick = {
 
                         if (product.selectedItemCount < product.availableQuantity) {
-                            onIncrementClick()
+                            onIncrementClick(product.selectedItemCount)
                         }
 
                     }, modifier = Modifier.size(20.r())) {
@@ -259,7 +239,7 @@ fun ItemCompose(
 
                     IconButton(onClick = {
                         if (product.selectedItemCount > 1) {
-                            onDecrementClick()
+                            onDecrementClick(product.selectedItemCount)
                         }
                     }, modifier = Modifier.size(20.r())) {
                         Box(

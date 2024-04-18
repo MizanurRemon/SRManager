@@ -9,7 +9,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.Browser
 import android.util.Base64
-import androidx.core.text.HtmlCompat
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -80,10 +79,6 @@ fun openExternalLink(url: String, context: Context) {
     }
 }
 
-fun convertHtmlToText(text: String): String {
-    return HtmlCompat.fromHtml(text, 0).toString()
-}
-
 fun convertMillisToDate(millis: Long): String {
     val formatter = SimpleDateFormat(DATE_FORMAT)
     return formatter.format(Date(millis))
@@ -113,7 +108,13 @@ fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {
 
 fun base64ToImage(imageString: String): Bitmap {
     val imageBytes = Base64.decode(imageString, Base64.DEFAULT)
-    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+    val options = BitmapFactory.Options().apply {
+        inScaled = false // Disable scaling
+        inDensity = 0 // Set density to default (original density)
+        inTargetDensity = 0 // Set target density to default (original density)
+    }
+
+    return BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size, options)
 }
 
 fun bitMapToString(bitmap: Bitmap): String {

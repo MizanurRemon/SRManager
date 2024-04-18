@@ -1,5 +1,6 @@
 package com.srmanager.order_presentation.products
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -14,6 +15,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -33,42 +35,48 @@ class ProductsViewModel @Inject constructor(
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-
         loadProducts()
     }
 
     private fun loadProducts() {
         state = state.copy(isLoading = true)
-        viewModelScope.launch(Dispatchers.Default) {
+        viewModelScope.launch(Dispatchers.IO) {
+            productsDao.deleteAll()
             delay(2000)
-            launch(Dispatchers.Default) {
-                orderUseCases.productsUseCases().onSuccess {
-                    it.products.forEach { item ->
-                        productsDao.insertProducts(
-                            ProductsEntity(
-                                id = item.id,
-                                title = item.title,
-                                mrpPrice = item.mrpPrice,
-                                wholeSalePrice = item.wholeSalePrice,
-                                lastPurchasePrice = item.lastPurchasePrice,
-                                vatPercentage = item.vatPercentage,
-                                price = item.price,
-                                availableQuantity = item.availableQuantity,
-                                isSelected = false,
-                                selectedItemCount = 1
+            launch(Dispatchers.IO) {
+
+                orderUseCases.productsUseCases(customerId = state.customerID).onSuccess {
+
+                    withContext(Dispatchers.Default) {
+                        it.products.forEach { item ->
+                            productsDao.insertProducts(
+                                ProductsEntity(
+                                    id = item.id,
+                                    title = item.title,
+                                    mrpPrice = item.mrpPrice,
+                                    wholeSalePrice = item.wholeSalePrice,
+                                    lastPurchasePrice = item.lastPurchasePrice,
+                                    vatPercentage = item.vatPercentage,
+                                    price = item.price,
+                                    availableQuantity = item.availableQuantity,
+                                    isSelected = false,
+                                    selectedItemCount = 1
+                                )
                             )
-                        )
+                        }
                     }
                 }.onFailure {
-                    state.copy(isLoading = false)
+                    state = state.copy(isLoading = false)
                 }
             }
 
-            launch(Dispatchers.Default) {
-                withContext(Dispatchers.IO) {
-                    productsDao.getProducts().collect {
+            launch {
+                withContext(Dispatchers.Default) {
+                    productsDao.getProducts(key = state.searchKey).collect {
+                        Log.d("dataxx", "${it.toString()}")
                         state = state.copy(
                             isLoading = false,
+                            searchKey = "",
                             productsList = it.map { product ->
                                 Product(
                                     title = product.title,
@@ -84,6 +92,7 @@ class ProductsViewModel @Inject constructor(
                                 )
                             })
                     }
+
                 }
             }
 
@@ -107,13 +116,13 @@ class ProductsViewModel @Inject constructor(
 
             is OrderProductsEvent.OnIncrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.increaseProductItem(event.id)
+                    productsDao.updateProductItem(event.id, event.itemCount + 1)
                 }
             }
 
             is OrderProductsEvent.OnDecrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.decreaseProductItem(event.id)
+                    productsDao.updateProductItem(event.id, event.itemCount - 1)
                 }
             }
 
@@ -128,6 +137,44 @@ class ProductsViewModel @Inject constructor(
                     }
 
                 }
+            }
+
+            is OrderProductsEvent.OnSearchEvent -> {
+                state = state.copy(searchKey = event.key)
+                viewModelScope.launch(Dispatchers.Default) {
+                    withContext(Dispatchers.Default) {
+                        val products = productsDao.getProducts(key = event.key).first()
+                        state = state.copy(
+                            isLoading = false,
+                            productsList = products.map { product ->
+                                Product(
+                                    title = product.title,
+                                    id = product.id,
+                                    mrpPrice = product.mrpPrice,
+                                    wholeSalePrice = product.wholeSalePrice,
+                                    lastPurchasePrice = product.lastPurchasePrice,
+                                    vatPercentage = product.vatPercentage,
+                                    price = product.price,
+                                    availableQuantity = product.availableQuantity,
+                                    isSelected = product.isSelected,
+                                    selectedItemCount = product.selectedItemCount
+                                )
+                            })
+                    }
+                }
+            }
+
+            is OrderProductsEvent.OnQuantityInput -> {
+                viewModelScope.launch(Dispatchers.Default) {
+                    productsDao.updateProductItem(id = event.id, itemCount = event.qty.toInt())
+                }
+            }
+
+            is OrderProductsEvent.OnSetOutletID -> {
+                state = state.copy(
+                    outletID = event.id,
+                    customerID = event.customerId
+                )
             }
         }
     }

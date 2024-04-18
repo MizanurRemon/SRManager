@@ -27,7 +27,8 @@ class OutletAddUseCase(private val outletRepository: OutletRepository) {
                 shopEthnicity = outletAddModel.ethnicity,
                 ownerEmail = outletAddModel.email,
                 routeName = outletAddModel.routeName,
-                paymentTerms = outletAddModel.paymentOptions
+                paymentTerms = outletAddModel.paymentOptions,
+                billingAddress = outletAddModel.billingAddress
             )
         )
     }

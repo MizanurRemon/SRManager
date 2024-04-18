@@ -10,11 +10,11 @@ data class OrderDataDto(
 
 @Serializable
 data class Order(
-    val id: Int? = null,
-    val code: String? = null,
-    val name: String? = null,
-    val data: String?= null,
-    val status: String? = null,
-    val amount: String? = null,
-    val type : String? = null,
+    val id: Long,
+    val outletName: String,
+    val orderNo: String,
+    val customerName: String,
+    val orderDate: String,
+    val orderAmount: Double,
+    val orderStatus: String,
 )

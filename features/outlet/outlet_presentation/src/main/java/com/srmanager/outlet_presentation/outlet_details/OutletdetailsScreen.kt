@@ -1,7 +1,10 @@
 package com.srmanager.outlet_presentation.outlet_details
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -14,14 +17,25 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.sharp.DateRange
-import androidx.compose.material3.*
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -42,25 +56,36 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.srmanager.core.common.util.*
+import com.srmanager.core.common.util.ETHNICITIES
+import com.srmanager.core.common.util.MARKET_NAMES
+import com.srmanager.core.common.util.PAYMENT_OPTIONS
+import com.srmanager.core.common.util.ROUTE_NAMES
+import com.srmanager.core.common.util.UiEvent
+import com.srmanager.core.common.util.base64ToImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.r
-import com.srmanager.core.designsystem.theme.*
-import com.srmanager.core.network.dto.Outlet
-import com.srmanager.core.designsystem.R as DesignSystemR
+import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
+import com.srmanager.core.designsystem.theme.ColorTextFieldPlaceholder
+import com.srmanager.core.designsystem.theme.ImagePickerDialog
+import com.srmanager.core.designsystem.theme.MyDatePickerDialog
+import com.srmanager.core.designsystem.theme.smallBodyTextStyle
+import com.srmanager.core.designsystem.theme.subHeading1TextStyle
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import com.srmanager.core.common.R as CommonR
+import com.srmanager.core.designsystem.R as DesignSystemR
 
 @SuppressLint("CoroutineCreationDuringComposition")
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun OutletDetailsScreen(
     onBack: () -> Unit,
-    viewModel: OutletDetailsViewModel = hiltViewModel(),
     snackbarHostState: SnackbarHostState,
-    outletDetails: Outlet?
+    state: OutletDetailsState,
+    uiEvent: Flow<UiEvent>,
+    onEvent: (OutletDetailsEvent)-> Unit,
 ) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -77,7 +102,7 @@ fun OutletDetailsScreen(
     }
 
     LaunchedEffect(key1 = true) {
-        viewModel.uiEvent.collect { event ->
+        uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> {
 
@@ -102,9 +127,9 @@ fun OutletDetailsScreen(
 
 
 
-    LaunchedEffect(key1 = true) {
-        viewModel.getOutletDetails(outletID = outletDetails!!.id.toString())
-    }
+    /*LaunchedEffect(key1 = true) {
+        getOutletDetails(outletID = outletDetails!!.id.toString())
+    }*/
 
     Column(modifier = Modifier.fillMaxSize()) {
         AppToolbarCompose(
@@ -132,7 +157,7 @@ fun OutletDetailsScreen(
                 style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
-            TextField(value = viewModel.state.outletName,
+            TextField(value = state.outletName,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -149,7 +174,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletDetailsEvent.OnOutletNameEnter(it))
+                    onEvent(OutletDetailsEvent.OnOutletNameEnter(it))
                 },
 
                 modifier = Modifier
@@ -159,7 +184,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isOutletNameError) Color.Red else Color.LightGray
+                        color = if (state.isOutletNameError) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -178,7 +203,7 @@ fun OutletDetailsScreen(
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
-            TextField(value = viewModel.state.ownerName,
+            TextField(value = state.ownerName,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -195,7 +220,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletDetailsEvent.OnOwnerNameEnter(it))
+                    onEvent(OutletDetailsEvent.OnOwnerNameEnter(it))
                 },
 
                 modifier = Modifier
@@ -205,7 +230,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isOwnerNameError) Color.Red else Color.LightGray
+                        color = if (state.isOwnerNameError) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -222,7 +247,7 @@ fun OutletDetailsScreen(
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
-            TextField(value = viewModel.state.email,
+            TextField(value = state.email,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -239,7 +264,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletDetailsEvent.OnEmailEnter(it))
+                    onEvent(OutletDetailsEvent.OnEmailEnter(it))
                 },
 
                 modifier = Modifier
@@ -249,7 +274,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isEmailError) Color.Red else Color.LightGray
+                        color = if (state.isEmailError) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -269,7 +294,7 @@ fun OutletDetailsScreen(
 
 
             ExposedDropdownMenuBox(
-                expanded = viewModel.state.isMarketNameExpanded,
+                expanded = state.isMarketNameExpanded,
                 onExpandedChange = {
 
                 },
@@ -278,16 +303,16 @@ fun OutletDetailsScreen(
 
 
                 TextField(
-                    value = viewModel.state.marketName,
+                    value = state.marketName,
                     onValueChange = {},
                     readOnly = true,
                     trailingIcon = {
                         Icon(
-                            if (viewModel.state.isMarketNameExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                            if (state.isMarketNameExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                             contentDescription = "",
                             tint = APP_DEFAULT_COLOR,
                             modifier = Modifier.clickable {
-                                viewModel.onEvent(OutletDetailsEvent.OnMarketNameDropDownClick)
+                                onEvent(OutletDetailsEvent.OnMarketNameDropDownClick)
                             }
                         )
                     },
@@ -322,9 +347,9 @@ fun OutletDetailsScreen(
                     modifier = Modifier
                         .background(color = Color.White)
                         .exposedDropdownSize(),
-                    expanded = viewModel.state.isMarketNameExpanded,
+                    expanded = state.isMarketNameExpanded,
                     onDismissRequest = {
-                        viewModel.onEvent(OutletDetailsEvent.OnMarketNameDropDownClick)
+                        onEvent(OutletDetailsEvent.OnMarketNameDropDownClick)
                     }) {
                     Text(
                         text = stringResource(CommonR.string.select_market),
@@ -333,14 +358,14 @@ fun OutletDetailsScreen(
                     )
 
                     Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
-                    viewModel.state.marketNameList.forEach { response ->
+                    state.marketNameList.forEach { response ->
                         DropdownMenuItem(text = {
                             Text(
                                 text = response.text.toString(),
                                 color = Color.Black
                             )
                         }, onClick = {
-                            viewModel.onEvent(OutletDetailsEvent.OnMarketNameSelection(response.text.toString()))
+                            onEvent(OutletDetailsEvent.OnMarketNameSelection(response.text.toString()))
                         }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
                     }
                 }
@@ -354,7 +379,7 @@ fun OutletDetailsScreen(
 
 
             ExposedDropdownMenuBox(
-                expanded = viewModel.state.isEthnicityExpanded,
+                expanded = state.isEthnicityExpanded,
                 onExpandedChange = {
 
                 },
@@ -362,16 +387,16 @@ fun OutletDetailsScreen(
             ) {
 
                 TextField(
-                    value = viewModel.state.ethnicity,
+                    value = state.ethnicity,
                     onValueChange = {},
                     readOnly = true,
                     trailingIcon = {
                         Icon(
-                            if (viewModel.state.isEthnicityExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                            if (state.isEthnicityExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                             contentDescription = "",
                             tint = APP_DEFAULT_COLOR,
                             modifier = Modifier.clickable {
-                                viewModel.onEvent(OutletDetailsEvent.OnEthnicityDropDownClick)
+                                onEvent(OutletDetailsEvent.OnEthnicityDropDownClick)
                             }
                         )
                     },
@@ -406,9 +431,9 @@ fun OutletDetailsScreen(
                     modifier = Modifier
                         .background(color = Color.White)
                         .exposedDropdownSize(),
-                    expanded = viewModel.state.isEthnicityExpanded,
+                    expanded = state.isEthnicityExpanded,
                     onDismissRequest = {
-                        viewModel.onEvent(OutletDetailsEvent.OnEthnicityDropDownClick)
+                        onEvent(OutletDetailsEvent.OnEthnicityDropDownClick)
                     }) {
                     Text(
                         text = stringResource(CommonR.string.select_ethnicity),
@@ -424,7 +449,7 @@ fun OutletDetailsScreen(
                                 color = Color.Black
                             )
                         }, onClick = {
-                            viewModel.onEvent(OutletDetailsEvent.OnEthnicitySelection(label))
+                            onEvent(OutletDetailsEvent.OnEthnicitySelection(label))
                         }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
                     }
                 }
@@ -438,7 +463,7 @@ fun OutletDetailsScreen(
 
 
             ExposedDropdownMenuBox(
-                expanded = viewModel.state.isRouteNameExpanded,
+                expanded = state.isRouteNameExpanded,
                 onExpandedChange = {
 
                 },
@@ -447,16 +472,16 @@ fun OutletDetailsScreen(
 
 
                 TextField(
-                    value = viewModel.state.routeName,
+                    value = state.routeName,
                     onValueChange = {},
                     readOnly = true,
                     trailingIcon = {
                         Icon(
-                            if (viewModel.state.isRouteNameExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                            if (state.isRouteNameExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                             contentDescription = "",
                             tint = APP_DEFAULT_COLOR,
                             modifier = Modifier.clickable {
-                                viewModel.onEvent(OutletDetailsEvent.OnRouteNameDropDownClick)
+                                onEvent(OutletDetailsEvent.OnRouteNameDropDownClick)
                             }
                         )
                     },
@@ -491,9 +516,9 @@ fun OutletDetailsScreen(
                     modifier = Modifier
                         .background(color = Color.White)
                         .exposedDropdownSize(),
-                    expanded = viewModel.state.isRouteNameExpanded,
+                    expanded = state.isRouteNameExpanded,
                     onDismissRequest = {
-                        viewModel.onEvent(OutletDetailsEvent.OnRouteNameDropDownClick)
+                        onEvent(OutletDetailsEvent.OnRouteNameDropDownClick)
                     }) {
                     Text(
                         text = stringResource(CommonR.string.select_route),
@@ -509,7 +534,7 @@ fun OutletDetailsScreen(
                                 color = Color.Black
                             )
                         }, onClick = {
-                            viewModel.onEvent(OutletDetailsEvent.OnRouteNameSelection(label))
+                            onEvent(OutletDetailsEvent.OnRouteNameSelection(label))
                         }, contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding)
                     }
                 }
@@ -521,7 +546,7 @@ fun OutletDetailsScreen(
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
-            TextField(value = viewModel.state.birthdate,
+            TextField(value = state.birthdate,
                 readOnly = true,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
@@ -539,7 +564,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    //viewModel.onEvent(OutletDetailsEvent.OnBirthDateEnter(it))
+                    //onEvent(OutletDetailsEvent.OnBirthDateEnter(it))
                 },
 
                 modifier = Modifier
@@ -549,7 +574,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isBirthDateError) Color.Red else Color.LightGray
+                        color = if (state.isBirthDateError) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -581,7 +606,7 @@ fun OutletDetailsScreen(
             )
 
             TextField(
-                value = viewModel.state.phone1,
+                value = state.phone1,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -598,7 +623,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletDetailsEvent.OnMobileNo1Enter(it))
+                    onEvent(OutletDetailsEvent.OnMobileNo1Enter(it))
                 },
 
                 modifier = Modifier
@@ -608,7 +633,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isPhone1Error) Color.Red else Color.LightGray
+                        color = if (state.isPhone1Error) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -630,7 +655,7 @@ fun OutletDetailsScreen(
             )
 
             TextField(
-                value = viewModel.state.phone2,
+                value = state.phone2,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -647,7 +672,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletDetailsEvent.OnMobileNo2Enter(it))
+                    onEvent(OutletDetailsEvent.OnMobileNo2Enter(it))
                 },
 
                 modifier = Modifier
@@ -657,7 +682,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isPhone2Error) Color.Red else Color.LightGray
+                        color = if (state.isPhone2Error) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -678,7 +703,7 @@ fun OutletDetailsScreen(
             )
 
             TextField(
-                value = viewModel.state.tradeLicense,
+                value = state.tradeLicense,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -695,7 +720,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletDetailsEvent.OnTradeLicenseEnter(it))
+                    onEvent(OutletDetailsEvent.OnTradeLicenseEnter(it))
                 },
 
                 modifier = Modifier
@@ -705,7 +730,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isTradeLicenseError) Color.Red else Color.LightGray
+                        color = if (state.isTradeLicenseError) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -725,7 +750,7 @@ fun OutletDetailsScreen(
                 modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
             )
 
-            TextField(value = viewModel.state.tlcExpiryDate,
+            TextField(value = state.tlcExpiryDate,
                 readOnly = true,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
@@ -753,7 +778,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isExpiryDateError) Color.Red else Color.LightGray
+                        color = if (state.isExpiryDateError) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -785,7 +810,7 @@ fun OutletDetailsScreen(
             )
 
             TextField(
-                value = viewModel.state.vatTRN,
+                value = state.vatTRN,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -802,7 +827,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletDetailsEvent.OnVatTRNEnter(it))
+                    onEvent(OutletDetailsEvent.OnVatTRNEnter(it))
                 },
 
                 modifier = Modifier
@@ -812,7 +837,7 @@ fun OutletDetailsScreen(
                     .border(
                         width = 1.dp,
                         shape = RoundedCornerShape(10.dp),
-                        color = if (viewModel.state.isVatTrnError) Color.Red else Color.LightGray
+                        color = if (state.isVatTrnError) Color.Red else Color.LightGray
                     ),
 
                 placeholder = {
@@ -833,7 +858,7 @@ fun OutletDetailsScreen(
 
 
             ExposedDropdownMenuBox(
-                expanded = viewModel.state.isPaymentOptionsExpanded,
+                expanded = state.isPaymentOptionsExpanded,
                 onExpandedChange = {
 
                 },
@@ -842,16 +867,16 @@ fun OutletDetailsScreen(
 
 
                 TextField(
-                    value = viewModel.state.paymentOption,
+                    value = state.paymentOption,
                     onValueChange = {},
                     readOnly = true,
                     trailingIcon = {
                         Icon(
-                            if (viewModel.state.isPaymentOptionsExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
+                            if (state.isPaymentOptionsExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                             contentDescription = "",
                             tint = APP_DEFAULT_COLOR,
                             modifier = Modifier.clickable {
-                                viewModel.onEvent(OutletDetailsEvent.OnPaymentDropDownClick)
+                                onEvent(OutletDetailsEvent.OnPaymentDropDownClick)
                             }
                         )
                     },
@@ -885,9 +910,9 @@ fun OutletDetailsScreen(
                 ExposedDropdownMenu(
                     modifier = Modifier
                         .background(color = Color.White),
-                    expanded = viewModel.state.isPaymentOptionsExpanded,
+                    expanded = state.isPaymentOptionsExpanded,
                     onDismissRequest = {
-                        viewModel.onEvent(OutletDetailsEvent.OnPaymentDropDownClick)
+                        onEvent(OutletDetailsEvent.OnPaymentDropDownClick)
                     }) {
                     Text(
                         text = stringResource(CommonR.string.select_payment_option),
@@ -903,7 +928,7 @@ fun OutletDetailsScreen(
                                 color = Color.Black
                             )
                         }, onClick = {
-                            viewModel.onEvent(OutletDetailsEvent.OnPaymentOptionSelection(label))
+                            onEvent(OutletDetailsEvent.OnPaymentOptionSelection(label))
                         })
                     }
                 }
@@ -922,7 +947,7 @@ fun OutletDetailsScreen(
                 Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier
                     .padding(top = 10.r(), bottom = 5.r())
                     .clickable {
-                        viewModel.onEvent(OutletDetailsEvent.OnGettingCurrentLocation)
+                        onEvent(OutletDetailsEvent.OnGettingCurrentLocation)
                     }) {
                     Icon(
                         painter = painterResource(id = DesignSystemR.drawable.ic_my_location),
@@ -940,7 +965,7 @@ fun OutletDetailsScreen(
             }
 
             TextField(
-                value = viewModel.state.address,
+                value = state.address,
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
                     unfocusedContainerColor = Color.White,
@@ -957,7 +982,7 @@ fun OutletDetailsScreen(
                     defaultKeyboardAction(ImeAction.Done)
                 }),
                 onValueChange = {
-                    viewModel.onEvent(OutletDetailsEvent.OnAddressEnter(it))
+                    onEvent(OutletDetailsEvent.OnAddressEnter(it))
                 },
 
                 modifier = Modifier
@@ -981,6 +1006,54 @@ fun OutletDetailsScreen(
                 },
             )
 
+            Text(
+                text = stringResource(id = CommonR.string.billing_address),
+                style = smallBodyTextStyle.copy(fontWeight = FontWeight.Light),
+                modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
+            )
+
+            TextField(
+                value = state.billingAddress,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.White,
+                    unfocusedContainerColor = Color.White,
+                    disabledContainerColor = Color.White,
+                    focusedIndicatorColor = Color.Transparent,
+                    unfocusedIndicatorColor = Color.Transparent,
+                ),
+                keyboardOptions = KeyboardOptions(
+                    keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
+                ),
+                keyboardActions = KeyboardActions(onDone = {
+                    keyboardController?.hide()
+
+                    defaultKeyboardAction(ImeAction.Done)
+                }),
+                onValueChange = {
+                    onEvent(OutletDetailsEvent.OnBillingAddressEnter(it))
+                },
+
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentHeight()
+                    //.height(54.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .border(
+                        width = 1.dp,
+                        shape = RoundedCornerShape(10.dp),
+                        color = Color.LightGray
+                    ),
+
+                placeholder = {
+                    Text(
+                        text = stringResource(id = CommonR.string.enter_billing_address),
+                        style = TextStyle(
+                            color = ColorTextFieldPlaceholder,
+                        )
+                    )
+                },
+            )
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -996,7 +1069,7 @@ fun OutletDetailsScreen(
                 Spacer(modifier = Modifier.weight(1f))
 
                 Text(
-                    text = "${viewModel.state.latitude}, ${viewModel.state.longitude}",
+                    text = "${state.latitude}, ${state.longitude}",
                     style = smallBodyTextStyle,
                     modifier = Modifier.padding(top = 10.r(), bottom = 5.r())
                 )
@@ -1008,7 +1081,7 @@ fun OutletDetailsScreen(
                     .height(250.r())
                     .border(
                         width = 1.r(),
-                        color = if (viewModel.state.isImageError) Color.Red else Color.LightGray,
+                        color = if (state.isImageError) Color.Red else Color.LightGray,
                         shape = RoundedCornerShape(10.r())
                     )
                     .clickable {
@@ -1016,7 +1089,7 @@ fun OutletDetailsScreen(
                     }
             ) {
 
-                if (viewModel.state.image.isEmpty()) {
+                if (state.image.isEmpty()) {
                     Image(
                         painter = painterResource(id = DesignSystemR.drawable.ic_camera),
                         contentDescription = "",
@@ -1027,7 +1100,7 @@ fun OutletDetailsScreen(
                 } else {
 
                     Image(
-                        bitmap = base64ToImage(viewModel.state.image).asImageBitmap(),
+                        bitmap = base64ToImage(state.image).asImageBitmap(),
                         contentDescription = "",
                         modifier = Modifier
                             .align(Alignment.Center)
@@ -1043,7 +1116,7 @@ fun OutletDetailsScreen(
                 stringId = CommonR.string.save_changes,
                 modifier = Modifier.padding(top = 10.r())
             ) {
-                viewModel.onEvent(OutletDetailsEvent.OnSubmitButtonClick(outletDetails!!.id.toString()))
+                onEvent(OutletDetailsEvent.OnSubmitButtonClick(state.id.toString()))
             }
         }
     }
@@ -1051,7 +1124,7 @@ fun OutletDetailsScreen(
     if (openDatePickerDialog.value) {
         MyDatePickerDialog(
             onDateSelected = {
-                viewModel.onEvent(OutletDetailsEvent.OnDatePick(it))
+                onEvent(OutletDetailsEvent.OnDatePick(it))
             }, openDialog = openDatePickerDialog
         )
     }
@@ -1059,14 +1132,14 @@ fun OutletDetailsScreen(
     if (openExpiryDatePickerDialog.value) {
         MyDatePickerDialog(
             onDateSelected = {
-                viewModel.onEvent(OutletDetailsEvent.OnExpiryDateEnter(it))
+                onEvent(OutletDetailsEvent.OnExpiryDateEnter(it))
             }, openDialog = openExpiryDatePickerDialog
         )
     }
 
     if (openImagePickerDialog.value) {
         ImagePickerDialog(openDialog = openImagePickerDialog, onDoneClick = { image ->
-            viewModel.onEvent(
+            onEvent(
                 OutletDetailsEvent.OnImageSelection(
                     image,
                     context.contentResolver
@@ -1075,7 +1148,7 @@ fun OutletDetailsScreen(
         })
     }
 
-    if (viewModel.state.isLoading) {
+    if (state.isLoading) {
         LoadingDialog {
 
         }
@@ -1089,6 +1162,8 @@ fun PreviewOutletDetailsScreen() {
     OutletDetailsScreen(
         onBack = {},
         snackbarHostState = snackBarHostState,
-        outletDetails = null
+        state = OutletDetailsState(),
+        uiEvent = flow {  },
+        onEvent = {},
     )
 }

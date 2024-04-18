@@ -110,7 +110,8 @@ class OutletAddViewModel @Inject constructor(
                                 ethnicity = state.ethnicity,
                                 email = state.email,
                                 routeName = state.routeName,
-                                paymentOptions = state.paymentOption
+                                paymentOptions = state.paymentOption,
+                                billingAddress = state.billingAddress
                             )
                         ).onSuccess {
 
@@ -212,6 +213,17 @@ class OutletAddViewModel @Inject constructor(
 
             is OutletAddEvent.OnAddressEnter -> {
                 state = state.copy(address = event.value)
+            }
+
+            is OutletAddEvent.OnBillingAddressEnter-> {
+                state = state.copy(billingAddress = event.value)
+            }
+
+            is OutletAddEvent.OnIsBillingAddressSameAsAddressEvent-> {
+                state = state.copy(
+                    isBillingAddressSameAsAddress = event.value,
+                    billingAddress = if(event.value) state.address else ""
+                )
             }
 
             is OutletAddEvent.OnImageSelection -> {

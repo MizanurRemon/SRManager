@@ -22,5 +22,6 @@ data class OutletAddRequest(
     var shopEthnicity : String,
     var ownerEmail : String,
     var routeName : String,
-    var paymentTerms : String
+    var paymentTerms : String,
+    var billingAddress: String
 )

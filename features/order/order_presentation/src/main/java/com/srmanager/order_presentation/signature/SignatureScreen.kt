@@ -37,10 +37,13 @@ import com.srmanager.core.common.util.base64ToImage
 import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.components.LoadingDialog
+import com.srmanager.core.designsystem.components.SignatureDialog
+import com.srmanager.core.designsystem.components.WarningDialogCompose
+import com.srmanager.core.designsystem.generatePDF
 import com.srmanager.core.designsystem.r
-import com.srmanager.core.designsystem.theme.SignatureDialog
 import com.srmanager.core.designsystem.theme.bodyXSBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyXSRegularTextStyle
+import com.srmanager.core.designsystem.theme.subHeading1TextStyle
 import com.srmanager.core.network.dto.Product
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -58,11 +61,7 @@ fun SignatureScreen(
     onSuccess: () -> Unit,
     snackbarHostState: SnackbarHostState,
 ) {
-
     val isCustomerDialogOpen = remember { mutableStateOf(false) }
-    val isSrDialogOpen = remember {
-        mutableStateOf(false)
-    }
 
     val context = LocalContext.current
 
@@ -70,8 +69,7 @@ fun SignatureScreen(
         uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> {
-
-
+                    onSuccess()
                 }
 
                 is UiEvent.ShowSnackbar -> {
@@ -108,7 +106,7 @@ fun SignatureScreen(
         ) {
             InfoItem(title = CommonR.string.outlet_id, value = state.outletID.toString())
 
-            InfoItem(title = CommonR.string.order_no, value = state.orderNo)
+            InfoItem(title = CommonR.string.contact, value = state.contact)
 
             InfoItem(title = CommonR.string.date, value = state.orderDate)
 
@@ -155,6 +153,7 @@ fun SignatureScreen(
             }
 
             InfoItem(title = CommonR.string.total, value = state.total.toString())
+
 
             Spacer(modifier = Modifier.height(20.r()))
 
@@ -223,24 +222,52 @@ fun SignatureScreen(
         )
     }
 
-
-    if (isSrDialogOpen.value) {
-        SignatureDialog(
-            isDialogOpen = isSrDialogOpen,
-            onSave = {
-                onEvent(SignatureEvent.OnSRSignEvent(it))
-            }
-        )
-    }
-
     if (state.isLoading) {
         LoadingDialog {
 
         }
     }
 
+    if (state.orderSuccessDialog) {
+
+        WarningDialogCompose(
+            message = CommonR.string.success,
+            buttonText = CommonR.string.done,
+            image = DesignSystemR.drawable.ic_success,
+            isDialogOpen = remember {
+                mutableStateOf(true)
+            },
+            onClick = {
+                onSuccess()
+
+                generatePDF(context, state.total, state.orderDetails, state.customerSign)
+            }
+        )
+    }
 
 }
+
+@Composable
+fun PdfComposable() {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(color = Color.White)
+    ) {
+        Text(
+            text = "PDF",
+            style = subHeading1TextStyle,
+            modifier = Modifier.padding(10.r())
+        )
+    }
+}
+
+@Composable
+@Preview
+fun PreviewComposable(){
+    PdfComposable()
+}
+
 
 @Composable
 fun InfoItem(@StringRes title: Int, value: String) {
@@ -305,7 +332,9 @@ fun ProductItemCompose(product: Product) {
         )
     }
 
+
 }
+
 
 @Composable
 @Preview

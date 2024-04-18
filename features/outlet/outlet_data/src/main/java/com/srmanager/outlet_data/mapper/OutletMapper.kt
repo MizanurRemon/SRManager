@@ -1,15 +1,16 @@
 package com.srmanager.outlet_data.mapper
 
+import com.srmanager.core.common.model.CommonResponse
 import com.srmanager.core.common.util.DATE_FORMAT
 import com.srmanager.core.common.util.changeDateFormat
 import com.srmanager.core.network.dto.CheckOutStatusDto
 import com.srmanager.core.network.dto.CommonResponseDto
 import com.srmanager.core.network.dto.MarketDto
+import com.srmanager.core.network.dto.Outlet
 import com.srmanager.core.network.dto.OutletDataDto
 import com.srmanager.core.network.dto.OutletDetailsDto
 import com.srmanager.core.network.dto.OutletProfile
 import com.srmanager.outlet_domain.model.CheckOutStatusResponse
-import com.srmanager.core.common.model.CommonResponse
 import com.srmanager.outlet_domain.model.MarketResponse
 import com.srmanager.outlet_domain.model.OutletDetailsResponse
 import com.srmanager.outlet_domain.model.OutletResponse
@@ -23,7 +24,20 @@ fun CommonResponseDto.toResponse(): CommonResponse {
 
 fun OutletDataDto.toResponse(): OutletResponse {
     return OutletResponse(
-        data = data
+        data = data.map {
+            Outlet(
+                id = it.id,
+                customerId = it.customerId,
+                outletName = it.outletName,
+                address = it.address,
+                latitude = it.latitude,
+                longitude = it.longitude,
+                mobileNo = it.mobileNo,
+                outletImage = it.outletImage,
+                ownerName = it.ownerName,
+                billingAddress = it.billingAddress ?: ""
+            )
+        }
     )
 }
 
@@ -65,7 +79,8 @@ fun OutletDetailsDto.toResponse(): OutletDetailsResponse {
             routeName = data?.routeName ?: "",
             ownerEmail = data?.ownerEmail ?: "",
             paymentTerms = data?.paymentTerms ?: "",
-            marketId = data?.marketId ?: 0
+            marketId = data?.marketId ?: 0,
+            billingAddress = data?.billingAddress ?: ""
         )
     )
 }

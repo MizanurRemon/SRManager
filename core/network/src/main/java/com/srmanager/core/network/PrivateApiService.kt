@@ -1,8 +1,21 @@
 package com.srmanager.core.network
 
-import com.srmanager.core.network.dto.*
-import com.srmanager.core.network.model.*
-import retrofit2.http.*
+import com.srmanager.core.network.dto.CheckOutStatusDto
+import com.srmanager.core.network.dto.CommonResponseDto
+import com.srmanager.core.network.dto.MarketDto
+import com.srmanager.core.network.dto.OrderDataDto
+import com.srmanager.core.network.dto.OrderDetailsDto
+import com.srmanager.core.network.dto.OutletDataDto
+import com.srmanager.core.network.dto.OutletDetailsDto
+import com.srmanager.core.network.dto.ProductsDto
+import com.srmanager.core.network.model.CheckOutRequest
+import com.srmanager.core.network.model.OrderRequest
+import com.srmanager.core.network.model.OutletAddRequest
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface PrivateApiService {
 
@@ -22,12 +35,23 @@ interface PrivateApiService {
 
     @POST("bsol/api/outlet/checkout")
     suspend fun checkout(@Body request: CheckOutRequest): CommonResponseDto
+
     @POST("bsol/api/outlet/market")
     suspend fun getMarkets(): MarketDto
 
     @GET("bsol/api/products")
-    suspend fun getProducts(): ProductsDto
+    suspend fun getProducts(
+        @Query("customerId") customerId: String
+    ): ProductsDto
 
     @POST("bsol/api/order")
-    suspend fun createOrder(@Body request : OrderRequest): CommonResponseDto
+    suspend fun createOrder(@Body request: OrderRequest): CommonResponseDto
+
+    @GET("bsol/api/order")
+    suspend fun fetchOrders(): OrderDataDto
+
+    @GET("bsol/api/order/details/{orderId}")
+    suspend fun orderDetails(
+        @Path("orderId") orderId: String
+    ): OrderDetailsDto
 }
