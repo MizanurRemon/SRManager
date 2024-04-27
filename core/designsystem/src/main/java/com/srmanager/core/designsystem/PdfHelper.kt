@@ -21,9 +21,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.srmanager.core.common.util.base64ToImage
-import com.srmanager.core.common.util.doubleToWords
-import com.srmanager.core.network.dto.OrderItem
+import com.srmanager.order_domain.model.OrderDetailsResponse
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -48,9 +46,7 @@ private val columnWidths = listOf(
 @SuppressLint("UseCompatLoadingForDrawables")
 fun generatePDF(
     context: Context,
-    total: Double,
-    orderDetails: List<OrderItem>,
-    customerSign: String
+    orderDetails: OrderDetailsResponse
 ) {
     val headerBoldTextPaint = TextPaint().apply {
         textSize = 20f // Adjust text size as needed
@@ -159,12 +155,12 @@ fun generatePDF(
 
     canvas.drawText("Order No: ", 40f, startYAxisPointAfterTop, boldTextPaint)
 
-    canvas.drawText(orderDetails[0].orderNo, 130f, startYAxisPointAfterTop, normalTextPaint)
+    canvas.drawText(orderDetails.orderNo, 130f, startYAxisPointAfterTop, normalTextPaint)
 
     canvas.drawText("Order Date: ", 40f + pageWidth / 2, startYAxisPointAfterTop, boldTextPaint)
 
     canvas.drawText(
-        orderDetails[0].orderDate,
+        orderDetails.orderDate,
         130f + pageWidth / 2,
         startYAxisPointAfterTop,
         normalTextPaint
@@ -183,7 +179,7 @@ fun generatePDF(
     canvas.drawText("SHIP TO", 42f, startYAxisPointAfterTop + 80f, boldTextPaint)
 
     val staticLayout = StaticLayout(
-        orderDetails[0].outletAddress,
+        orderDetails.outletAddress,
         normalTextPaint,
         (pageWidth / 8) * 2,
         Layout.Alignment.ALIGN_NORMAL,
@@ -208,7 +204,7 @@ fun generatePDF(
     )
 
     val billStaticLayout = StaticLayout(
-        orderDetails[0].billingAddress,
+        orderDetails.billingAddress,
         normalTextPaint,
         (pageWidth / 8) * 2,
         Layout.Alignment.ALIGN_NORMAL,
@@ -354,11 +350,11 @@ fun generatePDF(
 
         drawTableRow(
             startX + 2f, startY + rowHeight, normalText, listOf(
-                orderDetails[0].salesMan,
-                orderDetails[0].salesManMobile,
-                orderDetails[0].customerCode,
-                orderDetails[0].customerName,
-                orderDetails[0].paymentType
+                orderDetails.salesMan,
+                orderDetails.salesManMobile,
+                orderDetails.customerCode,
+                orderDetails.customerName,
+                orderDetails.paymentType
             ), false, columnWidthForSalesMan
         )
 
@@ -388,7 +384,7 @@ fun generatePDF(
         drawLine(startX, startY + 10f, pageWidth - 40f, startY + 10f, normalText)
 
         // Draw product list
-        orderDetails.forEach { orderItem ->
+        orderDetails.data.forEach { orderItem ->
             startY += rowHeight
             drawTableRow(
                 startX, startY, normalTextPaint, listOf(
@@ -414,7 +410,7 @@ fun generatePDF(
         startY += rowHeight
         drawTableRow(
             startX, startY, boldTextPaint, listOf(
-                doubleToWords(String.format("%.2f", total).toDouble()).uppercase(),
+                orderDetails.inWords,
                 "",
                 "",
                 "",
@@ -422,11 +418,11 @@ fun generatePDF(
                 "Total",
                 "",
                 "",
-                String.format("%.2f", total)
+                String.format("%.2f", orderDetails.data.sumOf {
+                    it.netAmount
+                })
             ), isDrawLine = false, columnWidths
         )
-
-        //orderDetails.sumOf { it.quantity }.toString()
 
         drawLine(startX, startYAxisPointAfterTop + 220f, startX, startY + 5f, normalText)
 
@@ -499,9 +495,9 @@ fun generatePDF(
             normalText
         )
         drawLine(
-            pageWidth-40f,
+            pageWidth - 40f,
             startYAxisPointAfterTop + 220f,
-            pageWidth-40f,
+            pageWidth - 40f,
             startY + 5f,
             normalText
         )
@@ -516,10 +512,12 @@ fun generatePDF(
             35f + columnWidths.slice(0 until 8).sum(),
             startY + 20f
         )
-        canvas.drawBitmap(
-            base64ToImage(customerSign), null,
-            android.graphics.RectF(0f, 0f, 100f, 100f), paint
-        )
+        /*if (orderDetails.customerSignature.isNotEmpty()){
+            canvas.drawBitmap(
+                base64ToImage(orderDetails.customerSignature), null,
+                android.graphics.RectF(0f, 0f, 100f, 100f), paint
+            )
+        }*/
 
 
     }

@@ -1,15 +1,14 @@
 package com.srmanager.order_presentation.products
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.srmanager.core.common.util.NUMBER_REGEX
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.network.dto.Product
 import com.srmanager.database.dao.ProductsDao
-import com.srmanager.database.entity.ProductsEntity
 import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -47,24 +46,6 @@ class ProductsViewModel @Inject constructor(
 
                 orderUseCases.productsUseCases(customerId = state.customerID).onSuccess {
 
-                    withContext(Dispatchers.Default) {
-                        it.products.forEach { item ->
-                            productsDao.insertProducts(
-                                ProductsEntity(
-                                    id = item.id,
-                                    title = item.title,
-                                    mrpPrice = item.mrpPrice,
-                                    wholeSalePrice = item.wholeSalePrice,
-                                    lastPurchasePrice = item.lastPurchasePrice,
-                                    vatPercentage = item.vatPercentage,
-                                    price = item.price,
-                                    availableQuantity = item.availableQuantity,
-                                    isSelected = false,
-                                    selectedItemCount = 1
-                                )
-                            )
-                        }
-                    }
                 }.onFailure {
                     state = state.copy(isLoading = false)
                 }
@@ -73,10 +54,9 @@ class ProductsViewModel @Inject constructor(
             launch {
                 withContext(Dispatchers.Default) {
                     productsDao.getProducts(key = state.searchKey).collect {
-                        Log.d("dataxx", "${it.toString()}")
                         state = state.copy(
-                            isLoading = false,
                             searchKey = "",
+                            isLoading = false,
                             productsList = it.map { product ->
                                 Product(
                                     title = product.title,
@@ -108,25 +88,25 @@ class ProductsViewModel @Inject constructor(
         }
     }
 
-    fun onEvent(event: OrderProductsEvent) {
+    fun onEvent(event: ProductsEvent) {
         when (event) {
-            is OrderProductsEvent.OnNextEvent -> {
+            is ProductsEvent.OnNextEvent -> {
 
             }
 
-            is OrderProductsEvent.OnIncrementEvent -> {
+            is ProductsEvent.OnIncrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
                     productsDao.updateProductItem(event.id, event.itemCount + 1)
                 }
             }
 
-            is OrderProductsEvent.OnDecrementEvent -> {
+            is ProductsEvent.OnDecrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
                     productsDao.updateProductItem(event.id, event.itemCount - 1)
                 }
             }
 
-            is OrderProductsEvent.OnItemClickEvent -> {
+            is ProductsEvent.OnItemClickEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
 
                     productsDao.updateIsSelectedStatus(id = event.id, isSelected = event.isSelected)
@@ -139,7 +119,7 @@ class ProductsViewModel @Inject constructor(
                 }
             }
 
-            is OrderProductsEvent.OnSearchEvent -> {
+            is ProductsEvent.OnSearchEvent -> {
                 state = state.copy(searchKey = event.key)
                 viewModelScope.launch(Dispatchers.Default) {
                     withContext(Dispatchers.Default) {
@@ -164,16 +144,22 @@ class ProductsViewModel @Inject constructor(
                 }
             }
 
-            is OrderProductsEvent.OnQuantityInput -> {
+            is ProductsEvent.OnQuantityInput -> {
                 viewModelScope.launch(Dispatchers.Default) {
                     productsDao.updateProductItem(id = event.id, itemCount = event.qty.toInt())
                 }
             }
 
-            is OrderProductsEvent.OnSetOutletID -> {
+            is ProductsEvent.OnSetOutletID -> {
                 state = state.copy(
                     outletID = event.id,
                     customerID = event.customerId
+                )
+            }
+
+            is ProductsEvent.OnNumberInputEvent-> {
+                state = state.copy(
+                    isInputNumberValid = event.value.matches(NUMBER_REGEX.toRegex())
                 )
             }
         }

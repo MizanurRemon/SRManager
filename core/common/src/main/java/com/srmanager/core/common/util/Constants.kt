@@ -22,6 +22,7 @@ const val INTERNAL_ERROR = -1
 const val EMAIL_REGEX =
     "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"
 const val PASSWORD_REGEX = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=\\S+$).{8,}$"
+const val NUMBER_REGEX = "-?\\d+(\\.\\d+)?"
 const val DATE_FORMAT = "yyyy-MM-dd"
 
 const val APP_SETTINGS = "app_settings"

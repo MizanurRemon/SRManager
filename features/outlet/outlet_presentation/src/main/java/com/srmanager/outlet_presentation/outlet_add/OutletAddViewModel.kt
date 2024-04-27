@@ -41,9 +41,9 @@ class OutletAddViewModel @Inject constructor(
                 locationDao.getLocation().collect {
                     if (it.isNotEmpty()) {
                         state = state.copy(
-                            address = it[0].address.toString(),
-                            latitude = it[0].latitude.toString(),
-                            longitude = it[0].longitude.toString()
+                            address = it[0].address ?: "",
+                            latitude = it[0].latitude ?: "",
+                            longitude = it[0].longitude ?: ""
                         )
                     }
                 }
@@ -53,7 +53,7 @@ class OutletAddViewModel @Inject constructor(
 
                 outletUseCases.outletMarketUseCase().onSuccess {
                     state = state.copy(
-                        marketName = it.data.first().text.toString(),
+                        marketName = it.data.first().text ?: "",
                         marketNameList = it.data
                     )
                 }.onFailure { }
@@ -106,7 +106,7 @@ class OutletAddViewModel @Inject constructor(
                                         state.marketName.lowercase(Locale.ROOT),
                                         ignoreCase = true
                                     )
-                                }.id!!.toInt(),
+                                }.id ?: 0,
                                 ethnicity = state.ethnicity,
                                 email = state.email,
                                 routeName = state.routeName,

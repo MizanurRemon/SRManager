@@ -1,9 +1,12 @@
 package com.srmanager.order_data.repository
 
+import android.util.Log
 import com.srmanager.core.common.model.CommonResponse
 import com.srmanager.core.network.model.CommonErrorModel
 import com.srmanager.core.network.model.OrderRequest
 import com.srmanager.core.network.util.NetworkHandler
+import com.srmanager.database.entity.ProductsEntity
+import com.srmanager.order_data.dataSource.local.OrderLocalDataSource
 import com.srmanager.order_data.dataSource.remote.OrderRemoteDataSource
 import com.srmanager.order_data.mapper.toResponse
 import com.srmanager.order_domain.model.OrderDetailsResponse
@@ -16,12 +19,30 @@ import retrofit2.HttpException
 
 class OrderRepositoryImpl(
     private val orderRemoteDataSource: OrderRemoteDataSource,
-    private val networkHandler: NetworkHandler
+    private val networkHandler: NetworkHandler,
+    private val orderLocalDataSource: OrderLocalDataSource
 ) : OrderRepository {
     override suspend fun getProducts(customerId: String): Result<ProductsResponse> {
         return if (networkHandler.isNetworkAvailable()) {
             try {
                 val responseDto = orderRemoteDataSource.getProducts(customerId = customerId)
+
+                orderLocalDataSource.insertProducts(
+                    productEntity = responseDto.data.map { item ->
+                        ProductsEntity(
+                            id = item.id,
+                            title = item.title,
+                            mrpPrice = item.mrpPrice,
+                            wholeSalePrice = item.wholeSalePrice,
+                            lastPurchasePrice = item.lastPurchasePrice,
+                            vatPercentage = item.vatPercentage,
+                            price = item.price,
+                            availableQuantity = item.availableQuantity,
+                            isSelected = false,
+                            selectedItemCount = 1
+                        )
+                    }
+                )
                 Result.success(responseDto.toResponse())
             } catch (e: Exception) {
                 val throwable =

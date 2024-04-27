@@ -19,8 +19,9 @@ import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.network.dto.Outlet
 import com.srmanager.order_presentation.order.OrderScreen
-import com.srmanager.order_presentation.products.OrderProductsEvent
+import com.srmanager.order_presentation.order.OrderViewModel
 import com.srmanager.order_presentation.products.OrderProductsScreen
+import com.srmanager.order_presentation.products.ProductsEvent
 import com.srmanager.order_presentation.products.ProductsViewModel
 import com.srmanager.order_presentation.selected_products.SelectedProductsScreen
 import com.srmanager.order_presentation.selected_products.SelectedProductsViewModel
@@ -127,7 +128,11 @@ fun MainApp(
 
             composable(route = Route.OUTLET_DETAILS) {
                 val viewModel = hiltViewModel<OutletDetailsViewModel>()
-                viewModel.onEvent(OutletDetailsEvent.OnOutletIdSetup(outletID = outletDetails!!.id))
+                viewModel.onEvent(
+                    OutletDetailsEvent.OnOutletIdSetup(
+                        outletID = outletDetails?.id ?: 0
+                    )
+                )
 
 
                 OutletDetailsScreen(
@@ -144,9 +149,11 @@ fun MainApp(
             }
 
             composable(route = Route.ORDER) {
-                OrderScreen(onBack = {
-                    navController.navigateUp()
-                })
+                OrderScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    }
+                )
             }
 
             composable(route = Route.MAP) {
@@ -200,7 +207,12 @@ fun MainApp(
             composable(route = Route.PRODUCTS_ITEMS) {
                 val viewModel = hiltViewModel<ProductsViewModel>()
 
-                viewModel.onEvent(OrderProductsEvent.OnSetOutletID(id = outletDetails!!.id.toString(), customerId = outletDetails!!.customerId.toString()))
+                viewModel.onEvent(
+                    ProductsEvent.OnSetOutletID(
+                        id = outletDetails!!.id.toString(),
+                        customerId = outletDetails!!.customerId.toString()
+                    )
+                )
 
                 OrderProductsScreen(onBack = {
                     navController.navigateUp()

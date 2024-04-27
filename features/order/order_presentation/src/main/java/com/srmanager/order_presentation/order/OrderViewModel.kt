@@ -9,9 +9,12 @@ import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.DATE_FORMAT
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
+import com.srmanager.core.designsystem.generatePDF
 import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -30,17 +33,21 @@ class OrderViewModel @Inject constructor(
         private set
 
     init {
-        state = state.copy(
+       /* state = state.copy(
             startDate = SimpleDateFormat(DATE_FORMAT).format(Date()),
             endDate = SimpleDateFormat(DATE_FORMAT).format(Date())
 
-        )
+        )*/
+        GlobalScope.launch {
+            delay(1000)
+        }
         getOrderItem()
     }
 
     private fun getOrderItem() {
-        state = state.copy(isLoading = true)
+
         viewModelScope.launch {
+            state = state.copy(isLoading = true)
             orderUseCases.orderFetchUseCases().onSuccess {
                 state = state.copy(
                     isLoading = false,
@@ -57,6 +64,38 @@ class OrderViewModel @Inject constructor(
                         )
                     )
                 )
+            }
+        }
+    }
+
+    fun onEvent(event: OrderEvent) {
+        when (event) {
+            is OrderEvent.OnOrderCodeClickEvent -> {
+                viewModelScope.launch {
+                    state = state.copy(
+                        isLoading = true
+                    )
+                    orderUseCases.orderDetailsUseCase(orderID = event.id)
+                        .onSuccess { response ->
+                            state = state.copy(
+                                isLoading = false,
+                                orderDetails = response
+                            )
+                            generatePDF(event.context, response)
+                        }.onFailure { error ->
+                            state = state.copy(
+                                isLoading = false
+                            )
+
+                            _uiEvent.send(
+                                UiEvent.ShowSnackbar(
+                                    UiText.DynamicString(
+                                        error.message.toString()
+                                    )
+                                )
+                            )
+                        }
+                }
             }
         }
     }

@@ -16,7 +16,6 @@ import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletAddModel
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
@@ -57,31 +56,31 @@ class OutletDetailsViewModel @Inject constructor(
             outletUseCases.outletDetailsUseCases(outletID = outletID).onSuccess { response ->
                 state = state.copy(
                     isLoading = false,
-                    image = response.data.outletImage.toString(),
-                    outletName = response.data.outletName.toString(),
-                    ownerName = response.data.ownerName.toString(),
-                    birthdate = response.data.dateOfBirth.toString(),
-                    phone1 = response.data.mobileNo.toString(),
-                    phone2 = response.data.secondaryMobileNo.toString(),
-                    tradeLicense = response.data.tradeLicense.toString(),
-                    tlcExpiryDate = response.data.expiryDate.toString(),
-                    vatTRN = response.data.vat.toString(),
-                    address = response.data.address.toString(),
-                    latitude = response.data.latitude.toString(),
-                    longitude = response.data.longitude.toString(),
+                    image = response.data.outletImage?: "",
+                    outletName = response.data.outletName?: "",
+                    ownerName = response.data.ownerName?: "",
+                    birthdate = response.data.dateOfBirth?: "",
+                    phone1 = response.data.mobileNo?: "",
+                    phone2 = response.data.secondaryMobileNo?: "",
+                    tradeLicense = response.data.tradeLicense?: "",
+                    tlcExpiryDate = response.data.expiryDate?: "",
+                    vatTRN = response.data.vat?: "",
+                    address = response.data.address?: "",
+                    latitude = response.data.latitude?: "",
+                    longitude = response.data.longitude?: "",
                     marketName = when (response.data.marketId) {
                         0 -> {
-                            state.marketNameList.first().text.toString()
+                            state.marketNameList.first().text ?: ""
                         }
                         else -> {
                             state.marketNameList.first {
                                 it.id == response.data.marketId
-                            }.text.toString()
+                            }.text ?: ""
                         }
                     },
                     marketID = response.data.marketId!!.toInt(),
                     routeName = response.data.routeName!!.ifEmpty { ROUTE_NAMES[0] },
-                    email = response.data.ownerEmail.toString(),
+                    email = response.data.ownerEmail?: "",
                     paymentOption = response.data.paymentTerms!!.ifEmpty { PAYMENT_OPTIONS[0] },
                     ethnicity = response.data.shopEthnicity!!.ifEmpty { ETHNICITIES[0] },
                     billingAddress = response.data.billingAddress ?: ""
@@ -109,8 +108,8 @@ class OutletDetailsViewModel @Inject constructor(
                 if (it.isNotEmpty()) {
                     state = state.copy(
                         address = mutableStateOf(it[0].address.toString()).value,
-                        latitude = it[0].latitude.toString(),
-                        longitude = it[0].longitude.toString()
+                        latitude = it[0].latitude?: "",
+                        longitude = it[0].longitude?: ""
                     )
 
                 }
@@ -163,7 +162,7 @@ class OutletDetailsViewModel @Inject constructor(
                                         state.marketName.lowercase(Locale.ROOT),
                                         ignoreCase = true
                                     )
-                                }.id!!.toInt(),
+                                }.id?: 0,
                                 ethnicity = state.ethnicity,
                                 email = state.email,
                                 routeName = state.routeName,

@@ -39,7 +39,6 @@ import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.components.SignatureDialog
 import com.srmanager.core.designsystem.components.WarningDialogCompose
-import com.srmanager.core.designsystem.generatePDF
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.bodyXSBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyXSRegularTextStyle
@@ -240,7 +239,7 @@ fun SignatureScreen(
             onClick = {
                 onSuccess()
 
-                generatePDF(context, state.total, state.orderDetails, state.customerSign)
+                onEvent(SignatureEvent.OnPdfGenerate(context))
             }
         )
     }
@@ -264,7 +263,7 @@ fun PdfComposable() {
 
 @Composable
 @Preview
-fun PreviewComposable(){
+fun PreviewComposable() {
     PdfComposable()
 }
 

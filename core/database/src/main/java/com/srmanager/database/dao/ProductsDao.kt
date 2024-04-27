@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface ProductsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertProducts(productEntity: ProductsEntity)
+    suspend fun insertProducts(productEntity: List<ProductsEntity>)
 
-    @Query("SELECT * from products WHERE title LIKE '%' || :key ||'%'")
+    @Query("SELECT * from products WHERE title LIKE '%' || :key ||'%' AND availableQuantity>0")
     fun getProducts(key : String): Flow<List<ProductsEntity>>
 
     @Query("UPDATE products SET isSelected= :isSelected, selectedItemTotalPrice = selectedItemCount * mrpPrice WHERE id = :id")
@@ -30,7 +30,7 @@ interface ProductsDao {
     fun getSelectedProducts(): Flow<List<ProductsEntity>>
 
 
-    @Query("DELETE FROm products")
+    @Query("DELETE from products")
     fun deleteAll()
 
 }

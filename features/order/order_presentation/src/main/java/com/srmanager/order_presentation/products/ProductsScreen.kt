@@ -1,7 +1,6 @@
 package com.srmanager.order_presentation.products
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -78,7 +77,7 @@ fun OrderProductsScreen(
     onNextClick: () -> Unit,
     state: ProductsState,
     uiEvent: Flow<UiEvent>,
-    onEvent: (OrderProductsEvent) -> Unit
+    onEvent: (ProductsEvent) -> Unit
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -111,7 +110,7 @@ fun OrderProductsScreen(
             TextField(
                 value = state.searchKey,
                 onValueChange = {
-                    onEvent(OrderProductsEvent.OnSearchEvent(it))
+                    onEvent(ProductsEvent.OnSearchEvent(it))
                 },
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = Color.White,
@@ -156,7 +155,7 @@ fun OrderProductsScreen(
                 contentAlignment = Alignment.TopCenter,
             ) {
 
-                if (state.isLoading) {
+                if (state.productsList.isEmpty()) {
                     CircularProgressIndicator(
                         strokeWidth = 2.dp,
                         color = APP_DEFAULT_COLOR,
@@ -177,7 +176,7 @@ fun OrderProductsScreen(
                                 product = product,
                                 onItemClick = {
                                     onEvent(
-                                        OrderProductsEvent.OnItemClickEvent(
+                                        ProductsEvent.OnItemClickEvent(
                                             product.id,
                                             !product.isSelected
                                         )
@@ -185,7 +184,7 @@ fun OrderProductsScreen(
                                 },
                                 onIncrementClick = {itemCount->
                                     onEvent(
-                                        OrderProductsEvent.OnIncrementEvent(
+                                        ProductsEvent.OnIncrementEvent(
                                             product.id,
                                             itemCount
                                         )
@@ -193,7 +192,7 @@ fun OrderProductsScreen(
                                 },
                                 onDecrementClick = {itemCount->
                                     onEvent(
-                                        OrderProductsEvent.OnDecrementEvent(
+                                        ProductsEvent.OnDecrementEvent(
                                             product.id,
                                             itemCount
                                         )
@@ -222,7 +221,7 @@ fun ItemCompose(
     onDecrementClick: (itemCount:Int) -> Unit,
     keyboardController: SoftwareKeyboardController?,
     state: ProductsState,
-    onEvent: (OrderProductsEvent) -> Unit
+    onEvent: (ProductsEvent) -> Unit
 ) {
 
     val annotatedText = buildAnnotatedString {
@@ -380,39 +379,29 @@ fun ItemCompose(
 
                     TextField(
                         value = qty.value,
-                        onValueChange = {
+                        onValueChange = {newText->
+                            val filteredText = newText.filter { it.isDigit() } // Allow only digits
 
-                            qty.value = it
+                            qty.value = filteredText
 
                             when {
-                                it.isNotEmpty() && (it.toDouble() < product.availableQuantity) -> {
+                                filteredText.isNotEmpty() && (filteredText.toDouble() < product.availableQuantity) -> {
                                     onEvent(
-                                        OrderProductsEvent.OnQuantityInput(
+                                        ProductsEvent.OnQuantityInput(
                                             id = product.id,
-                                            qty = it.toDouble()
+                                            qty = filteredText.toDouble()
                                         )
                                     )
                                 }
 
-                                it.isNotEmpty() && (it.toDouble() > product.availableQuantity) -> {
+                                filteredText.isNotEmpty() && (filteredText.toDouble() > product.availableQuantity) -> {
                                     onEvent(
-                                        OrderProductsEvent.OnQuantityInput(
+                                        ProductsEvent.OnQuantityInput(
                                             id = product.id,
                                             qty = product.availableQuantity
                                         )
                                     )
                                 }
-                            }
-
-                            when {
-                                /*it.isEmpty() -> {
-                                    onEvent(
-                                        OrderProductsEvent.OnQuantityInput(
-                                            id = product.id,
-                                            qty = 1.0
-                                        )
-                                    )
-                                }*/
                             }
                         },
                         textStyle = bodyRegularTextStyle.copy(

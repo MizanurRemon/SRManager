@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "873857032252",
+    "project_id": "srmanager-407203",
+    "storage_bucket": "srmanager-407203.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873857032252:android:ed6ac2184fdb61800de339",
+        "android_client_info": {
+          "package_name": "com.srmanager.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9aLwoc8ieITUj7gQ2SmbqBZtH0K-FH78"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

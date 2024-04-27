@@ -2,6 +2,7 @@ package com.srmanager.order_presentation.order
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,14 +11,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,12 +24,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.srmanager.core.designsystem.components.AppToolbarCompose
+import com.srmanager.core.designsystem.components.LoadingDialog
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
@@ -47,6 +48,9 @@ fun OrderScreen(
     onBack: () -> Unit,
     viewModel: OrderViewModel = hiltViewModel()
 ) {
+
+    val context = LocalContext.current
+
     Scaffold(topBar = {
         AppToolbarCompose(
             onClick = { onBack() },
@@ -60,72 +64,27 @@ fun OrderScreen(
                 .padding(innerPadding)
         ) {
 
-            /* Box(
-                 modifier = Modifier
-                     .fillMaxWidth()
-                     .background(
-                         color = APP_DEFAULT_COLOR_LIGHT,
-                         shape = RoundedCornerShape(bottomEnd = 20.r(), bottomStart = 20.r())
-                     )
-             ) {
-                 Row(
-                     modifier = Modifier
-                         .padding(20.r())
-                         .fillMaxWidth(),
-                     horizontalArrangement = Arrangement.Center,
-                     verticalAlignment = Alignment.CenterVertically
-                 ) {
-                     Text(
-                         text = stringResource(id = CommonR.string.start),
-                         style = bodyBoldTextStyle.copy(color = Color.Black)
-                     )
-
-                     Spacer(modifier = Modifier.width(10.r()))
-
-                     Button(
-                         onClick = { },
-                         colors = ButtonDefaults.buttonColors(containerColor = APP_DEFAULT_COLOR)
-                     ) {
-                         Text(text = viewModel.state.startDate)
-                     }
-
-                     Spacer(modifier = Modifier.weight(1f))
-
-                     Text(
-                         text = stringResource(id = CommonR.string.end),
-                         style = bodyBoldTextStyle.copy(color = Color.Black)
-                     )
-
-                     Spacer(modifier = Modifier.width(10.r()))
-
-                     Button(
-                         onClick = { }, colors = ButtonDefaults.buttonColors(
-                             containerColor = APP_DEFAULT_COLOR
-                         )
-                     ) {
-                         Text(text = viewModel.state.endDate)
-                     }
-                 }
-             }*/
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(vertical = 10.r())
+                    .verticalScroll(rememberScrollState()),
+            ) {
+                viewModel.state.orderList.forEach { response ->
+                    OrderItemCompose(item = response, onOrderNoClick = {
+                        viewModel.onEvent(
+                            OrderEvent.OnOrderCodeClickEvent(
+                                response.id.toString(),
+                                context = context
+                            )
+                        )
+                    })
+                }
+            }
 
             if (viewModel.state.isLoading) {
-                CircularProgressIndicator(
-                    strokeWidth = 2.dp,
-                    color = APP_DEFAULT_COLOR,
-                    modifier = Modifier
-                        .size(20.r())
-                        .padding(top = 10.r())
-                )
-            } else {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(vertical = 10.r())
-                        .verticalScroll(rememberScrollState()),
-                ) {
-                    viewModel.state.orderList.forEach { response ->
-                        OrderItemCompose(item = response)
-                    }
+                LoadingDialog {
+
                 }
             }
         }
@@ -133,13 +92,17 @@ fun OrderScreen(
 }
 
 @Composable
-fun OrderItemCompose(item: Order) {
+fun OrderItemCompose(item: Order, onOrderNoClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 20.r())
             .padding(vertical = 5.r())
-            .shadow(elevation = 4.r(), spotColor = Color.LightGray, shape = RoundedCornerShape(10.r())),
+            .shadow(
+                elevation = 4.r(),
+                spotColor = Color.LightGray,
+                shape = RoundedCornerShape(10.r())
+            ),
         colors = CardDefaults.cardColors(
             containerColor = Color.White
         ),
@@ -151,14 +114,21 @@ fun OrderItemCompose(item: Order) {
                 .padding(10.r())
         ) {
 
-            Row {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
                 Text(
-                    text = item.orderNo, style = bodyRegularTextStyle.copy(
+                    text = item.orderNo,
+                    style = bodyRegularTextStyle.copy(
                         color = APP_DEFAULT_COLOR,
                         fontWeight = FontWeight.W500,
                         fontSize = 14.ssp(),
                         textDecoration = TextDecoration.Underline
-                    )
+                    ),
+                    modifier = Modifier.clickable {
+                        onOrderNoClick()
+                    }
                 )
                 Spacer(modifier = Modifier.weight(1f))
                 Box(

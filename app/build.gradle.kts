@@ -8,6 +8,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 val keystorePropertiesFile = rootProject.file("keystore.properties")
@@ -173,6 +175,11 @@ dependencies {
     //app update
     implementation(Compose.appUpdate)
     implementation(Compose.inAppUpdate)
+
+    //firebase
+    implementation(platform(Firebase.FIREBASE_BOM))
+    implementation(Firebase.FIREBASE_CRASHLYTICS)
+    implementation(Firebase.FIREBASE_ANALYTICS)
 
     implementation(Compose.Lottie)
 }

@@ -8,5 +8,6 @@ data class ProductsState(
     var isNextButtonEnabled: Boolean = false,
     var searchKey : String = "",
     var outletID : String = "",
-    var customerID: String = ""
+    var customerID: String = "",
+    var isInputNumberValid: Boolean = false
 )
