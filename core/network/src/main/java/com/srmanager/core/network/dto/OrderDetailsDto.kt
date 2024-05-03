@@ -16,7 +16,7 @@ data class OrderDetailsDto(
     val customerName: String?,
     val paymentType: String?,
     val inWords: String?,
-    val customerSignature: String?,
+    val signature: String?,
     val data: List<OrderItem>
 )
 

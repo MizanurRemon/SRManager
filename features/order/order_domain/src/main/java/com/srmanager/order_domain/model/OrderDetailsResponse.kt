@@ -12,7 +12,7 @@ data class OrderDetailsResponse(
     val customerName: String,
     val paymentType: String,
     val inWords: String,
-    val customerSignature: String,
+    val signature: String,
     var data: List<OrderItemResponse>
 )
 

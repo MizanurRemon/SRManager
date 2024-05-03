@@ -135,4 +135,5 @@
     <string name="billing_address">Billing Address</string>
     <string name="enter_billing_address">Enter billing address</string>
     <string name="same_as_address">Same as address</string>
+    <string name="search_order">Search Order</string>
 </resources>

@@ -6,21 +6,22 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.srmanager.core.common.util.DATE_FORMAT
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.designsystem.generatePDF
 import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.Date
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+@OptIn(DelicateCoroutinesApi::class)
 @SuppressLint("SimpleDateFormat")
 @HiltViewModel
 class OrderViewModel @Inject constructor(
@@ -33,11 +34,11 @@ class OrderViewModel @Inject constructor(
         private set
 
     init {
-       /* state = state.copy(
-            startDate = SimpleDateFormat(DATE_FORMAT).format(Date()),
-            endDate = SimpleDateFormat(DATE_FORMAT).format(Date())
+        /* state = state.copy(
+             startDate = SimpleDateFormat(DATE_FORMAT).format(Date()),
+             endDate = SimpleDateFormat(DATE_FORMAT).format(Date())
 
-        )*/
+         )*/
         GlobalScope.launch {
             delay(1000)
         }
@@ -51,7 +52,8 @@ class OrderViewModel @Inject constructor(
             orderUseCases.orderFetchUseCases().onSuccess {
                 state = state.copy(
                     isLoading = false,
-                    orderList = it.data
+                    orderList = it.data,
+                    searchedOrderList = it.data
                 )
             }.onFailure {
                 state = state.copy(
@@ -96,6 +98,43 @@ class OrderViewModel @Inject constructor(
                             )
                         }
                 }
+            }
+
+            is OrderEvent.OnSearchEvent -> {
+                viewModelScope.launch {
+                    withContext(Dispatchers.Main){
+                        state = state.copy(
+                            searchText = event.key
+                        )
+
+                        if (event.key.length > 3) {
+                            state = state.copy(
+                                searchedOrderList = state.orderList.filter {
+                                    it.outletName.contains(
+                                        event.key,
+                                        ignoreCase = true
+                                    ) || it.orderNo.contains(
+                                        event.key,
+                                        ignoreCase = true
+                                    ) || it.orderDate.contains(event.key, ignoreCase = true)
+                                }
+                            )
+
+                        }
+
+                        if (event.key.isEmpty()) {
+                            state = state.copy(
+                                searchedOrderList = state.orderList
+                            )
+                        }
+                    }
+                }
+            }
+
+            is OrderEvent.OnCalenderTapEvent -> {
+                state = state.copy(
+                    showCalenderDialog = true
+                )
             }
         }
     }

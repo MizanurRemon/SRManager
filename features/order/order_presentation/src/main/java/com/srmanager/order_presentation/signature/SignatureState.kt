@@ -25,7 +25,7 @@ data class SignatureState(
         customerName = "",
         paymentType = "",
         inWords = "",
-        customerSignature = "",
+        signature = "",
         data = emptyList()
     )
 )

@@ -42,7 +42,7 @@ fun OrderDetailsDto.toResponse(): OrderDetailsResponse {
         customerName = customerName ?: "",
         paymentType = paymentType ?: "",
         inWords = inWords ?: "",
-        customerSignature = customerSignature ?: "",
+        signature = signature ?: "",
         data = data.map { productItem ->
             OrderItemResponse(
                 productCode = productItem.productCode ?: "",
