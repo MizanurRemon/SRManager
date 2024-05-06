@@ -51,7 +51,7 @@ class OutletDetailsViewModel @Inject constructor(
     }
 
     private fun getOutletDetails(outletID: String) {
-        viewModelScope.launch() {
+        viewModelScope.launch {
             state = state.copy(isLoading = true)
             outletUseCases.outletDetailsUseCases(outletID = outletID).onSuccess { response ->
                 state = state.copy(
@@ -78,7 +78,7 @@ class OutletDetailsViewModel @Inject constructor(
                             }.text ?: ""
                         }
                     },
-                    marketID = response.data.marketId!!.toInt(),
+                    marketID = response.data.marketId ?: 0,
                     routeName = response.data.routeName!!.ifEmpty { ROUTE_NAMES[0] },
                     email = response.data.ownerEmail?: "",
                     paymentOption = response.data.paymentTerms!!.ifEmpty { PAYMENT_OPTIONS[0] },
