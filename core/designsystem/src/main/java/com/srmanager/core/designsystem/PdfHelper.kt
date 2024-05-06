@@ -273,7 +273,7 @@ fun generatePDF(
         // Draw header
         drawTableRow(
             startX + 2f, startY, boldTextPaint, listOf(
-                "SALES MAN", "MOBILE", "PAYMENT"
+                "SALESMAN NAME", "SALESMAN MOBILE", "PAYMENT"
             ), false, columnWidthForSalesMan
         )
 
