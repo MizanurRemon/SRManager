@@ -26,6 +26,7 @@ data class SignatureState(
         paymentType = "",
         inWords = "",
         signature = "",
-        data = emptyList()
+        data = emptyList(),
+        contactNo = ""
     )
 )

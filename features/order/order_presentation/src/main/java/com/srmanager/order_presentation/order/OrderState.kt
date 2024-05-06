@@ -22,7 +22,8 @@ data class OrderState(
         paymentType = "",
         inWords = "",
         signature = "",
-        data = emptyList()
+        data = emptyList(),
+        contactNo = ""
     ),
     val searchText : String = "",
     val showCalenderDialog : Boolean = false

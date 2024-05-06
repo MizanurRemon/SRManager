@@ -396,7 +396,7 @@ fun generatePDF(
 
         drawTableRow(
             startX + 2f, startY + rowHeight, normalText, listOf(
-                orderDetails.customerCode, orderDetails.customerName, "xxxxxxxxxxx"
+                orderDetails.customerCode, orderDetails.customerName, orderDetails.contactNo
             ), false, columnWidthForSalesMan
         )
 
