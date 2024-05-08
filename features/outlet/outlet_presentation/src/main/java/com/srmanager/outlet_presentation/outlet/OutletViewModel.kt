@@ -65,17 +65,19 @@ class OutletViewModel @Inject constructor(private val outletUseCases: OutletUseC
             }
 
             is OutletEvent.OnSearchEvent -> {
-                state = state.copy(searchKey = event.value)
-                if (event.value.isNotEmpty()) {
-                    state = state.copy(
-                        outletList = outletList.filter {
-                            it.outletName.lowercase(Locale.ROOT).contains(event.value.lowercase(
-                                Locale.ROOT
-                            ))
-                        }
-                    )
-                } else {
-                    state = state.copy(outletList = outletList)
+                viewModelScope.launch {
+                    state = state.copy(searchKey = event.value)
+                    state = if (event.value.isNotEmpty()) {
+                        state.copy(
+                            outletList = outletList.filter {
+                                it.outletName.lowercase(Locale.ROOT).contains(event.value.lowercase(
+                                    Locale.ROOT
+                                ))
+                            }
+                        )
+                    } else {
+                        state.copy(outletList = outletList)
+                    }
                 }
             }
         }

@@ -22,8 +22,11 @@ interface ProductsDao {
     @Query("SELECT COUNT(*) from products WHERE isSelected = 1")
     fun getSelectedItemCount(): Flow<Int>
 
-    @Query("UPDATE products SET selectedItemCount = :itemCount, selectedItemTotalPrice = :itemCount * mrpPrice  WHERE id = :id")
+    @Query("UPDATE products SET selectedItemCount = :itemCount, selectedItemTotalPrice = :itemCount * mrpPrice WHERE id = :id")
     fun updateProductItem(id: Long, itemCount: Int)
+
+    @Query("UPDATE products SET selectedItemCount = :itemCount, selectedItemTotalPrice = :itemCount * mrpPrice, isSelected = :isSelected WHERE id = :id")
+    fun updateProductItemFromInput(id: Long, itemCount: Int, isSelected: Boolean)
 
 
     @Query("SELECT * from products WHERE isSelected")

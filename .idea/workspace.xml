@@ -11,6 +11,14 @@
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/dao/ProductsDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/database/src/main/java/com/srmanager/database/dao/ProductsDao.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/products/ProductsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1008,7 +1016,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="416" />
+    <option name="localTasksCounter" value="417" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

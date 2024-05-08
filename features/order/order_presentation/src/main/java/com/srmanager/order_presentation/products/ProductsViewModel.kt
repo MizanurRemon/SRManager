@@ -14,10 +14,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.util.Locale
 import javax.inject.Inject
 
 
@@ -45,7 +45,39 @@ class ProductsViewModel @Inject constructor(
             launch(Dispatchers.IO) {
 
                 orderUseCases.productsUseCases(customerId = state.customerID).onSuccess {
-
+                    /*state = state.copy(
+                        isLoading = false,
+                        productsList = productsDao.getProducts(state.searchKey).first()
+                            .map { product ->
+                                Product(
+                                    title = product.title,
+                                    id = product.id,
+                                    mrpPrice = product.mrpPrice,
+                                    wholeSalePrice = product.wholeSalePrice,
+                                    lastPurchasePrice = product.lastPurchasePrice,
+                                    vatPercentage = product.vatPercentage,
+                                    price = product.price,
+                                    availableQuantity = product.availableQuantity,
+                                    isSelected = product.isSelected,
+                                    selectedItemCount = product.selectedItemCount
+                                )
+                            },
+                        searchedProductList = productsDao.getProducts(state.searchKey).first()
+                            .map { product ->
+                                Product(
+                                    title = product.title,
+                                    id = product.id,
+                                    mrpPrice = product.mrpPrice,
+                                    wholeSalePrice = product.wholeSalePrice,
+                                    lastPurchasePrice = product.lastPurchasePrice,
+                                    vatPercentage = product.vatPercentage,
+                                    price = product.price,
+                                    availableQuantity = product.availableQuantity,
+                                    isSelected = product.isSelected,
+                                    selectedItemCount = product.selectedItemCount
+                                )
+                            },
+                    )*/
                 }.onFailure {
                     state = state.copy(isLoading = false)
                 }
@@ -53,7 +85,7 @@ class ProductsViewModel @Inject constructor(
 
             launch {
                 withContext(Dispatchers.Default) {
-                    productsDao.getProducts(key = state.searchKey).collect {
+                    productsDao.getProducts(key = "").collect {
                         state = state.copy(
                             searchKey = "",
                             isLoading = false,
@@ -120,33 +152,57 @@ class ProductsViewModel @Inject constructor(
             }
 
             is ProductsEvent.OnSearchEvent -> {
-                state = state.copy(searchKey = event.key)
-                viewModelScope.launch(Dispatchers.Default) {
+
+                viewModelScope.launch {
+                    state = state.copy(searchKey = event.key)
+                    /* state = if (event.key.isNotEmpty() && event.key.length > 2) {
+                         state.copy(
+                             searchedProductList = state.productsList.filter {
+                                 it.title.lowercase(Locale.ROOT).contains(
+                                     event.key.lowercase(
+                                         Locale.ROOT
+                                     )
+                                 )
+                             }
+                         )
+                     } else {
+                         state.copy(searchedProductList = state.productsList)
+                     }*/
+
                     withContext(Dispatchers.Default) {
-                        val products = productsDao.getProducts(key = event.key).first()
-                        state = state.copy(
-                            isLoading = false,
-                            productsList = products.map { product ->
-                                Product(
-                                    title = product.title,
-                                    id = product.id,
-                                    mrpPrice = product.mrpPrice,
-                                    wholeSalePrice = product.wholeSalePrice,
-                                    lastPurchasePrice = product.lastPurchasePrice,
-                                    vatPercentage = product.vatPercentage,
-                                    price = product.price,
-                                    availableQuantity = product.availableQuantity,
-                                    isSelected = product.isSelected,
-                                    selectedItemCount = product.selectedItemCount
-                                )
-                            })
+                        productsDao.getProducts(key = event.key).collect {
+                            state = state.copy(
+                                //searchKey = "",
+                                isLoading = false,
+                                productsList = it.map { product ->
+                                    Product(
+                                        title = product.title,
+                                        id = product.id,
+                                        mrpPrice = product.mrpPrice,
+                                        wholeSalePrice = product.wholeSalePrice,
+                                        lastPurchasePrice = product.lastPurchasePrice,
+                                        vatPercentage = product.vatPercentage,
+                                        price = product.price,
+                                        availableQuantity = product.availableQuantity,
+                                        isSelected = product.isSelected,
+                                        selectedItemCount = product.selectedItemCount
+                                    )
+                                })
+                        }
+
                     }
+
+
                 }
             }
 
             is ProductsEvent.OnQuantityInput -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.updateProductItem(id = event.id, itemCount = event.qty.toInt())
+                    productsDao.updateProductItemFromInput(
+                        id = event.id,
+                        itemCount = event.qty.toInt(),
+                        isSelected = true
+                    )
                 }
             }
 
@@ -157,7 +213,7 @@ class ProductsViewModel @Inject constructor(
                 )
             }
 
-            is ProductsEvent.OnNumberInputEvent-> {
+            is ProductsEvent.OnNumberInputEvent -> {
                 state = state.copy(
                     isInputNumberValid = event.value.matches(NUMBER_REGEX.toRegex())
                 )

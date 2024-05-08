@@ -15,12 +15,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
@@ -155,7 +156,7 @@ fun OrderProductsScreen(
                 contentAlignment = Alignment.TopCenter,
             ) {
 
-                if (state.productsList.isEmpty()) {
+                if (state.isLoading) {
                     CircularProgressIndicator(
                         strokeWidth = 2.dp,
                         color = APP_DEFAULT_COLOR,
@@ -164,14 +165,12 @@ fun OrderProductsScreen(
                             .padding(top = 10.r())
                     )
                 } else {
-                    Column(
-                        modifier = Modifier
-                            .verticalScroll(rememberScrollState())
-                            .padding(bottom = 20.r())
+                    val lazyColumnListState = rememberLazyListState()
+                    LazyColumn(
+                        state = lazyColumnListState
                     ) {
-                        state.productsList.forEach { product ->
+                        items(state.productsList) { product ->
                             Spacer(modifier = Modifier.height(10.r()))
-
                             ItemCompose(
                                 product = product,
                                 onItemClick = {
@@ -182,7 +181,7 @@ fun OrderProductsScreen(
                                         )
                                     )
                                 },
-                                onIncrementClick = {itemCount->
+                                onIncrementClick = { itemCount ->
                                     onEvent(
                                         ProductsEvent.OnIncrementEvent(
                                             product.id,
@@ -190,7 +189,7 @@ fun OrderProductsScreen(
                                         )
                                     )
                                 },
-                                onDecrementClick = {itemCount->
+                                onDecrementClick = { itemCount ->
                                     onEvent(
                                         ProductsEvent.OnDecrementEvent(
                                             product.id,
@@ -200,9 +199,10 @@ fun OrderProductsScreen(
                                 },
                                 keyboardController = keyboardController,
                                 state = state,
-                                onEvent = onEvent
+                                onEvent = onEvent,
                             )
                         }
+
                     }
                 }
 
@@ -217,8 +217,8 @@ fun OrderProductsScreen(
 fun ItemCompose(
     product: Product,
     onItemClick: () -> Unit,
-    onIncrementClick: (itemCount:Int) -> Unit,
-    onDecrementClick: (itemCount:Int) -> Unit,
+    onIncrementClick: (itemCount: Int) -> Unit,
+    onDecrementClick: (itemCount: Int) -> Unit,
     keyboardController: SoftwareKeyboardController?,
     state: ProductsState,
     onEvent: (ProductsEvent) -> Unit
@@ -275,6 +275,10 @@ fun ItemCompose(
     }
 
     qty.value = product.selectedItemCount.toString()
+
+    val isShowCheck = remember {
+        mutableStateOf(false)
+    }
 
     Card(
         modifier = Modifier
@@ -379,30 +383,13 @@ fun ItemCompose(
 
                     TextField(
                         value = qty.value,
-                        onValueChange = {newText->
+                        onValueChange = { newText ->
                             val filteredText = newText.filter { it.isDigit() } // Allow only digits
 
                             qty.value = filteredText
 
-                            when {
-                                filteredText.isNotEmpty() && (filteredText.toDouble() < product.availableQuantity) -> {
-                                    onEvent(
-                                        ProductsEvent.OnQuantityInput(
-                                            id = product.id,
-                                            qty = filteredText.toDouble()
-                                        )
-                                    )
-                                }
 
-                                filteredText.isNotEmpty() && (filteredText.toDouble() > product.availableQuantity) -> {
-                                    onEvent(
-                                        ProductsEvent.OnQuantityInput(
-                                            id = product.id,
-                                            qty = product.availableQuantity
-                                        )
-                                    )
-                                }
-                            }
+                            isShowCheck.value = true
                         },
                         textStyle = bodyRegularTextStyle.copy(
                             color = Color.Black,
@@ -434,7 +421,44 @@ fun ItemCompose(
                                 color = Color.LightGray
                             ),
 
-                        )
+                        leadingIcon = {
+                            if (isShowCheck.value) {
+                                Icon(
+                                    painter = painterResource(id = DesignSystemR.drawable.ic_check),
+                                    contentDescription = null,
+                                    modifier = Modifier
+                                        .size(20.r())
+                                        .clickable {
+                                            when {
+                                                qty.value.isNotEmpty() && (qty.value.toDouble() < product.availableQuantity) -> {
+                                                    onEvent(
+                                                        ProductsEvent.OnQuantityInput(
+                                                            id = product.id,
+                                                            qty = qty.value.toDouble(),
+                                                            isSelected = true
+                                                        )
+                                                    )
+                                                }
+
+                                                qty.value.isNotEmpty() && (qty.value.toDouble() > product.availableQuantity) -> {
+                                                    onEvent(
+                                                        ProductsEvent.OnQuantityInput(
+                                                            id = product.id,
+                                                            qty = product.availableQuantity,
+                                                            isSelected = true
+                                                        )
+                                                    )
+                                                }
+                                            }
+
+                                            isShowCheck.value = false
+                                        },
+                                    tint = APP_DEFAULT_COLOR
+                                )
+                            }
+                        }
+
+                    )
 
                     Text(
                         text = " / ${product.availableQuantity}",

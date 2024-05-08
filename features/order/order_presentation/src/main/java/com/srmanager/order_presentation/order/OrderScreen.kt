@@ -14,6 +14,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -147,17 +150,15 @@ fun OrderScreen(
                     )
                 })
 
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(vertical = 10.r())
-                    .verticalScroll(rememberScrollState()),
+            val lazyColumnListState = rememberLazyListState()
+            LazyColumn(
+                state = lazyColumnListState,
             ) {
-                viewModel.state.searchedOrderList.forEach { response ->
-                    OrderItemCompose(item = response, onOrderNoClick = {
+                items(viewModel.state.searchedOrderList) {order->
+                    OrderItemCompose(item = order, onOrderNoClick = {
                         viewModel.onEvent(
                             OrderEvent.OnOrderCodeClickEvent(
-                                response.id.toString(),
+                                order.id.toString(),
                                 context = context
                             )
                         )
