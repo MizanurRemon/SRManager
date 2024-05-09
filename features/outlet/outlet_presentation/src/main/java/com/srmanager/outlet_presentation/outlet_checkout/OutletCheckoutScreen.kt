@@ -1,7 +1,7 @@
 package com.srmanager.outlet_presentation.outlet_checkout
 
-import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -61,12 +61,12 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 @Composable
 fun OutletCheckoutScreen(
     onBack: () -> Unit,
-   // viewModel: OutletCheckOutViewModel = hiltViewModel(),
+    // viewModel: OutletCheckOutViewModel = hiltViewModel(),
     snackbarHostState: SnackbarHostState,
     outletDetails: Outlet?,
     state: OutletCheckOutState,
     uiEvent: Flow<UiEvent>,
-    onEvent: (OutletCheckOutEvent)-> Unit
+    onEvent: (OutletCheckOutEvent) -> Unit
 ) {
 
 
@@ -95,16 +95,12 @@ fun OutletCheckoutScreen(
         }
     }
 
-    /*LaunchedEffect(Unit) {
-        viewModel.onEvent(
-            OutletCheckOutEvent.OnOutletLocationSetUp(
-                outletDetails!!.latitude,
-                outletDetails!!.longitude
-            )
-        )
-    }*/
 
-    Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+    ) {
         AppToolbarCompose(
             onClick = { onBack() },
             icon = DesignSystemR.drawable.ic_back,
@@ -135,17 +131,21 @@ fun OutletCheckoutScreen(
                         .fillMaxWidth()
                         .clickable {
                             onEvent(OutletCheckOutEvent.OnCardEvent)
-                        }.shadow(
-                            elevation = 4.r(), spotColor = Color.Gray, shape = RoundedCornerShape(15.r())
+                        }
+                        .shadow(
+                            elevation = 4.r(),
+                            spotColor = Color.Gray,
+                            shape = RoundedCornerShape(15.r())
+                        )
+                        .border(
+                            width = 1.r(), color = if (state.isReasonSelectionError) {
+                                Color.Red
+                            } else {
+                                Color.Transparent
+                            }, shape = RoundedCornerShape(15.r())
                         ),
                     colors = CardDefaults.cardColors(
                         containerColor = Color.White,
-                    ),  border = BorderStroke(
-                        width = 1.r(), color = if (state.isReasonSelectionError) {
-                            Color.Red
-                        } else {
-                            Color.Transparent
-                        }
                     )
                 ) {
                     Row(
@@ -196,7 +196,11 @@ fun OutletCheckoutScreen(
                                 .fillMaxWidth()
                                 .height(240.r())
                                 .padding(top = 10.r())
-                                .shadow(elevation = 4.r(), spotColor = Color.Gray,shape = RoundedCornerShape(15.r()))
+                                .shadow(
+                                    elevation = 4.r(),
+                                    spotColor = Color.Gray,
+                                    shape = RoundedCornerShape(15.r())
+                                )
                         )
 
                         Spacer(modifier = Modifier.height(10.r()))
@@ -232,7 +236,7 @@ fun OutletCheckoutScreen(
                             Text(text = stringResource(id = CommonR.string.distance_from_outlet))
                             Spacer(modifier = Modifier.weight(1f))
                             Text(
-                                text = "${state.distance.toString()} m",
+                                text = "${state.distance} m",
                                 style = boldBodyTextStyle.copy(
                                     color = Color.Black,
                                     fontSize = 16.sp
@@ -321,7 +325,7 @@ fun PreviewOutletCheckoutScreen() {
         snackbarHostState = snackBarHostState,
         outletDetails = outletDetails,
         state = OutletCheckOutState(),
-        uiEvent = flow {  },
-        onEvent ={}
+        uiEvent = flow { },
+        onEvent = {}
     )
 }

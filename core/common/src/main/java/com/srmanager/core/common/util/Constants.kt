@@ -17,7 +17,7 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-
+const val MINIMUM_DISTANCE_FOR_CHECKOUT = 300
 const val INTERNAL_ERROR = -1
 const val EMAIL_REGEX =
     "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$"

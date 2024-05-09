@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.srmanager.core.common.util.MINIMUM_DISTANCE_FOR_CHECKOUT
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.calculationDistance
@@ -127,15 +128,9 @@ class OutletCheckOutViewModel @Inject constructor(
                     state = state.copy(
                         isDescriptionEmpty = state.description.isEmpty(),
                         isReasonSelectionError = state.selectedReason == "Select reason",
-                        distance = calculationDistance(
-                            state.latitude,
-                            state.longitude,
-                            state.myLatitude,
-                            state.myLongitude
-                        )
                     )
 
-                    if (!state.isDescriptionEmpty && !state.isReasonSelectionError && state.distance <= 100) {
+                    if (!state.isDescriptionEmpty && !state.isReasonSelectionError && state.distance <= MINIMUM_DISTANCE_FOR_CHECKOUT) {
                         state = state.copy(
                             isNetworkCalling = true
                         )
@@ -172,14 +167,14 @@ class OutletCheckOutViewModel @Inject constructor(
                                 )
                             )
                         }
-                    } else if (state.distance > 100) {
+                    } else if (state.distance > MINIMUM_DISTANCE_FOR_CHECKOUT) {
                         state = state.copy(
                             isNetworkCalling = false
                         )
                         _uiEvent.send(
                             UiEvent.ShowSnackbar(
                                 UiText.DynamicString(
-                                    "You are more than 100 m away from outlet"
+                                    "You are more than 300 m away from outlet"
                                 )
                             )
                         )
