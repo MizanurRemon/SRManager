@@ -1,6 +1,7 @@
 package com.srmanager.order_presentation.order
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -79,6 +80,10 @@ fun OrderScreen(
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
+    val showCalenderDialog = remember {
+        mutableStateOf(false)
+    }
+
     Scaffold(topBar = {
         AppToolbarCompose(
             onClick = { onBack() },
@@ -140,11 +145,12 @@ fun OrderScreen(
                 },
                 trailingIcon = {
                     Icon(
-                        painter = painterResource(id = DesignSystemR.drawable.ic_calender),
+                        painter = painterResource(id = DesignSystemR.drawable.ic_calendar),
                         contentDescription = null,
                         modifier = Modifier
                             .clickable {
-                                viewModel.onEvent(OrderEvent.OnCalenderTapEvent)
+                                //viewModel.onEvent(OrderEvent.OnCalenderTapEvent)
+                                showCalenderDialog.value = true
                             }
                             .size(24.r())
                     )
@@ -172,8 +178,7 @@ fun OrderScreen(
                 }
             }
 
-
-            if (viewModel.state.showCalenderDialog) {
+            if (showCalenderDialog.value) {
                 MyDatePickerDialog(onDateSelected = {
                     viewModel.onEvent(
                         OrderEvent.OnSearchEvent(
@@ -184,9 +189,7 @@ fun OrderScreen(
                             ) ?: ""
                         )
                     )
-                }, openDialog = remember {
-                    mutableStateOf(viewModel.state.showCalenderDialog)
-                })
+                }, openDialog = showCalenderDialog)
             }
         }
     }

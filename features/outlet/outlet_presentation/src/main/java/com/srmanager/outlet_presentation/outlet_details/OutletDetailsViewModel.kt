@@ -19,7 +19,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import java.util.Locale
 import javax.inject.Inject
 
 
@@ -56,31 +55,32 @@ class OutletDetailsViewModel @Inject constructor(
             outletUseCases.outletDetailsUseCases(outletID = outletID).onSuccess { response ->
                 state = state.copy(
                     isLoading = false,
-                    image = response.data.outletImage?: "",
-                    outletName = response.data.outletName?: "",
-                    ownerName = response.data.ownerName?: "",
-                    birthdate = response.data.dateOfBirth?: "",
-                    phone1 = response.data.mobileNo?: "",
-                    phone2 = response.data.secondaryMobileNo?: "",
-                    tradeLicense = response.data.tradeLicense?: "",
-                    tlcExpiryDate = response.data.expiryDate?: "",
-                    vatTRN = response.data.vat?: "",
-                    address = response.data.address?: "",
-                    latitude = response.data.latitude?: "",
-                    longitude = response.data.longitude?: "",
+                    image = response.data.outletImage ?: "",
+                    outletName = response.data.outletName ?: "",
+                    ownerName = response.data.ownerName ?: "",
+                    birthdate = response.data.dateOfBirth ?: "",
+                    phone1 = response.data.mobileNo ?: "",
+                    phone2 = response.data.secondaryMobileNo ?: "",
+                    tradeLicense = response.data.tradeLicense ?: "",
+                    tlcExpiryDate = response.data.expiryDate ?: "",
+                    vatTRN = response.data.vat ?: "",
+                    address = response.data.address ?: "",
+                    latitude = response.data.latitude ?: "",
+                    longitude = response.data.longitude ?: "",
                     marketName = when (response.data.marketId) {
                         0 -> {
                             state.marketNameList.first().text ?: ""
                         }
+
                         else -> {
-                            state.marketNameList.first {
+                            state.marketNameList.firstOrNull() {
                                 it.id == response.data.marketId
-                            }.text ?: ""
+                            }?.text ?: ""
                         }
                     },
                     marketID = response.data.marketId ?: 0,
                     routeName = response.data.routeName!!.ifEmpty { ROUTE_NAMES[0] },
-                    email = response.data.ownerEmail?: "",
+                    email = response.data.ownerEmail ?: "",
                     paymentOption = response.data.paymentTerms!!.ifEmpty { PAYMENT_OPTIONS[0] },
                     ethnicity = response.data.shopEthnicity!!.ifEmpty { ETHNICITIES[0] },
                     billingAddress = response.data.billingAddress ?: ""
@@ -108,8 +108,8 @@ class OutletDetailsViewModel @Inject constructor(
                 if (it.isNotEmpty()) {
                     state = state.copy(
                         address = mutableStateOf(it[0].address.toString()).value,
-                        latitude = it[0].latitude?: "",
-                        longitude = it[0].longitude?: ""
+                        latitude = it[0].latitude ?: "",
+                        longitude = it[0].longitude ?: ""
                     )
 
                 }
@@ -128,7 +128,7 @@ class OutletDetailsViewModel @Inject constructor(
                         isOwnerNameError = state.ownerName.isEmpty(),
                         isBirthDateError = state.birthdate.isEmpty(),
                         isPhone1Error = state.phone1.isEmpty(),// || !isPhoneNumberValid(state.phone1),
-                       // isPhone2Error = state.phone2.isNotEmpty() && !isPhoneNumberValid(state.phone2),
+                        // isPhone2Error = state.phone2.isNotEmpty() && !isPhoneNumberValid(state.phone2),
                         isTradeLicenseError = state.tradeLicense.isEmpty(),
                         isVatTrnError = state.vatTRN.isEmpty(),
                         isImageError = state.image.isEmpty(),
@@ -158,11 +158,8 @@ class OutletDetailsViewModel @Inject constructor(
                                 latitude = state.latitude,
                                 longitude = state.longitude,
                                 marketID = state.marketNameList.first {
-                                    it.text.toString().lowercase(Locale.ROOT).equals(
-                                        state.marketName.lowercase(Locale.ROOT),
-                                        ignoreCase = true
-                                    )
-                                }.id?: 0,
+                                    it.text.toString().equals(state.marketName, ignoreCase = true)
+                                }.id ?: 0,
                                 ethnicity = state.ethnicity,
                                 email = state.email,
                                 routeName = state.routeName,
@@ -226,7 +223,7 @@ class OutletDetailsViewModel @Inject constructor(
             is OutletDetailsEvent.OnMobileNo2Enter -> {
                 state = state.copy(
                     phone2 = event.value,
-                   // isPhone2Error = event.value.isNotEmpty() && !isPhoneNumberValid(event.value)
+                    // isPhone2Error = event.value.isNotEmpty() && !isPhoneNumberValid(event.value)
                 )
             }
 
@@ -252,7 +249,7 @@ class OutletDetailsViewModel @Inject constructor(
                 state = state.copy(address = event.value)
             }
 
-            is OutletDetailsEvent.OnBillingAddressEnter-> {
+            is OutletDetailsEvent.OnBillingAddressEnter -> {
                 state = state.copy(billingAddress = event.value)
             }
 
@@ -317,9 +314,8 @@ class OutletDetailsViewModel @Inject constructor(
                 state = state.copy(
                     isMarketNameExpanded = false,
                     marketID = state.marketNameList.first {
-                        it.text.toString().lowercase(Locale.ROOT)
-                            .equals(event.value.lowercase(Locale.ROOT), ignoreCase = true)
-                    }.id!!.toInt(),
+                        it.text.toString().equals(event.value, ignoreCase = true)
+                    }.id ?: 0,
                     marketName = event.value
                 )
             }
@@ -330,7 +326,7 @@ class OutletDetailsViewModel @Inject constructor(
                 )
             }
 
-            is OutletDetailsEvent.OnOutletIdSetup-> {
+            is OutletDetailsEvent.OnOutletIdSetup -> {
                 if (state.id != event.outletID) {
                     // Update state with the new outlet ID
                     state = state.copy(
