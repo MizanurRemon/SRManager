@@ -1,5 +1,6 @@
 package com.srmanager.outlet_presentation.outlet_checkout
 
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,6 +14,7 @@ import com.srmanager.outlet_domain.model.OutletCheckOutModel
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -30,8 +32,8 @@ class OutletCheckOutViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            launch {
-                locationDao.getLocation().collect {
+           /* launch {
+                *//*locationDao.getLocation().collect {
                     if (it.isNotEmpty()) {
                         state = state.copy(
                             myLatitude = it[0].latitude.toString(),
@@ -44,8 +46,20 @@ class OutletCheckOutViewModel @Inject constructor(
                             )
                         )
                     }
-                }
-            }
+                }*//*
+
+
+                state = state.copy(
+                    myLatitude = locationInfo[0].latitude.toString(),
+                    myLongitude = locationInfo[0].longitude.toString(),
+                    distance = calculationDistance(
+                        state.latitude,
+                        state.longitude,
+                        locationInfo[0].latitude.toString(),
+                        locationInfo[0].longitude.toString()
+                    )
+                )
+            }*/
 
             launch {
                 state = state.copy(
@@ -72,10 +86,19 @@ class OutletCheckOutViewModel @Inject constructor(
 
         when (event) {
             is OutletCheckOutEvent.OnOutletLocationSetUp -> {
-                state = state.copy(
-                    latitude = event.latitude,
-                    longitude = event.longitude,
-                )
+                viewModelScope.launch {
+                    val locationInfo = locationDao.getLocation().first()
+                    state = state.copy(
+                        latitude = event.latitude,
+                        longitude = event.longitude,
+                        distance = calculationDistance(
+                            state.latitude,
+                            state.longitude,
+                            locationInfo[0].latitude.toString(),
+                            locationInfo[0].longitude.toString()
+                        )
+                    )
+                }
             }
 
             is OutletCheckOutEvent.OnReasonSelect -> {

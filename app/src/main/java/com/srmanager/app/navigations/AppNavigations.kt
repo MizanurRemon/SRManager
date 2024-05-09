@@ -19,7 +19,6 @@ import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
 import com.srmanager.core.network.dto.Outlet
 import com.srmanager.order_presentation.order.OrderScreen
-import com.srmanager.order_presentation.order.OrderViewModel
 import com.srmanager.order_presentation.products.OrderProductsScreen
 import com.srmanager.order_presentation.products.ProductsEvent
 import com.srmanager.order_presentation.products.ProductsViewModel
@@ -34,6 +33,8 @@ import com.srmanager.outlet_presentation.maps.Single.MapScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddViewModel
+import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckOutEvent
+import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckOutViewModel
 import com.srmanager.outlet_presentation.outlet_checkout.OutletCheckoutScreen
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsEvent
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
@@ -167,12 +168,19 @@ fun MainApp(
             }
 
             composable(route = Route.OUTLET_CHECKOUT) {
+                val viewModel = hiltViewModel<OutletCheckOutViewModel>()
+
+                viewModel.onEvent(OutletCheckOutEvent.OnOutletLocationSetUp(latitude = outletDetails!!.latitude, longitude = outletDetails!!.longitude))
+
                 OutletCheckoutScreen(
                     onBack = {
                         navController.navigateUp()
                     },
                     snackbarHostState = snackBarHostState,
-                    outletDetails = outletDetails
+                    outletDetails = outletDetails,
+                    state = viewModel.state,
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent
                 )
             }
 
