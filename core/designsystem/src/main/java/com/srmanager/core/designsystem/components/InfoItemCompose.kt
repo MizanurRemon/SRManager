@@ -23,7 +23,7 @@ fun InfoItemCompose(
     return Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(start = 35.w(), top = 8.h(), end = 20.w()),
+            .padding(start = 35.r(), top = 8.r(), end = 20.r()),
         verticalAlignment = Alignment.Top,
     ) {
         Image(
@@ -31,7 +31,7 @@ fun InfoItemCompose(
             contentDescription = null,
             modifier = Modifier.size(22.r())
         )
-        Spacer(modifier = Modifier.width(12.w()))
+        Spacer(modifier = Modifier.width(12.r()))
         Text(text = stringResource(id = titleStringResId), style = bodyLightTextStyle)
     }
 }

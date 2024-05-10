@@ -96,7 +96,7 @@ fun SplashScreen(
             ),
             contentDescription = "",
             modifier = Modifier
-                .size(100.w())
+                .size(100.r())
                 .shadow(elevation = 2.dp, shape = RoundedCornerShape(15.dp))
         )
 

@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        adjustFontScale(resources.configuration)
+        //adjustFontScale(resources.configuration)
         deviceWidth = with(resources.displayMetrics) {
             (widthPixels / density).toInt()
         }
@@ -149,7 +149,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         //checkLocationPermission()
-        checkForAppUpdate()
+        //checkForAppUpdate()
     }
 
     @OptIn(DelicateCoroutinesApi::class)

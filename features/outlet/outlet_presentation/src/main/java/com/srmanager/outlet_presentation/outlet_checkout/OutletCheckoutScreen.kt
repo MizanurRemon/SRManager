@@ -150,7 +150,7 @@ fun OutletCheckoutScreen(
                     Row(
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(14.w()),
+                            .padding(14.r()),
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {

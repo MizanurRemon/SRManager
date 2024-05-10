@@ -42,7 +42,7 @@ fun HomeModalDrawerSheet(
     val currentDestination = navBackStackEntry?.destination
 
     ModalDrawerSheet(
-        modifier = if (drawerState.isOpen) Modifier.width(364.w()) else Modifier,
+        modifier = if (drawerState.isOpen) Modifier.width(364.r()) else Modifier,
         drawerTonalElevation = 0.dp,
         drawerShape = RectangleShape,
     ) {

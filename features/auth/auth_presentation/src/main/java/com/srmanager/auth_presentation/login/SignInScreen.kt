@@ -110,7 +110,7 @@ fun SignInScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(brush = AppBrush)
-            .padding(top = 80.h(), start = 35.w(), end = 35.w()),
+            .padding(top = 80.r(), start = 35.r(), end = 35.r()),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
 
@@ -120,15 +120,15 @@ fun SignInScreen(
             ),
             contentDescription = "",
             modifier = Modifier
-                .padding(vertical = 20.h())
-                .size(80.w())
+                .padding(vertical = 20.r())
+                .size(80.r())
                 .shadow(elevation = 10.dp, shape = RoundedCornerShape(15.dp))
         )
 
         Text(
             text = stringResource(id = CommonR.string.sign_in),
             style = heading2TextStyle,
-            modifier = Modifier.padding(vertical = 20.h())
+            modifier = Modifier.padding(vertical = 20.r())
         )
 
         Text(
@@ -142,7 +142,7 @@ fun SignInScreen(
                 textAlign = TextAlign.Left
             ),
             modifier = Modifier
-                .padding(bottom = 10.h())
+                .padding(bottom = 10.r())
                 .align(Alignment.Start),
         )
 
@@ -196,7 +196,7 @@ fun SignInScreen(
                 textAlign = TextAlign.Left
             ),
             modifier = Modifier
-                .padding(bottom = 10.h())
+                .padding(bottom = 10.r())
                 .align(Alignment.Start),
         )
         TextField(
@@ -261,7 +261,7 @@ fun SignInScreen(
                 ),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(top = 4.h())
+                    .padding(top = 4.r())
                     .align(Alignment.Start),
             )
         }*/

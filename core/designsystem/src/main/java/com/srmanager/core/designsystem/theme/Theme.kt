@@ -520,7 +520,7 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(40.w())
+                    .padding(40.r())
                     .background(
                         color = Color.White,
                         shape = RoundedCornerShape(10.dp)
@@ -663,7 +663,7 @@ fun GpsStatusDialog(openDialog: MutableState<Boolean>, onClick: () -> Unit) {
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(40.w())
+                    .padding(40.r())
                     .background(
                         color = Color.White,
                         shape = RoundedCornerShape(32.dp)
