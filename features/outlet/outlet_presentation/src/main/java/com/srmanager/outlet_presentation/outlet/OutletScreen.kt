@@ -74,8 +74,8 @@ import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import com.srmanager.core.designsystem.theme.smallBodyTextStyle
 import com.srmanager.core.designsystem.theme.subHeading1TextStyle
 import com.srmanager.core.network.dto.Outlet
-import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
+import com.srmanager.core.designsystem.R as DesignSystemR
 
 @OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -149,13 +149,15 @@ fun OutletScreen(
                     .padding(horizontal = 10.r())
             ) {
                 Spacer(modifier = Modifier.padding(top = 10.r()))
-                TextField(value = viewModel.state.searchKey, colors = TextFieldDefaults.colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    disabledContainerColor = Color.White,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                ),
+                TextField(singleLine = true,
+                    value = viewModel.state.searchKey,
+                    colors = TextFieldDefaults.colors(
+                        focusedContainerColor = Color.White,
+                        unfocusedContainerColor = Color.White,
+                        disabledContainerColor = Color.White,
+                        focusedIndicatorColor = Color.Transparent,
+                        unfocusedIndicatorColor = Color.Transparent,
+                    ),
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
                     ),
@@ -163,9 +165,11 @@ fun OutletScreen(
                         keyboardController?.hide()
 
                         defaultKeyboardAction(ImeAction.Done)
-                    }), onValueChange = {
+                    }),
+                    onValueChange = {
                         viewModel.onEvent(OutletEvent.OnSearchEvent(it))
-                    }, modifier = Modifier
+                    },
+                    modifier = Modifier
                         .fillMaxWidth()
                         .wrapContentHeight()
                         //.height(54.dp)
@@ -183,7 +187,8 @@ fun OutletScreen(
                                 color = ColorTextFieldPlaceholder,
                             )
                         )
-                    }, leadingIcon = {
+                    },
+                    leadingIcon = {
                         Icon(Icons.Default.Search, contentDescription = "")
                     })
                 Spacer(modifier = Modifier.height(5.r()))

@@ -1,6 +1,5 @@
 package com.srmanager.outlet_presentation.outlet_checkout
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -33,34 +32,6 @@ class OutletCheckOutViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-           /* launch {
-                *//*locationDao.getLocation().collect {
-                    if (it.isNotEmpty()) {
-                        state = state.copy(
-                            myLatitude = it[0].latitude.toString(),
-                            myLongitude = it[0].longitude.toString(),
-                            distance = calculationDistance(
-                                state.latitude,
-                                state.longitude,
-                                state.myLatitude,
-                                state.myLongitude
-                            )
-                        )
-                    }
-                }*//*
-
-
-                state = state.copy(
-                    myLatitude = locationInfo[0].latitude.toString(),
-                    myLongitude = locationInfo[0].longitude.toString(),
-                    distance = calculationDistance(
-                        state.latitude,
-                        state.longitude,
-                        locationInfo[0].latitude.toString(),
-                        locationInfo[0].longitude.toString()
-                    )
-                )
-            }*/
 
             launch {
                 state = state.copy(
@@ -86,10 +57,11 @@ class OutletCheckOutViewModel @Inject constructor(
     fun onEvent(event: OutletCheckOutEvent) {
 
         when (event) {
-            is OutletCheckOutEvent.OnOutletLocationSetUp -> {
+            is OutletCheckOutEvent.OnOutletInfoSetUp -> {
                 viewModelScope.launch {
                     val locationInfo = locationDao.getLocation().first()
                     state = state.copy(
+                        outletID = event.outletID,
                         latitude = event.latitude,
                         longitude = event.longitude,
                         distance = calculationDistance(
@@ -138,7 +110,7 @@ class OutletCheckOutViewModel @Inject constructor(
 
                         outletUseCases.outletCheckOutUseCase(
                             OutletCheckOutModel(
-                                id = event.outletID,
+                                id = state.outletID,
                                 outletStatusId = state.outletStatusId,
                                 statusRemarks = state.description,
                                 latitude = state.myLatitude,

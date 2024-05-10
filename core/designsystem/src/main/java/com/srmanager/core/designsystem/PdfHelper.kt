@@ -87,9 +87,17 @@ fun generatePDF(
     val normalText = Paint()
 
     val columnWidthForSalesMan = listOf(
+        (pageWidth / 5).toFloat(),
+        (pageWidth / 5).toFloat(),
+        (pageWidth / 5).toFloat(),
+        (pageWidth / 5).toFloat(),
+        (pageWidth / 5).toFloat(),
+    )
+
+    val columnWidthForCustomer = listOf(
         (pageWidth / 3).toFloat(),
         (pageWidth / 3).toFloat(),
-        (pageWidth / 3).toFloat(),
+        (pageWidth / 3).toFloat()
     )
 
     val myPageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
@@ -160,187 +168,20 @@ fun generatePDF(
         orderDetails.orderDate, 130f + pageWidth / 2, startYAxisPointAfterTop, normalTextPaint
     )
 
-    canvas.drawText("Customer Details", 40f, startYAxisPointAfterTop + 50f, boldTextPaint)
-
-    canvas.drawLine(
-        40f,
-        startYAxisPointAfterTop + 60f,
-        pageWidth.toFloat() - 40f,
-        startYAxisPointAfterTop + 60f,
-        normalText
-    )
-
-    canvas.drawText("SHIP TO", 42f, startYAxisPointAfterTop + 80f, boldTextPaint)
-
-    val staticLayout = StaticLayout(
-        orderDetails.outletAddress,
-        normalTextPaint,
-        (pageWidth / 8) * 2,
-        Layout.Alignment.ALIGN_NORMAL,
-        1.0f,
-        0.0f,
-        false
-    )
-
-    canvas.save()
-    canvas.translate(
-        40f + (pageWidth / 8) + 2f, startYAxisPointAfterTop + 60f
-    ) // Move canvas to the desired position
-    staticLayout.draw(canvas)
-    canvas.restore()
-
-    canvas.drawText(
-        "BILL TO", (pageWidth.toFloat() / 2) + 2f, startYAxisPointAfterTop + 80f, boldTextPaint
-    )
-
-    val billStaticLayout = StaticLayout(
-        orderDetails.billingAddress,
-        normalTextPaint,
-        (pageWidth / 8) * 2,
-        Layout.Alignment.ALIGN_NORMAL,
-        1.0f,
-        0.0f,
-        false
-    )
-
-    canvas.save()
-    canvas.translate(
-        (pageWidth.toFloat() / 2) + (pageWidth / 8) + 2f, startYAxisPointAfterTop + 60f
-    ) // Move canvas to the desired position
-    billStaticLayout.draw(canvas)
-    canvas.restore()
-
-
-    canvas.drawLine(
-        (pageWidth.toFloat() / 2) + (pageWidth / 8),
-        startYAxisPointAfterTop + 60f,
-        (pageWidth.toFloat() / 2) + (pageWidth / 8),
-        startYAxisPointAfterTop + 130f,
-        normalText
-    )
-
-    canvas.drawLine(
-        40f + (pageWidth / 8),
-        startYAxisPointAfterTop + 60f,
-        40f + (pageWidth / 8),
-        startYAxisPointAfterTop + 130f,
-        normalText
-    )
-
-    canvas.drawLine(
-        40f,
-        startYAxisPointAfterTop + 130f,
-        pageWidth.toFloat() - 40f,
-        startYAxisPointAfterTop + 130f,
-        normalText
-    )
-
-    canvas.drawLine(
-        40f, startYAxisPointAfterTop + 60f, 40f, startYAxisPointAfterTop + 130f, normalText
-    )
-
-    canvas.drawLine(
-        pageWidth.toFloat() - 40f,
-        startYAxisPointAfterTop + 60f,
-        pageWidth.toFloat() - 40f,
-        startYAxisPointAfterTop + 130f,
-        normalText
-    )
-
-    canvas.drawLine(
-        pageWidth.toFloat() / 2,
-        startYAxisPointAfterTop + 60f,
-        pageWidth.toFloat() / 2,
-        startYAxisPointAfterTop + 130f,
-        normalText
-    )
+    canvas.drawText("Customer Details", 40f, startYAxisPointAfterTop + 30f, boldTextPaint)
 
     canvas.apply {
+        val startPosition = 60f
         val startX = 40f
-        val startY = startYAxisPointAfterTop + 150f
+        val startY = startYAxisPointAfterTop + startPosition
 
-        val columnStartPoint = 132f
+        val columnStartPoint = startPosition - 18f
         val columnEndPoint = columnStartPoint + 58f
 
         canvas.drawLine(
-            40f,
+            startX,
             startYAxisPointAfterTop + columnStartPoint,
-            pageWidth.toFloat() - 40f,
-            startYAxisPointAfterTop + columnStartPoint,
-            normalText
-        )
-
-        // Draw header
-        drawTableRow(
-            startX + 2f, startY, boldTextPaint, listOf(
-                "SALESMAN NAME", "SALESMAN MOBILE", "PAYMENT"
-            ), false, columnWidthForSalesMan
-        )
-
-        drawLine(startX, startY + 10f, pageWidth - 40f, startY + 10f, normalText)
-
-        drawLine(
-            40f,
-            startYAxisPointAfterTop + columnStartPoint,
-            40f,
-            startYAxisPointAfterTop + columnEndPoint,
-            normalText
-        )
-
-        drawLine(
-            40f + columnWidthForSalesMan[0],
-            startYAxisPointAfterTop + columnStartPoint,
-            40f + columnWidthForSalesMan[0],
-            startYAxisPointAfterTop + columnEndPoint,
-            normalText
-        )
-
-        drawLine(
-            40f + columnWidthForSalesMan.slice(0 until 1).sum(),
-            startYAxisPointAfterTop + columnStartPoint,
-            40f + columnWidthForSalesMan.slice(0 until 1).sum(),
-            startYAxisPointAfterTop + columnEndPoint,
-            normalText
-        )
-
-        drawLine(
-            40f + columnWidthForSalesMan.slice(0 until 2).sum(),
-            startYAxisPointAfterTop + columnStartPoint,
-            40f + columnWidthForSalesMan.slice(0 until 2).sum(),
-            startYAxisPointAfterTop + columnEndPoint,
-            normalText
-        )
-
-        drawLine(
-            pageWidth - 40f,
-            startYAxisPointAfterTop + columnStartPoint,
-            pageWidth - 40f,
-            startYAxisPointAfterTop + columnEndPoint,
-            normalText
-        )
-
-        drawTableRow(
-            startX + 2f, startY + rowHeight, normalText, listOf(
-                orderDetails.salesMan, orderDetails.salesManMobile, orderDetails.paymentType
-            ), false, columnWidthForSalesMan
-        )
-
-        drawLine(
-            startX, startY + rowHeight + 10f, pageWidth - 40f, startY + rowHeight + 10f, normalText
-        )
-    }
-
-    canvas.apply {
-        val startX = 40f
-        val startY = startYAxisPointAfterTop + 210f
-
-        val columnStartPoint = 192f
-        val columnEndPoint = columnStartPoint + 58f
-
-        canvas.drawLine(
-            40f,
-            startYAxisPointAfterTop + columnStartPoint,
-            pageWidth.toFloat() - 40f,
+            pageWidth.toFloat() - startX,
             startYAxisPointAfterTop + columnStartPoint,
             normalText
         )
@@ -349,23 +190,224 @@ fun generatePDF(
         drawTableRow(
             startX + 2f, startY, boldTextPaint, listOf(
                 "CUSTOMER CODE", "CUSTOMER NAME", "CUSTOMER MOBILE"
+            ), false, columnWidthForCustomer
+        )
+
+        drawTableRow(
+            startX + 2f, startY + rowHeight, normalText, listOf(
+                orderDetails.customerCode, orderDetails.customerName, orderDetails.contactNo
+            ), false, columnWidthForCustomer
+        )
+
+        drawLine(startX, startY + 10f, pageWidth - startX, startY + 10f, normalText)
+
+        drawLine(
+            startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            startX,
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidthForCustomer[0],
+            startYAxisPointAfterTop + columnStartPoint,
+            startX + columnWidthForCustomer[0],
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidthForCustomer.slice(0 until 1).sum(),
+            startYAxisPointAfterTop + columnStartPoint,
+            startX + columnWidthForCustomer.slice(0 until 1).sum(),
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidthForCustomer.slice(0 until 2).sum(),
+            startYAxisPointAfterTop + columnStartPoint,
+            startX + columnWidthForCustomer.slice(0 until 2).sum(),
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        drawLine(
+            pageWidth - startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            pageWidth - startX,
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        drawLine(
+            startX,
+            startY + rowHeight + 10f,
+            pageWidth - startX,
+            startY + rowHeight + 10f,
+            normalText
+        )
+    }
+
+    canvas.apply {
+
+        val startPosition = 120f
+        val startX = 40f
+        val startY = startYAxisPointAfterTop + startPosition
+
+        val columnStartPoint = startPosition - 18f
+        val columnEndPoint = columnStartPoint + 58f
+
+        canvas.drawText(
+            "SHIP TO",
+            startX + 2f,
+            startYAxisPointAfterTop + startPosition,
+            boldTextPaint
+        )
+
+        val staticLayout = StaticLayout(
+            orderDetails.outletAddress,
+            normalTextPaint,
+            (pageWidth / 8) * 2,
+            Layout.Alignment.ALIGN_NORMAL,
+            1.0f,
+            0.0f,
+            false
+        )
+
+        canvas.save()
+        canvas.translate(
+            startX + (pageWidth / 8) + 2f, startY - 10f
+        )
+        staticLayout.draw(canvas)
+        canvas.restore()
+
+        canvas.drawText(
+            "BILL TO",
+            (pageWidth.toFloat() / 2) + 2f,
+            startY,
+            boldTextPaint
+        )
+
+        val billStaticLayout = StaticLayout(
+            orderDetails.billingAddress,
+            normalTextPaint,
+            (pageWidth / 8) * 2,
+            Layout.Alignment.ALIGN_NORMAL,
+            1.0f,
+            0.0f,
+            false
+        )
+
+        canvas.save()
+        canvas.translate(
+            (pageWidth.toFloat() / 2) + (pageWidth / 8) + 2f,
+            startY - 10f
+        ) // Move canvas to the desired position
+        billStaticLayout.draw(canvas)
+        canvas.restore()
+
+
+        //horizontal lines start
+        canvas.drawLine(
+            startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            startX,
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        ) // column 1
+
+        canvas.drawLine(
+            (pageWidth.toFloat() / 2) + (pageWidth / 8),
+            startYAxisPointAfterTop + columnStartPoint,
+            (pageWidth.toFloat() / 2) + (pageWidth / 8),
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        canvas.drawLine(
+            startX + (pageWidth / 8),
+            startYAxisPointAfterTop + columnStartPoint,
+            startX + (pageWidth / 8),
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+
+        canvas.drawLine(
+            pageWidth.toFloat() / 2,
+            startYAxisPointAfterTop + columnStartPoint,
+            pageWidth.toFloat() / 2,
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        canvas.drawLine(
+            pageWidth.toFloat() - startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            pageWidth.toFloat() - startX,
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+        //horizontal lines end
+
+        //vertical lines start
+        canvas.drawLine(
+            startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            pageWidth.toFloat() - startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            normalText
+        )
+
+        canvas.drawLine(
+            startX,
+            startYAxisPointAfterTop + columnEndPoint,
+            pageWidth.toFloat() - startX,
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+        //vertical lines end
+    }
+
+    canvas.apply {
+        val startPosition = 190f
+        val startX = 40f
+        val startY = startYAxisPointAfterTop + startPosition
+
+        val columnStartPoint = startPosition - 18f
+        val columnEndPoint = columnStartPoint + 58f
+
+        canvas.drawLine(
+            startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            pageWidth.toFloat() - startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            normalText
+        )
+
+        // Draw header
+        drawTableRow(
+            startX + 2f, startY, boldTextPaint, listOf(
+                "SALESMAN NAME", "SALESMAN MOBILE", "PAYMENT", "MARKET", "ROUTE"
             ), false, columnWidthForSalesMan
         )
 
-        drawLine(startX, startY + 10f, pageWidth - 40f, startY + 10f, normalText)
+        drawLine(startX, startY + 10f, pageWidth - startX, startY + 10f, normalText)
 
         drawLine(
-            40f,
+            startX,
             startYAxisPointAfterTop + columnStartPoint,
-            40f,
+            startX,
             startYAxisPointAfterTop + columnEndPoint,
             normalText
         )
 
         drawLine(
-            40f + columnWidthForSalesMan[0],
+            startX + columnWidthForSalesMan[0],
             startYAxisPointAfterTop + columnStartPoint,
-            40f + columnWidthForSalesMan[0],
+            startX + columnWidthForSalesMan[0],
             startYAxisPointAfterTop + columnEndPoint,
             normalText
         )
@@ -379,39 +421,63 @@ fun generatePDF(
         )
 
         drawLine(
-            40f + columnWidthForSalesMan.slice(0 until 2).sum(),
+            startX + columnWidthForSalesMan.slice(0 until 2).sum(),
             startYAxisPointAfterTop + columnStartPoint,
-            40f + columnWidthForSalesMan.slice(0 until 2).sum(),
+            startX + columnWidthForSalesMan.slice(0 until 2).sum(),
             startYAxisPointAfterTop + columnEndPoint,
             normalText
         )
 
         drawLine(
-            pageWidth - 40f,
+            startX + columnWidthForSalesMan.slice(0 until 3).sum(),
             startYAxisPointAfterTop + columnStartPoint,
-            pageWidth - 40f,
+            startX + columnWidthForSalesMan.slice(0 until 3).sum(),
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        drawLine(
+            startX + columnWidthForSalesMan.slice(0 until 4).sum(),
+            startYAxisPointAfterTop + columnStartPoint,
+            startX + columnWidthForSalesMan.slice(0 until 4).sum(),
+            startYAxisPointAfterTop + columnEndPoint,
+            normalText
+        )
+
+        drawLine(
+            pageWidth - startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            pageWidth - startX,
             startYAxisPointAfterTop + columnEndPoint,
             normalText
         )
 
         drawTableRow(
             startX + 2f, startY + rowHeight, normalText, listOf(
-                orderDetails.customerCode, orderDetails.customerName, orderDetails.contactNo
+                orderDetails.salesMan,
+                orderDetails.salesManMobile,
+                orderDetails.paymentType,
+                "---",
+                "---"
             ), false, columnWidthForSalesMan
         )
 
         drawLine(
-            startX, startY + rowHeight + 10f, pageWidth - 40f, startY + rowHeight + 10f, normalText
+            startX,
+            startY + rowHeight + 10f,
+            pageWidth - startX,
+            startY + rowHeight + 10f,
+            normalText
         )
     }
 
     canvas.apply {
+        val startPosition = 260f
         val startX = 40f
-        var startY = 280 + startYAxisPointAfterTop
+        var startY = startPosition + startYAxisPointAfterTop
+        val columnStartPoint = startPosition - 18f
 
-        val columnStartPoint = 260f
-
-        drawLine(startX, startY - 20f, pageWidth - 40f, startY - 20f, normalText)
+        drawLine(startX, startY - 20f, pageWidth - startX, startY - 20f, normalText)
 
         // Draw header
         drawTableRow(
@@ -421,7 +487,7 @@ fun generatePDF(
         )
 
         // Draw a line after header
-        drawLine(startX, startY + 10f, pageWidth - 40f, startY + 10f, normalText)
+        drawLine(startX, startY + 10f, pageWidth - startX, startY + 10f, normalText)
 
         // Draw product list
         orderDetails.data.forEach { orderItem ->
@@ -464,7 +530,13 @@ fun generatePDF(
             ), isDrawLine = false, columnWidths
         )
 
-        drawLine(startX, startYAxisPointAfterTop + columnStartPoint, startX, startY + 5f, normalText)
+        drawLine(
+            startX,
+            startYAxisPointAfterTop + columnStartPoint,
+            startX,
+            startY + 5f,
+            normalText
+        )
 
         drawLine(
             startX + columnWidths[0],
@@ -544,7 +616,7 @@ fun generatePDF(
 
 
         canvas.drawText(
-            "Signature", 40f + columnWidths.slice(0 until 8).sum(), startY + 120f, normalTextPaint
+            "Signature", startX + columnWidths.slice(0 until 8).sum(), startY + 120f, normalTextPaint
         )
 
         canvas.translate(

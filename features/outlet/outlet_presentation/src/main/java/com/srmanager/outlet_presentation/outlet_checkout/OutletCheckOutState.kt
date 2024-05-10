@@ -3,6 +3,7 @@ package com.srmanager.outlet_presentation.outlet_checkout
 import com.srmanager.core.network.dto.StatusResponse
 
 data class OutletCheckOutState(
+    val outletID : String="",
     val selectedReason : String = "Select reason",
     val outletStatusId: String = "",
     val description: String = "",

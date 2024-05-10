@@ -170,14 +170,13 @@ fun MainApp(
             composable(route = Route.OUTLET_CHECKOUT) {
                 val viewModel = hiltViewModel<OutletCheckOutViewModel>()
 
-                viewModel.onEvent(OutletCheckOutEvent.OnOutletLocationSetUp(latitude = outletDetails!!.latitude, longitude = outletDetails!!.longitude))
+                viewModel.onEvent(OutletCheckOutEvent.OnOutletInfoSetUp(outletID = outletDetails!!.id.toString(),latitude = outletDetails!!.latitude, longitude = outletDetails!!.longitude))
 
                 OutletCheckoutScreen(
                     onBack = {
                         navController.navigateUp()
                     },
                     snackbarHostState = snackBarHostState,
-                    outletDetails = outletDetails,
                     state = viewModel.state,
                     uiEvent = viewModel.uiEvent,
                     onEvent = viewModel::onEvent

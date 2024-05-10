@@ -63,7 +63,6 @@ fun OutletCheckoutScreen(
     onBack: () -> Unit,
     // viewModel: OutletCheckOutViewModel = hiltViewModel(),
     snackbarHostState: SnackbarHostState,
-    outletDetails: Outlet?,
     state: OutletCheckOutState,
     uiEvent: Flow<UiEvent>,
     onEvent: (OutletCheckOutEvent) -> Unit
@@ -249,7 +248,7 @@ fun OutletCheckoutScreen(
                         AppActionButtonCompose(
                             stringId = CommonR.string.done,
                             onActionButtonClick = {
-                                onEvent(OutletCheckOutEvent.OnSubmitClick(outletDetails!!.id.toString()))
+                                onEvent(OutletCheckOutEvent.OnSubmitClick)
                             })
                     }
 
@@ -323,7 +322,6 @@ fun PreviewOutletCheckoutScreen() {
     OutletCheckoutScreen(
         onBack = {},
         snackbarHostState = snackBarHostState,
-        outletDetails = outletDetails,
         state = OutletCheckOutState(),
         uiEvent = flow { },
         onEvent = {}
