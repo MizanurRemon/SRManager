@@ -23,7 +23,9 @@ data class OrderState(
         inWords = "",
         signature = "",
         data = emptyList(),
-        contactNo = ""
+        contactNo = "",
+        market = "",
+        route = ""
     ),
     val searchText : String = "",
     val showCalenderDialog : Boolean = false

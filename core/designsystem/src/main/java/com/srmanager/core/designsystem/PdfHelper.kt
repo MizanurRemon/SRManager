@@ -457,8 +457,8 @@ fun generatePDF(
                 orderDetails.salesMan,
                 orderDetails.salesManMobile,
                 orderDetails.paymentType,
-                "---",
-                "---"
+                orderDetails.market,
+                orderDetails.route
             ), false, columnWidthForSalesMan
         )
 

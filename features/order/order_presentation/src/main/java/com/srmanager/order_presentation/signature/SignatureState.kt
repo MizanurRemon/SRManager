@@ -27,6 +27,8 @@ data class SignatureState(
         inWords = "",
         signature = "",
         data = emptyList(),
-        contactNo = ""
+        contactNo = "",
+        market = "",
+        route = ""
     )
 )

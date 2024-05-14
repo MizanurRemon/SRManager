@@ -44,6 +44,8 @@ fun OrderDetailsDto.toResponse(): OrderDetailsResponse {
         inWords = inWords ?: "",
         signature = signature ?: "",
         contactNo = contactNo?: "",
+        market = market?: "",
+        route = route?: "",
         data = data.map { productItem ->
             OrderItemResponse(
                 productCode = productItem.productCode ?: "",

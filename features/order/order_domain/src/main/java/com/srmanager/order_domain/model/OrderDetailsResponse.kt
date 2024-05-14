@@ -14,6 +14,8 @@ data class OrderDetailsResponse(
     val inWords: String,
     val signature: String,
     val contactNo: String,
+    val market: String,
+    val route: String,
     var data: List<OrderItemResponse>
 )
 
