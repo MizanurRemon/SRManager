@@ -1,7 +1,7 @@
 package com.srmanager.order_presentation.selected_products
 
 import android.annotation.SuppressLint
-import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,9 +12,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -22,8 +23,6 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -41,6 +40,7 @@ import com.srmanager.core.designsystem.components.AppActionButtonCompose
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
+import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import com.srmanager.core.designsystem.theme.subHeading1TextStyle
 import com.srmanager.core.network.dto.Product
@@ -70,24 +70,55 @@ fun SelectedProductsScreen(
             onNextClick()
         }
     }, content = { innerPadding ->
-        Column(modifier = Modifier.padding(innerPadding)) {
-            Column(
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .padding(horizontal = 15.r())
+        ) {
+
+            Row(modifier = Modifier.padding(vertical = 10.r())) {
+                Text(text = stringResource(id = CommonR.string.total), style = bodyRegularTextStyle)
+
+                Spacer(modifier = Modifier.weight(1f))
+
+                Text(text = state.totalAmount.toString(), style = bodyBoldTextStyle)
+
+            }
+
+            Spacer(
                 modifier = Modifier
-                    .verticalScroll(rememberScrollState())
+                    .fillMaxWidth()
+                    .background(color = Color.Black)
+                    .height(1.r())
+                    .padding(bottom = 10.r())
+            )
+
+            LazyColumn(
+                state = rememberLazyListState(),
+                modifier = Modifier
                     .padding(bottom = 20.r())
             ) {
-                state.productsList.forEach { product ->
+                items(state.productsList) { product ->
                     Spacer(modifier = Modifier.height(10.r()))
 
                     ItemCompose(
                         product = product,
 
                         onIncrementClick = { itemCount ->
-                            Log.d("dataxx", itemCount.toString())
-                            onEvent(SelectedProductEvent.OnIncrementEvent(product.id, itemCount))
+                            onEvent(
+                                SelectedProductEvent.OnIncrementEvent(
+                                    product.id,
+                                    itemCount
+                                )
+                            )
                         },
                         onDecrementClick = { itemCount ->
-                            onEvent(SelectedProductEvent.OnDecrementEvent(product.id, itemCount))
+                            onEvent(
+                                SelectedProductEvent.OnDecrementEvent(
+                                    product.id,
+                                    itemCount
+                                )
+                            )
                         }
                     )
                 }
@@ -104,9 +135,6 @@ fun ItemCompose(
     onDecrementClick: (itemCount: Int) -> Unit
 ) {
 
-//    val iemCount = remember {
-//        mutableIntStateOf(product.selectedItemCount)
-//    }
 
     val annotatedText = buildAnnotatedString {
         withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
@@ -157,7 +185,6 @@ fun ItemCompose(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(horizontal = 15.r())
             .padding(vertical = 2.r())
             .shadow(elevation = 5.r(), shape = RoundedCornerShape(16.r()), spotColor = Color.Gray),
         shape = RoundedCornerShape(16.r()),

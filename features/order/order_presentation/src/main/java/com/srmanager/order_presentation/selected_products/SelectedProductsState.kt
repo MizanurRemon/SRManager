@@ -4,4 +4,5 @@ import com.srmanager.core.network.dto.Product
 
 data class SelectedProductsState(
     var productsList: List<Product> = arrayListOf(),
+    var totalAmount : Double = 0.0
 )

@@ -1,5 +1,6 @@
 package com.srmanager.order_presentation.selected_products
 
+import android.annotation.SuppressLint
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -13,7 +14,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 
@@ -30,6 +30,7 @@ class SelectedProductsViewModel @Inject constructor(private val productsDao: Pro
         loadProducts()
     }
 
+    @SuppressLint("DefaultLocale")
     private fun loadProducts() {
 
         viewModelScope.launch(Dispatchers.Main) {
@@ -48,7 +49,10 @@ class SelectedProductsViewModel @Inject constructor(private val productsDao: Pro
                             isSelected = product.isSelected,
                             selectedItemCount = product.selectedItemCount
                         )
-                    }
+                    },
+                    totalAmount = String.format("%.2f", it.sumOf { product ->
+                        product.selectedItemTotalPrice
+                    }).toDouble()
                 )
             }
         }
@@ -63,13 +67,13 @@ class SelectedProductsViewModel @Inject constructor(private val productsDao: Pro
 
             is SelectedProductEvent.OnIncrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.updateProductItem(event.id , event.selectedItemCount+1)
+                    productsDao.updateProductItem(event.id, event.selectedItemCount + 1)
                 }
             }
 
             is SelectedProductEvent.OnDecrementEvent -> {
                 viewModelScope.launch(Dispatchers.Default) {
-                    productsDao.updateProductItem(event.id, event.selectedItemCount-1)
+                    productsDao.updateProductItem(event.id, event.selectedItemCount - 1)
                 }
             }
         }
