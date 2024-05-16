@@ -95,9 +95,9 @@ fun generatePDF(
     )
 
     val columnWidthForCustomer = listOf(
-        (pageWidth / 3).toFloat(),
-        (pageWidth / 3).toFloat(),
-        (pageWidth / 3).toFloat()
+        (pageWidth / 5).toFloat(),
+        (pageWidth / 2).toFloat(),
+        (pageWidth / 5).toFloat(),
     )
 
     val myPageInfo = PdfDocument.PageInfo.Builder(pageWidth, pageHeight, 1).create()
@@ -616,7 +616,10 @@ fun generatePDF(
 
 
         canvas.drawText(
-            "Signature", startX + columnWidths.slice(0 until 8).sum(), startY + 120f, normalTextPaint
+            "Signature",
+            startX + columnWidths.slice(0 until 8).sum(),
+            startY + 120f,
+            normalTextPaint
         )
 
         canvas.translate(

@@ -17,7 +17,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.Locale
 import javax.inject.Inject
 
 
@@ -45,39 +44,6 @@ class ProductsViewModel @Inject constructor(
             launch(Dispatchers.IO) {
 
                 orderUseCases.productsUseCases(customerId = state.customerID).onSuccess {
-                    /*state = state.copy(
-                        isLoading = false,
-                        productsList = productsDao.getProducts(state.searchKey).first()
-                            .map { product ->
-                                Product(
-                                    title = product.title,
-                                    id = product.id,
-                                    mrpPrice = product.mrpPrice,
-                                    wholeSalePrice = product.wholeSalePrice,
-                                    lastPurchasePrice = product.lastPurchasePrice,
-                                    vatPercentage = product.vatPercentage,
-                                    price = product.price,
-                                    availableQuantity = product.availableQuantity,
-                                    isSelected = product.isSelected,
-                                    selectedItemCount = product.selectedItemCount
-                                )
-                            },
-                        searchedProductList = productsDao.getProducts(state.searchKey).first()
-                            .map { product ->
-                                Product(
-                                    title = product.title,
-                                    id = product.id,
-                                    mrpPrice = product.mrpPrice,
-                                    wholeSalePrice = product.wholeSalePrice,
-                                    lastPurchasePrice = product.lastPurchasePrice,
-                                    vatPercentage = product.vatPercentage,
-                                    price = product.price,
-                                    availableQuantity = product.availableQuantity,
-                                    isSelected = product.isSelected,
-                                    selectedItemCount = product.selectedItemCount
-                                )
-                            },
-                    )*/
                 }.onFailure {
                     state = state.copy(isLoading = false)
                 }

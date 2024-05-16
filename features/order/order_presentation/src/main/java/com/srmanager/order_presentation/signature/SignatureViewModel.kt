@@ -121,7 +121,7 @@ class SignatureViewModel @Inject constructor(
                                         customerSignature = state.customerSign,
                                         outletId = state.outletID.toLong(),
                                         orderDate = state.orderDate,
-                                        totalAmount = state.total.toLong(),
+                                        totalAmount = state.total,
                                         contactNo = state.contact
                                     ),
                                     orderDetails = state.productsList.map { product ->
@@ -129,7 +129,7 @@ class SignatureViewModel @Inject constructor(
                                             productId = product.id,
                                             quantity = product.selectedItemCount.toLong(),
                                             mrp = product.mrpPrice,
-                                            totalProductAmount = product.selectedItemTotalPrice.toLong(),
+                                            totalProductAmount = product.selectedItemTotalPrice,
                                         )
                                     }
                                 )

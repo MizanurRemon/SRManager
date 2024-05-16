@@ -170,7 +170,13 @@ fun MainApp(
             composable(route = Route.OUTLET_CHECKOUT) {
                 val viewModel = hiltViewModel<OutletCheckOutViewModel>()
 
-                viewModel.onEvent(OutletCheckOutEvent.OnOutletInfoSetUp(outletID = outletDetails!!.id.toString(),latitude = outletDetails!!.latitude, longitude = outletDetails!!.longitude))
+                viewModel.onEvent(
+                    OutletCheckOutEvent.OnOutletInfoSetUp(
+                        outletID = outletDetails!!.id.toString(),
+                        latitude = outletDetails!!.latitude,
+                        longitude = outletDetails!!.longitude
+                    )
+                )
 
                 OutletCheckoutScreen(
                     onBack = {
@@ -224,11 +230,7 @@ fun MainApp(
                 OrderProductsScreen(onBack = {
                     navController.navigateUp()
                 }, onNextClick = {
-                    navController.navigate(Route.SELECTED_PRODUCTS_SCREEN) {
-                        popUpTo(Route.PRODUCTS_ITEMS) {
-                            inclusive = true
-                        }
-                    }
+                    navController.navigate(Route.SELECTED_PRODUCTS_SCREEN)
                 }, state = viewModel.state,
                     uiEvent = viewModel.uiEvent,
                     onEvent = viewModel::onEvent
@@ -253,7 +255,7 @@ fun MainApp(
                         navController.navigateUp()
                     }, onSuccess = {
                         navController.navigate(Route.OUTLET_DASHBOARD) {
-                            popUpTo(Route.SIGNATURE_SCREEN) {
+                            popUpTo(Route.PRODUCTS_ITEMS){
                                 inclusive = true
                             }
                         }
@@ -271,11 +273,7 @@ fun MainApp(
                     state = viewModel.state,
                     onEvent = viewModel::onEvent,
                     onNextClick = {
-                        navController.navigate(Route.SIGNATURE_SCREEN) {
-                            popUpTo(Route.SELECTED_PRODUCTS_SCREEN) {
-                                inclusive = true
-                            }
-                        }
+                        navController.navigate(Route.SIGNATURE_SCREEN)
                     }
                 )
             }

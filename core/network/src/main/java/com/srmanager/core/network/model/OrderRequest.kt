@@ -14,9 +14,8 @@ data class OrderRequest(
 data class OrderInformation(
     val customerSignature: String,
     val outletId: Long,
-    //val orderNo: String,
     val orderDate: String,
-    val totalAmount: Long,
+    val totalAmount: Double,
     val contactNo: String
 )
 
@@ -26,5 +25,5 @@ data class OrderDetail(
     val productId: Long,
     val quantity: Long,
     val mrp: Double,
-    val totalProductAmount: Long,
+    val totalProductAmount: Double,
 )
