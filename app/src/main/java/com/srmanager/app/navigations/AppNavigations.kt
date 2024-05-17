@@ -242,8 +242,7 @@ fun MainApp(
 
                 viewModel.onEvent(
                     SignatureEvent.OnOutletDetailsEvent(
-                        id = outletDetails!!.id,
-                        contactNo = outletDetails!!.mobileNo
+                        outletDetails = outletDetails!!
                     )
                 )
 

@@ -103,9 +103,9 @@ fun SignatureScreen(
                 .padding(20.r())
             //.verticalScroll(rememberScrollState())
         ) {
-            InfoItem(title = CommonR.string.outlet_id, value = state.outletID.toString())
+            InfoItem(title = CommonR.string.outlet_id, value = state.outlet.id.toString())
 
-            InfoItem(title = CommonR.string.contact, value = state.contact)
+            InfoItem(title = CommonR.string.contact, value = state.outlet.mobileNo)
 
             InfoItem(title = CommonR.string.date, value = state.orderDate)
 
@@ -282,7 +282,7 @@ fun InfoItem(@StringRes title: Int, value: String) {
 
         Text(
             text = value,
-            modifier = Modifier.width(100.r()),
+           // modifier = Modifier.width(100.r()),
             style = bodyXSRegularTextStyle.copy(textAlign = TextAlign.End)
         )
     }

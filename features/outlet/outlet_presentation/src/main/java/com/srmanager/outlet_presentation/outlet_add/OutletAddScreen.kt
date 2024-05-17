@@ -481,8 +481,9 @@ fun OutletAddScreen(
 
                         TextField(
                             value = state.routeName,
-                            onValueChange = {},
-                            readOnly = true,
+                            onValueChange = {
+                                onEvent(OutletAddEvent.OnRouteType(it))
+                            },
                             trailingIcon = {
                                 Icon(
                                     if (state.isRouteNameExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
@@ -1027,7 +1028,10 @@ fun OutletAddScreen(
                             onCheckedChange = {
                                 onEvent(OutletAddEvent.OnIsBillingAddressSameAsAddressEvent(it))
                             },
-                            colors = CheckboxDefaults.colors(checkedColor = APP_DEFAULT_COLOR, uncheckedColor = APP_DEFAULT_COLOR),
+                            colors = CheckboxDefaults.colors(
+                                checkedColor = APP_DEFAULT_COLOR,
+                                uncheckedColor = APP_DEFAULT_COLOR
+                            ),
                         )
                     }
 

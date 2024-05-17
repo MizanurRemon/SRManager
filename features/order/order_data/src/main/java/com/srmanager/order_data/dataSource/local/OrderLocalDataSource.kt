@@ -1,5 +1,6 @@
 package com.srmanager.order_data.dataSource.local
 
+import com.srmanager.database.entity.LocationEntity
 import com.srmanager.database.entity.ProductsEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -11,4 +12,5 @@ interface OrderLocalDataSource {
     suspend fun updateProductItem(id: Long, itemCount: Int)
     suspend fun getSelectedProducts(): Flow<List<ProductsEntity>>
     suspend fun deleteAll()
+    suspend fun getLocation(): Flow<List<LocationEntity>>
 }

@@ -2,7 +2,6 @@ package com.srmanager.outlet_presentation.outlet_add
 
 import com.srmanager.core.common.util.ETHNICITIES
 import com.srmanager.core.common.util.PAYMENT_OPTIONS
-import com.srmanager.core.common.util.ROUTE_NAMES
 import com.srmanager.core.network.dto.MarketItem
 
 data class OutletAddState(
@@ -19,7 +18,7 @@ data class OutletAddState(
     val longitude: String = "",
     val ethnicity: String = ETHNICITIES[0],
     val paymentOption: String = PAYMENT_OPTIONS[0],
-    val routeName: String = ROUTE_NAMES[0],
+    val routeName: String = "",
     val marketName: String = "",
     val email: String = "",
     val marketID : Int = 0,

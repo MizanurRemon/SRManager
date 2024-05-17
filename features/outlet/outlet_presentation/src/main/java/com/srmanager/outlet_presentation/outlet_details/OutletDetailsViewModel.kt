@@ -12,6 +12,7 @@ import com.srmanager.core.common.util.ROUTE_NAMES
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.fileImageUriToBase64
+import com.srmanager.core.common.util.routeNameFinalize
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletAddModel
 import com.srmanager.outlet_domain.use_cases.OutletUseCases
@@ -299,7 +300,10 @@ class OutletDetailsViewModel @Inject constructor(
             is OutletDetailsEvent.OnRouteNameSelection -> {
                 state = state.copy(
                     isRouteNameExpanded = false,
-                    routeName = event.value
+                    routeName = state.routeName.removePrefix(", ") + routeNameFinalize(
+                        state.routeName,
+                        event.value
+                    )
                 )
             }
 
@@ -336,6 +340,12 @@ class OutletDetailsViewModel @Inject constructor(
                     // Fetch outlet details only if the outlet ID has changed
                     getOutletDetails(event.outletID.toString())
                 }
+            }
+
+            is OutletDetailsEvent.OnRouteType -> {
+                state = state.copy(
+                    routeName = event.value
+                )
             }
 
         }

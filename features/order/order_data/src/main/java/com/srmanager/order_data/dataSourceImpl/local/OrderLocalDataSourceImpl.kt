@@ -1,11 +1,16 @@
 package com.srmanager.order_data.dataSourceImpl.local
 
+import com.srmanager.database.dao.LocationDao
 import com.srmanager.database.dao.ProductsDao
+import com.srmanager.database.entity.LocationEntity
 import com.srmanager.database.entity.ProductsEntity
 import com.srmanager.order_data.dataSource.local.OrderLocalDataSource
 import kotlinx.coroutines.flow.Flow
 
-class OrderLocalDataSourceImpl(private val productsDao: ProductsDao) : OrderLocalDataSource {
+class OrderLocalDataSourceImpl(
+    private val productsDao: ProductsDao,
+    private val locationDao: LocationDao
+) : OrderLocalDataSource {
     override suspend fun insertProducts(productEntity: List<ProductsEntity>) {
         productsDao.insertProducts(productEntity)
     }
@@ -15,7 +20,7 @@ class OrderLocalDataSourceImpl(private val productsDao: ProductsDao) : OrderLoca
     }
 
     override suspend fun updateIsSelectedStatus(id: Long, isSelected: Boolean) {
-       productsDao.updateIsSelectedStatus(id = id, isSelected = isSelected)
+        productsDao.updateIsSelectedStatus(id = id, isSelected = isSelected)
     }
 
     override suspend fun getSelectedItemCount(): Flow<Int> {
@@ -23,7 +28,7 @@ class OrderLocalDataSourceImpl(private val productsDao: ProductsDao) : OrderLoca
     }
 
     override suspend fun updateProductItem(id: Long, itemCount: Int) {
-       productsDao.updateProductItem(id = id, itemCount = itemCount)
+        productsDao.updateProductItem(id = id, itemCount = itemCount)
     }
 
     override suspend fun getSelectedProducts(): Flow<List<ProductsEntity>> {
@@ -32,5 +37,9 @@ class OrderLocalDataSourceImpl(private val productsDao: ProductsDao) : OrderLoca
 
     override suspend fun deleteAll() {
         productsDao.deleteAll()
+    }
+
+    override suspend fun getLocation(): Flow<List<LocationEntity>> {
+        return locationDao.getLocation()
     }
 }

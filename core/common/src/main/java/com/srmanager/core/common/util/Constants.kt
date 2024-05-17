@@ -42,8 +42,14 @@ val PAYMENT_OPTIONS = listOf(
 )
 
 val ROUTE_NAMES = listOf(
-    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
+    "SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"
 )
+
+enum class RouteName(val value: String) {
+    SUNDAY("SUN"), MONDAY("MON"), TUESDAY("TUE"), WEDNESDAY("WED"), THURSDAY("THU"), FRIDAY("FRI"), SATURDAY(
+        "SAT"
+    )
+}
 
 val MARKET_NAMES = listOf("Jamuna", "Basundhara", "Gulisthan", "DOHS Shopping Mall")
 
@@ -151,5 +157,20 @@ fun calculationDistance(
         return String.format("%.2f", distance).toDouble()
     } catch (e: Exception) {
         return 0.0
+    }
+}
+
+fun routeNameFinalize(existingRouteName: String, newRoute: String): String {
+    return when {
+        !existingRouteName.contains(RouteName.valueOf(newRoute).value) -> {
+            when {
+                existingRouteName.isNotEmpty() -> ", ${RouteName.valueOf(newRoute).value}"
+                else -> RouteName.valueOf(newRoute).value
+            }
+        }
+
+        else -> {
+            ""
+        }
     }
 }

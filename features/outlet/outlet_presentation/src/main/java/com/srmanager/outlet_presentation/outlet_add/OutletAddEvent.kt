@@ -28,4 +28,5 @@ sealed class OutletAddEvent {
     data class OnRouteNameSelection(val value: String): OutletAddEvent()
     object OnMarketNameDropDownClick: OutletAddEvent()
     data class OnMarketNameSelection(val value: String): OutletAddEvent()
+    data class OnRouteType(val value: String): OutletAddEvent()
 }

@@ -6,15 +6,16 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.auth_presentation.isEmailValid
-import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import com.srmanager.core.common.util.ETHNICITIES
 import com.srmanager.core.common.util.PAYMENT_OPTIONS
 import com.srmanager.core.common.util.ROUTE_NAMES
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.fileImageUriToBase64
+import com.srmanager.core.common.util.routeNameFinalize
 import com.srmanager.database.dao.LocationDao
 import com.srmanager.outlet_domain.model.OutletAddModel
+import com.srmanager.outlet_domain.use_cases.OutletUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -72,7 +73,7 @@ class OutletAddViewModel @Inject constructor(
                         isOutletNameError = state.outletName.isEmpty(),
                         isOwnerNameError = state.ownerName.isEmpty(),
                         isBirthDateError = state.birthdate.isEmpty(),
-                        isPhone1Error = state.phone1.isEmpty() ,//|| !isPhoneNumberValid(state.phone1),
+                        isPhone1Error = state.phone1.isEmpty(),//|| !isPhoneNumberValid(state.phone1),
                         //isPhone2Error = state.phone2.isNotEmpty() && !isPhoneNumberValid(state.phone2),
                         isTradeLicenseError = state.tradeLicense.isEmpty(),
                         isVatTrnError = state.vatTRN.isEmpty(),
@@ -189,7 +190,7 @@ class OutletAddViewModel @Inject constructor(
             is OutletAddEvent.OnMobileNo2Enter -> {
                 state = state.copy(
                     phone2 = event.value,
-                   // isPhone2Error = event.value.isNotEmpty() && !isPhoneNumberValid(event.value)
+                    // isPhone2Error = event.value.isNotEmpty() && !isPhoneNumberValid(event.value)
                 )
             }
 
@@ -215,14 +216,14 @@ class OutletAddViewModel @Inject constructor(
                 state = state.copy(address = event.value)
             }
 
-            is OutletAddEvent.OnBillingAddressEnter-> {
+            is OutletAddEvent.OnBillingAddressEnter -> {
                 state = state.copy(billingAddress = event.value)
             }
 
-            is OutletAddEvent.OnIsBillingAddressSameAsAddressEvent-> {
+            is OutletAddEvent.OnIsBillingAddressSameAsAddressEvent -> {
                 state = state.copy(
                     isBillingAddressSameAsAddress = event.value,
-                    billingAddress = if(event.value) state.address else ""
+                    billingAddress = if (event.value) state.address else ""
                 )
             }
 
@@ -268,7 +269,10 @@ class OutletAddViewModel @Inject constructor(
             is OutletAddEvent.OnRouteNameSelection -> {
                 state = state.copy(
                     isRouteNameExpanded = false,
-                    routeName = event.value
+                    routeName = state.routeName.removePrefix(", ") + routeNameFinalize(
+                        state.routeName,
+                        event.value
+                    )
                 )
             }
 
@@ -293,6 +297,12 @@ class OutletAddViewModel @Inject constructor(
             is OutletAddEvent.OnMarketNameDropDownClick -> {
                 state = state.copy(
                     isMarketNameExpanded = !state.isMarketNameExpanded
+                )
+            }
+
+            is OutletAddEvent.OnRouteType -> {
+                state = state.copy(
+                    routeName = event.value
                 )
             }
 

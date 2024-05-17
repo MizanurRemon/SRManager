@@ -87,10 +87,10 @@ fun generatePDF(
     val normalText = Paint()
 
     val columnWidthForSalesMan = listOf(
-        (pageWidth / 5).toFloat(),
-        (pageWidth / 5).toFloat(),
-        (pageWidth / 5).toFloat(),
-        (pageWidth / 5).toFloat(),
+        (pageWidth / 6).toFloat(),
+        (pageWidth / 6).toFloat(),
+        (pageWidth / 8).toFloat(),
+        (pageWidth / 8).toFloat(),
         (pageWidth / 5).toFloat(),
     )
 

@@ -85,7 +85,7 @@ fun OutletDetailsScreen(
     snackbarHostState: SnackbarHostState,
     state: OutletDetailsState,
     uiEvent: Flow<UiEvent>,
-    onEvent: (OutletDetailsEvent)-> Unit,
+    onEvent: (OutletDetailsEvent) -> Unit,
 ) {
     val context = LocalContext.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -126,12 +126,13 @@ fun OutletDetailsScreen(
     }
 
 
-
     /*LaunchedEffect(key1 = true) {
         getOutletDetails(outletID = outletDetails!!.id.toString())
     }*/
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .background(color = Color.White)) {
         AppToolbarCompose(
             onClick = { onBack() },
             icon = DesignSystemR.drawable.ic_back,
@@ -357,7 +358,13 @@ fun OutletDetailsScreen(
                         style = subHeading1TextStyle.copy(color = Color.Black)
                     )
 
-                    Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.r())
+                            .background(color = Color.Black)
+                            .height(1.r())
+                    )
                     state.marketNameList.forEach { response ->
                         DropdownMenuItem(text = {
                             Text(
@@ -441,7 +448,13 @@ fun OutletDetailsScreen(
                         style = subHeading1TextStyle.copy(color = Color.Black)
                     )
 
-                    Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.r())
+                            .background(color = Color.Black)
+                            .height(1.r())
+                    )
                     ETHNICITIES.forEach { label ->
                         DropdownMenuItem(text = {
                             Text(
@@ -473,8 +486,9 @@ fun OutletDetailsScreen(
 
                 TextField(
                     value = state.routeName,
-                    onValueChange = {},
-                    readOnly = true,
+                    onValueChange = {
+                        onEvent(OutletDetailsEvent.OnRouteType(it))
+                    },
                     trailingIcon = {
                         Icon(
                             if (state.isRouteNameExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
@@ -526,7 +540,13 @@ fun OutletDetailsScreen(
                         style = subHeading1TextStyle.copy(color = Color.Black)
                     )
 
-                    Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.r())
+                            .background(color = Color.Black)
+                            .height(1.r())
+                    )
                     ROUTE_NAMES.forEach { label ->
                         DropdownMenuItem(text = {
                             Text(
@@ -920,7 +940,13 @@ fun OutletDetailsScreen(
                         style = subHeading1TextStyle.copy(color = Color.Black)
                     )
 
-                    Spacer(modifier = Modifier.fillMaxWidth().padding(top = 10.r()).background(color = Color.Black).height(1.r()))
+                    Spacer(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 10.r())
+                            .background(color = Color.Black)
+                            .height(1.r())
+                    )
                     PAYMENT_OPTIONS.forEach { label ->
                         DropdownMenuItem(text = {
                             Text(
@@ -1163,7 +1189,7 @@ fun PreviewOutletDetailsScreen() {
         onBack = {},
         snackbarHostState = snackBarHostState,
         state = OutletDetailsState(),
-        uiEvent = flow {  },
+        uiEvent = flow { },
         onEvent = {},
     )
 }

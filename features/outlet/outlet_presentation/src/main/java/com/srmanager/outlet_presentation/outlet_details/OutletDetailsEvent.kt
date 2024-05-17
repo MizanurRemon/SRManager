@@ -4,7 +4,7 @@ import android.content.ContentResolver
 import android.net.Uri
 
 sealed class OutletDetailsEvent {
-    data class OnOutletIdSetup (val outletID : Int): OutletDetailsEvent()
+    data class OnOutletIdSetup(val outletID: Int) : OutletDetailsEvent()
     data class OnSubmitButtonClick(val outletID: String) : OutletDetailsEvent()
     data class OnOutletNameEnter(val value: String) : OutletDetailsEvent()
     data class OnOwnerNameEnter(val value: String) : OutletDetailsEvent()
@@ -20,14 +20,16 @@ sealed class OutletDetailsEvent {
     data class OnBillingAddressEnter(val value: String) : OutletDetailsEvent()
     data class OnImageSelection(val value: Uri, val contentResolver: ContentResolver) :
         OutletDetailsEvent()
-    object OnGettingCurrentLocation: OutletDetailsEvent()
-    data class OnEmailEnter(val value: String): OutletDetailsEvent()
+
+    object OnGettingCurrentLocation : OutletDetailsEvent()
+    data class OnEmailEnter(val value: String) : OutletDetailsEvent()
     object OnEthnicityDropDownClick : OutletDetailsEvent()
-    data class OnEthnicitySelection(val value: String): OutletDetailsEvent()
-    data class OnPaymentOptionSelection(val value : String): OutletDetailsEvent()
-    object OnPaymentDropDownClick: OutletDetailsEvent()
-    object OnRouteNameDropDownClick: OutletDetailsEvent()
-    data class OnRouteNameSelection(val value: String): OutletDetailsEvent()
-    object OnMarketNameDropDownClick: OutletDetailsEvent()
-    data class OnMarketNameSelection(val value: String): OutletDetailsEvent()
+    data class OnEthnicitySelection(val value: String) : OutletDetailsEvent()
+    data class OnPaymentOptionSelection(val value: String) : OutletDetailsEvent()
+    object OnPaymentDropDownClick : OutletDetailsEvent()
+    object OnRouteNameDropDownClick : OutletDetailsEvent()
+    data class OnRouteNameSelection(val value: String) : OutletDetailsEvent()
+    object OnMarketNameDropDownClick : OutletDetailsEvent()
+    data class OnMarketNameSelection(val value: String) : OutletDetailsEvent()
+    data class OnRouteType(val value: String) : OutletDetailsEvent()
 }
