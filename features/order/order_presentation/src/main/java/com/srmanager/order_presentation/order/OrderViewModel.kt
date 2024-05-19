@@ -53,7 +53,9 @@ class OrderViewModel @Inject constructor(
                 state = state.copy(
                     isLoading = false,
                     orderList = it.data,
-                    searchedOrderList = it.data
+                    searchedOrderList = it.data.filter {order->
+                        order.orderDate.contains(state.searchText)
+                    }
                 )
             }.onFailure {
                 state = state.copy(
@@ -102,7 +104,7 @@ class OrderViewModel @Inject constructor(
 
             is OrderEvent.OnSearchEvent -> {
                 viewModelScope.launch {
-                    withContext(Dispatchers.Main){
+                    withContext(Dispatchers.Main) {
                         state = state.copy(
                             searchText = event.key
                         )

@@ -2,6 +2,8 @@ package com.srmanager.order_presentation.order
 
 import com.srmanager.core.network.dto.Order
 import com.srmanager.order_domain.model.OrderDetailsResponse
+import java.text.SimpleDateFormat
+import java.util.Date
 
 data class OrderState(
     val isLoading: Boolean = false,
@@ -27,6 +29,6 @@ data class OrderState(
         market = "",
         route = ""
     ),
-    val searchText : String = "",
+    val searchText : String = SimpleDateFormat("dd-MM-yyyy").format(Date()),
     val showCalenderDialog : Boolean = false
 )
