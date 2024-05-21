@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -43,7 +44,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -121,7 +121,7 @@ fun OrderScreen(
 
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(54.r())
+                    .wrapContentHeight()
                     .clip(RoundedCornerShape(10.r()))
                     .border(
                         width = 1.r(),
@@ -132,7 +132,7 @@ fun OrderScreen(
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.search_order),
-                        style = TextStyle(
+                        style = bodyRegularTextStyle.copy(
                             color = ColorTextFieldPlaceholder,
                         )
                     )

@@ -47,7 +47,6 @@ import androidx.compose.ui.platform.SoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -109,6 +108,7 @@ fun OrderProductsScreen(
             Spacer(modifier = Modifier.height(10.r()))
 
             TextField(
+                singleLine = true,
                 value = state.searchKey,
                 onValueChange = {
                     onEvent(ProductsEvent.OnSearchEvent(it))
@@ -130,18 +130,18 @@ fun OrderProductsScreen(
                 }),
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(54.dp)
-                    .clip(RoundedCornerShape(10.dp))
+                    .wrapContentHeight()
+                    .clip(RoundedCornerShape(10.r()))
                     .border(
-                        width = 1.dp,
-                        shape = RoundedCornerShape(10.dp),
+                        width = 1.r(),
+                        shape = RoundedCornerShape(10.r()),
                         color = Color.LightGray
                     ),
 
                 placeholder = {
                     Text(
                         text = stringResource(id = CommonR.string.search_products),
-                        style = TextStyle(
+                        style = bodyRegularTextStyle.copy(
                             color = ColorTextFieldPlaceholder,
                         )
                     )

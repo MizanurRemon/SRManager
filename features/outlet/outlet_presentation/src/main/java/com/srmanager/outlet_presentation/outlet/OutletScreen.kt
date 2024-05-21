@@ -33,7 +33,6 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -54,7 +53,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -77,7 +75,7 @@ import com.srmanager.core.network.dto.Outlet
 import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
 
-@OptIn(ExperimentalComposeUiApi::class, ExperimentalMaterial3Api::class)
+@OptIn(ExperimentalComposeUiApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OutletScreen(
@@ -173,17 +171,17 @@ fun OutletScreen(
                         .fillMaxWidth()
                         .wrapContentHeight()
                         //.height(54.dp)
-                        .clip(RoundedCornerShape(10.dp))
+                        .clip(RoundedCornerShape(10.r()))
                         .border(
-                            width = 1.dp,
-                            shape = RoundedCornerShape(10.dp),
+                            width = 1.r(),
+                            shape = RoundedCornerShape(10.r()),
                             color = Color.LightGray
                         ),
 
                     placeholder = {
                         Text(
                             text = stringResource(id = CommonR.string.search),
-                            style = TextStyle(
+                            style = bodyRegularTextStyle.copy(
                                 color = ColorTextFieldPlaceholder,
                             )
                         )
