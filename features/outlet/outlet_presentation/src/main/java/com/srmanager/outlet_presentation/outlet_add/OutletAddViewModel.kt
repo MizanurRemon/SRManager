@@ -53,10 +53,12 @@ class OutletAddViewModel @Inject constructor(
             launch {
 
                 outletUseCases.outletMarketUseCase().onSuccess {
-                    state = state.copy(
-                        marketName = it.data.first().text ?: "",
-                        marketNameList = it.data
-                    )
+                    if(it.data.isNotEmpty()){
+                        state = state.copy(
+                            marketName = it.data.first().text ?: "",
+                            marketNameList = it.data
+                        )
+                    }
                 }.onFailure { }
             }
         }
