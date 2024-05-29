@@ -158,9 +158,7 @@ class OutletDetailsViewModel @Inject constructor(
                                 address = state.address,
                                 latitude = state.latitude,
                                 longitude = state.longitude,
-                                marketID = state.marketNameList.first {
-                                    it.text.toString().equals(state.marketName, ignoreCase = true)
-                                }.id ?: 0,
+                                marketID = state.marketID,
                                 ethnicity = state.ethnicity,
                                 email = state.email,
                                 routeName = state.routeName,

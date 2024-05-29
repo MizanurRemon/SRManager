@@ -53,7 +53,7 @@ class OutletAddViewModel @Inject constructor(
             launch {
 
                 outletUseCases.outletMarketUseCase().onSuccess {
-                    if(it.data.isNotEmpty()){
+                    if (it.data.isNotEmpty()) {
                         state = state.copy(
                             marketName = it.data.first().text ?: "",
                             marketNameList = it.data
@@ -104,12 +104,7 @@ class OutletAddViewModel @Inject constructor(
                                 address = state.address,
                                 latitude = state.latitude,
                                 longitude = state.longitude,
-                                marketID = state.marketNameList.first {
-                                    it.text.toString().lowercase(Locale.ROOT).equals(
-                                        state.marketName.lowercase(Locale.ROOT),
-                                        ignoreCase = true
-                                    )
-                                }.id ?: 0,
+                                marketID = state.marketID,
                                 ethnicity = state.ethnicity,
                                 email = state.email,
                                 routeName = state.routeName,
@@ -132,8 +127,8 @@ class OutletAddViewModel @Inject constructor(
                                 address = "",
                                 email = "",
                                 paymentOption = PAYMENT_OPTIONS[0],
-                                marketID = state.marketNameList.first().id!!.toInt(),
-                                marketName = state.marketNameList.first().text.toString(),
+                                marketID = state.marketNameList.first().id ?: 0,
+                                marketName = state.marketNameList.first().text ?: "",
                                 ethnicity = ETHNICITIES[0],
                                 routeName = ROUTE_NAMES[0]
                             )
@@ -291,7 +286,7 @@ class OutletAddViewModel @Inject constructor(
                     marketID = state.marketNameList.first {
                         it.text.toString().lowercase(Locale.ROOT)
                             .equals(event.value.lowercase(Locale.ROOT), ignoreCase = true)
-                    }.id!!.toInt(),
+                    }.id ?: 0,
                     marketName = event.value
                 )
             }
