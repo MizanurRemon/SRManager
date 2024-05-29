@@ -82,12 +82,13 @@ class OutletAddViewModel @Inject constructor(
                         isImageError = state.image.isEmpty(),
                         isLoading = false,
                         isEmailError = state.email.isEmpty() || !isEmailValid(state.email),
-                        isExpiryDateError = state.tlcExpiryDate.isEmpty()
+                        isExpiryDateError = state.tlcExpiryDate.isEmpty(),
+                        isMarketSelectedError = state.marketName.isEmpty()
                     )
 
                     if (!state.isOutletNameError && !state.isOwnerNameError
                         && !state.isBirthDateError && !state.isPhone1Error && !state.isTradeLicenseError
-                        && !state.isVatTrnError && !state.isImageError && !state.isEmailError
+                        && !state.isVatTrnError && !state.isImageError && !state.isEmailError && !state.isMarketSelectedError
                     ) {
                         state = state.copy(isLoading = true)
                         outletUseCases.outletAddUseCase(

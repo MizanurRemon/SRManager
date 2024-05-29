@@ -57,9 +57,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.srmanager.core.common.util.ETHNICITIES
-import com.srmanager.core.common.util.MARKET_NAMES
 import com.srmanager.core.common.util.PAYMENT_OPTIONS
 import com.srmanager.core.common.util.ROUTE_NAMES
 import com.srmanager.core.common.util.UiEvent
@@ -172,11 +170,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isOutletNameError) Color.Red else Color.LightGray
                             ),
 
@@ -218,11 +216,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isOwnerNameError) Color.Red else Color.LightGray
                             ),
 
@@ -263,11 +261,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isEmailError) Color.Red else Color.LightGray
                             ),
 
@@ -321,16 +319,16 @@ fun OutletAddScreen(
                             modifier = Modifier
                                 .menuAnchor()
                                 .fillMaxWidth()
-                                .height(54.dp)
-                                .clip(RoundedCornerShape(10.dp))
+                                //.height(54.r())
+                                .clip(RoundedCornerShape(10.r()))
                                 .border(
-                                    width = 1.dp,
-                                    shape = RoundedCornerShape(10.dp),
-                                    color = Color.LightGray
+                                    width = 1.r(),
+                                    shape = RoundedCornerShape(10.r()),
+                                    color = if(state.isMarketSelectedError) Color.Red else Color.LightGray
                                 ),
                             placeholder = {
                                 Text(
-                                    text = MARKET_NAMES[0],
+                                    text = stringResource(id = CommonR.string.select_market),
                                     style = TextStyle(
                                         color = ColorTextFieldPlaceholder,
                                     )
@@ -412,11 +410,11 @@ fun OutletAddScreen(
                             modifier = Modifier
                                 .menuAnchor()
                                 .fillMaxWidth()
-                                .height(54.dp)
-                                .clip(RoundedCornerShape(10.dp))
+                                //.height(54.r())
+                                .clip(RoundedCornerShape(10.r()))
                                 .border(
-                                    width = 1.dp,
-                                    shape = RoundedCornerShape(10.dp),
+                                    width = 1.r(),
+                                    shape = RoundedCornerShape(10.r()),
                                     color = Color.LightGray
                                 ),
                             placeholder = {
@@ -504,11 +502,11 @@ fun OutletAddScreen(
                             modifier = Modifier
                                 .menuAnchor()
                                 .fillMaxWidth()
-                                .height(54.dp)
-                                .clip(RoundedCornerShape(10.dp))
+                                //.height(54.r())
+                                .clip(RoundedCornerShape(10.r()))
                                 .border(
-                                    width = 1.dp,
-                                    shape = RoundedCornerShape(10.dp),
+                                    width = 1.r(),
+                                    shape = RoundedCornerShape(10.r()),
                                     color = Color.LightGray
                                 ),
                             placeholder = {
@@ -585,11 +583,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isBirthDateError) Color.Red else Color.LightGray
                             ),
 
@@ -644,11 +642,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isPhone1Error) Color.Red else Color.LightGray
                             ),
 
@@ -693,11 +691,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isPhone2Error) Color.Red else Color.LightGray
                             ),
 
@@ -741,11 +739,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isTradeLicenseError) Color.Red else Color.LightGray
                             ),
 
@@ -789,11 +787,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isExpiryDateError) Color.Red else Color.LightGray
                             ),
 
@@ -848,11 +846,11 @@ fun OutletAddScreen(
 
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = if (state.isVatTrnError) Color.Red else Color.LightGray
                             ),
 
@@ -906,11 +904,11 @@ fun OutletAddScreen(
                             modifier = Modifier
                                 .menuAnchor()
                                 .fillMaxWidth()
-                                .height(54.dp)
-                                .clip(RoundedCornerShape(10.dp))
+                                //.height(54.r())
+                                .clip(RoundedCornerShape(10.r()))
                                 .border(
-                                    width = 1.dp,
-                                    shape = RoundedCornerShape(10.dp),
+                                    width = 1.r(),
+                                    shape = RoundedCornerShape(10.r()),
                                     color = Color.LightGray
                                 ),
                             placeholder = {
@@ -988,11 +986,11 @@ fun OutletAddScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight()
-                            //.height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = Color.LightGray
                             ),
 
@@ -1059,11 +1057,11 @@ fun OutletAddScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .wrapContentHeight()
-                            //.height(54.dp)
-                            .clip(RoundedCornerShape(10.dp))
+                            //.height(54.r())
+                            .clip(RoundedCornerShape(10.r()))
                             .border(
-                                width = 1.dp,
-                                shape = RoundedCornerShape(10.dp),
+                                width = 1.r(),
+                                shape = RoundedCornerShape(10.r()),
                                 color = Color.LightGray
                             ),
 

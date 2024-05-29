@@ -57,7 +57,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.srmanager.core.common.util.ETHNICITIES
-import com.srmanager.core.common.util.MARKET_NAMES
 import com.srmanager.core.common.util.PAYMENT_OPTIONS
 import com.srmanager.core.common.util.ROUTE_NAMES
 import com.srmanager.core.common.util.UiEvent
@@ -130,9 +129,11 @@ fun OutletDetailsScreen(
         getOutletDetails(outletID = outletDetails!!.id.toString())
     }*/
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .background(color = Color.White)) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color.White)
+    ) {
         AppToolbarCompose(
             onClick = { onBack() },
             icon = DesignSystemR.drawable.ic_back,
@@ -336,7 +337,7 @@ fun OutletDetailsScreen(
                         ),
                     placeholder = {
                         Text(
-                            text = MARKET_NAMES[0],
+                            text = stringResource(id = CommonR.string.select_market),
                             style = TextStyle(
                                 color = ColorTextFieldPlaceholder,
                             )

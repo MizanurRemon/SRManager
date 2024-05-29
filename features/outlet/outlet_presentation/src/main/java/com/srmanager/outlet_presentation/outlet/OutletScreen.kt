@@ -31,7 +31,6 @@ import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
@@ -49,6 +48,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -220,7 +220,7 @@ fun OutletScreen(
                         val lazyColumnListState = rememberLazyListState()
                         LazyColumn(
                             state = lazyColumnListState,
-                            modifier = Modifier.padding(bottom = 20.dp)
+                            modifier = Modifier.padding(10.r())
                         ) {
                             items(viewModel.state.outletList.size) { index ->
                                 Spacer(modifier = Modifier.height(10.r()))
@@ -241,6 +241,7 @@ fun OutletScreen(
                     }
 
                 }
+
             }
         }
     )
@@ -263,10 +264,12 @@ fun ItemCompose(
             .fillMaxWidth()
             .clickable {
                 onItemClick(response)
-            },
-        elevation = CardDefaults.cardElevation(
-            defaultElevation = 2.dp
-        )
+            }
+            .shadow(
+                elevation = 4.r(),
+                shape = RoundedCornerShape(15.r()),
+                spotColor = Color.LightGray
+            ),
     ) {
         Row(
             modifier = Modifier
@@ -395,16 +398,29 @@ fun ItemCompose(
     }
 }
 
-/*@Composable
+@Composable
 @Preview
 fun previewItemCompose() {
+
+    val outlet = Outlet(
+        id = 0,
+        customerId = 0,
+        outletName = "Bismillah Traders",
+        address = "South Bishil, Mirpur 1",
+        latitude = "",
+        longitude = "",
+        mobileNo = "",
+        outletImage = "",
+        ownerName = "Aman Ullah",
+        billingAddress = ""
+    )
     ItemCompose(
-        response = OUTLET_LIST[0],
+        response = outlet,
         index = 1,
         onItemClick = {},
         onLocationClick = {}
     ) {}
-}*/
+}
 
 @Composable
 @Preview

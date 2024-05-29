@@ -51,9 +51,6 @@ enum class RouteName(val value: String) {
     )
 }
 
-val MARKET_NAMES = listOf("Jamuna", "Basundhara", "Gulisthan", "DOHS Shopping Mall")
-
-
 fun intent(browserPackage: String, redirectUrl: String): Intent {
     return try {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(addPrefixToUrl(redirectUrl)))

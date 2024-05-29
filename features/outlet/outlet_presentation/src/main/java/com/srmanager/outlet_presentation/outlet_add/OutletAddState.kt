@@ -42,5 +42,6 @@ data class OutletAddState(
     val marketNameList: List<MarketItem> = emptyList(),
     val isEmailError: Boolean = false,
     val isEthnicityError: Boolean = false,
-    val isEthnicityExpanded: Boolean = false
+    val isEthnicityExpanded: Boolean = false,
+    val isMarketSelectedError: Boolean = false
 )
