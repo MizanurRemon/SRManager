@@ -9,8 +9,14 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="new">
-      <change beforePath="$PROJECT_DIR$/keystore.properties" beforeDir="false" afterPath="$PROJECT_DIR$/keystore.properties" afterDir="false" />
+    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/app/release/SRM_200624_1228.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/SRM_200624_0959.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/release/output-metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/ui/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/ui/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/repository/AuthRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/repository/AuthRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keystore.jks" beforeDir="false" afterPath="$PROJECT_DIR$/keystore.jks" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -1020,7 +1026,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="411" />
+    <option name="localTasksCounter" value="412" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
