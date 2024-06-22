@@ -673,7 +673,7 @@ fun generatePDF(
 }
 
 @SuppressLint("SimpleDateFormat")
-fun generateFileName(fileName: String): String {
+private fun generateFileName(fileName: String): String {
     return fileName + SimpleDateFormat("yyMMddHHmmss").format(Calendar.getInstance().time)
 }
 
@@ -700,7 +700,7 @@ private fun Canvas.drawTableRow(
     }
 }
 
-fun drawableToBitmap(drawable: Drawable): Bitmap? {
+private fun drawableToBitmap(drawable: Drawable): Bitmap? {
     if (drawable is BitmapDrawable) {
         return drawable.bitmap
     }
