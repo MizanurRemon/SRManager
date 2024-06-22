@@ -28,8 +28,8 @@ import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
-const val pageHeight = 1120
-const val pageWidth = 792
+private const val pageHeight = 1120
+private const val pageWidth = 792
 private const val rowHeight = 30f // Adjust row height as needed
 private val columnWidths = listOf(
     (pageWidth / 12).toFloat(),
