@@ -151,23 +151,9 @@ fun ItemCompose(
             append("${product.availableQuantity}")
         }
 
-        withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | " + stringResource(id = CommonR.string.price) + ": ")
-        }
-
-
-        withStyle(
-            style = SpanStyle(
-                color = Color.Black,
-                fontWeight = FontWeight.W700,
-            )
-        ) {
-            append("${product.price}")
-        }
-
 
         withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | " + stringResource(id = CommonR.string.mrp_price) + ": ")
+            append(" | " + stringResource(id = CommonR.string.unit_price) + ": ")
         }
 
 
