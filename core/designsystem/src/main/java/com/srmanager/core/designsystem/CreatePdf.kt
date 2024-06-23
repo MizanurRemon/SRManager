@@ -118,21 +118,6 @@ fun generatePdf2(context: Context, orderDetails: OrderDetailsResponse) {
     }
 }
 
-val orderItems = List(50) { index ->
-    OrderItemResponse(
-        productCode = "PC${1000 + index}",
-        productName = "Product ${index + 1}",
-        unit = "pcs",
-        quantity = (10 + index).toLong(),
-        mrp = 100.0 + index,
-        price = 90.0 + index,
-        discountAmount = (10 + index).toLong(),
-        discountPercentage = (10 + index).toLong(),
-        afterDiscount = 80.0 + index,
-        vatAmount = (5 + index).toLong(),
-        netAmount = 85.0 + index
-    )
-}
 @SuppressLint("SimpleDateFormat")
 private fun generateFileName(fileName: String): String {
     return fileName + SimpleDateFormat("yyMMddHHmmss").format(Calendar.getInstance().time)
