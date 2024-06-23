@@ -10,8 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/CreatePDF.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/CreatePdf.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/PublicNetworkModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/PublicNetworkModule.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order/OrderViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -22,7 +24,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=33220fdb)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/home/remon/.android/avd/Resizable_Experimental_API_33.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -1022,7 +1024,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="415" />
+    <option name="localTasksCounter" value="416" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
