@@ -482,7 +482,7 @@ fun generatePDF(
         // Draw header
         drawTableRow(
             startX, startY, boldTextPaint, listOf(
-                "Code", "Title", "Qty", "MRP", "Dis. %", "Dis. Amt", "After Dis.", "GST", "Net Amt"
+                "Code", "Title", "Qty", "Unit Price", "Dis. %", "Dis. Amt", "After Dis.", "GST", "Net Amt"
             ), true, columnWidths
         )
 
