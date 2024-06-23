@@ -12,7 +12,7 @@ import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.bitMapToString
 import com.srmanager.core.common.util.calculationDistance
-import com.srmanager.core.designsystem.generatePDF
+import com.srmanager.core.designsystem.generatePdf
 import com.srmanager.core.network.dto.Product
 import com.srmanager.core.network.model.OrderDetail
 import com.srmanager.core.network.model.OrderInformation
@@ -230,7 +230,7 @@ class SignatureViewModel @Inject constructor(
             }
 
             is SignatureEvent.OnPdfGenerate -> {
-                generatePDF(event.context, state.orderDetails)
+                generatePdf(event.context, state.orderDetails)
             }
         }
     }

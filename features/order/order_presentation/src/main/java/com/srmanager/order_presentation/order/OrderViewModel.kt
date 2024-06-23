@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
-import com.srmanager.core.designsystem.generatePdf2
+import com.srmanager.core.designsystem.generatePdf
 import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -87,7 +87,7 @@ class OrderViewModel @Inject constructor(
                                 orderDetails = response
                             )
                             //generatePDF2(event.context, response)
-                            generatePdf2(event.context, response)
+                            generatePdf(event.context, response)
                             Log.d("dataxx", "onEvent: ${response.data.size}")
                         }.onFailure { error ->
                             state = state.copy(
