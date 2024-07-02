@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.test.ext:junit-ktx:1.1.5")
+    implementation(Compose.JUNIT_KTX)
     androidTestImplementation("org.testng:testng:6.9.6")
     androidTestImplementation("junit:junit:4.12")
 }

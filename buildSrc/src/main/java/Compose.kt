@@ -42,7 +42,9 @@ object Compose {
         "com.google.accompanist:accompanist-systemuicontroller:0.28.0"
     const val ACCOMPANIST_PAGER = "com.google.accompanist:accompanist-pager:0.24.13-rc"
     const val GLIDE = "com.github.bumptech.glide:compose:1.0.0-alpha.1"
+
     const val JUNIT_KTX = "androidx.test.ext:junit-ktx:1.1.5"
+
     const val COIL = "io.coil-kt:coil:2.4.0"
     const val GUAVA = "com.google.guava:guava:30.1.1-jre"
     const val COMPOSE_SCREENSHOT = "com.github.SmartToolFactory:Compose-Screenshot:1.0.3"
