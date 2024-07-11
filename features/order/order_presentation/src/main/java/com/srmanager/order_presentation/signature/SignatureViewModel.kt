@@ -31,7 +31,7 @@ import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
-@SuppressLint("SimpleDateFormat")
+@SuppressLint("SimpleDateFormat", "DefaultLocale")
 @HiltViewModel
 class SignatureViewModel @Inject constructor(
     private val productsDao: ProductsDao,
@@ -107,17 +107,17 @@ class SignatureViewModel @Inject constructor(
             is SignatureEvent.OnDoneEvent -> {
                 viewModelScope.launch {
 
-                    val myLocationDetails = locationDao.getLocation().first()
+                   // val myLocationDetails = locationDao.getLocation().first()
                     state = state.copy(
                         isLoading = true,
                         isOrderReady = state.customerSign.isNotEmpty() && state.outlet.id != 0
                                 && state.orderDate.isNotEmpty() && state.total != 0.0,
-                        isDistanceValid = calculationDistance(
+                        isDistanceValid = true/*calculationDistance(
                             latitude = state.outlet.latitude,
                             longitude = state.outlet.longitude,
                             myLatitude = myLocationDetails[0].latitude.toString(),
                             myLongitude = myLocationDetails[0].longitude.toString()
-                        ) <= MINIMUM_DISTANCE_FOR_CHECKOUT
+                        ) <= MINIMUM_DISTANCE_FOR_CHECKOUT*/
                     )
 
 
