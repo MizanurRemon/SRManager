@@ -18,8 +18,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
@@ -95,14 +93,16 @@ fun SignatureScreen(
 
 
 
-    Scaffold(topBar = {
+    Scaffold(containerColor = Color.White, topBar = {
         AppToolbarCompose(
             onClick = { onBack() },
             icon = DesignSystemR.drawable.ic_back,
             title = CommonR.string.back
         )
     }, bottomBar = {
-        Column(modifier = Modifier.fillMaxWidth().padding(20.r())) {
+        Column(modifier = Modifier
+            .fillMaxWidth()
+            .padding(20.r())) {
             Column(
                 modifier = Modifier
                     .align(alignment = Alignment.End)
@@ -156,7 +156,7 @@ fun SignatureScreen(
                 onEvent(SignatureEvent.OnDoneEvent)
             }
         }
-    }, containerColor = Color.White) { innerPadding ->
+    }) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()

@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.maps.Single
+package com.srmanager.outlet_presentation.maps.single
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

@@ -81,23 +81,26 @@ fun OrderProductsScreen(
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    Scaffold(topBar = {
-        AppToolbarCompose(
-            onClick = { onBack() },
-            icon = DesignSystemR.drawable.ic_back,
-            title = CommonR.string.back
-        )
-    }, bottomBar = {
-        AppActionButtonCompose(
-            stringId = CommonR.string.next,
-            modifier = Modifier
-                .padding(horizontal = 40.r())
-                .padding(bottom = 30.r(), top = 10.r()),
-            enable = state.isNextButtonEnabled
-        ) {
-            onNextClick()
+    Scaffold(
+        containerColor = Color.White,
+        topBar = {
+            AppToolbarCompose(
+                onClick = { onBack() },
+                icon = DesignSystemR.drawable.ic_back,
+                title = CommonR.string.back
+            )
+        }, bottomBar = {
+            AppActionButtonCompose(
+                stringId = CommonR.string.next,
+                modifier = Modifier
+                    .padding(horizontal = 40.r())
+                    .padding(bottom = 30.r(), top = 10.r()),
+                enable = state.isNextButtonEnabled
+            ) {
+                onNextClick()
+            }
         }
-    }) { innerPadding ->
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()

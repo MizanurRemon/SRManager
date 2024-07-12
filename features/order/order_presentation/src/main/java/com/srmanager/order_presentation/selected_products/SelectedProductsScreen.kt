@@ -54,7 +54,7 @@ fun SelectedProductsScreen(
     onEvent: (SelectedProductEvent) -> Unit,
     onNextClick: () -> Unit
 ) {
-    Scaffold(topBar = {
+    Scaffold( containerColor = Color.White,topBar = {
         AppToolbarCompose(
             onClick = { onBack() },
             icon = DesignSystemR.drawable.ic_back,

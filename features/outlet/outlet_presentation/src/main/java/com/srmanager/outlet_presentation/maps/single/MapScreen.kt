@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.maps.Single
+package com.srmanager.outlet_presentation.maps.single
 
 import android.content.Context
 import android.graphics.Bitmap

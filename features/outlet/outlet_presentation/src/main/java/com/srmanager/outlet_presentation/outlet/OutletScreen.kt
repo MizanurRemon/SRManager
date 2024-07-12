@@ -75,7 +75,6 @@ import com.srmanager.core.network.dto.Outlet
 import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
 
-@OptIn(ExperimentalComposeUiApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun OutletScreen(
@@ -139,6 +138,7 @@ fun OutletScreen(
             }
         },
         floatingActionButtonPosition = FabPosition.End,
+        containerColor = Color.White,
         content = { innerPadding ->
             Column(
                 modifier = Modifier
@@ -258,6 +258,8 @@ fun ItemCompose(
 ) {
     val interactionSource = remember { MutableInteractionSource() }
 
+    val bgColor = if (index % 2 == 0) Color.Yellow else Color.Green
+
     val context = LocalContext.current
     Card(
         modifier = Modifier
@@ -268,14 +270,14 @@ fun ItemCompose(
             .shadow(
                 elevation = 4.r(),
                 shape = RoundedCornerShape(15.r()),
-                spotColor = Color.LightGray
+                spotColor = bgColor
             ),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .wrapContentHeight()
-                .background(color = if (index % 2 == 0) Color.Yellow else Color.Green)
+                .background(color = bgColor)
         ) {
             Spacer(
                 modifier = Modifier
@@ -400,7 +402,7 @@ fun ItemCompose(
 
 @Composable
 @Preview
-fun previewItemCompose() {
+fun PreviewItemCompose() {
 
     val outlet = Outlet(
         id = 0,

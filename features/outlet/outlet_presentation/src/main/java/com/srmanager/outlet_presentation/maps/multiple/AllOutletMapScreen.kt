@@ -1,4 +1,4 @@
-package com.srmanager.outlet_presentation.maps.Multiple
+package com.srmanager.outlet_presentation.maps.multiple
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column

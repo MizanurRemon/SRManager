@@ -40,6 +40,7 @@ fun OutletDashboardScreen(
     outletDetails: Outlet? = null
 ) {
     Scaffold(
+        containerColor = Color.White,
         topBar = {
             AppToolbarCompose(
                 onClick = { onBack() },
