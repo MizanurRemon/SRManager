@@ -4,32 +4,18 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.IntentSender.SendIntentException
 import android.content.pm.PackageManager
-import android.content.res.Configuration
 import android.net.ConnectivityManager
 import android.net.NetworkRequest
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
-import android.util.DisplayMetrics
-import android.view.WindowManager
 import androidx.activity.compose.setContent
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.tasks.Task
-import com.google.android.play.core.appupdate.AppUpdateInfo
-import com.google.android.play.core.appupdate.AppUpdateManager
-import com.google.android.play.core.appupdate.AppUpdateManagerFactory
-import com.google.android.play.core.appupdate.AppUpdateOptions
-import com.google.android.play.core.install.InstallStateUpdatedListener
-import com.google.android.play.core.install.model.AppUpdateType
-import com.google.android.play.core.install.model.InstallStatus
-import com.google.android.play.core.install.model.UpdateAvailability
 import com.srmanager.app.GPS.GpsStatus
 import com.srmanager.app.connectivity.NetworkCallbackImpl
 import com.srmanager.app.connectivity.NetworkStatusScreen
@@ -52,16 +38,19 @@ private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
 
 @RequiresApi(Build.VERSION_CODES.R)
 private fun foregroundPermissionApproved(context: Context): Boolean {
-    val writePermissionFlag = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
-        context, Manifest.permission.WRITE_EXTERNAL_STORAGE
-    )
-    val readPermissionFlag = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
-        context, Manifest.permission.READ_EXTERNAL_STORAGE
-    )
+    val writePermissionFlag =
+        PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+            context, Manifest.permission.WRITE_EXTERNAL_STORAGE
+        )
+    val readPermissionFlag =
+        PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+            context, Manifest.permission.READ_EXTERNAL_STORAGE
+        )
 
-    val managePermissionFlag = PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
-        context, Manifest.permission.MANAGE_EXTERNAL_STORAGE
-    )
+    val managePermissionFlag =
+        PackageManager.PERMISSION_GRANTED == ActivityCompat.checkSelfPermission(
+            context, Manifest.permission.MANAGE_EXTERNAL_STORAGE
+        )
 
     return writePermissionFlag && readPermissionFlag && managePermissionFlag
 }
@@ -72,13 +61,20 @@ private fun requestForegroundPermission(context: Context) {
     if (provideRationale) {
         ActivityCompat.requestPermissions(
             context as Activity,
-            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.MANAGE_EXTERNAL_STORAGE),
+            arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.MANAGE_EXTERNAL_STORAGE
+            ),
             REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
         )
     } else {
         ActivityCompat.requestPermissions(
             context as Activity,
-            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE),
+            arrayOf(
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE
+            ),
             REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE
         )
     }
@@ -105,17 +101,7 @@ class MainActivity : AppCompatActivity() {
     private val REQUEST_LOCATION = 12
     private var newIntent: Intent? = null
 
-    private var appUpdateManager: AppUpdateManager? = null
-    private var installStateUpdatedListener: InstallStateUpdatedListener? = null
-
     private val networkCallback = NetworkCallbackImpl()
-
-    private var activityResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartIntentSenderForResult()) { result ->
-            if (result.resultCode != Activity.RESULT_OK) {
-                unregisterInstallStateUpdListener()
-            }
-        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -133,7 +119,9 @@ class MainActivity : AppCompatActivity() {
 
             BaseTheme {
                 val context = LocalContext.current
-                requestForegroundPermission(context)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    requestForegroundPermission(context)
+                }
                 MainApp()
                 NetworkStatusScreen()
                 if (permissionGranted.value) {
@@ -141,15 +129,13 @@ class MainActivity : AppCompatActivity() {
 
                     if (!gpsStatus.value) {
                         GpsStatusDialog(openDialog = gpsStatus, onClick = {
-                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                            startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
                         })
                     }
                 }
             }
         }
 
-        //checkLocationPermission()
-        //checkForAppUpdate()
     }
 
     @OptIn(DelicateCoroutinesApi::class)
@@ -169,10 +155,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onNewIntent(intent: Intent?) {
+   /* override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
-        newIntent = intent
-    }
+
+        if (intent != null) {
+            newIntent = intent
+        }
+    }*/
 
     override fun onResume() {
         super.onResume()
@@ -204,77 +193,6 @@ class MainActivity : AppCompatActivity() {
         val connectivityManager =
             getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         connectivityManager.unregisterNetworkCallback(networkCallback)
-    }
-
-    private fun checkForAppUpdate() {
-
-        appUpdateManager = AppUpdateManagerFactory.create(applicationContext)
-        val appUpdateInfoTask: Task<AppUpdateInfo> = appUpdateManager!!.appUpdateInfo
-
-        installStateUpdatedListener =
-            InstallStateUpdatedListener { installState ->
-                if (installState.installStatus() == InstallStatus.DOWNLOADED) {
-                    appUpdateManager!!.completeUpdate()
-                } else if (installState.installStatus() == InstallStatus.DOWNLOADING) {
-
-                }
-            }
-
-        appUpdateInfoTask.addOnSuccessListener { appUpdateInfo ->
-            if (appUpdateInfo.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-                if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.FLEXIBLE)) {
-                    appUpdateManager!!.registerListener(installStateUpdatedListener!!)
-                    startAppUpdateFlexible(appUpdateInfo)
-                } else if (appUpdateInfo.isUpdateTypeAllowed(AppUpdateType.IMMEDIATE)) {
-                    startAppUpdateFlexible(appUpdateInfo)
-                }
-            }
-        }
-    }
-
-    private fun startAppUpdateImmediate(appUpdateInfo: AppUpdateInfo) {
-        try {
-            appUpdateManager!!.startUpdateFlowForResult(
-                appUpdateInfo,
-                activityResultLauncher,
-                AppUpdateOptions.newBuilder(AppUpdateType.IMMEDIATE).build()
-            )
-        } catch (e: SendIntentException) {
-            e.printStackTrace()
-        }
-    }
-
-    private fun startAppUpdateFlexible(appUpdateInfo: AppUpdateInfo) {
-        try {
-            appUpdateManager!!.startUpdateFlowForResult(
-                appUpdateInfo,
-                activityResultLauncher,
-                AppUpdateOptions.newBuilder(AppUpdateType.FLEXIBLE).build()
-            )
-        } catch (e: SendIntentException) {
-            e.printStackTrace()
-            unregisterInstallStateUpdListener()
-        }
-    }
-
-    private fun unregisterInstallStateUpdListener() {
-        if (appUpdateManager != null && installStateUpdatedListener != null) appUpdateManager!!.unregisterListener(
-            installStateUpdatedListener!!
-        )
-    }
-
-    private fun adjustFontScale(configuration: Configuration) {
-        configuration.let {
-            it.fontScale = .9.toFloat()
-            val metrics: DisplayMetrics = resources.displayMetrics
-            val wm: WindowManager = getSystemService(Context.WINDOW_SERVICE) as WindowManager
-            wm.defaultDisplay.getMetrics(metrics)
-            metrics.scaledDensity = configuration.fontScale * metrics.density
-
-            baseContext.applicationContext.createConfigurationContext(it)
-            baseContext.resources.displayMetrics.setTo(metrics)
-
-        }
     }
 
 

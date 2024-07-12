@@ -10,11 +10,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="new">
-      <change afterPath="$PROJECT_DIR$/app/release/SRM_200624_0959.apk" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Desugar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/keystore.jks" beforeDir="false" afterPath="$PROJECT_DIR$/keystore.jks" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/srmanager/app/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base-module.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/base-module.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/AndroidX.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/AndroidX.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Build.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Build.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Coil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Coil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Compose.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Coroutines.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Coroutines.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Exoplayer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Exoplayer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Firebase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Firebase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/ProjectConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/ProjectConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Retrofit.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Retrofit.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/buildSrc/src/main/java/Room.kt" beforeDir="false" afterPath="$PROJECT_DIR$/buildSrc/src/main/java/Room.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose-module.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/compose-module.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/ui/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/core/ui/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +162,7 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;jbr-17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/remon/Projects/Android/SRManager&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/remon/Projects/Android/internet-politie-android-app&quot;,
     &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1693848167557&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -169,6 +186,9 @@
       &quot;SELECT * from products WHERE title  LIKE  '%Hide%'&quot;,
       &quot;SELECT * from products WHERE title  LIKE  '%Ch%'&quot;,
       &quot;SELECT * from products WHERE title  LIKE  '%M%'&quot;
+    ],
+    &quot;kotlin-gradle-user-dirs&quot;: [
+      &quot;/home/remon/.gradle&quot;
     ]
   }
 }</component>

@@ -14,5 +14,5 @@ android {
 dependencies {
     implementation(Compose.JUNIT_KTX)
     androidTestImplementation("org.testng:testng:6.9.6")
-    androidTestImplementation("junit:junit:4.12")
+    androidTestImplementation(Compose.JUNIT)
 }
