@@ -30,14 +30,16 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 
 fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
-    val dir = File(
+   /* val dir = File(
         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "SRManager"
-    )
+    )*/
+
+    val dir = File(Environment.getExternalStorageDirectory(), "SRManager")
 
     if (!dir.exists()) {
         dir.mkdir()
     }
-//generateFileName("srm")
+    //generateFileName("srm")
     val file = File(dir, "srm${orderDetails.orderNo}" + ".pdf")
 
     if (!file.exists()) {
