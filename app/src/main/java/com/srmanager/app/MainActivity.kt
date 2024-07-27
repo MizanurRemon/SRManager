@@ -7,9 +7,12 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.ConnectivityManager
 import android.net.NetworkRequest
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
+import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -23,6 +26,7 @@ import com.srmanager.app.location.LocationLiveData
 import com.srmanager.app.navigations.MainApp
 import com.srmanager.core.designsystem.deviceHeight
 import com.srmanager.core.designsystem.deviceWidth
+import com.srmanager.core.designsystem.theme.AllFilesDialog
 import com.srmanager.core.designsystem.theme.BaseTheme
 import com.srmanager.core.designsystem.theme.GpsStatusDialog
 import com.srmanager.database.dao.LocationDao
@@ -35,6 +39,8 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 private const val REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE = 34
+private const val REQUEST_MANAGE_ALL_FILES_ACCESS_PERMISSION_CODE = 36
+
 
 @RequiresApi(Build.VERSION_CODES.R)
 private fun foregroundPermissionApproved(context: Context): Boolean {
@@ -86,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 
     private val gpsStatus = mutableStateOf(true)
     private val permissionGranted = mutableStateOf(true)
-
+    private val manageFilesPermissionGranted = mutableStateOf(false)
 
     private val permissionsToRequest = arrayOf(
         Manifest.permission.ACCESS_COARSE_LOCATION,
@@ -103,6 +109,7 @@ class MainActivity : AppCompatActivity() {
 
     private val networkCallback = NetworkCallbackImpl()
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //adjustFontScale(resources.configuration)
@@ -133,6 +140,14 @@ class MainActivity : AppCompatActivity() {
                         })
                     }
                 }
+
+                if (!manageFilesPermissionGranted.value) {
+                    AllFilesDialog(openDialog = manageFilesPermissionGranted, onClick = {
+                        val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:${this.packageName}"))
+                        startActivityForResult(intent, REQUEST_MANAGE_ALL_FILES_ACCESS_PERMISSION_CODE)
+                    })
+                }
+
             }
         }
 
@@ -155,14 +170,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-   /* override fun onNewIntent(intent: Intent?) {
-        super.onNewIntent(intent)
-
-        if (intent != null) {
-            newIntent = intent
-        }
-    }*/
-
     override fun onResume() {
         super.onResume()
         newIntent?.let {
@@ -176,6 +183,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         checkLocationPermission()
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            manageFilesPermissionGranted.value = Environment.isExternalStorageManager()
+        }
     }
 
     override fun onStart() {
@@ -208,6 +219,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -223,6 +235,14 @@ class MainActivity : AppCompatActivity() {
                     checkLocationPermission()
                 }
                 return
+            }
+
+            REQUEST_FOREGROUND_ONLY_PERMISSIONS_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                    permissionGranted.value = true
+                } else {
+                    requestForegroundPermission(this)
+                }
             }
         }
     }
