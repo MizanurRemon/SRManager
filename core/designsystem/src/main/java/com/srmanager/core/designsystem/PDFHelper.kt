@@ -9,6 +9,9 @@ import android.os.Environment
 import android.util.Log
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.MultiFormatWriter
+import com.google.zxing.common.BitMatrix
 import com.itextpdf.io.font.constants.StandardFonts
 import com.itextpdf.io.image.ImageDataFactory
 import com.itextpdf.io.source.ByteArrayOutputStream
@@ -29,10 +32,9 @@ import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
 
+@SuppressLint("DefaultLocale")
 fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
-   /* val dir = File(
-        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "SRManager"
-    )*/
+    //val dir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "SRManager")
 
     val dir = File(Environment.getExternalStorageDirectory(), "SRManager")
 
@@ -41,6 +43,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
     }
     //generateFileName("srm")
     val file = File(dir, "srm${orderDetails.orderNo}" + ".pdf")
+    //val file = File(dir, generateFileName("srm") + ".pdf")
 
     if (!file.exists()) {
         val pdfWriter = PdfWriter(file)
@@ -117,6 +120,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
 
             document.add(Div().setHeight(10f))
 
+
             document.add(
                 Paragraph("Sales Order")
                     .setFont(boldFont)
@@ -136,22 +140,30 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
                 2
             ).setFontSize(normalFontSize)
 
+
             orderNoTable.addCell(
                 Cell().add(Paragraph("Order No:").setFont(boldFont)).setBorder(Border.NO_BORDER)
             )
+
             orderNoTable.addCell(
                 Cell().add(Paragraph(orderDetails.orderNo)).setBorder(Border.NO_BORDER)
             )
 
+            orderNoTable.addCell(
+                Cell().add(Paragraph("Order Date:").setFont(boldFont)).setBorder(Border.NO_BORDER)
+            )
+            orderNoTable.addCell(
+                Cell().add(Paragraph(orderDetails.orderDate)).setBorder(Border.NO_BORDER)
+            )
+
+
             val orderDateTable = Table(
-                2
+                1
             ).setFontSize(normalFontSize)
 
             orderDateTable.addCell(
-                Cell().add(Paragraph("Order Date:").setFont(boldFont)).setBorder(Border.NO_BORDER)
-            )
-            orderDateTable.addCell(
-                Cell().add(Paragraph(orderDetails.orderDate)).setBorder(Border.NO_BORDER)
+                Cell().add(generateBarcode(orderDetails.orderNo, 200, 60))
+                    .setBorder(Border.NO_BORDER)
             )
 
             orderTable.addCell(
@@ -159,6 +171,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
                     Border.NO_BORDER
                 )
             )
+
 
             orderTable.addCell(
                 Cell().add(orderDateTable).setTextAlignment(TextAlignment.RIGHT).setBorder(
@@ -361,4 +374,27 @@ fun openPdf(context: Context, file: File) {
 @SuppressLint("SimpleDateFormat")
 private fun generateFileName(fileName: String): String {
     return fileName + SimpleDateFormat("yyMMddHHmmss").format(Calendar.getInstance().time)
+}
+
+fun generateBarcode(text: String, width: Int, height: Int): Image {
+    val bitMatrix: BitMatrix =
+        MultiFormatWriter().encode(text, BarcodeFormat.CODE_128, width, height)
+    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+    for (x in 0 until width) {
+        for (y in 0 until height) {
+            bitmap.setPixel(
+                x,
+                y,
+                if (bitMatrix[x, y]) android.graphics.Color.BLACK else android.graphics.Color.WHITE
+            )
+        }
+    }
+
+    val barCodeStream = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, barCodeStream)
+    val barCodeImage = Image(ImageDataFactory.create(barCodeStream.toByteArray()))
+    barCodeImage.setHeight(20f)
+    barCodeImage.setWidth(80f)
+    barCodeImage.setHorizontalAlignment(HorizontalAlignment.CENTER)
+    return barCodeImage
 }

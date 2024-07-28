@@ -12,7 +12,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
-import android.util.Log
 import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -125,10 +124,6 @@ class MainActivity : AppCompatActivity() {
         setContent {
 
             BaseTheme {
-                val context = LocalContext.current
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                    requestForegroundPermission(context)
-                }
                 MainApp()
                 NetworkStatusScreen()
                 if (permissionGranted.value) {
@@ -147,6 +142,11 @@ class MainActivity : AppCompatActivity() {
                         startActivityForResult(intent, REQUEST_MANAGE_ALL_FILES_ACCESS_PERMISSION_CODE)
                     })
                 }
+
+
+                /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    requestForegroundPermission(context)
+                }*/
 
             }
         }
