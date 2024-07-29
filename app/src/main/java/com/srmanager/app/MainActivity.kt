@@ -136,12 +136,16 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                if (!manageFilesPermissionGranted.value) {
-                    AllFilesDialog(openDialog = manageFilesPermissionGranted, onClick = {
-                        val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:${this.packageName}"))
-                        startActivityForResult(intent, REQUEST_MANAGE_ALL_FILES_ACCESS_PERMISSION_CODE)
-                    })
+                if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU){
+                    if (!manageFilesPermissionGranted.value) {
+                        AllFilesDialog(openDialog = manageFilesPermissionGranted, onClick = {
+                            val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:${this.packageName}"))
+                            startActivityForResult(intent, REQUEST_MANAGE_ALL_FILES_ACCESS_PERMISSION_CODE)
+                        })
+                    }
                 }
+
+
 
 
                 /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

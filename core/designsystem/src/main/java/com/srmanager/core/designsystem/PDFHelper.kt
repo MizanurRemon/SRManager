@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.os.Build
 import android.os.Environment
 import android.util.Log
 import android.widget.Toast
@@ -34,16 +35,20 @@ import java.util.Calendar
 
 @SuppressLint("DefaultLocale")
 fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
-    //val dir = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "SRManager")
 
-    val dir = File(Environment.getExternalStorageDirectory(), "SRManager")
+    val dir = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        //Android 11 and above
+        File(context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS), "SRManager")
+    } else {
+        //Android 10 and below
+        context.getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)
+    }
 
-    if (!dir.exists()) {
+    if (!dir?.exists()!!) {
         dir.mkdir()
     }
     //generateFileName("srm")
     val file = File(dir, "srm${orderDetails.orderNo}" + ".pdf")
-    //val file = File(dir, generateFileName("srm") + ".pdf")
 
     if (!file.exists()) {
         val pdfWriter = PdfWriter(file)
