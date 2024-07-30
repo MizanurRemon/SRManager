@@ -94,7 +94,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
             )
             infoTable.addCell(
                 Cell().add(
-                    Paragraph("Reg. No- (1484541-T), Bandar Sunway 47500,").setFontSize(
+                    Paragraph("Reg. No- (1484541-T), Band Sunway 47500,").setFontSize(
                         normalFontSize
                     )
                 ).setBorder(Border.NO_BORDER)
@@ -102,7 +102,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
 
             infoTable.addCell(
                 Cell().add(
-                    Paragraph("Subang Jaya, Selangor, Malaysia. Tel: +601131464097").setFontSize(
+                    Paragraph("Subangular Jaya, Selangor, Malaysia. Tel: +601131464097").setFontSize(
                         normalFontSize
                     )
                 ).setBorder(Border.NO_BORDER)
