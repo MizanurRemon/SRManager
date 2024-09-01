@@ -10,6 +10,7 @@ object Route {
     const val ORDER = "order"
     const val REPORT = "report"
     const val MAP = "map"
+    const val VISITING_SUMMARY = "visiting_summary"
     const val OUTLET_DETAILS = "outlet_details"
     const val OUTLET_CHECKOUT = "outlet_checkout"
     const val OUTLET_DASHBOARD = "outlet_dashboard"

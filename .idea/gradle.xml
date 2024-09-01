@@ -46,6 +46,8 @@
             <option value="$PROJECT_DIR$/features/outlet/outlet_presentation" />
             <option value="$PROJECT_DIR$/features/report" />
             <option value="$PROJECT_DIR$/features/report/report_presentation" />
+            <option value="$PROJECT_DIR$/features/summary" />
+            <option value="$PROJECT_DIR$/features/summary/summary_presentation" />
           </set>
         </option>
         <option name="resolveExternalAnnotations" value="false" />

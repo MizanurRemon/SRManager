@@ -60,7 +60,7 @@ class AuthDataModule {
         networkHandler: NetworkHandler,
     ): AuthRepository {
         return AuthRepositoryImpl(
-            authRemoteDataSource, authLocalDataSource, preferenceDataStoreHelper, networkHandler
+            authRemoteDataSource, preferenceDataStoreHelper, networkHandler
         )
     }
 }

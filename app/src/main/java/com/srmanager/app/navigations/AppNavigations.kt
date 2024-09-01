@@ -41,6 +41,7 @@ import com.srmanager.outlet_presentation.outlet_details.OutletDetailsEvent
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsViewModel
 import com.srmanager.report_presentation.report.ReportScreen
+import com.srmanager.summary_presentation.VisitingSummaryScreen
 
 @Composable
 fun MainApp(
@@ -86,6 +87,9 @@ fun MainApp(
                     onMyOrderClick = {
                         navController.navigate(Route.ORDER)
                     },
+                    onVisitingSummaryClick = {
+                        navController.navigate(Route.VISITING_SUMMARY)
+                    }
                 )
             }
 
@@ -277,6 +281,14 @@ fun MainApp(
                     onEvent = viewModel::onEvent,
                     onNextClick = {
                         navController.navigate(Route.SIGNATURE_SCREEN)
+                    }
+                )
+            }
+
+            composable(route = Route.VISITING_SUMMARY) {
+                VisitingSummaryScreen(
+                    onBack = {
+                        navController.navigateUp()
                     }
                 )
             }

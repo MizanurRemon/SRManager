@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -13,28 +12,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -52,7 +47,6 @@ import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
 
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "UnusedMaterialScaffoldPaddingParameter")
 
 @Composable
@@ -61,12 +55,9 @@ fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
     onOutletClick: () -> Unit,
     onMapClick: () -> Unit,
-    onMyOrderClick: () -> Unit
+    onMyOrderClick: () -> Unit,
+    onVisitingSummaryClick: () -> Unit
 ) {
-
-    var drawerOpen by remember {
-        mutableStateOf(false)
-    }
 
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
@@ -126,17 +117,13 @@ fun HomeScreen(
                 )
 
                 Column(modifier = Modifier.fillMaxSize()) {
-                    /*Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
-
-                    }*/
 
                     LazyVerticalGrid(
-                        columns = GridCells.Fixed(3),
+                        columns = GridCells.Fixed(2),
                         modifier = Modifier
                             .fillMaxSize()
-                            .padding(16.dp),
-
-                        ) {
+                            .padding(16.r())
+                    ) {
                         item {
                             HomeScreenActionButton(
                                 onItemClick = {
@@ -167,6 +154,16 @@ fun HomeScreen(
                                 icon = DesignSystemR.drawable.ic_cart
                             )
                         }
+
+                        item {
+                            HomeScreenActionButton(
+                                onItemClick = {
+                                    onVisitingSummaryClick()
+                                },
+                                title = CommonR.string.visiting_summary,
+                                icon = DesignSystemR.drawable.ic_eye_unslash
+                            )
+                        }
                     }
 
                 }
@@ -188,7 +185,12 @@ fun HomeScreenActionButton(onItemClick: () -> Unit, icon: Int, title: Int) {
             .clickable {
                 onItemClick()
             }
-            .padding(10.r()),
+            .padding(10.r())
+            .shadow(
+                elevation = 4.r(),
+                shape = RoundedCornerShape(15.r()),
+                spotColor = APP_DEFAULT_COLOR
+            ),
         colors = CardDefaults.cardColors(
             containerColor = APP_DEFAULT_COLOR,
         ),
@@ -225,5 +227,11 @@ fun HomeScreenActionButton(onItemClick: () -> Unit, icon: Int, title: Int) {
 @Composable
 @DevicePreviews
 fun PreviewHomeScreen() {
-    HomeScreen(navController = rememberNavController(), onOutletClick = {}, onMapClick = {}, onMyOrderClick = {})
+    HomeScreen(
+        navController = rememberNavController(),
+        onOutletClick = {},
+        onMapClick = {},
+        onMyOrderClick = {},
+        onVisitingSummaryClick = {}
+    )
 }
