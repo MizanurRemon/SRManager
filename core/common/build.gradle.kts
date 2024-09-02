@@ -12,7 +12,7 @@ android {
 }
 
 dependencies {
-    implementation(Compose.COIL)
+    implementation(Coil.COIL)
     implementation(Compose.GUAVA)
     implementation(Compose.ui)
 }

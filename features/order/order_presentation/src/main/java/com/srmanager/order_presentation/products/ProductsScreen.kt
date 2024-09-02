@@ -81,23 +81,26 @@ fun OrderProductsScreen(
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
-    Scaffold(topBar = {
-        AppToolbarCompose(
-            onClick = { onBack() },
-            icon = DesignSystemR.drawable.ic_back,
-            title = CommonR.string.back
-        )
-    }, bottomBar = {
-        AppActionButtonCompose(
-            stringId = CommonR.string.next,
-            modifier = Modifier
-                .padding(horizontal = 40.r())
-                .padding(bottom = 30.r(), top = 10.r()),
-            enable = state.isNextButtonEnabled
-        ) {
-            onNextClick()
+    Scaffold(
+        containerColor = Color.White,
+        topBar = {
+            AppToolbarCompose(
+                onClick = { onBack() },
+                icon = DesignSystemR.drawable.ic_back,
+                title = CommonR.string.back
+            )
+        }, bottomBar = {
+            AppActionButtonCompose(
+                stringId = CommonR.string.next,
+                modifier = Modifier
+                    .padding(horizontal = 40.r())
+                    .padding(bottom = 30.r(), top = 10.r()),
+                enable = state.isNextButtonEnabled
+            ) {
+                onNextClick()
+            }
         }
-    }) { innerPadding ->
+    ) { innerPadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -239,23 +242,9 @@ fun ItemCompose(
             append("${product.availableQuantity}")
         }
 
-        withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | " + stringResource(id = CommonR.string.price) + ": ")
-        }
-
-
-        withStyle(
-            style = SpanStyle(
-                color = Color.Black,
-                fontWeight = FontWeight.W700,
-            )
-        ) {
-            append("${product.price}")
-        }
-
 
         withStyle(style = SpanStyle(color = Color.Gray, fontWeight = FontWeight.W300)) {
-            append(" | " + stringResource(id = CommonR.string.mrp_price) + ": ")
+            append(" | " + stringResource(id = CommonR.string.unit_price) + ": ")
         }
 
 

@@ -8,15 +8,10 @@ val ColorError = Color(0xFFFF0000)
 val ColorTextPrimary = Color(0xff021561)
 val ColorTextSecondary = Color(0xff606888)
 val ColorTextFieldPlaceholder = Color(0xffA7AEC1)
-val BORDER_COLOR = Color(0xFF8CBCFC)
 val DISABLED_COLOR = Color(0xFFCECECE)
-val LIGHT_BLACK = Color(0xFF858585)
-val SOCIAL_ICON_BORDER_C0LOR = Color(0xFFB7D4FF)
 val APP_DEFAULT_COLOR = Color(0xFF00C344)
-val APP_DEFAULT_COLOR_LIGHT = Color(0xFFCBFFDD)
 val APP_DEFAULT_BUTTON_COLOR = Color(0xFF00C344)
 val DRAWER_SELECTED =  Color(0x16512E91)
-val DRAWER_BG = Color(0xFF00C344)
 //00c344
 
 val AppBrush = Brush.linearGradient(

@@ -702,3 +702,57 @@ fun GpsStatusDialog(openDialog: MutableState<Boolean>, onClick: () -> Unit) {
         }
     }
 }
+
+@Composable
+fun AllFilesDialog(openDialog: MutableState<Boolean>, onClick: () -> Unit) {
+    if (!openDialog.value) {
+        Dialog(properties = DialogProperties(
+            dismissOnBackPress = false,
+            dismissOnClickOutside = false,
+            usePlatformDefaultWidth = false
+        ),
+            onDismissRequest = {
+                openDialog.value = false
+            }) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(40.r())
+                    .background(
+                        color = Color.White,
+                        shape = RoundedCornerShape(32.dp)
+                    )
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                ) {
+
+                    Text(
+                        text = stringResource(id = CommonR.string.permission_required),
+                        style = subHeading1TextStyle.copy(textAlign = TextAlign.Start),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Spacer(modifier = Modifier.height(10.r()))
+
+                    Text(
+                        text = stringResource(id = CommonR.string.manage_files_permission_reason),
+                        style = bodyRegularTextStyle.copy(textAlign = TextAlign.Start),
+                        modifier = Modifier.fillMaxWidth()
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+
+                        Spacer(modifier = Modifier.weight(1f))
+
+                        TextButton(onClick = { onClick() }) {
+                            Text(text = stringResource(id = CommonR.string.got_it))
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

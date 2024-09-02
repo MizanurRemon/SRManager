@@ -125,6 +125,7 @@ fun OutletAddScreen(
     }
 
     Scaffold(
+        containerColor = Color.White,
         topBar = {
             AppToolbarCompose(
                 onClick = { onBack() },

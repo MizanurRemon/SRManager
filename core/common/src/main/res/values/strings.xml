@@ -136,4 +136,7 @@
     <string name="enter_billing_address">Enter billing address</string>
     <string name="same_as_address">Same as address</string>
     <string name="search_order">Search Order</string>
+    <string name="unit_price">Unit Price</string>
+    <string name="permission_required">Permission Required</string>
+    <string name="manage_files_permission_reason">This App contains generation of PDF files, which may require accessing files across the entire storage.</string>
 </resources>
