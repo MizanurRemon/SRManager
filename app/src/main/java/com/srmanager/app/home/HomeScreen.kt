@@ -1,6 +1,7 @@
 package com.srmanager.app.home
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -30,7 +31,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.srmanager.core.common.navigation.Route
@@ -42,6 +42,8 @@ import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
 import com.srmanager.core.ui.DevicePreviews
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
@@ -52,18 +54,20 @@ import com.srmanager.core.designsystem.R as DesignSystemR
 @Composable
 fun HomeScreen(
     navController: NavHostController,
-    viewModel: HomeViewModel = hiltViewModel(),
     onOutletClick: () -> Unit,
     onMapClick: () -> Unit,
     onMyOrderClick: () -> Unit,
-    onVisitingSummaryClick: () -> Unit
+    onVisitingSummaryClick: () -> Unit,
+    state: HomeState,
+    uiEvent: Flow<UiEvent>,
+    onEvent: (HomeEvent) -> Unit
 ) {
 
     val drawerState = rememberDrawerState(DrawerValue.Closed)
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(key1 = true) {
-        viewModel.uiEvent.collect() { event ->
+        uiEvent.collect { event ->
             when (event) {
                 is UiEvent.Success -> {
                     navController.navigate(Route.SIGN_IN) {
@@ -98,13 +102,13 @@ fun HomeScreen(
                 drawerState = drawerState,
                 navController = navController,
                 logOutClick = {
-                    viewModel.onEvent(HomeEvent.OnLogOut)
+                    onEvent(HomeEvent.OnLogOut)
                 }
             )
 
         },
         content = {
-            Column(modifier = Modifier.fillMaxSize()) {
+            Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
                 AppHomeToolbarCompose(
                     onClick = {
                         scope.launch {
@@ -113,7 +117,7 @@ fun HomeScreen(
                     },
                     icon = DesignSystemR.drawable.ic_menu,
                     title = CommonR.string.app_name,
-                    address = viewModel.state.address
+                    address = state.address
                 )
 
                 Column(modifier = Modifier.fillMaxSize()) {
@@ -171,7 +175,7 @@ fun HomeScreen(
         }
     )
 
-    if (viewModel.state.isLogOutLoading) {
+    if (state.isLogOutLoading) {
         LoadingDialog {}
     }
 
@@ -232,6 +236,9 @@ fun PreviewHomeScreen() {
         onOutletClick = {},
         onMapClick = {},
         onMyOrderClick = {},
-        onVisitingSummaryClick = {}
+        onVisitingSummaryClick = {},
+        state = HomeState(),
+        uiEvent = flow {  },
+        onEvent = {  }
     )
 }

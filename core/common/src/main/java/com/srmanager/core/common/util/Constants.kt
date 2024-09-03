@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.Browser
 import android.util.Base64
+import com.srmanager.core.common.R as CommonR
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -50,6 +51,8 @@ enum class RouteName(val value: String) {
         "SAT"
     )
 }
+
+val SUMMARY_FILTERED_ITEMS: List<Int> = listOf(CommonR.string.by_date, CommonR.string.by_month)
 
 fun intent(browserPackage: String, redirectUrl: String): Intent {
     return try {
