@@ -1,0 +1,2 @@
+package com.srmanager.summary_presentation.activity_details
+
