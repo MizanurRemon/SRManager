@@ -38,6 +38,21 @@ class ActivitySummaryViewModel @Inject constructor() : ViewModel() {
                 )
 
             }
+
+            is ActivitySummaryEvent.OnDateSelectionDialogOpen-> {
+                state = state.copy(
+                    isDateSelectionDialogOpen = event.isOpened
+                )
+            }
+
+            is ActivitySummaryEvent.OnDateSelection-> {
+                state = state.copy(
+                    isDateSelectionDialogOpen = false,
+                    startDate = event.fromDate,
+                    endDate = event.toDate
+                )
+            }
+
         }
     }
 

@@ -150,4 +150,7 @@
     <string name="total_ordered_outler">Total Ordered Outlet</string>
     <string name="total_not_ordered_outlet">Total Not Order Outlet</string>
     <string name="total_ordered_amount">Total Ordered Amount</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="select_month">Select month</string>
 </resources>

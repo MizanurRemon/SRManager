@@ -1,5 +1,6 @@
 package com.srmanager.core.common.util
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.ContentResolver
 import android.content.Context
@@ -9,7 +10,6 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.provider.Browser
 import android.util.Base64
-import com.srmanager.core.common.R as CommonR
 import java.io.ByteArrayOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -17,6 +17,7 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
+import com.srmanager.core.common.R as CommonR
 
 const val MINIMUM_DISTANCE_FOR_CHECKOUT = 300
 const val INTERNAL_ERROR = -1
@@ -86,14 +87,22 @@ fun openExternalLink(url: String, context: Context) {
     }
 }
 
+@SuppressLint("SimpleDateFormat")
 fun convertMillisToDate(millis: Long): String {
     val formatter = SimpleDateFormat(DATE_FORMAT)
     return formatter.format(Date(millis))
 }
 
+@SuppressLint("SimpleDateFormat")
 fun currentDate(): String {
     val sdf = SimpleDateFormat(DATE_FORMAT)
     return sdf.format(Date())
+}
+
+@SuppressLint("SimpleDateFormat")
+fun currentMonth(): String{
+    val dateFormat= SimpleDateFormat("MMMM")
+    return dateFormat.format(Date())
 }
 
 fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {

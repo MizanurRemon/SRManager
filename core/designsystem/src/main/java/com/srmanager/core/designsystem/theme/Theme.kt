@@ -1,6 +1,7 @@
 package com.srmanager.core.designsystem.theme
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.Uri
@@ -80,7 +81,6 @@ import com.srmanager.core.common.util.convertMillisToDate
 import com.srmanager.core.common.util.currentDate
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
-import com.srmanager.core.designsystem.w
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
@@ -638,6 +638,7 @@ fun ImagePickerDialog(openDialog: MutableState<Boolean>, onDoneClick: (Uri) -> U
 
 }
 
+@SuppressLint("SimpleDateFormat")
 fun Context.createImageFile(): File {
     // Create an image file name
     val timeStamp = SimpleDateFormat("yyMMddHHmmss").format(Date())

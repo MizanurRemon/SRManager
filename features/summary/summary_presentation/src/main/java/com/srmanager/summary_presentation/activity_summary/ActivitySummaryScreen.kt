@@ -2,7 +2,9 @@ package com.srmanager.summary_presentation.activity_summary
 
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -24,14 +27,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.srmanager.core.common.util.SUMMARY_FILTERED_ITEMS
 import com.srmanager.core.common.util.UiEvent
+import com.srmanager.core.common.util.currentDate
+import com.srmanager.core.designsystem.DateRangePickerModal
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
+import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
+import com.srmanager.core.designsystem.theme.ColorPrimaryDark
 import com.srmanager.core.designsystem.theme.ColorTextPrimary
+import com.srmanager.core.designsystem.theme.ColorTextSecondary
 import com.srmanager.core.designsystem.theme.TOP_INDEXER_COLOR
 import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
@@ -109,8 +119,63 @@ fun ActivitySummaryScreen(
                 Column(modifier = Modifier.fillMaxSize()) {
                     Spacer(modifier = Modifier.height(10.r()))
 
+
                     when (state.selectedItem) {
                         SUMMARY_FILTERED_ITEMS[0] -> {
+
+                            Card(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .shadow(
+                                        elevation = 5.r(),
+                                        shape = RoundedCornerShape(15.r()),
+                                        spotColor = APP_DEFAULT_COLOR
+                                    )
+                                    .clickable {
+                                        onEvent(ActivitySummaryEvent.OnDateSelectionDialogOpen(true))
+                                    },
+                                shape = RoundedCornerShape(15.r()),
+                                colors = CardDefaults.cardColors(
+                                    containerColor = ColorTextSecondary
+                                ),
+
+                                ) {
+                                Row(
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .padding(vertical = 15.r()),
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.Center
+                                ) {
+                                    Text(
+                                        text = state.startDate,
+                                        style = bodyRegularTextStyle.copy(
+                                            color = Color.White,
+                                            fontWeight = FontWeight.Bold
+                                        ),
+                                        modifier = Modifier.padding(end = 10.r())
+                                    )
+
+                                    Spacer(
+                                        modifier = Modifier
+                                            .height(1.r())
+                                            .width(15.r())
+                                            .background(color = Color.White)
+                                    )
+
+                                    Text(
+                                        text = state.endDate,
+                                        style = bodyRegularTextStyle.copy(
+                                            color = Color.White,
+                                            fontWeight = FontWeight.Bold
+                                        ),
+                                        modifier = Modifier.padding(start = 10.r())
+                                    )
+
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.height(10.r()))
 
                             VisitingItem(
                                 bgColor = TOP_INDEXER_COLOR,
@@ -132,6 +197,56 @@ fun ActivitySummaryScreen(
                         }
 
                         SUMMARY_FILTERED_ITEMS[1] -> {
+
+                            Row(modifier = Modifier.fillMaxWidth()) {
+                                Column(modifier = Modifier.weight(1f)) {
+                                    Text(
+                                        text = stringResource(CommonR.string.select_month),
+                                        style = bodyRegularTextStyle,
+                                        modifier = Modifier.padding(bottom = 5.r())
+                                    )
+
+                                    Box(
+                                        modifier = Modifier
+                                            .background(
+                                                color = Color.White,
+                                                shape = RoundedCornerShape(15.r())
+                                            )
+                                            .fillMaxWidth()
+                                            .border(
+                                                width = 1.r(),
+                                                color = Color.LightGray,
+                                                shape = RoundedCornerShape(15.r())
+                                            )
+                                            .padding(top = 5.r())
+                                            .clickable {
+
+                                            }
+                                    ) {
+                                        Row(
+                                            modifier = Modifier
+                                                .padding(10.r())
+                                                .fillMaxWidth(),
+                                            verticalAlignment = Alignment.CenterVertically
+                                        ) {
+                                            Text(
+                                                text = state.selectedMonth,
+                                                style = bodyRegularTextStyle
+                                            )
+                                            Spacer(modifier = Modifier.weight(1f))
+
+                                            Icon(
+                                                painter = painterResource(DesignSystemR.drawable.ic_calendar),
+                                                contentDescription = null
+                                            )
+
+                                        }
+                                    }
+                                }
+                            }
+
+                            Spacer(modifier = Modifier.height(10.r()))
+
                             VisitingItem(
                                 bgColor = TOP_INDEXER_COLOR,
                                 title = CommonR.string.total_visited_outlet,
@@ -214,6 +329,23 @@ fun ActivitySummaryScreen(
 
         }
     }
+
+    if (state.isDateSelectionDialogOpen) {
+        DateRangePickerModal(
+            onDateRangeSelected = {
+                onEvent(
+                    ActivitySummaryEvent.OnDateSelection(
+                        fromDate = it.first ?: currentDate(),
+                        toDate = it.second ?: currentDate(),
+                    )
+                )
+            },
+            onDismiss = {
+                onEvent(ActivitySummaryEvent.OnDateSelectionDialogOpen(false))
+            }
+        )
+    }
+
 }
 
 @Composable
