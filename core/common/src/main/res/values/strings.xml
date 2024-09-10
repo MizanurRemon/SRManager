@@ -58,10 +58,10 @@
     <string name="enter_date_of_birth">Enter DOB</string>
     <string name="pick_date">Pick date</string>
     <string name="dissmiss">Dissmiss</string>
-    <string name ="enter_mobile_no_1">Enter mobile no 1</string>
-    <string name ="enter_mobile_no_2">Enter mobile no 2</string>
-    <string name ="enter_trade_license">Enter trade license</string>
-    <string name ="enter_vat_trn">Enter vat TRN</string>
+    <string name="enter_mobile_no_1">Enter mobile no 1</string>
+    <string name="enter_mobile_no_2">Enter mobile no 2</string>
+    <string name="enter_trade_license">Enter trade license</string>
+    <string name="enter_vat_trn">Enter vat TRN</string>
     <string name="enter_expity_date">Enter expiry date</string>
     <string name="enter_user_name">Enter user name</string>
     <string name="outlet_name">Outlet Name</string>
@@ -131,6 +131,7 @@
     <string name="success">Sucess</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
     <string name="my_order">My Order</string>
+    <string name="visiting_summary">Visiting Summary</string>
     <string name="search_products">Search Products</string>
     <string name="billing_address">Billing Address</string>
     <string name="enter_billing_address">Enter billing address</string>
@@ -139,4 +140,17 @@
     <string name="unit_price">Unit Price</string>
     <string name="permission_required">Permission Required</string>
     <string name="manage_files_permission_reason">This App contains generation of PDF files, which may require accessing files across the entire storage.</string>
+    <string name="activities_summary">Activities Summary</string>
+    <string name="activities_details">Activities Details</string>
+    <string name="productivity_status">Productivity Status</string>
+    <string name="by_date">By Date</string>
+    <string name="by_month">By Month</string>
+    <string name="total_visited_outlet">Total Visited Outlet</string>
+    <string name="tota_not_visited_outlet">Total Not Visited Outlet</string>
+    <string name="total_ordered_outler">Total Ordered Outlet</string>
+    <string name="total_not_ordered_outlet">Total Not Order Outlet</string>
+    <string name="total_ordered_amount">Total Ordered Amount</string>
+    <string name="start_date">Start Date</string>
+    <string name="end_date">End Date</string>
+    <string name="select_month">Select month</string>
 </resources>

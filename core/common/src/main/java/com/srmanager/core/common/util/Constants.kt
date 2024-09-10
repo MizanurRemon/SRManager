@@ -1,5 +1,6 @@
 package com.srmanager.core.common.util
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.ContentResolver
 import android.content.Context
@@ -16,6 +17,7 @@ import kotlin.math.atan2
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.math.sqrt
+import com.srmanager.core.common.R as CommonR
 
 const val MINIMUM_DISTANCE_FOR_CHECKOUT = 300
 const val INTERNAL_ERROR = -1
@@ -51,6 +53,8 @@ enum class RouteName(val value: String) {
     )
 }
 
+val SUMMARY_FILTERED_ITEMS: List<Int> = listOf(CommonR.string.by_date, CommonR.string.by_month)
+
 fun intent(browserPackage: String, redirectUrl: String): Intent {
     return try {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse(addPrefixToUrl(redirectUrl)))
@@ -83,14 +87,22 @@ fun openExternalLink(url: String, context: Context) {
     }
 }
 
+@SuppressLint("SimpleDateFormat")
 fun convertMillisToDate(millis: Long): String {
     val formatter = SimpleDateFormat(DATE_FORMAT)
     return formatter.format(Date(millis))
 }
 
+@SuppressLint("SimpleDateFormat")
 fun currentDate(): String {
     val sdf = SimpleDateFormat(DATE_FORMAT)
     return sdf.format(Date())
+}
+
+@SuppressLint("SimpleDateFormat")
+fun currentMonth(): String{
+    val dateFormat= SimpleDateFormat("MMMM")
+    return dateFormat.format(Date())
 }
 
 fun fileImageUriToBase64(imageUri: Uri?, resolver: ContentResolver): String {

@@ -10,8 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/other.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/DateRangePicker.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/java/com/srmanager/core/common/util/Constants.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +29,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/home/remon/.android/avd/Galaxy_A55_API_28.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/remon/.android/avd/Resizable_Experimental_API_35.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -94,9 +102,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GithubDefaultAccount">
-    <option name="defaultAccountId" value="641e4ac6-13b3-4836-8764-75013921b3cf" />
-  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material3/material3/1.0.1/e90f5af2fdc04ac29257713d2ee94800d0262b17/material3-1.0.1-sources.jar!/androidx/compose/material3/TextFieldDefaults.kt" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" root0="SKIP_INSPECTION" />
@@ -125,6 +130,9 @@
     &quot;Android App.app.executor&quot;: &quot;Run&quot;,
     &quot;ApkExportedModule&quot;: &quot;SRManager.app&quot;,
     &quot;BundleExportedModule&quot;: &quot;InternetPolice.app&quot;,
+    &quot;Compose Preview.DateRangePickerPreview.executor&quot;: &quot;Run&quot;,
+    &quot;Compose Preview.PreviewActivitySummaryScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Compose Preview.PreviewVisitingSummaryScreen.executor&quot;: &quot;Run&quot;,
     &quot;ExportApk.ApkPathForSRManager.app&quot;: &quot;/home/remon/Projects/Android/SRManager/app&quot;,
     &quot;ExportBundle.BundlePathForInternetPolice.app&quot;: &quot;/home/remon/Projects/Android/internet-politie-android-app/app&quot;,
     &quot;Git.Branch.Popup.ShowAllRemotes&quot;: &quot;true&quot;,
@@ -145,7 +153,7 @@
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;jbr-17&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_directory_selection&quot;: &quot;/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/remon/Projects/Android/SRManager&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/remon/Projects/Android/SRManager&quot;,
     &quot;memory.settings.postsync.last.time.stamp&quot;: &quot;1693848167557&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -156,7 +164,7 @@
     &quot;project.structure.proportion&quot;: &quot;0.17&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;recommended.upgrade.do.not.ask.for.project&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.new.ui&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;emulator&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
   &quot;keyToStringList&quot;: {
@@ -171,7 +179,7 @@
       &quot;SELECT * from products WHERE title  LIKE  '%M%'&quot;
     ],
     &quot;kotlin-gradle-user-dirs&quot;: [
-      &quot;/home/remon/.gradle&quot;
+      &quot;/Users/remon/.gradle&quot;
     ]
   }
 }</component>
@@ -184,11 +192,11 @@
       <recent name="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary" />
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem" />
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components" />
       <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order" />
       <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation" />
-      <recent name="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/Multiple" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.srmanager.core.common.model" />
@@ -198,6 +206,7 @@
       <recent name="com.internetpolice.settings_presentation.screens.language" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="com.srmanager.core.common.util" />
       <recent name="com.srmanager.outlet_presentation.maps.Multiple" />
       <recent name="com.srmanager.core.designsystem" />
     </key>
@@ -269,8 +278,8 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PreviewNotificationScreen" type="ComposePreviewRunConfiguration" temporary="true">
-      <module name="InternetPolice.features.notification.notification_presentation" />
+    <configuration name="DateRangePickerPreview" type="ComposePreviewRunConfiguration" temporary="true">
+      <module name="SRManager.core.designsystem" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -280,14 +289,14 @@
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.notification_presentation.NotificationScreenKt.PreviewNotificationScreen" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.srmanager.core.designsystem.DateRangePickerKt.DateRangePickerPreview" />
       <option name="MODE" value="specific_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -331,13 +340,13 @@
       <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <compose-preview-run-configuration composable-fqn="com.internetpolice.notification_presentation.NotificationScreenKt.PreviewNotificationScreen" />
+      <compose-preview-run-configuration composable-fqn="com.srmanager.core.designsystem.DateRangePickerKt.DateRangePickerPreview" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PreviewPermissionMainScreen" type="ComposePreviewRunConfiguration" temporary="true">
-      <module name="InternetPolice.app" />
+    <configuration name="PreviewActivitySummaryScreen" type="ComposePreviewRunConfiguration" temporary="true">
+      <module name="SRManager.features.summary.summary_presentation" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -347,14 +356,14 @@
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.app.permission.PermissionScreenKt.PreviewPermissionMainScreen" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.srmanager.summary_presentation.activity_summary.ActivitySummaryScreenKt.PreviewActivitySummaryScreen" />
       <option name="MODE" value="specific_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -398,7 +407,7 @@
       <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <compose-preview-run-configuration composable-fqn="com.internetpolice.app.permission.PermissionScreenKt.PreviewPermissionMainScreen" />
+      <compose-preview-run-configuration composable-fqn="com.srmanager.summary_presentation.activity_summary.ActivitySummaryScreenKt.PreviewActivitySummaryScreen" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
@@ -470,8 +479,8 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PreviewShowPopup" type="ComposePreviewRunConfiguration" temporary="true">
-      <module name="InternetPolice.core.designsystem" />
+    <configuration name="PreviewVisitingSummaryScreen" type="ComposePreviewRunConfiguration" temporary="true">
+      <module name="SRManager.features.summary.summary_presentation" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -481,14 +490,14 @@
       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="CLEAR_APP_STORAGE" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
-      <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.core.designsystem.theme.ThemeKt.PreviewShowPopup" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.srmanager.summary_presentation.VisitingSummaryScreenKt.PreviewVisitingSummaryScreen" />
       <option name="MODE" value="specific_activity" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
       <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
       <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Java" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
       <Auto>
         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
         <option name="SHOW_STATIC_VARS" value="true" />
@@ -532,7 +541,7 @@
       <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
-      <compose-preview-run-configuration composable-fqn="com.internetpolice.core.designsystem.theme.ThemeKt.PreviewShowPopup" />
+      <compose-preview-run-configuration composable-fqn="com.srmanager.summary_presentation.VisitingSummaryScreenKt.PreviewVisitingSummaryScreen" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
@@ -617,6 +626,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Compose Preview.DateRangePickerPreview" />
+        <item itemvalue="Compose Preview.PreviewActivitySummaryScreen" />
+        <item itemvalue="Compose Preview.PreviewVisitingSummaryScreen" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -1009,7 +1025,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="418" />
+    <option name="localTasksCounter" value="420" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -38,4 +38,6 @@ object Modules {
     const val report_domain = ":features:report:report_domain"
     const val report_presentation = ":features:report:report_presentation"
     const val report_data = ":features:report:report_data"
+
+    const val summary_presentation = ":features:summary:summary_presentation"
 }

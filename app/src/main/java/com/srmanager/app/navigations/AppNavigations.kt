@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.srmanager.app.home.HomeScreen
+import com.srmanager.app.home.HomeViewModel
 import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
@@ -41,6 +42,9 @@ import com.srmanager.outlet_presentation.outlet_details.OutletDetailsEvent
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsViewModel
 import com.srmanager.report_presentation.report.ReportScreen
+import com.srmanager.summary_presentation.VisitingSummaryScreen
+import com.srmanager.summary_presentation.activity_summary.ActivitySummaryScreen
+import com.srmanager.summary_presentation.activity_summary.ActivitySummaryViewModel
 
 @Composable
 fun MainApp(
@@ -75,8 +79,9 @@ fun MainApp(
             }
 
             composable(route = Route.HOME) {
+                val viewModel = hiltViewModel<HomeViewModel>()
                 HomeScreen(
-                    navController,
+                    navController = navController,
                     onMapClick = {
                         navController.navigate(Route.OUTLET_MAP)
                     },
@@ -86,6 +91,12 @@ fun MainApp(
                     onMyOrderClick = {
                         navController.navigate(Route.ORDER)
                     },
+                    onVisitingSummaryClick = {
+                        navController.navigate(Route.VISITING_SUMMARY)
+                    },
+                    state = viewModel.state,
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent
                 )
             }
 
@@ -278,6 +289,31 @@ fun MainApp(
                     onNextClick = {
                         navController.navigate(Route.SIGNATURE_SCREEN)
                     }
+                )
+            }
+
+            composable(route = Route.VISITING_SUMMARY) {
+                VisitingSummaryScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    onActivitySummaryClick = {
+                        navController.navigate(Route.ACTIVITY_SUMMARY)
+                    },
+                    onActivitiesDetailsClick = {},
+                    onProductivityStatusClick = {}
+                )
+            }
+
+            composable(route = Route.ACTIVITY_SUMMARY) {
+                val viewModel = hiltViewModel<ActivitySummaryViewModel>()
+                ActivitySummaryScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    state = viewModel.state,
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent
                 )
             }
 
