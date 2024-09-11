@@ -32,24 +32,37 @@ class ActivitySummaryViewModel @Inject constructor() : ViewModel() {
                 )
             }
 
-            is ActivitySummaryEvent.OnFilterItemSelection-> {
+            is ActivitySummaryEvent.OnFilterItemSelection -> {
                 state = state.copy(
                     isDropDownOpened = event.isOpened
                 )
 
             }
 
-            is ActivitySummaryEvent.OnDateSelectionDialogOpen-> {
+            is ActivitySummaryEvent.OnDateSelectionDialogOpen -> {
                 state = state.copy(
                     isDateSelectionDialogOpen = event.isOpened
                 )
             }
 
-            is ActivitySummaryEvent.OnDateSelection-> {
+            is ActivitySummaryEvent.OnDateSelection -> {
                 state = state.copy(
                     isDateSelectionDialogOpen = false,
                     startDate = event.fromDate,
                     endDate = event.toDate
+                )
+            }
+
+            is ActivitySummaryEvent.OnMonthSelectionDialogOpen -> {
+                state = state.copy(
+                    isMonthSelectionDialogOpen = event.isOpened
+                )
+            }
+
+            is ActivitySummaryEvent.OnMonthSelection -> {
+                state = state.copy(
+                    isMonthSelectionDialogOpen = false,
+                    selectedMonth = event.selectedMonth
                 )
             }
 

@@ -4,14 +4,13 @@ package com.srmanager.core.designsystem
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,10 +18,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.KeyboardArrowDown
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowLeft
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -36,76 +38,58 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
-import com.srmanager.core.designsystem.theme.ColorTextSecondary
+import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.bodyBoldTextStyle
 import com.srmanager.core.designsystem.theme.bodyXSBoldTextStyle
+import com.srmanager.core.designsystem.theme.subHeading1TextStyle
 import java.time.LocalDate
+import com.srmanager.core.common.R as CommonR
+import com.srmanager.core.designsystem.R as DesignSystemR
 
 
-enum class Month(val monthNumber: Int, val fullName: String) {
-    JANUARY(1, "January"),
-    FEBRUARY(2, "February"),
-    MARCH(3, "March"),
-    APRIL(4, "April"),
-    MAY(5, "May"),
-    JUNE(6, "June"),
-    JULY(7, "July"),
-    AUGUST(8, "August"),
-    SEPTEMBER(9, "September"),
-    OCTOBER(10, "October"),
-    NOVEMBER(11, "November"),
-    DECEMBER(12, "December");
+enum class Month(val fullName: String) {
+    JANUARY("January"),
+    FEBRUARY("February"),
+    MARCH("March"),
+    APRIL("April"),
+    MAY("May"),
+    JUNE("June"),
+    JULY("July"),
+    AUGUST("August"),
+    SEPTEMBER("September"),
+    OCTOBER("October"),
+    NOVEMBER("November"),
+    DECEMBER("December");
 
     companion object {
-        // Function to get the Month enum by month number
-        fun fromNumber(number: Int): Month? {
-            return values().find { it.monthNumber == number }
-        }
 
-        // Function to get the current month
-        fun currentMonth(): Month {
-            val currentMonthNumber = java.time.LocalDate.now().monthValue
-            return fromNumber(currentMonthNumber)!!
-        }
-
-        // Function to get a list of months with full names
         fun getFullNames(): List<String> {
-            return values().map { it.fullName }
+            return values().map { it.fullName.uppercase() }
         }
     }
 }
 
-fun main() {
-    // Get the list of month full names
-    val monthNames = Month.getFullNames()
-    println(monthNames) // Prints: [January, February, ..., December]
-}
-
-
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 fun MonthPicker(
     openDialog: MutableState<Boolean>,
     confirmButtonCLicked: (Pair<String, String>) -> Unit,
-    cancelClicked: () -> Unit
+    cancelClicked: () -> Unit,
+    selectedMonth: Pair<String, String>
 ) {
 
-    val currentMonth = LocalDate.now().monthValue
-    val currentYear = LocalDate.now().year
-
     var month by remember {
-        mutableStateOf(Month.fromNumber(currentMonth)!!.fullName)
+        mutableStateOf(selectedMonth.first)
     }
 
     var year by remember {
-        mutableIntStateOf(currentYear)
+        mutableIntStateOf(selectedMonth.second.toInt())
     }
 
     val interactionSource = remember {
@@ -124,27 +108,52 @@ fun MonthPicker(
                 cancelClicked()
             },
             content = {
-                Box(
+                Card(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(40.r())
+                        .padding(30.r())
                         .background(
                             color = Color.White,
                             shape = RoundedCornerShape(32.r())
-                        )
+                        ), colors = CardDefaults.cardColors(
+                        containerColor = Color.White
+                    )
                 ) {
                     Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(20.r())
                     ) {
-
-                        Text("Choose Month and Year")
 
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(top = 20.r()),
+                                .padding(20.r()),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                stringResource(CommonR.string.choose_month_and_year),
+                                style = bodyBoldTextStyle.copy(
+                                    color = Color.Black
+                                )
+                            )
+
+                            Spacer(modifier = Modifier.weight(1f))
+
+                            Image(
+                                painter = painterResource(DesignSystemR.drawable.ic_calendar),
+                                contentDescription = null,
+                                modifier = Modifier.size(20.r()),
+                                colorFilter = ColorFilter.tint(
+                                    color = APP_DEFAULT_COLOR
+                                )
+                            )
+                        }
+
+
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(top = 10.r()),
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.CenterVertically
                         ) {
@@ -152,7 +161,6 @@ fun MonthPicker(
                             Icon(
                                 modifier = Modifier
                                     .size(35.r())
-                                    .rotate(90f)
                                     .clickable(
                                         indication = null,
                                         interactionSource = interactionSource,
@@ -160,29 +168,35 @@ fun MonthPicker(
                                             year--
                                         }
                                     ),
-                                imageVector = Icons.Rounded.KeyboardArrowDown,
+                                imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowLeft,
                                 contentDescription = null
                             )
 
+                            Spacer(modifier = Modifier.width(40.r()))
+
                             Text(
-                                modifier = Modifier.padding(horizontal = 20.r()),
                                 text = year.toString(),
-                                fontSize = 24.sp,
-                                fontWeight = FontWeight.Bold
+                                style = subHeading1TextStyle.copy(
+                                    color = Color.Black,
+                                )
                             )
+
+                            Spacer(modifier = Modifier.width(40.r()))
 
                             Icon(
                                 modifier = Modifier
                                     .size(35.r())
-                                    .rotate(-90f)
                                     .clickable(
                                         indication = null,
                                         interactionSource = interactionSource,
                                         onClick = {
-                                            year++
+                                            if (year < LocalDate.now().year) {
+                                                year++
+                                            }
+
                                         }
                                     ),
-                                imageVector = Icons.Rounded.KeyboardArrowDown,
+                                imageVector = Icons.AutoMirrored.Rounded.KeyboardArrowRight,
                                 contentDescription = null
                             )
 
@@ -191,25 +205,23 @@ fun MonthPicker(
 
                         Card(
                             modifier = Modifier
-                                .padding(top = 30.r())
+                                .padding(10.r())
                                 .fillMaxWidth(),
                             colors = CardDefaults.cardColors(
                                 containerColor = Color.White
+                            ), elevation = CardDefaults.cardElevation(
+                                defaultElevation = 5.r()
                             )
                         ) {
 
-                            FlowRow(
-                                modifier = Modifier.fillMaxWidth(),
-                                maxItemsInEachRow = 3,
-                                verticalArrangement = Arrangement.Center,
-                                horizontalArrangement = Arrangement.Center
+                            LazyVerticalGrid(
+                                columns = GridCells.Fixed(3),
+                                modifier = Modifier.padding(5.r())
                             ) {
-
-                                Month.getFullNames().forEach {
+                                items(Month.getFullNames()) {
                                     Box(
                                         modifier = Modifier
                                             .width(100.r())
-                                            .height(60.r())
                                             .clickable(
                                                 indication = null,
                                                 interactionSource = interactionSource,
@@ -219,73 +231,82 @@ fun MonthPicker(
                                             )
                                             .background(
                                                 color = Color.Transparent
-                                            ),
+                                            )
+                                            .padding(vertical = 20.r()),
                                         contentAlignment = Alignment.Center
                                     ) {
 
                                         val animatedSize by animateDpAsState(
-                                            targetValue = if (month == it) 60.r() else 0.r(),
+                                            targetValue = if (it.equals(
+                                                    month,
+                                                    ignoreCase = true
+                                                )
+                                            ) 110.r() else 0.r(),
                                             animationSpec = tween(
                                                 durationMillis = 500,
                                                 easing = LinearOutSlowInEasing
                                             )
                                         )
 
-                                        /* Box(
-                                             modifier = Modifier
-                                                 .size(animatedSize)
-                                                 .background(
-                                                     color = if (month == it) ColorTextSecondary else Color.Transparent,
-                                                     shape = RoundedCornerShape(30.r())
-                                                 )
-                                         )*/
+                                        Box(
+                                            modifier = Modifier
+                                                .width(animatedSize)
+                                                .height(40.r())
+                                                .background(
+                                                    color = if (it.equals(
+                                                            month,
+                                                            ignoreCase = true
+                                                        )
+                                                    ) APP_DEFAULT_COLOR else Color.Transparent,
+                                                    shape = RoundedCornerShape(16.r())
+                                                )
+                                        )
 
                                         Text(
                                             text = it,
-                                            style = bodyXSBoldTextStyle.copy(color = if (month == it) Color.White else Color.Black),
+                                            style = bodyXSBoldTextStyle.copy(
+                                                fontSize = 12.ssp(),
+                                                color = if (it.equals(
+                                                        month,
+                                                        ignoreCase = true
+                                                    )
+                                                ) Color.White else Color.Black
+                                            ),
                                             modifier = Modifier
-                                                .background(
-                                                    color = if (month == it) ColorTextSecondary else Color.Transparent,
-                                                    shape = RoundedCornerShape(16.r())
-                                                )
                                                 .padding(vertical = 5.r(), horizontal = 10.r())
                                         )
 
                                     }
                                 }
-
                             }
 
                         }
 
-                        Spacer(modifier = Modifier.height(20.r()))
-
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(end = 20.r()),
+                                .padding(20.r()),
                             horizontalArrangement = Arrangement.End
                         ) {
 
                             Text(
-                                text = "Cancel",
-                                style = bodyBoldTextStyle.copy(color = ColorTextSecondary),
+                                text = stringResource(CommonR.string.cancel),
+                                style = bodyBoldTextStyle.copy(color = Color(0xFFE38E8E)),
                                 modifier = Modifier.clickable {
                                     cancelClicked()
                                 }
                             )
 
-                            Spacer(modifier = Modifier.width(20.r()))
+                            Spacer(modifier = Modifier.width(40.r()))
 
                             Text(
-                                text = "OK",
-                                style = bodyBoldTextStyle,
+                                text = stringResource(CommonR.string.choose),
+                                style = bodyBoldTextStyle.copy(
+                                    color = Color(0xFF5FA8E2)
+                                ),
                                 modifier = Modifier.clickable {
                                     confirmButtonCLicked(
-                                        Pair(
-                                            first = month,
-                                            second = year.toString()
-                                        )
+                                        Pair(month, year.toString())
                                     )
                                 }
                             )
@@ -315,6 +336,7 @@ fun PreviewMonthPickerDialog() {
         cancelClicked = {
 
         },
-        confirmButtonCLicked = {}
+        confirmButtonCLicked = {},
+        selectedMonth = Pair(LocalDate.now().month.name, LocalDate.now().year.toString())
     )
 }

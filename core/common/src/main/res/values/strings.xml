@@ -153,4 +153,6 @@
     <string name="start_date">Start Date</string>
     <string name="end_date">End Date</string>
     <string name="select_month">Select month</string>
+    <string name="choose_month_and_year">Choose Month and Year</string>
+    <string name="choose">Choose</string>
 </resources>

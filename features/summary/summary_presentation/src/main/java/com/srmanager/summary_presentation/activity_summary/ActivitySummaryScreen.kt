@@ -23,23 +23,24 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.srmanager.core.common.util.SUMMARY_FILTERED_ITEMS
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.currentDate
 import com.srmanager.core.designsystem.DateRangePickerModal
+import com.srmanager.core.designsystem.MonthPicker
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
-import com.srmanager.core.designsystem.theme.ColorPrimaryDark
 import com.srmanager.core.designsystem.theme.ColorTextPrimary
 import com.srmanager.core.designsystem.theme.ColorTextSecondary
 import com.srmanager.core.designsystem.theme.TOP_INDEXER_COLOR
@@ -220,7 +221,11 @@ fun ActivitySummaryScreen(
                                             )
                                             .padding(top = 5.r())
                                             .clickable {
-
+                                                onEvent(
+                                                    ActivitySummaryEvent.OnMonthSelectionDialogOpen(
+                                                        true
+                                                    )
+                                                )
                                             }
                                     ) {
                                         Row(
@@ -230,7 +235,7 @@ fun ActivitySummaryScreen(
                                             verticalAlignment = Alignment.CenterVertically
                                         ) {
                                             Text(
-                                                text = state.selectedMonth,
+                                                text = "${state.selectedMonth.first}, ${state.selectedMonth.second}",
                                                 style = bodyRegularTextStyle
                                             )
                                             Spacer(modifier = Modifier.weight(1f))
@@ -343,6 +348,20 @@ fun ActivitySummaryScreen(
             onDismiss = {
                 onEvent(ActivitySummaryEvent.OnDateSelectionDialogOpen(false))
             }
+        )
+    }
+
+
+    if (state.isMonthSelectionDialogOpen) {
+        MonthPicker(
+            openDialog = remember { mutableStateOf(true) },
+            cancelClicked = {
+                onEvent(ActivitySummaryEvent.OnMonthSelectionDialogOpen(isOpened = false))
+            },
+            confirmButtonCLicked = {
+                onEvent(ActivitySummaryEvent.OnMonthSelection(it))
+            },
+            selectedMonth = state.selectedMonth
         )
     }
 

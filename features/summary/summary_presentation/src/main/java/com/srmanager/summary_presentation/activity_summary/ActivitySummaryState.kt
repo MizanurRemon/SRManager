@@ -4,6 +4,7 @@ import com.srmanager.core.common.util.SUMMARY_FILTERED_ITEMS
 import com.srmanager.core.common.util.changeDateFormat
 import com.srmanager.core.common.util.currentDate
 import com.srmanager.core.common.util.currentMonth
+import java.time.LocalDate
 
 
 data class ActivitySummaryState(
@@ -17,6 +18,10 @@ data class ActivitySummaryState(
         currentDate(), "yyyy-MM-dd",
         "dd-MM-yyyy"
     ) ?: "",
-    val selectedMonth: String = currentMonth(),
     val isDateSelectionDialogOpen: Boolean = false,
+    val isMonthSelectionDialogOpen: Boolean = false,
+    val selectedMonth: Pair<String, String> = Pair(
+        LocalDate.now().month.name,
+        LocalDate.now().year.toString()
+    )
 )
