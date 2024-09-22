@@ -10,14 +10,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules/core/designsystem/SRManager.core.designsystem.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/core/designsystem/SRManager.core.designsystem.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/table/DrawTable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/table/TableHeaderComponent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/table/TableHeaderComponentWithoutColumnDividers.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/table/TableRowComponent.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/table/TableRowComponentWithoutDividers.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/MonthPicker.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/MonthPicker.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/theme/Theme.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryState.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary/ActivitySummaryViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +29,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/remon/.android/avd/Resizable_Experimental_API_35.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/remon/.android/avd/Medium_Phone_API_34.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -61,8 +63,8 @@
         <option value="Class" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Data Class" />
-        <option value="Kotlin Class" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -194,11 +196,11 @@
       <recent name="$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components/table" />
       <recent name="$PROJECT_DIR$/features/summary/summary_presentation/src/main/java/com/srmanager/summary_presentation/activity_summary" />
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem" />
       <recent name="$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components" />
       <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order" />
-      <recent name="$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.srmanager.core.common.model" />

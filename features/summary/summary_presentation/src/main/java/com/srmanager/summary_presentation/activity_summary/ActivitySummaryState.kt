@@ -23,5 +23,7 @@ data class ActivitySummaryState(
     val selectedMonth: Pair<String, String> = Pair(
         LocalDate.now().month.name,
         LocalDate.now().year.toString()
-    )
+    ),
+    val salesManName: String = "Remom",
+    val salesManCode : String = "5644"
 )

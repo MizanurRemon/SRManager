@@ -21,6 +21,7 @@ import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -32,14 +33,18 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.srmanager.core.common.util.SUMMARY_FILTERED_ITEMS
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.currentDate
 import com.srmanager.core.designsystem.DateRangePickerModal
 import com.srmanager.core.designsystem.MonthPicker
 import com.srmanager.core.designsystem.components.AppToolbarCompose
+import com.srmanager.core.designsystem.components.table.DrawTable
 import com.srmanager.core.designsystem.r
+import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.ColorTextPrimary
 import com.srmanager.core.designsystem.theme.ColorTextSecondary
@@ -138,9 +143,9 @@ fun ActivitySummaryScreen(
                                 shape = RoundedCornerShape(15.r()),
                                 colors = CardDefaults.cardColors(
                                     containerColor = ColorTextSecondary
-                                ),
+                                )
 
-                                ) {
+                            ) {
                                 Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
@@ -175,6 +180,10 @@ fun ActivitySummaryScreen(
 
                                 }
                             }
+
+                            Spacer(modifier = Modifier.height(10.r()))
+
+                            SalesmanInfo(state.salesManName, state.salesManCode)
 
                             Spacer(modifier = Modifier.height(10.r()))
 
@@ -249,6 +258,10 @@ fun ActivitySummaryScreen(
                                     }
                                 }
                             }
+
+                            Spacer(modifier = Modifier.height(10.r()))
+
+                            SalesmanInfo(state.salesManName, state.salesManCode)
 
                             Spacer(modifier = Modifier.height(10.r()))
 
@@ -365,6 +378,36 @@ fun ActivitySummaryScreen(
         )
     }
 
+}
+
+@Composable
+fun SalesmanInfo(salesManName: String, salesManCode: String) {
+
+    val tableData = listOf(
+        listOf(stringResource(CommonR.string.salesman_name), salesManName),
+        listOf(stringResource(CommonR.string.salesman_code), salesManCode)
+    )
+
+
+    DrawTable(
+        data = tableData,
+        enableTableHeaderTitles = false,
+        disableVerticalDividers = false,
+        dividerThickness = .5.r(),
+        headerTableTitles = emptyList(),
+        headerTitlesBackGroundColor = Color(0XFFE9AB17),
+        tableRowColors = listOf(
+            Color.White,
+            Color.White
+        ),
+        contentAlignment = Alignment.CenterStart,
+        textAlign = TextAlign.Start,
+        horizontalDividerColor = Color.LightGray,
+        rowBorderColor = Color.Black,
+        rowTextStyle = bodyRegularTextStyle.copy(
+            color = Color.Black, fontSize = 15.ssp()
+        ),
+    )
 }
 
 @Composable

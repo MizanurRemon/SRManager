@@ -155,4 +155,6 @@
     <string name="select_month">Select month</string>
     <string name="choose_month_and_year">Choose Month and Year</string>
     <string name="choose">Choose</string>
+    <string name="salesman_name">Salesman Name</string>
+    <string name="salesman_code">Salesman Code</string>
 </resources>
