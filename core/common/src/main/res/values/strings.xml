@@ -157,4 +157,8 @@
     <string name="choose">Choose</string>
     <string name="salesman_name">Salesman Name</string>
     <string name="salesman_code">Salesman Code</string>
+    <string name="all">All</string>
+    <string name="visited">Visited</string>
+    <string name="not_visited">Not Visited</string>
+    <string name="ordered">Ordered</string>
 </resources>

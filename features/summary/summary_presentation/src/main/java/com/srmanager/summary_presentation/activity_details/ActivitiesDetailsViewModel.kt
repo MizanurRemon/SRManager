@@ -37,6 +37,19 @@ class ActivitiesDetailsViewModel @Inject constructor() : ViewModel() {
                     selectedMonth = event.selectedMonth
                 )
             }
+
+            is ActivitiesDetailsEvent.OnFilterSelection-> {
+                state = state.copy(
+                    isFilterDialogOpen = false,
+                    selectedFilterItem = event.selectedItem
+                )
+            }
+
+            is ActivitiesDetailsEvent.OnFilterDialogOpen-> {
+                state = state.copy(
+                    isFilterDialogOpen = event.isOpened
+                )
+            }
         }
     }
 }
