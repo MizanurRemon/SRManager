@@ -31,14 +31,18 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.srmanager.core.common.R
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.designsystem.MonthPicker
 import com.srmanager.core.designsystem.R as DesignSystemR
 import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.components.SalesmanInfo
+import com.srmanager.core.designsystem.components.table.DrawTable
 import com.srmanager.core.designsystem.r
+import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.APP_DEFAULT_COLOR
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import kotlinx.coroutines.flow.Flow
@@ -170,6 +174,9 @@ fun ActivitiesDetailsScreen(
                 Spacer(modifier = Modifier.height(10.r()))
 
                 Box(modifier = Modifier.fillMaxSize()) {
+
+                    MonthlyActivitiesDetails()
+
                     if (state.isFilterDialogOpen) {
                         Card(
                             shape = RoundedCornerShape(16.r()),
@@ -193,6 +200,7 @@ fun ActivitiesDetailsScreen(
                             }
                         }
                     }
+
                 }
             }
 
@@ -213,6 +221,47 @@ fun ActivitiesDetailsScreen(
     }
 
 
+}
+
+@Composable
+fun MonthlyActivitiesDetails() {
+    val tableData = listOf(
+        listOf("001", "Bismillah Traders", "Visited"),
+        listOf("005", "Haji Store", "Odered"),
+        listOf("005", "Haji Store", "Odered"),
+        listOf("005", "Haji Store", "Odered"),
+        listOf("005", "Haji Store", "Odered"),
+        listOf("005", "Haji Store", "Odered"),
+        listOf("005", "Haji Store", "Odered"),
+        listOf("005", "Haji Store", "Odered"),
+    )
+
+    val headerTitles = listOf(
+        stringResource(CommonR.string.outlet_code),
+        stringResource(CommonR.string.outlet_name),
+        stringResource(CommonR.string.visit_status)
+    )
+
+
+    DrawTable(
+        data = tableData,
+        enableTableHeaderTitles = true,
+        disableVerticalDividers = false,
+        dividerThickness = .5.r(),
+        headerTableTitles = headerTitles,
+        headerTitlesBackGroundColor = Color.White,
+        tableRowColors = listOf(
+            Color.White,
+            Color.White
+        ),
+        contentAlignment = Alignment.CenterStart,
+        textAlign = TextAlign.Start,
+        horizontalDividerColor = Color.LightGray,
+        rowBorderColor = Color.Black,
+        rowTextStyle = bodyRegularTextStyle.copy(
+            color = Color.Black, fontSize = 15.ssp()
+        ),
+    )
 }
 
 @Composable

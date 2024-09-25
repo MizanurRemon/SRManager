@@ -62,7 +62,7 @@ fun MainApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.SPLASH,
+            startDestination = Route.ACTIVITY_DETAILS,
             modifier = Modifier.padding(innerPadding)
         ) {
 

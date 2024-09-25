@@ -20,7 +20,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
 import com.srmanager.core.designsystem.r
 
 @Composable
@@ -54,7 +53,8 @@ fun TableHeaderComponentWithoutColumnDividers(
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier
                             .height(38.r())
-                            .wrapContentHeight(),
+                            .wrapContentHeight()
+                            .padding(start = 8.r()),
                         textAlign = textAlign,
                     )
                 }

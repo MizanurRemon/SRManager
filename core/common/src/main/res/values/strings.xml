@@ -161,4 +161,6 @@
     <string name="visited">Visited</string>
     <string name="not_visited">Not Visited</string>
     <string name="ordered">Ordered</string>
+    <string name="outlet_code">Outet Code</string>
+    <string name="visit_status">Visit Status</string>
 </resources>
