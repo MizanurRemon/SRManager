@@ -43,6 +43,8 @@ import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsViewModel
 import com.srmanager.report_presentation.report.ReportScreen
 import com.srmanager.summary_presentation.VisitingSummaryScreen
+import com.srmanager.summary_presentation.activity_details.ActivitiesDetailsScreen
+import com.srmanager.summary_presentation.activity_details.ActivitiesDetailsViewModel
 import com.srmanager.summary_presentation.activity_summary.ActivitySummaryScreen
 import com.srmanager.summary_presentation.activity_summary.ActivitySummaryViewModel
 
@@ -300,7 +302,9 @@ fun MainApp(
                     onActivitySummaryClick = {
                         navController.navigate(Route.ACTIVITY_SUMMARY)
                     },
-                    onActivitiesDetailsClick = {},
+                    onActivitiesDetailsClick = {
+                        navController.navigate(Route.ACTIVITY_DETAILS)
+                    },
                     onProductivityStatusClick = {}
                 )
             }
@@ -317,6 +321,18 @@ fun MainApp(
                 )
             }
 
+            composable(route = Route.ACTIVITY_DETAILS) {
+                val viewModel = hiltViewModel<ActivitiesDetailsViewModel>()
+
+                ActivitiesDetailsScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent,
+                    state = viewModel.state
+                )
+            }
         }
     }
 
