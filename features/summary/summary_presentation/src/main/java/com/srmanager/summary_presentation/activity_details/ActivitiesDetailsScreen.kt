@@ -169,7 +169,7 @@ fun ActivitiesDetailsScreen(
                             tint = Color.Gray
                         )
                     },
-                    // textStyle = bodyRegularTextStyle,
+                    textStyle = bodyRegularTextStyle.copy(textAlign = TextAlign.Start),
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
                     ),
