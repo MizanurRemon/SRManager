@@ -20,7 +20,9 @@ class ActivitiesDetailsViewModel @Inject constructor() : ViewModel() {
     val uiEvent = _uiEvent.receiveAsFlow()
 
     init {
-
+        state = state.copy(
+            filteredVisitingList = visitingDetailsList
+        )
     }
 
     fun onEvent(event: ActivitiesDetailsEvent) {
@@ -38,18 +40,137 @@ class ActivitiesDetailsViewModel @Inject constructor() : ViewModel() {
                 )
             }
 
-            is ActivitiesDetailsEvent.OnFilterSelection-> {
+            is ActivitiesDetailsEvent.OnFilterSelection -> {
+
+                val filterItem = event.context.resources.getString(event.selectedItem)
                 state = state.copy(
                     isFilterDialogOpen = false,
-                    selectedFilterItem = event.selectedItem
+                    selectedFilterItem = event.selectedItem,
+                    filteredVisitingList =
+                    when {
+                        filterItem.lowercase() == "all" -> visitingDetailsList
+                        else -> visitingDetailsList.filter {
+                            it.outletStatus.lowercase() == filterItem.lowercase()
+                        }
+                    }
                 )
             }
 
-            is ActivitiesDetailsEvent.OnFilterDialogOpen-> {
+            is ActivitiesDetailsEvent.OnFilterDialogOpen -> {
                 state = state.copy(
                     isFilterDialogOpen = event.isOpened
                 )
             }
+
+            is ActivitiesDetailsEvent.OnFilterApply -> {
+
+            }
         }
     }
 }
+
+val visitingDetailsList = listOf(
+    VisitingDetails(
+        outletCode = "001",
+        outletName = "Bismillah Traders",
+        outletStatus = "Visited"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Ordered"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Visited"
+    ),
+
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Ordered"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Ordered"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Ordered"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+    VisitingDetails(
+        outletCode = "005",
+        outletName = "Haji Store",
+        outletStatus = "Not Visited"
+    ),
+)

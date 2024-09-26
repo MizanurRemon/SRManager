@@ -29,11 +29,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.srmanager.core.common.R
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.designsystem.MonthPicker
 import com.srmanager.core.designsystem.R as DesignSystemR
@@ -55,6 +55,8 @@ fun ActivitiesDetailsScreen(
     onEvent: (ActivitiesDetailsEvent) -> Unit,
     state: ActivitiesDetailsState
 ) {
+    val context = LocalContext.current
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -175,7 +177,7 @@ fun ActivitiesDetailsScreen(
 
                 Box(modifier = Modifier.fillMaxSize()) {
 
-                    MonthlyActivitiesDetails()
+                    MonthlyActivitiesDetails(state.filteredVisitingList)
 
                     if (state.isFilterDialogOpen) {
                         Card(
@@ -192,7 +194,8 @@ fun ActivitiesDetailsScreen(
                                     FilterItem(index, item, state, onClick = {
                                         onEvent(
                                             ActivitiesDetailsEvent.OnFilterSelection(
-                                                selectedItem = item
+                                                selectedItem = item,
+                                                context = context
                                             )
                                         )
                                     })
@@ -224,17 +227,16 @@ fun ActivitiesDetailsScreen(
 }
 
 @Composable
-fun MonthlyActivitiesDetails() {
-    val tableData = listOf(
-        listOf("001", "Bismillah Traders", "Visited"),
-        listOf("005", "Haji Store", "Odered"),
-        listOf("005", "Haji Store", "Odered"),
-        listOf("005", "Haji Store", "Odered"),
-        listOf("005", "Haji Store", "Odered"),
-        listOf("005", "Haji Store", "Odered"),
-        listOf("005", "Haji Store", "Odered"),
-        listOf("005", "Haji Store", "Odered"),
-    )
+fun MonthlyActivitiesDetails(visitingDetailsList: List<VisitingDetails>) {
+
+    val tableData = visitingDetailsList.map {
+        listOf(
+            it.outletCode,
+            it.outletName,
+            it.outletStatus
+        )
+
+    }
 
     val headerTitles = listOf(
         stringResource(CommonR.string.outlet_code),

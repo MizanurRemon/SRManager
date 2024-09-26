@@ -2,6 +2,8 @@ package com.srmanager.core.designsystem.components.table
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -36,7 +38,7 @@ fun DrawTable(
     columnToIndexIncreaseWidth: Int? = null,
 ) {
 
-    Column(modifier = Modifier.fillMaxWidth()) {
+    Column(modifier = Modifier.fillMaxWidth().verticalScroll(rememberScrollState())) {
         if (enableTableHeaderTitles) {
             if (disableVerticalDividers) {
                 TableHeaderComponentWithoutColumnDividers(

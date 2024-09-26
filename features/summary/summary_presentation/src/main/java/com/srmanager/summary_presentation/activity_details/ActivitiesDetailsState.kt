@@ -3,14 +3,14 @@ package com.srmanager.summary_presentation.activity_details
 import com.srmanager.core.common.R as CommonR
 import java.time.LocalDate
 
-data class ActivitiesDetailsState (
+data class ActivitiesDetailsState(
     val isLoading: Boolean = false,
     val isMonthSelectionDialogOpen: Boolean = false,
     val selectedMonth: Pair<String, String> = Pair(
         LocalDate.now().month.name,
         LocalDate.now().year.toString()
     ),
-    val salesmanName : String = "Remon",
+    val salesmanName: String = "Remon",
     val salesmanCode: String = "156156",
     val filterList: List<Int> = listOf(
         CommonR.string.all,
@@ -18,6 +18,14 @@ data class ActivitiesDetailsState (
         CommonR.string.not_visited,
         CommonR.string.ordered
     ),
-    val selectedFilterItem : Int = CommonR.string.all,
-    val isFilterDialogOpen: Boolean = false
+    val selectedFilterItem: Int = CommonR.string.all,
+    val isFilterDialogOpen: Boolean = false,
+    val visitingDetailsList: List<VisitingDetails> = emptyList(),
+    val filteredVisitingList: List<VisitingDetails> = emptyList()
+)
+
+data class VisitingDetails(
+    val outletCode: String,
+    val outletName: String,
+    val outletStatus: String
 )
