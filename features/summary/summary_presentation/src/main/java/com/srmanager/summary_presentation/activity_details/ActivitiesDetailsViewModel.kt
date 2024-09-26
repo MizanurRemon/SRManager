@@ -21,7 +21,7 @@ class ActivitiesDetailsViewModel @Inject constructor() : ViewModel() {
 
     init {
         state = state.copy(
-            filteredVisitingList = visitingDetailsList
+            searchedVisitingList = visitingDetailsList
         )
     }
 
@@ -40,25 +40,19 @@ class ActivitiesDetailsViewModel @Inject constructor() : ViewModel() {
                 )
             }
 
-            is ActivitiesDetailsEvent.OnFilterSelection -> {
+            is ActivitiesDetailsEvent.OnSearchEvent -> {
 
-                val filterItem = event.context.resources.getString(event.selectedItem)
                 state = state.copy(
-                    isFilterDialogOpen = false,
-                    selectedFilterItem = event.selectedItem,
-                    filteredVisitingList =
+                    search = event.searchKey,
+                    searchedVisitingList =
                     when {
-                        filterItem.lowercase() == "all" -> visitingDetailsList
+                        event.searchKey.isEmpty() -> visitingDetailsList
                         else -> visitingDetailsList.filter {
-                            it.outletStatus.lowercase() == filterItem.lowercase()
+                            it.outletCode.contains(event.searchKey, ignoreCase = true)
+                                    || it.outletName.contains(event.searchKey, ignoreCase = true)
+                                    || it.outletStatus.contains(event.searchKey, ignoreCase = true)
                         }
                     }
-                )
-            }
-
-            is ActivitiesDetailsEvent.OnFilterDialogOpen -> {
-                state = state.copy(
-                    isFilterDialogOpen = event.isOpened
                 )
             }
 
