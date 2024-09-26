@@ -32,6 +32,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -168,7 +169,7 @@ fun ActivitiesDetailsScreen(
                             tint = Color.Gray
                         )
                     },
-                   // textStyle = bodyRegularTextStyle,
+                    // textStyle = bodyRegularTextStyle,
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Text, imeAction = ImeAction.Done
                     ),
@@ -179,9 +180,12 @@ fun ActivitiesDetailsScreen(
                     }),
                 )
 
-                Spacer(modifier = Modifier.height(10.r()))
 
-                MonthlyActivitiesDetails(state.searchedVisitingList)
+                Box(modifier = Modifier
+                    .fillMaxSize()
+                    .padding(vertical = 10.r())) {
+                    MonthlyActivitiesDetails(state.searchedVisitingList)
+                }
 
             }
 
@@ -227,7 +231,6 @@ fun MonthlyActivitiesDetails(visitingDetailsList: List<VisitingDetails>) {
         data = tableData,
         enableTableHeaderTitles = true,
         disableVerticalDividers = false,
-        dividerThickness = .5.r(),
         headerTableTitles = headerTitles,
         headerTitlesBackGroundColor = Color.White,
         tableRowColors = listOf(
@@ -239,8 +242,11 @@ fun MonthlyActivitiesDetails(visitingDetailsList: List<VisitingDetails>) {
         horizontalDividerColor = Color.LightGray,
         rowBorderColor = Color.Black,
         rowTextStyle = bodyRegularTextStyle.copy(
-            color = Color.Black, fontSize = 15.ssp()
+            color = Color.Black, fontSize = 12.ssp(), fontWeight = FontWeight.Light
         ),
+        headerTitlesTextStyle = bodyRegularTextStyle.copy(
+            color = Color.Black, fontSize = 12.ssp(), fontWeight = FontWeight.Bold
+        )
     )
 }
 

@@ -30,7 +30,7 @@ fun DrawTable(
     rowBorderColor: Color = Color.Black,
     rowTextStyle: TextStyle = MaterialTheme.typography.bodySmall,
     disableVerticalDividers: Boolean = false,
-    dividerThickness: Dp = 1.r(),
+    dividerThickness: Dp = .2.r(),
     horizontalDividerColor: Color = Color.Black,
     contentAlignment: Alignment = Alignment.Center,
     textAlign: TextAlign = TextAlign.Center,

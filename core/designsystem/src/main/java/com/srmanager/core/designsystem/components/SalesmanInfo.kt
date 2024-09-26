@@ -24,7 +24,7 @@ fun SalesmanInfo(salesManName: String, salesManCode: String) {
         data = tableData,
         enableTableHeaderTitles = false,
         disableVerticalDividers = false,
-        dividerThickness = .5.r(),
+        dividerThickness = .3.r(),
         headerTableTitles = emptyList(),
         headerTitlesBackGroundColor = Color(0XFFE9AB17),
         tableRowColors = listOf(
