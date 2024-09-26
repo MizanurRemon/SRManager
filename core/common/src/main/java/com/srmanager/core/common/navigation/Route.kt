@@ -21,4 +21,5 @@ object Route {
     const val PRODUCTS_ITEMS = "products_item"
     const val SIGNATURE_SCREEN = "signature_screen"
     const val SELECTED_PRODUCTS_SCREEN = "selected_products_screen"
+    const val OUTLET_PRODUCTIVITY = "outlet_productivity"
 }

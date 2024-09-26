@@ -47,6 +47,8 @@ import com.srmanager.summary_presentation.activity_details.ActivitiesDetailsScre
 import com.srmanager.summary_presentation.activity_details.ActivitiesDetailsViewModel
 import com.srmanager.summary_presentation.activity_summary.ActivitySummaryScreen
 import com.srmanager.summary_presentation.activity_summary.ActivitySummaryViewModel
+import com.srmanager.summary_presentation.productivity_status.outlet_productivity.OutletProductivityScreen
+import com.srmanager.summary_presentation.productivity_status.outlet_productivity.OutletProductivityViewModel
 
 @Composable
 fun MainApp(
@@ -62,7 +64,7 @@ fun MainApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.ACTIVITY_DETAILS,
+            startDestination = Route.OUTLET_PRODUCTIVITY,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -325,6 +327,19 @@ fun MainApp(
                 val viewModel = hiltViewModel<ActivitiesDetailsViewModel>()
 
                 ActivitiesDetailsScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent,
+                    state = viewModel.state
+                )
+            }
+
+            composable(route = Route.OUTLET_PRODUCTIVITY) {
+                val viewModel = hiltViewModel<OutletProductivityViewModel>()
+
+                OutletProductivityScreen (
                     onBack = {
                         navController.navigateUp()
                     },

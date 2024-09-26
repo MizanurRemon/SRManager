@@ -163,4 +163,7 @@
     <string name="ordered">Ordered</string>
     <string name="outlet_code">Outet Code</string>
     <string name="visit_status">Visit Status</string>
+    <string name="number_of_visit">Number Of Visit</string>
+    <string name="number_of_order">Number Of Order</string>
+    <string name="total_order_amount">Total Order Amount</string>
 </resources>

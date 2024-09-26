@@ -1,4 +1,4 @@
-package com.srmanager.summary_presentation.activity_details
+package com.srmanager.summary_presentation.productivity_status.outlet_productivity
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -45,15 +45,16 @@ import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
+import com.srmanager.core.common.R as CommonR
+
 
 @Composable
-fun ActivitiesDetailsScreen(
+fun OutletProductivityScreen(
     onBack: () -> Unit,
-    uiEvent: Flow<UiEvent>,
-    onEvent: (ActivitiesDetailsEvent) -> Unit,
-    state: ActivitiesDetailsState
+    state: OutletProductivityState,
+    onEvent: (OutletProductivityEvent) -> Unit,
+    uiEvent: Flow<UiEvent>
 ) {
     val keyboardController = LocalSoftwareKeyboardController.current
 
@@ -62,7 +63,7 @@ fun ActivitiesDetailsScreen(
             .fillMaxSize()
             .background(color = Color.White)
             .clickable {
-                onEvent(ActivitiesDetailsEvent.OnMonthSelectionDialogOpen(false))
+                onEvent(OutletProductivityEvent.OnMonthSelectionDialogOpen(false))
             }
     ) {
         AppToolbarCompose(
@@ -99,7 +100,7 @@ fun ActivitiesDetailsScreen(
                         .padding(top = 5.r())
                         .clickable {
                             onEvent(
-                                ActivitiesDetailsEvent.OnMonthSelectionDialogOpen(
+                                OutletProductivityEvent.OnMonthSelectionDialogOpen(
                                     true
                                 )
                             )
@@ -136,7 +137,7 @@ fun ActivitiesDetailsScreen(
                     value = state.search,
                     shape = RoundedCornerShape(16.r()),
                     onValueChange = {
-                        onEvent(ActivitiesDetailsEvent.OnSearchEvent(it))
+                        onEvent(OutletProductivityEvent.OnSearchEvent(it))
                     },
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.White,
@@ -179,9 +180,11 @@ fun ActivitiesDetailsScreen(
                 )
 
 
-                Box(modifier = Modifier
-                    .fillMaxSize()
-                    .padding(vertical = 10.r())) {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(vertical = 10.r())
+                ) {
                     MonthlyActivitiesDetails(state.searchedVisitingList)
                 }
 
@@ -194,26 +197,27 @@ fun ActivitiesDetailsScreen(
         MonthPicker(
             openDialog = remember { mutableStateOf(true) },
             cancelClicked = {
-                onEvent(ActivitiesDetailsEvent.OnMonthSelectionDialogOpen(isOpened = false))
+                onEvent(OutletProductivityEvent.OnMonthSelectionDialogOpen(isOpened = false))
             },
             confirmButtonCLicked = {
-                onEvent(ActivitiesDetailsEvent.OnMonthSelection(it))
+                onEvent(OutletProductivityEvent.OnMonthSelection(it))
             },
             selectedMonth = state.selectedMonth
         )
     }
 
-
 }
 
 @Composable
-fun MonthlyActivitiesDetails(visitingDetailsList: List<VisitingDetails>) {
+fun MonthlyActivitiesDetails(visitingDetailsList: List<OutletProductivity>) {
 
     val tableData = visitingDetailsList.map {
         listOf(
             it.outletCode,
             it.outletName,
-            it.outletStatus
+            it.numberOfVisit,
+            it.numberOfOrder,
+            it.totalOrderAmount
         )
 
     }
@@ -221,7 +225,9 @@ fun MonthlyActivitiesDetails(visitingDetailsList: List<VisitingDetails>) {
     val headerTitles = listOf(
         stringResource(CommonR.string.outlet_code),
         stringResource(CommonR.string.outlet_name),
-        stringResource(CommonR.string.visit_status)
+        stringResource(CommonR.string.number_of_visit),
+        stringResource(CommonR.string.number_of_order),
+        stringResource(CommonR.string.total_order_amount)
     )
 
 
@@ -251,13 +257,11 @@ fun MonthlyActivitiesDetails(visitingDetailsList: List<VisitingDetails>) {
 
 @Composable
 @Preview
-fun PreviewActivitiesDetailsScreen() {
-    ActivitiesDetailsScreen(
-        onBack = {
-
-        },
-        uiEvent = flow { },
+fun PreviewOutletProductivityScreen() {
+    OutletProductivityScreen(
+        onBack = {},
+        state = OutletProductivityState(),
         onEvent = {},
-        state = ActivitiesDetailsState()
+        uiEvent = flow { }
     )
 }
