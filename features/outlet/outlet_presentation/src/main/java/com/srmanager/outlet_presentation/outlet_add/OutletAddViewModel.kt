@@ -56,7 +56,8 @@ class OutletAddViewModel @Inject constructor(
                     if (it.data.isNotEmpty()) {
                         state = state.copy(
                             marketName = it.data.first().text ?: "",
-                            marketNameList = it.data
+                            marketNameList = it.data,
+                            marketID = it.data.first().id ?: 1
                         )
                     }
                 }.onFailure { }

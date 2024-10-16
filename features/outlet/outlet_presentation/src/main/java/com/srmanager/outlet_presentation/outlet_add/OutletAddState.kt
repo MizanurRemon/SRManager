@@ -21,7 +21,7 @@ data class OutletAddState(
     val routeName: String = "",
     val marketName: String = "",
     val email: String = "",
-    val marketID : Int = 0,
+    val marketID : Int = 1,
     val billingAddress : String = "",
     val isBillingAddressSameAsAddress : Boolean = false,
     val isOutletNameError: Boolean = false,

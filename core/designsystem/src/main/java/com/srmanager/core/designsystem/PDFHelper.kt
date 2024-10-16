@@ -56,7 +56,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
         val document = Document(pdfDocument)
 
         // Custom Fonts
-        val regularFont = PdfFontFactory.createFont(StandardFonts.HELVETICA)
+        PdfFontFactory.createFont(StandardFonts.HELVETICA)
         val boldFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD)
 
         val normalFontSize = 10f
