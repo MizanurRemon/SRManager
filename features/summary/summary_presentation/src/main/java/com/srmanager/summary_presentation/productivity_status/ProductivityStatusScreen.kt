@@ -1,5 +1,6 @@
-package com.srmanager.summary_presentation
+package com.srmanager.summary_presentation.productivity_status
 
+import com.srmanager.core.designsystem.components.ActionButton
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -10,18 +11,16 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.srmanager.core.designsystem.components.ActionButton
 import com.srmanager.core.designsystem.components.AppToolbarCompose
 import com.srmanager.core.designsystem.r
-import com.srmanager.core.common.R as CommonR
 import com.srmanager.core.designsystem.R as DesignSystemR
+import com.srmanager.core.common.R as CommonR
 
 @Composable
-fun VisitingSummaryScreen(
+fun ProductivityStatusScreen(
     onBack: () -> Unit,
-    onActivitySummaryClick: () -> Unit,
-    onActivitiesDetailsClick: () -> Unit,
-    onProductivityStatusClick: () -> Unit
+    onProductProductivity: () -> Unit,
+    onOutletProductivity: () -> Unit
 ) {
     Scaffold(
         containerColor = Color.White,
@@ -49,9 +48,9 @@ fun VisitingSummaryScreen(
                     item {
                         ActionButton(
                             onItemClick = {
-                                onActivitySummaryClick()
+                                onProductProductivity()
                             },
-                            title = CommonR.string.activities_summary,
+                            title = CommonR.string.product_productivity,
                         )
 
                     }
@@ -59,20 +58,13 @@ fun VisitingSummaryScreen(
 
                         ActionButton(
                             onItemClick = {
-                                onActivitiesDetailsClick()
+                                onOutletProductivity()
                             },
-                            title = CommonR.string.activities_details,
+                            title = CommonR.string.outlet_productivity,
                         )
                     }
 
-                    item {
-                        ActionButton(
-                            onItemClick = {
-                                onProductivityStatusClick()
-                            },
-                            title = CommonR.string.productivity_status,
-                        )
-                    }
+
                 }
             }
         }
@@ -80,14 +72,8 @@ fun VisitingSummaryScreen(
 }
 
 
-
-
 @Composable
 @Preview
-fun PreviewVisitingSummaryScreen() {
-    VisitingSummaryScreen(
-        onBack = {},
-        onActivitySummaryClick = {},
-        onActivitiesDetailsClick = {},
-        onProductivityStatusClick = {})
+fun PreviewProductivityStatusScreen() {
+    ProductivityStatusScreen(onBack = {}, onProductProductivity = {}, onOutletProductivity = { })
 }

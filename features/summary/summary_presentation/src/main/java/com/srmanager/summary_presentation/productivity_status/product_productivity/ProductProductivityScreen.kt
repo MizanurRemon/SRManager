@@ -44,8 +44,6 @@ import com.srmanager.core.designsystem.r
 import com.srmanager.core.designsystem.ssp
 import com.srmanager.core.designsystem.theme.bodyRegularTextStyle
 import com.srmanager.core.designsystem.theme.bodyXSRegularTextStyle
-import com.srmanager.summary_presentation.productivity_status.outlet_productivity.OutletProductivity
-import com.srmanager.summary_presentation.productivity_status.outlet_productivity.OutletProductivityState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import com.srmanager.core.common.R as CommonR
@@ -216,21 +214,19 @@ fun MonthlyActivitiesDetails(visitingDetailsList: List<ProductProductivity>) {
 
     val tableData = visitingDetailsList.map {
         listOf(
-            it.outletCode,
-            it.outletName,
-            it.numberOfVisit,
-            it.numberOfOrder,
-            it.totalOrderAmount
+            it.productCode,
+            it.productName,
+            it.qty,
+            it.amount,
         )
 
     }
 
     val headerTitles = listOf(
-        stringResource(CommonR.string.outlet_code),
-        stringResource(CommonR.string.outlet_name),
-        stringResource(CommonR.string.number_of_visit),
-        stringResource(CommonR.string.number_of_order),
-        stringResource(CommonR.string.total_order_amount)
+        stringResource(CommonR.string.product_code),
+        stringResource(CommonR.string.product_name),
+        stringResource(CommonR.string.qty),
+        stringResource(CommonR.string.amount)
     )
 
 

@@ -17,9 +17,8 @@ data class ProductProductivityState(
 )
 
 data class ProductProductivity(
-    val outletCode: String,
-    val outletName: String,
-    val numberOfVisit: String,
-    val numberOfOrder: String,
-    val totalOrderAmount: String
+    val productCode: String,
+    val productName: String,
+    val qty: String,
+    val amount: String,
 )

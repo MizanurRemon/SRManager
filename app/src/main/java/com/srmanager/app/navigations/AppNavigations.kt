@@ -47,6 +47,7 @@ import com.srmanager.summary_presentation.activity_details.ActivitiesDetailsScre
 import com.srmanager.summary_presentation.activity_details.ActivitiesDetailsViewModel
 import com.srmanager.summary_presentation.activity_summary.ActivitySummaryScreen
 import com.srmanager.summary_presentation.activity_summary.ActivitySummaryViewModel
+import com.srmanager.summary_presentation.productivity_status.ProductivityStatusScreen
 import com.srmanager.summary_presentation.productivity_status.outlet_productivity.OutletProductivityScreen
 import com.srmanager.summary_presentation.productivity_status.outlet_productivity.OutletProductivityViewModel
 import com.srmanager.summary_presentation.productivity_status.product_productivity.ProductProductivityScreen
@@ -66,7 +67,7 @@ fun MainApp(
     ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = Route.PRODUCT_PRODUCTIVITY,
+            startDestination = Route.SPLASH,
             modifier = Modifier.padding(innerPadding)
         ) {
 
@@ -309,7 +310,9 @@ fun MainApp(
                     onActivitiesDetailsClick = {
                         navController.navigate(Route.ACTIVITY_DETAILS)
                     },
-                    onProductivityStatusClick = {}
+                    onProductivityStatusClick = {
+                        navController.navigate(Route.PRODUCTIVITY_STATUS)
+                    }
                 )
             }
 
@@ -362,6 +365,20 @@ fun MainApp(
                     uiEvent = viewModel.uiEvent,
                     onEvent = viewModel::onEvent,
                     state = viewModel.state
+                )
+            }
+
+            composable(route = Route.PRODUCTIVITY_STATUS) {
+                ProductivityStatusScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    onProductProductivity = {
+                        navController.navigate(Route.PRODUCT_PRODUCTIVITY)
+                    },
+                    onOutletProductivity = {
+                        navController.navigate(Route.OUTLET_PRODUCTIVITY)
+                    }
                 )
             }
         }

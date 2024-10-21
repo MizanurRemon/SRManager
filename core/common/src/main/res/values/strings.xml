@@ -166,4 +166,10 @@
     <string name="number_of_visit">Number Of Visit</string>
     <string name="number_of_order">Number Of Order</string>
     <string name="total_order_amount">Total Order Amount</string>
+    <string name="product_productivity">Product Productivity</string>
+    <string name="outlet_productivity">Outlet Productivity</string>
+    <string name="qty">Qty</string>
+    <string name="amount">Amount</string>
+    <string name="product_code">Product Code</string>
+    <string name="product_name">Product Name</string>
 </resources>

@@ -48,9 +48,9 @@ class ProductProductivityViewModel @Inject constructor(): ViewModel() {
                     when {
                         event.searchKey.isEmpty() -> productProductivityList
                         else -> productProductivityList.filter {
-                            it.outletCode.contains(event.searchKey, ignoreCase = true)
-                                    || it.outletName.contains(event.searchKey, ignoreCase = true)
-                                    || it.numberOfVisit.contains(event.searchKey, ignoreCase = true)
+                            it.productCode.contains(event.searchKey, ignoreCase = true)
+                                    || it.productName.contains(event.searchKey, ignoreCase = true)
+                                    || it.qty.contains(event.searchKey, ignoreCase = true)
                         }
                     }
                 )
@@ -65,144 +65,136 @@ class ProductProductivityViewModel @Inject constructor(): ViewModel() {
 
 val productProductivityList = listOf(
     ProductProductivity(
-        outletCode = "001",
-        outletName = "Bismillah Traders",
-        numberOfVisit = "8",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "001",
+        productName = "Bismillah Traders",
+        qty = "8",
+        amount = "4",
     ),
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "6",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "6",
+        amount = "4",
     ),
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "5",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "5",
+        amount = "4",
     ),
 
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "4",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "4",
+        amount = "4",
     ),
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
     ),
 
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
     ),
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
     ),
 
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
     ),
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
-    ),
-
-    ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
-    ),
-    ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
     ),
 
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
     ),
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
-    ),
-
-    ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
-    ),
-    ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
     ),
 
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
     ),
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
     ),
 
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
     ),
     ProductProductivity(
-        outletCode = "005",
-        outletName = "Haji Store",
-        numberOfVisit = "3",
-        numberOfOrder = "4",
-        totalOrderAmount = "2000"
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
+    ),
+
+    ProductProductivity(
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
+    ),
+    ProductProductivity(
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
+    ),
+
+    ProductProductivity(
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
+    ),
+    ProductProductivity(
+        productCode = "005",
+        productName = "Haji Store",
+        qty = "3",
+        amount = "4",
+        
     ),
 )
