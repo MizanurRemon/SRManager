@@ -159,7 +159,7 @@ fun HomeScreen(
                             )
                         }
 
-                        item {
+                        /*item {
                             HomeScreenActionButton(
                                 onItemClick = {
                                     onVisitingSummaryClick()
@@ -167,7 +167,7 @@ fun HomeScreen(
                                 title = CommonR.string.visiting_summary,
                                 icon = DesignSystemR.drawable.ic_eye_unslash
                             )
-                        }
+                        }*/
                     }
 
                 }

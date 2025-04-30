@@ -102,7 +102,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
 
             infoTable.addCell(
                 Cell().add(
-                    Paragraph("Subangular Jaya, Selangor, Malaysia. Tel: +601131464097").setFontSize(
+                    Paragraph("Subang Jaya, Selangor, Malaysia. Tel: +601131464097").setFontSize(
                         normalFontSize
                     )
                 ).setBorder(Border.NO_BORDER)
