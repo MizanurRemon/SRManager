@@ -13,6 +13,7 @@ val APP_DEFAULT_COLOR = Color(0xFF00C344)
 val APP_DEFAULT_BUTTON_COLOR = Color(0xFF00C344)
 val DRAWER_SELECTED =  Color(0x16512E91)
 //00c344
+val TOP_INDEXER_COLOR =Color(0xFFE7F5ED)
 
 val AppBrush = Brush.linearGradient(
     colors = listOf(

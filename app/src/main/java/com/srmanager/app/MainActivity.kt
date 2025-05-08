@@ -16,7 +16,6 @@ import androidx.activity.compose.setContent
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.platform.LocalContext
 import androidx.core.app.ActivityCompat
 import com.srmanager.app.GPS.GpsStatus
 import com.srmanager.app.connectivity.NetworkCallbackImpl

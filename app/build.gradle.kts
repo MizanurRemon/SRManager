@@ -145,6 +145,8 @@ dependencies {
     implementation(project(Modules.order_domain))
     implementation(project(Modules.order_presentation))
 
+    implementation(project(Modules.summary_presentation))
+
     //Compose
     implementation(Compose.compiler)
     implementation(Compose.ui)

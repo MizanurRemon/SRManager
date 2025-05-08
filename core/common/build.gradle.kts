@@ -15,4 +15,7 @@ dependencies {
     implementation(Coil.COIL)
     implementation(Compose.GUAVA)
     implementation(Compose.ui)
+    implementation(platform(Firebase.FIREBASE_BOM))
+    implementation(Firebase.FIREBASE_CRASHLYTICS)
+    implementation(Firebase.FIREBASE_ANALYTICS)
 }

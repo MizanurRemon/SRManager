@@ -15,6 +15,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.srmanager.app.home.HomeScreen
+import com.srmanager.app.home.HomeViewModel
 import com.srmanager.app.splash_screen.SplashScreen
 import com.srmanager.auth_presentation.login.SignInScreen
 import com.srmanager.core.common.navigation.Route
@@ -41,6 +42,16 @@ import com.srmanager.outlet_presentation.outlet_details.OutletDetailsEvent
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsScreen
 import com.srmanager.outlet_presentation.outlet_details.OutletDetailsViewModel
 import com.srmanager.report_presentation.report.ReportScreen
+import com.srmanager.summary_presentation.VisitingSummaryScreen
+import com.srmanager.summary_presentation.activity_details.ActivitiesDetailsScreen
+import com.srmanager.summary_presentation.activity_details.ActivitiesDetailsViewModel
+import com.srmanager.summary_presentation.activity_summary.ActivitySummaryScreen
+import com.srmanager.summary_presentation.activity_summary.ActivitySummaryViewModel
+import com.srmanager.summary_presentation.productivity_status.ProductivityStatusScreen
+import com.srmanager.summary_presentation.productivity_status.outlet_productivity.OutletProductivityScreen
+import com.srmanager.summary_presentation.productivity_status.outlet_productivity.OutletProductivityViewModel
+import com.srmanager.summary_presentation.productivity_status.product_productivity.ProductProductivityScreen
+import com.srmanager.summary_presentation.productivity_status.product_productivity.ProductProductivityViewModel
 
 @Composable
 fun MainApp(
@@ -75,8 +86,9 @@ fun MainApp(
             }
 
             composable(route = Route.HOME) {
+                val viewModel = hiltViewModel<HomeViewModel>()
                 HomeScreen(
-                    navController,
+                    navController = navController,
                     onMapClick = {
                         navController.navigate(Route.OUTLET_MAP)
                     },
@@ -86,6 +98,12 @@ fun MainApp(
                     onMyOrderClick = {
                         navController.navigate(Route.ORDER)
                     },
+                    onVisitingSummaryClick = {
+                        navController.navigate(Route.VISITING_SUMMARY)
+                    },
+                    state = viewModel.state,
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent
                 )
             }
 
@@ -281,6 +299,88 @@ fun MainApp(
                 )
             }
 
+            composable(route = Route.VISITING_SUMMARY) {
+                VisitingSummaryScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    onActivitySummaryClick = {
+                        navController.navigate(Route.ACTIVITY_SUMMARY)
+                    },
+                    onActivitiesDetailsClick = {
+                        navController.navigate(Route.ACTIVITY_DETAILS)
+                    },
+                    onProductivityStatusClick = {
+                        navController.navigate(Route.PRODUCTIVITY_STATUS)
+                    }
+                )
+            }
+
+            composable(route = Route.ACTIVITY_SUMMARY) {
+                val viewModel = hiltViewModel<ActivitySummaryViewModel>()
+                ActivitySummaryScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    state = viewModel.state,
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent
+                )
+            }
+
+            composable(route = Route.ACTIVITY_DETAILS) {
+                val viewModel = hiltViewModel<ActivitiesDetailsViewModel>()
+
+                ActivitiesDetailsScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent,
+                    state = viewModel.state
+                )
+            }
+
+            composable(route = Route.OUTLET_PRODUCTIVITY) {
+                val viewModel = hiltViewModel<OutletProductivityViewModel>()
+
+                OutletProductivityScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent,
+                    state = viewModel.state
+                )
+            }
+
+
+            composable(route = Route.PRODUCT_PRODUCTIVITY) {
+
+                val viewModel = hiltViewModel<ProductProductivityViewModel>()
+                ProductProductivityScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    uiEvent = viewModel.uiEvent,
+                    onEvent = viewModel::onEvent,
+                    state = viewModel.state
+                )
+            }
+
+            composable(route = Route.PRODUCTIVITY_STATUS) {
+                ProductivityStatusScreen(
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    onProductProductivity = {
+                        navController.navigate(Route.PRODUCT_PRODUCTIVITY)
+                    },
+                    onOutletProductivity = {
+                        navController.navigate(Route.OUTLET_PRODUCTIVITY)
+                    }
+                )
+            }
         }
     }
 

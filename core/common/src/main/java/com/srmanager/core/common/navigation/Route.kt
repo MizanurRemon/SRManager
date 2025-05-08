@@ -10,6 +10,10 @@ object Route {
     const val ORDER = "order"
     const val REPORT = "report"
     const val MAP = "map"
+    const val VISITING_SUMMARY = "visiting_summary"
+    const val ACTIVITY_SUMMARY = "activity_summary"
+    const val ACTIVITY_DETAILS = "activity_details"
+    const val PRODUCTIVITY_STATUS = "productivity_status"
     const val OUTLET_DETAILS = "outlet_details"
     const val OUTLET_CHECKOUT = "outlet_checkout"
     const val OUTLET_DASHBOARD = "outlet_dashboard"
@@ -17,4 +21,6 @@ object Route {
     const val PRODUCTS_ITEMS = "products_item"
     const val SIGNATURE_SCREEN = "signature_screen"
     const val SELECTED_PRODUCTS_SCREEN = "selected_products_screen"
+    const val OUTLET_PRODUCTIVITY = "outlet_productivity"
+    const val PRODUCT_PRODUCTIVITY = "product_productivity"
 }

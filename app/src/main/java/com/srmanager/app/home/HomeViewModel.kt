@@ -9,7 +9,6 @@ import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.datastore.PreferenceDataStoreConstants
 import com.srmanager.core.datastore.PreferenceDataStoreHelper
 import com.srmanager.database.dao.LocationDao
-import com.srmanager.database.dao.UserDao
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
@@ -19,7 +18,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val userDao: UserDao,
     private val preferenceDataStoreHelper: PreferenceDataStoreHelper,
     private val locationDao: LocationDao
 ) : ViewModel() {
