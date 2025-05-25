@@ -6,7 +6,7 @@ import android.content.pm.PackageManager
 import android.location.Geocoder
 import android.location.Location
 import android.os.Looper
-import android.util.Log
+import androidx.annotation.RequiresPermission
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
@@ -29,19 +29,11 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
     private val scope = (context as? LifecycleOwner)?.lifecycleScope
         ?: CoroutineScope(Dispatchers.Main + SupervisorJob())
 
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     override fun onActive() {
         super.onActive()
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
+        if (!hasLocationPermissions()) return
 
-            return
-        }
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             location?.let {
                 setLocationData(location = it, context = context)
@@ -51,18 +43,21 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
         startLocationUpdates()
     }
 
-    private fun startLocationUpdates() {
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
 
-            return
-        }
+    private fun hasLocationPermissions(): Boolean {
+        return ActivityCompat.checkSelfPermission(
+            context,
+            Manifest.permission.ACCESS_FINE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED || ActivityCompat.checkSelfPermission(
+            context,
+            Manifest.permission.ACCESS_COARSE_LOCATION
+        ) == PackageManager.PERMISSION_GRANTED
+    }
+
+    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
+    private fun startLocationUpdates() {
+        if (!hasLocationPermissions()) return
+
         fusedLocationClient.requestLocationUpdates(
             locationRequest,
             locationCallBack,
@@ -74,7 +69,7 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
         location.let { data ->
 
             scope.launch {
-                if (data != null){
+                if (data != null) {
                     value = LocationDetails(
                         data.latitude,
                         data.longitude,
@@ -132,7 +127,8 @@ class LocationLiveData(private var context: Context) : LiveData<LocationDetails>
                 }
 
                 val address = addresses[0]
-                val addressParts = (0..address.maxAddressLineIndex).map { address.getAddressLine(it) }
+                val addressParts =
+                    (0..address.maxAddressLineIndex).map { address.getAddressLine(it) }
                 addressParts.joinToString(", ").trim()
             } catch (e: IOException) {
                 "Unknown"
