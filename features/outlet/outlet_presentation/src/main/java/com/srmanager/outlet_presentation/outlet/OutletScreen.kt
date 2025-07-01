@@ -9,6 +9,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,6 +20,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
@@ -146,7 +149,8 @@ fun OutletScreen(
                     .padding(horizontal = 10.r())
             ) {
                 Spacer(modifier = Modifier.padding(top = 10.r()))
-                TextField(singleLine = true,
+                TextField(
+                    singleLine = true,
                     value = viewModel.state.searchKey,
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = Color.White,
@@ -216,15 +220,16 @@ fun OutletScreen(
                                 .padding(top = 10.r())
                         )
                     } else {
-                        val lazyColumnListState = rememberLazyListState()
                         LazyColumn(
-                            state = lazyColumnListState,
-                            modifier = Modifier.padding(10.r())
+                            state = rememberLazyListState(),
+                            //modifier = Modifier.padding(10.r()),
+                            contentPadding = PaddingValues(vertical = 10.r()),
+                            verticalArrangement = Arrangement.spacedBy(10.r())
                         ) {
-                            items(viewModel.state.outletList.size) { index ->
-                                Spacer(modifier = Modifier.height(10.r()))
+                            itemsIndexed(viewModel.state.outletList) { index, item ->
                                 ItemCompose(
-                                    viewModel.state.outletList[index], index,
+                                    response = item,
+                                    index = index,
                                     onItemClick = { data ->
                                         onItemClick(data)
                                     },
