@@ -9,6 +9,7 @@ import com.srmanager.core.datastore.PreferenceDataStoreHelper
 import com.srmanager.core.network.model.CommonErrorModel
 import com.srmanager.core.network.model.LoginRequest
 import com.srmanager.core.network.util.NetworkHandler
+import kotlinx.serialization.InternalSerializationApi
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import retrofit2.HttpException
@@ -19,6 +20,7 @@ class AuthRepositoryImpl(
     private val preferenceDataStoreHelper: PreferenceDataStoreHelper,
     private val networkHandler: NetworkHandler,
 ) : AuthRepository {
+    @OptIn(InternalSerializationApi::class)
     override suspend fun getLoginResponse(loginRequest: LoginRequest): Result<LoginResponse> {
         return if (networkHandler.isNetworkAvailable()) {
             try {
@@ -27,7 +29,7 @@ class AuthRepositoryImpl(
                 val loginResponse = loginDto.toLoginResponse()
                 preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.ACCESS_TOKEN,
-                    loginResponse.data
+                    loginResponse.token
                 )
 
                 preferenceDataStoreHelper.putPreference(
