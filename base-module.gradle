@@ -30,11 +30,13 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
     kotlinOptions {
+
         jvmTarget = ProjectConfig.jvmTarget
     }
 }
 
 dependencies {
+    implementation Compose.GSON
     kapt Hilt.hiltCompiler
     implementation Hilt.hiltAndroidVersion
     testImplementation Testing.junit4
