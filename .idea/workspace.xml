@@ -9,15 +9,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="">
+    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="ghjvghuv">
       <change beforePath="$PROJECT_DIR$/.idea/appInsightsSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/appInsightsSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/outlet/OutletViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/base-module.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/base-module.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PublicApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/PublicApiService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/RestConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/RestConfig.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/LoginDto.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/dto/LoginDto.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/dataSource/remote/AuthRemoteDataSource.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/dataSource/remote/AuthRemoteDataSource.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/dataSourceImpl/remote/AuthRemoteDataSourceImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/dataSourceImpl/remote/AuthRemoteDataSourceImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/mapper/RegistrationMapper.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/mapper/RegistrationMapper.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/repository/AuthRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_data/src/main/java/com/srmanager/auth_data/repository/AuthRepositoryImpl.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/model/LoginResponse.kt" beforeDir="false" afterPath="$PROJECT_DIR$/features/auth/auth_domain/src/main/java/com/srmanager/auth/auth_domain/model/LoginResponse.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +31,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/remon/.android/avd/Pixel_5_API_29.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=/Users/remon/.android/avd/Pixel_8_Pro.avd)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -100,9 +104,18 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RESET_MODE" value="HARD" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GithubDefaultAccount">
     <option name="defaultAccountId" value="cc1cc4f5-6317-4144-b396-fa5e35bbef21" />
+  </component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="$USER_HOME$/.gradle/wrapper/dists/gradle-8.6-bin/afr5mpiioh2wthjmwnkmdsd5w/gradle-8.6" javaHome="$USER_HOME$/Library/Java/JavaVirtualMachines/jbr-17.0.14/Contents/Home" gradleVersion="8.6">
+    <option name="jvmArguments">
+      <list>
+        <option value="-Didea.compose.hot-reload=true" />
+        <option value="-Didea.compose.hot-reload.version=2" />
+      </list>
+    </option>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" root0="SKIP_INSPECTION" />
@@ -117,7 +130,7 @@
   &quot;associatedIndex&quot;: 4
 }</component>
   <component name="ProjectId" id="2UwOJ3e61sNuQt4aE9mZuI7LkXL" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+  <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -283,6 +296,12 @@
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="AppleRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" IS_LOCATION_SIMULATION_SUPPORTED="false" IS_LOCATION_SIMULATION_ALLOWED="true" APPLICATION_LANGUAGE="IDELaunchSchemeLanguageUseSystemLanguage" APPLICATION_REGION="" DEVELOPMENT_TEAM="${TEAM_ID}" MAKE_ACTIVE="TRUE" SHOULD_DEBUG_EXTENSIONS="false">
+      <embedded_app_extension_list />
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="DateRangePickerPreview" type="ComposePreviewRunConfiguration" temporary="true">
@@ -1064,7 +1083,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="435" />
+    <option name="localTasksCounter" value="436" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1098,7 +1117,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix UI" />
     <MESSAGE value="fix null" />
     <MESSAGE value="rest config" />
     <MESSAGE value="langugae sync" />
@@ -1123,7 +1141,8 @@
     <MESSAGE value="new" />
     <MESSAGE value="dependencies updated" />
     <MESSAGE value="summary" />
-    <option name="LAST_COMMIT_MESSAGE" value="summary" />
+    <MESSAGE value="ghjvghuv" />
+    <option name="LAST_COMMIT_MESSAGE" value="ghjvghuv" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="play_dynamic_filters_status">
@@ -1131,12 +1150,12 @@
       <map>
         <entry key="com.srmanager.app">
           <value>
-            <CheckInfo lastCheckTimestamp="1750317083078" />
+            <CheckInfo lastCheckTimestamp="1756227933291" />
           </value>
         </entry>
         <entry key="com.srmanager.app.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1750317083078" />
+            <CheckInfo lastCheckTimestamp="1756227933291" />
           </value>
         </entry>
       </map>

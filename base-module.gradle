@@ -36,6 +36,7 @@ android {
 }
 
 dependencies {
+    implementation Compose.GSON
     kapt Hilt.hiltCompiler
     implementation Hilt.hiltAndroidVersion
     testImplementation Testing.junit4
