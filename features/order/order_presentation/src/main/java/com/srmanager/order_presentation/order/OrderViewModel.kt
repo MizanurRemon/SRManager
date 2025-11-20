@@ -1,6 +1,8 @@
 package com.srmanager.order_presentation.order
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -54,7 +56,7 @@ class OrderViewModel @Inject constructor(
                 state = state.copy(
                     isLoading = false,
                     orderList = it.data,
-                    searchedOrderList = it.data.filter {order->
+                    searchedOrderList = it.data.filter { order ->
                         order.orderDate.contains(state.searchText)
                     }
                 )
@@ -86,9 +88,18 @@ class OrderViewModel @Inject constructor(
                                 isLoading = false,
                                 orderDetails = response
                             )
+
+
                             //generatePDF2(event.context, response)
-                            generatePdf(event.context, response)
-                            Log.d("dataxx", "onEvent: ${response.data.size}")
+                            val bitmap = loadBitmapFromUrl(
+                                "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+                            )
+
+                            generatePdf(
+                                context = event.context,
+                                orderDetails = response,
+                                headerImage = bitmap
+                            )
                         }.onFailure { error ->
                             state = state.copy(
                                 isLoading = false
@@ -143,5 +154,46 @@ class OrderViewModel @Inject constructor(
             }
         }
     }
+
+    /*private suspend fun loadBitmapFromUrl(url: String): Bitmap? = withContext(Dispatchers.IO) {
+        try {
+            val connection = java.net.URL(url).openConnection()
+            connection.connect()
+            val input = connection.getInputStream()
+            BitmapFactory.decodeStream(input)
+        } catch (e: Exception) {
+            null
+        }
+    }*/
+    private suspend fun loadBitmapFromUrl(
+        url: String,
+        width: Int = 100,
+        height: Int = 100
+    ): Bitmap? = withContext(Dispatchers.IO) {
+        try {
+            val connection = java.net.URL(url).openConnection() as java.net.HttpURLConnection
+            connection.apply {
+                doInput = true
+                connectTimeout = 5000
+                readTimeout = 5000
+                setRequestProperty("User-Agent", "Mozilla/5.0")
+                setRequestProperty("Accept", "*/*")
+                connect()
+            }
+
+            connection.inputStream.use { input ->
+                val originalBitmap = BitmapFactory.decodeStream(input)
+                if (originalBitmap == null) return@withContext null
+
+                // Resize to exact 100x100
+                originalBitmap
+            }
+        } catch (e: Exception) {
+            Log.d("dataxx", "Failed to load bitmap from URL: $url", e)
+            null
+        }
+    }
+
+
 
 }

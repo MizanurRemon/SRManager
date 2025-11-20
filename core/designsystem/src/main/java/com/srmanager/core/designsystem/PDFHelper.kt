@@ -32,9 +32,13 @@ import com.srmanager.order_domain.model.OrderDetailsResponse
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import androidx.core.graphics.createBitmap
+import androidx.core.graphics.set
 
 @SuppressLint("DefaultLocale")
-fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
+fun generatePdf(context: Context, orderDetails: OrderDetailsResponse,  headerImage: Bitmap? = null) {
+
+    Log.d("dataxx", "generatePdf: ${if(headerImage == null) "null" else "not null"}")
 
     val dir = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         //Android 11 and above
@@ -48,7 +52,8 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
         dir.mkdir()
     }
     //generateFileName("srm")
-    val file = File(dir, "srm${orderDetails.orderNo}" + ".pdf")
+    //val file = File(dir, "srm${orderDetails.orderNo}" + ".pdf")
+    val file = File(dir, generateFileName("srm") + ".pdf")
 
     if (!file.exists()) {
         val pdfWriter = PdfWriter(file)
@@ -56,16 +61,15 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse) {
         val document = Document(pdfDocument)
 
         // Custom Fonts
-        val regularFont = PdfFontFactory.createFont(StandardFonts.HELVETICA)
         val boldFont = PdfFontFactory.createFont(StandardFonts.HELVETICA_BOLD)
 
         val normalFontSize = 10f
 
         try {
 
-            val bitmap = BitmapFactory.decodeResource(context.resources, R.drawable.ic_header_image)
+            val bitmap = headerImage ?: BitmapFactory.decodeResource(context.resources, R.drawable.ic_header_image)
             val stream = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream)
+            bitmap?.compress(Bitmap.CompressFormat.PNG, 100, stream)
             val imageData = ImageDataFactory.create(stream.toByteArray())
             val image = Image(imageData)
             image.setHeight(80f)
@@ -384,14 +388,11 @@ private fun generateFileName(fileName: String): String {
 fun generateBarcode(text: String, width: Int, height: Int): Image {
     val bitMatrix: BitMatrix =
         MultiFormatWriter().encode(text, BarcodeFormat.CODE_128, width, height)
-    val bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565)
+    val bitmap = createBitmap(width, height, Bitmap.Config.RGB_565)
     for (x in 0 until width) {
         for (y in 0 until height) {
-            bitmap.setPixel(
-                x,
-                y,
+            bitmap[x, y] =
                 if (bitMatrix[x, y]) android.graphics.Color.BLACK else android.graphics.Color.WHITE
-            )
         }
     }
 
