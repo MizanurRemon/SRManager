@@ -4,7 +4,14 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class LoginDto(
-    val data: String? = null,
+    val data: Data,
     val httpStatus: Int,
     val message: String
+)
+
+
+@Serializable
+data class Data(
+    val companyId: Int,
+    val token: String
 )

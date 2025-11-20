@@ -5,7 +5,8 @@ import com.srmanager.core.network.dto.LoginDto
 
 fun LoginDto.toLoginResponse(): LoginResponse {
     return LoginResponse(
-        data = data.toString(),
+        companyId = data.companyId,
+        token = data.token,
         httpStatus = httpStatus,
         message = message
     )
