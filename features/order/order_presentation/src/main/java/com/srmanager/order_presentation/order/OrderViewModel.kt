@@ -99,7 +99,6 @@ class OrderViewModel @Inject constructor(
 
                             val url = "${RestConfig.LOCAL_URL}/bsol/public/image/$companyID"
 
-                            //generatePDF2(event.context, response)
                             val bitmap = loadBitmapFromUrl(
                                 url
                             )
@@ -202,7 +201,6 @@ class OrderViewModel @Inject constructor(
             null
         }
     }
-
 
 
 }
