@@ -27,7 +27,12 @@ class AuthRepositoryImpl(
                 val loginResponse = loginDto.toLoginResponse()
                 preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.ACCESS_TOKEN,
-                    loginResponse.data
+                    loginResponse.token
+                )
+
+                preferenceDataStoreHelper.putPreference(
+                    PreferenceDataStoreConstants.COMPANY_ID,
+                    loginResponse.companyId
                 )
 
                 preferenceDataStoreHelper.putPreference(

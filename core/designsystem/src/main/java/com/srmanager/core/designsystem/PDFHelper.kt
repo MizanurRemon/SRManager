@@ -53,7 +53,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse,  headerIma
     }
     //generateFileName("srm")
     //val file = File(dir, "srm${orderDetails.orderNo}" + ".pdf")
-    val file = File(dir, generateFileName("srm") + ".pdf")
+    val file = File(dir, generateFileName("srm_${orderDetails.orderNo}") + ".pdf")
 
     if (!file.exists()) {
         val pdfWriter = PdfWriter(file)
@@ -73,7 +73,7 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse,  headerIma
             val imageData = ImageDataFactory.create(stream.toByteArray())
             val image = Image(imageData)
             image.setHeight(80f)
-            image.setWidth(80f)
+            image.setWidth(150f)
             image.setHorizontalAlignment(HorizontalAlignment.CENTER)
 
             val headerTable = Table(

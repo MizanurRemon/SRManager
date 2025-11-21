@@ -11,7 +11,10 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
+import com.srmanager.core.datastore.PreferenceDataStoreConstants
+import com.srmanager.core.datastore.PreferenceDataStoreHelper
 import com.srmanager.core.designsystem.generatePdf
+import com.srmanager.core.network.di.RestConfig
 import com.srmanager.order_domain.use_case.OrderUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -28,7 +31,8 @@ import javax.inject.Inject
 @SuppressLint("SimpleDateFormat")
 @HiltViewModel
 class OrderViewModel @Inject constructor(
-    private val orderUseCases: OrderUseCases
+    private val orderUseCases: OrderUseCases,
+    private val preferenceDataStoreHelper: PreferenceDataStoreHelper
 ) : ViewModel() {
     private val _uiEvent = Channel<UiEvent>()
     val uiEvent = _uiEvent.receiveAsFlow()
@@ -89,10 +93,15 @@ class OrderViewModel @Inject constructor(
                                 orderDetails = response
                             )
 
+                            val companyID = preferenceDataStoreHelper.getFirstPreference(
+                                PreferenceDataStoreConstants.COMPANY_ID, 0
+                            )
+
+                            val url = "${RestConfig.LOCAL_URL}/bsol/public/image/$companyID"
 
                             //generatePDF2(event.context, response)
                             val bitmap = loadBitmapFromUrl(
-                                "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png"
+                                url
                             )
 
                             generatePdf(

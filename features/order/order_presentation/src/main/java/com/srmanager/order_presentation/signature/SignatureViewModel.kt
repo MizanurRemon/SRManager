@@ -2,6 +2,9 @@ package com.srmanager.order_presentation.signature
 
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,7 +15,10 @@ import com.srmanager.core.common.util.UiEvent
 import com.srmanager.core.common.util.UiText
 import com.srmanager.core.common.util.bitMapToString
 import com.srmanager.core.common.util.calculationDistance
+import com.srmanager.core.datastore.PreferenceDataStoreConstants
+import com.srmanager.core.datastore.PreferenceDataStoreHelper
 import com.srmanager.core.designsystem.generatePdf
+import com.srmanager.core.network.di.RestConfig
 import com.srmanager.core.network.dto.Product
 import com.srmanager.core.network.model.OrderDetail
 import com.srmanager.core.network.model.OrderInformation
@@ -36,7 +42,9 @@ import javax.inject.Inject
 class SignatureViewModel @Inject constructor(
     private val productsDao: ProductsDao,
     private val orderUseCases: OrderUseCases,
-    private val locationDao: LocationDao
+    private val locationDao: LocationDao,
+    private val preferenceDataStoreHelper: PreferenceDataStoreHelper
+
 ) : ViewModel() {
     var state by mutableStateOf(SignatureState())
         private set
@@ -230,8 +238,49 @@ class SignatureViewModel @Inject constructor(
             }
 
             is SignatureEvent.OnPdfGenerate -> {
-                generatePdf(event.context, state.orderDetails)
+               viewModelScope.launch {
+                   val companyID = preferenceDataStoreHelper.getFirstPreference(
+                       PreferenceDataStoreConstants.COMPANY_ID, 0
+                   )
+
+                   val url = "${RestConfig.LOCAL_URL}/bsol/public/image/$companyID"
+
+                   //generatePDF2(event.context, response)
+                   val bitmap = loadBitmapFromUrl(
+                       url
+                   )
+                   generatePdf(context = event.context, orderDetails = state.orderDetails, headerImage = bitmap)
+               }
             }
+        }
+    }
+
+    private suspend fun loadBitmapFromUrl(
+        url: String,
+        width: Int = 100,
+        height: Int = 100
+    ): Bitmap? = withContext(Dispatchers.IO) {
+        try {
+            val connection = java.net.URL(url).openConnection() as java.net.HttpURLConnection
+            connection.apply {
+                doInput = true
+                connectTimeout = 5000
+                readTimeout = 5000
+                setRequestProperty("User-Agent", "Mozilla/5.0")
+                setRequestProperty("Accept", "*/*")
+                connect()
+            }
+
+            connection.inputStream.use { input ->
+                val originalBitmap = BitmapFactory.decodeStream(input)
+                if (originalBitmap == null) return@withContext null
+
+                // Resize to exact 100x100
+                originalBitmap
+            }
+        } catch (e: Exception) {
+            Log.d("dataxx", "Failed to load bitmap from URL: $url", e)
+            null
         }
     }
 

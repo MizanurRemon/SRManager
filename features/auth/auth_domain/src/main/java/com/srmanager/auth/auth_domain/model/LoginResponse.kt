@@ -1,7 +1,8 @@
 package com.srmanager.auth.auth_domain.model
 
 data class LoginResponse(
-    val data: String,
+    val token: String,
     val httpStatus: Int,
-    val message: String
+    val message: String,
+    val companyId: Int
 )
