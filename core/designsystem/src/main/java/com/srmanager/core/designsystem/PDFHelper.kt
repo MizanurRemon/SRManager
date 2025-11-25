@@ -34,6 +34,7 @@ import java.text.SimpleDateFormat
 import java.util.Calendar
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.set
+import com.itextpdf.layout.property.UnitValue
 
 @SuppressLint("DefaultLocale")
 fun generatePdf(context: Context, orderDetails: OrderDetailsResponse,  headerImage: Bitmap? = null) {
@@ -72,58 +73,55 @@ fun generatePdf(context: Context, orderDetails: OrderDetailsResponse,  headerIma
             bitmap?.compress(Bitmap.CompressFormat.PNG, 100, stream)
             val imageData = ImageDataFactory.create(stream.toByteArray())
             val image = Image(imageData)
-            image.setHeight(80f)
-            image.setWidth(150f)
+            image.setWidth(UnitValue.createPercentValue(100f))
+            image.setAutoScale(true)
+            //image.setHeight(80f)
+            //image.setWidth(150f)
             image.setHorizontalAlignment(HorizontalAlignment.CENTER)
 
-            val headerTable = Table(
-                floatArrayOf(
-                    1f,
-                    1f
-                )
-            ).useAllAvailableWidth()
+            val headerTable = Table(floatArrayOf(1f)).useAllAvailableWidth()
 
-            val infoTable = Table(
-                floatArrayOf(
-                    1f
-                )
-            ).setTextAlignment(TextAlignment.RIGHT).useAllAvailableWidth()
+            /* val infoTable = Table(
+                 floatArrayOf(
+                     1f
+                 )
+             ).setTextAlignment(TextAlignment.RIGHT).useAllAvailableWidth()
 
 
-            infoTable.addCell(
-                Cell().add(
-                    Paragraph("Latino Marketing (M) SDN BHD").setFontSize(16f).setFont(boldFont)
+             infoTable.addCell(
+                 Cell().add(
+                     Paragraph("Latino Marketing (M) SDN BHD").setFontSize(16f).setFont(boldFont)
 
-                ).setBorder(Border.NO_BORDER)
-            )
-            infoTable.addCell(
-                Cell().add(
-                    Paragraph("Reg. No- (1484541-T), Band Sunway 47500,").setFontSize(
-                        normalFontSize
-                    )
-                ).setBorder(Border.NO_BORDER)
-            )
+                 ).setBorder(Border.NO_BORDER)
+             )
+             infoTable.addCell(
+                 Cell().add(
+                     Paragraph("Reg. No- (1484541-T), Band Sunway 47500,").setFontSize(
+                         normalFontSize
+                     )
+                 ).setBorder(Border.NO_BORDER)
+             )
 
-            infoTable.addCell(
-                Cell().add(
-                    Paragraph("Subang Jaya, Selangor, Malaysia. Tel: +601131464097").setFontSize(
-                        normalFontSize
-                    )
-                ).setBorder(Border.NO_BORDER)
-            )
+             infoTable.addCell(
+                 Cell().add(
+                     Paragraph("Subang Jaya, Selangor, Malaysia. Tel: +601131464097").setFontSize(
+                         normalFontSize
+                     )
+                 ).setBorder(Border.NO_BORDER)
+             )
 
-            infoTable.addCell(
-                Cell().add(
-                    Paragraph("Email:info@latino.com.my Web: www.latino.com.my").setFontSize(
-                        normalFontSize
-                    )
-                ).setBorder(Border.NO_BORDER)
-            )
+             infoTable.addCell(
+                 Cell().add(
+                     Paragraph("Email:info@latino.com.my Web: www.latino.com.my").setFontSize(
+                         normalFontSize
+                     )
+                 ).setBorder(Border.NO_BORDER)
+             )*/
 
             headerTable.addCell(
                 Cell().add(image.setTextAlignment(TextAlignment.CENTER)).setBorder(Border.NO_BORDER)
             )
-            headerTable.addCell(Cell().add(infoTable).setBorder(Border.NO_BORDER))
+            //headerTable.addCell(Cell().add(infoTable).setBorder(Border.NO_BORDER))
 
             document.add(headerTable)
 
