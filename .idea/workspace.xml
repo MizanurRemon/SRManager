@@ -9,11 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="ghjvghuv">
-      <change beforePath="$PROJECT_DIR$/.idea/caches/deviceStreaming.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/RestConfig.kt" beforeDir="false" afterPath="$PROJECT_DIR$/core/network/src/main/java/com/srmanager/core/network/di/RestConfig.kt" afterDir="false" />
-    </list>
+    <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="link update" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,8 +79,8 @@
     </favorite-branches>
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
-        <option value="remon &lt;remonmizanur@gmail.com&gt;" />
         <option value="MizanurRemon &lt;remonmizanur@gmail.com&gt;" />
+        <option value="remon &lt;remonmizanur@gmail.com&gt;" />
       </list>
     </option>
     <option name="PUSH_AUTO_UPDATE" value="true" />
@@ -1072,7 +1068,7 @@
       <option name="project" value="LOCAL" />
       <updated>1701940797312</updated>
     </task>
-    <option name="localTasksCounter" value="437" />
+    <option name="localTasksCounter" value="438" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1105,8 +1101,9 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fix null" />
     <MESSAGE value="rest config" />
     <MESSAGE value="langugae sync" />
     <MESSAGE value="language updated" />
@@ -1131,7 +1128,8 @@
     <MESSAGE value="dependencies updated" />
     <MESSAGE value="summary" />
     <MESSAGE value="ghjvghuv" />
-    <option name="LAST_COMMIT_MESSAGE" value="ghjvghuv" />
+    <MESSAGE value="link update" />
+    <option name="LAST_COMMIT_MESSAGE" value="link update" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="play_dynamic_filters_status">
