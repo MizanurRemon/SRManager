@@ -1,0 +1,538 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AndroidLayouts\">\r\n    <shared>\r\n      <config />\r\n    </shared>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"NONE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"efeed662-6b72-4579-b990-f7c3673839a4\" name=\"Changes\" comment=\"new\">\r\n      <change afterPath=\"$PROJECT_DIR$/app/release/SRM_200624_0959.apk\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/app/release/output-metadata.json\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/app/release/app-release.aab\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/keystore.jks\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/keystore.jks\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ClangdSettings\">\r\n    <option name=\"formatViaClangd\" value=\"false\" />\r\n  </component>\r\n  <component name=\"ExecutionTargetManager\" SELECTED_TARGET=\"device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=33220fdb)]\" />\r\n  <component name=\"ExternalProjectsData\">\r\n    <projectState path=\"$PROJECT_DIR$\">\r\n      <ProjectState />\r\n    </projectState>\r\n  </component>\r\n  <component name=\"ExternalProjectsManager\">\r\n    <system id=\"GRADLE\">\r\n      <state>\r\n        <projects_view>\r\n          <tree_state>\r\n            <expand>\r\n              <path>\r\n                <item name=\"\" type=\"6a2764b6:ExternalProjectsStructure$RootNode\" />\r\n                <item name=\"SRManager\" type=\"f1a62948:ProjectNode\" />\r\n              </path>\r\n            </expand>\r\n            <select />\r\n          </tree_state>\r\n        </projects_view>\r\n      </state>\r\n    </system>\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"layoutResourceFile_vertical\" />\r\n        <option value=\"Kotlin Object\" />\r\n        <option value=\"resourceFile\" />\r\n        <option value=\"valueResourceFile\" />\r\n        <option value=\"Kotlin Sealed Class\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"Kotlin Interface\" />\r\n        <option value=\"Kotlin Data Class\" />\r\n        <option value=\"Kotlin Class\" />\r\n        <option value=\"Kotlin File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"GenerateSignedApkSettings\">\r\n    <option name=\"KEY_STORE_PATH\" value=\"$PROJECT_DIR$/keystore.jks\" />\r\n    <option name=\"KEY_ALIAS\" value=\"srmanager\" />\r\n    <option name=\"REMEMBER_PASSWORDS\" value=\"true\" />\r\n    <option name=\"BUILD_TARGET_KEY\" value=\"apk\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <favorite-branches>\r\n      <branch-storage>\r\n        <map>\r\n          <entry type=\"LOCAL\">\r\n            <value>\r\n              <list>\r\n                <branch-info repo=\"$PROJECT_DIR$\" source=\"2.2-no-premium\" />\r\n              </list>\r\n            </value>\r\n          </entry>\r\n        </map>\r\n      </branch-storage>\r\n    </favorite-branches>\r\n    <option name=\"PREVIOUS_COMMIT_AUTHORS\">\r\n      <list>\r\n        <option value=\"remon &lt;remonmizanur@gmail.com&gt;\" />\r\n        <option value=\"MizanurRemon &lt;remonmizanur@gmail.com&gt;\" />\r\n      </list>\r\n    </option>\r\n    <option name=\"PUSH_AUTO_UPDATE\" value=\"true\" />\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material3/material3/1.0.1/e90f5af2fdc04ac29257713d2ee94800d0262b17/material3-1.0.1-sources.jar!/androidx/compose/material3/TextFieldDefaults.kt\" root0=\"FORCE_HIGHLIGHTING\" />\r\n    <setting file=\"file://$PROJECT_DIR$/core/common/src/main/res/values/strings.xml\" root0=\"SKIP_INSPECTION\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 4\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2UwOJ3e61sNuQt4aE9mZuI7LkXL\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_ADD_EXTERNAL_FILES\": \"true\",\r\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"Android App.app.executor\": \"Run\",\r\n    \"ApkExportedModule\": \"SRManager.app\",\r\n    \"BundleExportedModule\": \"InternetPolice.app\",\r\n    \"ExportApk.ApkPathForSRManager.app\": \"/home/remon/Projects/Android/SRManager/app\",\r\n    \"ExportBundle.BundlePathForInternetPolice.app\": \"/home/remon/Projects/Android/internet-politie-android-app/app\",\r\n    \"Git.Branch.Popup.ShowAllRemotes\": \"true\",\r\n    \"Notification.DisplayName-DoNotAsk-Deploy\": \"Deploy\",\r\n    \"Notification.DoNotAsk-Deploy\": \"true\",\r\n    \"PROJECT_TRUSTED_KEY\": \"true\",\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.cidr.known.project.marker\": \"true\",\r\n    \"RunOnceActivity.readMode.enableVisualFormatting\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"ScreenRecorder.SavePath\": \"/home/remon/Desktop\",\r\n    \"android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED\": \"TextView\",\r\n    \"cf.first.check.clang-format\": \"false\",\r\n    \"cidr.known.project.marker\": \"true\",\r\n    \"com.google.services.firebase.aqiPopupShown\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"jdk.selected.JAVA_MODULE\": \"jbr-17\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_directory_selection\": \"/home/remon/Projects/Android/srmanager/core/designsystem/src/main/res/drawable\",\r\n    \"last_opened_file_path\": \"/home/remon/Projects/Android/SRManager\",\r\n    \"memory.settings.postsync.last.time.stamp\": \"1693848167557\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.17\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"recommended.upgrade.do.not.ask.for.project\": \"true\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.ide.settings.new.ui\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  },\r\n  \"keyToStringList\": {\r\n    \"ExportApk.BuildVariants\": [\r\n      \"release\"\r\n    ],\r\n    \"com.android.tools.idea.sqlite.queryhistory\": [\r\n      \"DELETE FROM products\",\r\n      \"SELECT * from products WHERE title  LIKE  '%0045%'\",\r\n      \"SELECT * from products WHERE title  LIKE  '%Hide%'\",\r\n      \"SELECT * from products WHERE title  LIKE  '%Ch%'\",\r\n      \"SELECT * from products WHERE title  LIKE  '%M%'\"\r\n    ]\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$\" />\r\n      <recent name=\"$PROJECT_DIR$/core/designsystem/src/main/res/drawable\" />\r\n      <recent name=\"$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/signature\" />\r\n      <recent name=\"$PROJECT_DIR$/features/outlet/outlet_domain/src/main/java/com/srmanager/outlet_domain\" />\r\n      <recent name=\"$PROJECT_DIR$/features/outlet/outlet_data/src/main/java/com/srmanager/outlet_data\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem\" />\r\n      <recent name=\"$PROJECT_DIR$/core/designsystem/src/main/java/com/srmanager/core/designsystem/components\" />\r\n      <recent name=\"$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation/order\" />\r\n      <recent name=\"$PROJECT_DIR$/features/order/order_presentation/src/main/java/com/srmanager/order_presentation\" />\r\n      <recent name=\"$PROJECT_DIR$/features/outlet/outlet_presentation/src/main/java/com/srmanager/outlet_presentation/maps/Multiple\" />\r\n    </key>\r\n    <key name=\"MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY\">\r\n      <recent name=\"com.srmanager.core.common.model\" />\r\n      <recent name=\"com.srmanager.core.designsystem\" />\r\n      <recent name=\"com.srmanager.outlet_presentation.OutletAdd\" />\r\n      <recent name=\"com.srmanager.app.navigations\" />\r\n      <recent name=\"com.internetpolice.settings_presentation.screens.language\" />\r\n    </key>\r\n    <key name=\"CopyKotlinDeclarationDialog.RECENTS_KEY\">\r\n      <recent name=\"com.srmanager.outlet_presentation.maps.Multiple\" />\r\n      <recent name=\"com.srmanager.core.designsystem\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Android App.app\">\r\n    <configuration name=\"app\" type=\"AndroidRunConfigurationType\" factoryName=\"Android App\">\r\n      <module name=\"SRManager.app.main\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"\" />\r\n      <option name=\"MODE\" value=\"default_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"DEVICE_AND_SNAPSHOT_COMBO_BOX\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Java\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"false\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PreviewNotificationScreen\" type=\"ComposePreviewRunConfiguration\" temporary=\"true\">\r\n      <module name=\"InternetPolice.features.notification.notification_presentation\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"--es composable com.internetpolice.notification_presentation.NotificationScreenKt.PreviewNotificationScreen\" />\r\n      <option name=\"MODE\" value=\"specific_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"SHOW_DIALOG\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Java\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"androidx.compose.ui.tooling.PreviewActivity\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"true\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <compose-preview-run-configuration composable-fqn=\"com.internetpolice.notification_presentation.NotificationScreenKt.PreviewNotificationScreen\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PreviewPermissionMainScreen\" type=\"ComposePreviewRunConfiguration\" temporary=\"true\">\r\n      <module name=\"InternetPolice.app\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"--es composable com.internetpolice.app.permission.PermissionScreenKt.PreviewPermissionMainScreen\" />\r\n      <option name=\"MODE\" value=\"specific_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"SHOW_DIALOG\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Java\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"androidx.compose.ui.tooling.PreviewActivity\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"true\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <compose-preview-run-configuration composable-fqn=\"com.internetpolice.app.permission.PermissionScreenKt.PreviewPermissionMainScreen\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PreviewShowPopup (1)\" type=\"ComposePreviewRunConfiguration\" temporary=\"true\">\r\n      <module name=\"SRManager.core.designsystem\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"--es composable com.srmanager.core.designsystem.theme.ThemeKt.PreviewShowPopup\" />\r\n      <option name=\"MODE\" value=\"specific_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"SHOW_DIALOG\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Java\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"androidx.compose.ui.tooling.PreviewActivity\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"true\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <compose-preview-run-configuration composable-fqn=\"com.srmanager.core.designsystem.theme.ThemeKt.PreviewShowPopup\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PreviewShowPopup\" type=\"ComposePreviewRunConfiguration\" temporary=\"true\">\r\n      <module name=\"InternetPolice.core.designsystem\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"--es composable com.internetpolice.core.designsystem.theme.ThemeKt.PreviewShowPopup\" />\r\n      <option name=\"MODE\" value=\"specific_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"SHOW_DIALOG\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Java\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"androidx.compose.ui.tooling.PreviewActivity\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"true\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <compose-preview-run-configuration composable-fqn=\"com.internetpolice.core.designsystem.theme.ThemeKt.PreviewShowPopup\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"PreviewWarningScreen\" type=\"ComposePreviewRunConfiguration\" temporary=\"true\">\r\n      <module name=\"InternetPolice.app\" />\r\n      <option name=\"DEPLOY\" value=\"true\" />\r\n      <option name=\"DEPLOY_APK_FROM_BUNDLE\" value=\"false\" />\r\n      <option name=\"DEPLOY_AS_INSTANT\" value=\"false\" />\r\n      <option name=\"ARTIFACT_NAME\" value=\"\" />\r\n      <option name=\"PM_INSTALL_OPTIONS\" value=\"\" />\r\n      <option name=\"ALL_USERS\" value=\"false\" />\r\n      <option name=\"ALWAYS_INSTALL_WITH_PM\" value=\"false\" />\r\n      <option name=\"CLEAR_APP_STORAGE\" value=\"false\" />\r\n      <option name=\"DYNAMIC_FEATURES_DISABLED_LIST\" value=\"\" />\r\n      <option name=\"ACTIVITY_EXTRA_FLAGS\" value=\"--es composable com.internetpolice.app.waring.WarningScreenKt.PreviewWarningScreen\" />\r\n      <option name=\"MODE\" value=\"specific_activity\" />\r\n      <option name=\"CLEAR_LOGCAT\" value=\"false\" />\r\n      <option name=\"SHOW_LOGCAT_AUTOMATICALLY\" value=\"false\" />\r\n      <option name=\"INSPECTION_WITHOUT_ACTIVITY_RESTART\" value=\"false\" />\r\n      <option name=\"TARGET_SELECTION_MODE\" value=\"SHOW_DIALOG\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_CONFIGURATION_ID\" value=\"-1\" />\r\n      <option name=\"SELECTED_CLOUD_MATRIX_PROJECT_ID\" value=\"\" />\r\n      <option name=\"DEBUGGER_TYPE\" value=\"Java\" />\r\n      <Auto>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Auto>\r\n      <Hybrid>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Hybrid>\r\n      <Java>\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Java>\r\n      <Native>\r\n        <option name=\"USE_JAVA_AWARE_DEBUGGER\" value=\"false\" />\r\n        <option name=\"SHOW_STATIC_VARS\" value=\"true\" />\r\n        <option name=\"WORKING_DIR\" value=\"\" />\r\n        <option name=\"TARGET_LOGGING_CHANNELS\" value=\"lldb process:gdb-remote packets\" />\r\n        <option name=\"SHOW_OPTIMIZED_WARNING\" value=\"true\" />\r\n        <option name=\"ATTACH_ON_WAIT_FOR_DEBUGGER\" value=\"false\" />\r\n        <option name=\"DEBUG_SANDBOX_SDK\" value=\"false\" />\r\n      </Native>\r\n      <Profilers>\r\n        <option name=\"ADVANCED_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"STARTUP_CPU_PROFILING_CONFIGURATION_NAME\" value=\"Java/Kotlin Method Sample (legacy)\" />\r\n        <option name=\"STARTUP_NATIVE_MEMORY_PROFILING_ENABLED\" value=\"false\" />\r\n        <option name=\"NATIVE_MEMORY_SAMPLE_RATE_BYTES\" value=\"2048\" />\r\n      </Profilers>\r\n      <option name=\"DEEP_LINK\" value=\"\" />\r\n      <option name=\"ACTIVITY_CLASS\" value=\"androidx.compose.ui.tooling.PreviewActivity\" />\r\n      <option name=\"SEARCH_ACTIVITY_IN_GLOBAL_SCOPE\" value=\"true\" />\r\n      <option name=\"SKIP_ACTIVITY_VALIDATION\" value=\"false\" />\r\n      <compose-preview-run-configuration composable-fqn=\"com.internetpolice.app.waring.WarningScreenKt.PreviewWarningScreen\" />\r\n      <method v=\"2\">\r\n        <option name=\"Android.Gradle.BeforeRunTask\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"JetRunConfigurationType\">\r\n      <module name=\"internet-politie-android-app\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration default=\"true\" type=\"KotlinStandaloneScriptRunConfigurationType\">\r\n      <module name=\"internet-politie-android-app\" />\r\n      <option name=\"filePath\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"jdk-17.0.9-jbr-17.0.9-f644763e9732-3f62daea\" />\r\n        <option value=\"jdk-17.0.9-jbr-17.0.9-f644763e9732-ef93ccb6\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration>$USER_HOME$/.subversion</configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"efeed662-6b72-4579-b990-f7c3673839a4\" name=\"Changes\" comment=\"\" />\r\n      <created>1693847100736</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1693847100736</updated>\r\n      <workItem from=\"1703172670983\" duration=\"2181000\" />\r\n      <workItem from=\"1703176082685\" duration=\"6041000\" />\r\n      <workItem from=\"1703738042297\" duration=\"11000\" />\r\n      <workItem from=\"1704095806589\" duration=\"2103000\" />\r\n      <workItem from=\"1704098043291\" duration=\"48000\" />\r\n      <workItem from=\"1704098099350\" duration=\"243000\" />\r\n      <workItem from=\"1704101251557\" duration=\"2439000\" />\r\n      <workItem from=\"1704134401981\" duration=\"334000\" />\r\n      <workItem from=\"1704165067812\" duration=\"7302000\" />\r\n      <workItem from=\"1704180749759\" duration=\"117000\" />\r\n      <workItem from=\"1704184591233\" duration=\"286000\" />\r\n      <workItem from=\"1704194926753\" duration=\"4000\" />\r\n      <workItem from=\"1704206709417\" duration=\"690000\" />\r\n      <workItem from=\"1704252855442\" duration=\"3666000\" />\r\n      <workItem from=\"1704262724873\" duration=\"64000\" />\r\n      <workItem from=\"1704263740082\" duration=\"5000\" />\r\n      <workItem from=\"1704346479748\" duration=\"5730000\" />\r\n      <workItem from=\"1704522737313\" duration=\"562000\" />\r\n      <workItem from=\"1704687921529\" duration=\"631000\" />\r\n      <workItem from=\"1704798915745\" duration=\"126000\" />\r\n      <workItem from=\"1704869225972\" duration=\"13000\" />\r\n      <workItem from=\"1704949840224\" duration=\"1447000\" />\r\n      <workItem from=\"1704951304837\" duration=\"3399000\" />\r\n      <workItem from=\"1704961249128\" duration=\"340000\" />\r\n      <workItem from=\"1705031290454\" duration=\"1425000\" />\r\n      <workItem from=\"1705853002829\" duration=\"961000\" />\r\n      <workItem from=\"1707814003992\" duration=\"1949000\" />\r\n      <workItem from=\"1707887499057\" duration=\"1308000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00283\" summary=\"ui\">\r\n      <created>1701156141845</created>\r\n      <option name=\"number\" value=\"00283\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00283\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701156141845</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00284\" summary=\"ui\">\r\n      <created>1701162240382</created>\r\n      <option name=\"number\" value=\"00284\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00284\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701162240382</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00285\" summary=\"ui\">\r\n      <created>1701164137595</created>\r\n      <option name=\"number\" value=\"00285\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00285\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701164137595</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00286\" summary=\"ui\">\r\n      <created>1701165097629</created>\r\n      <option name=\"number\" value=\"00286\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00286\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701165097629</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00287\" summary=\"ui\">\r\n      <created>1701165662420</created>\r\n      <option name=\"number\" value=\"00287\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00287\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701165662420</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00288\" summary=\"ui\">\r\n      <created>1701168880368</created>\r\n      <option name=\"number\" value=\"00288\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00288\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701168881252</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00289\" summary=\"ui\">\r\n      <created>1701170216276</created>\r\n      <option name=\"number\" value=\"00289\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00289\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701170216276</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00290\" summary=\"ui\">\r\n      <created>1701170361647</created>\r\n      <option name=\"number\" value=\"00290\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00290\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701170361648</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00291\" summary=\"ui\">\r\n      <created>1701171917774</created>\r\n      <option name=\"number\" value=\"00291\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00291\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701171917774</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00292\" summary=\"UPD\">\r\n      <created>1701232400382</created>\r\n      <option name=\"number\" value=\"00292\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00292\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701232400383</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00293\" summary=\"UPD\">\r\n      <created>1701235893592</created>\r\n      <option name=\"number\" value=\"00293\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00293\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701235893592</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00294\" summary=\"UPD\">\r\n      <created>1701240479843</created>\r\n      <option name=\"number\" value=\"00294\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00294\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701240479843</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00295\" summary=\"UPD\">\r\n      <created>1701242294850</created>\r\n      <option name=\"number\" value=\"00295\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00295\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701242294850</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00296\" summary=\"SRM\">\r\n      <created>1701256620429</created>\r\n      <option name=\"number\" value=\"00296\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00296\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701256620429</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00297\" summary=\"SRM\">\r\n      <created>1701257101444</created>\r\n      <option name=\"number\" value=\"00297\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00297\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701257101444</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00298\" summary=\"SRM\">\r\n      <created>1701257216335</created>\r\n      <option name=\"number\" value=\"00298\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00298\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701257216335</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00299\" summary=\"SRM\">\r\n      <created>1701257417079</created>\r\n      <option name=\"number\" value=\"00299\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00299\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701257417079</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00300\" summary=\"SRM\">\r\n      <created>1701258420432</created>\r\n      <option name=\"number\" value=\"00300\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00300\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701258420432</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00301\" summary=\"SRM\">\r\n      <created>1701316419983</created>\r\n      <option name=\"number\" value=\"00301\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00301\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701316419983</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00302\" summary=\"SRM\">\r\n      <created>1701316505392</created>\r\n      <option name=\"number\" value=\"00302\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00302\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701316505392</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00303\" summary=\"SRM\">\r\n      <created>1701317062121</created>\r\n      <option name=\"number\" value=\"00303\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00303\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701317062121</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00304\" summary=\"SRM\">\r\n      <created>1701318321976</created>\r\n      <option name=\"number\" value=\"00304\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00304\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701318321976</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00305\" summary=\"SRM\">\r\n      <created>1701318880121</created>\r\n      <option name=\"number\" value=\"00305\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00305\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701318880121</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00306\" summary=\"SRM\">\r\n      <created>1701320447360</created>\r\n      <option name=\"number\" value=\"00306\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00306\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701320447360</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00307\" summary=\"SRM\">\r\n      <created>1701408327274</created>\r\n      <option name=\"number\" value=\"00307\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00307\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701408327274</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00308\" summary=\"SRM\">\r\n      <created>1701410144750</created>\r\n      <option name=\"number\" value=\"00308\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00308\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701410144750</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00309\" summary=\"SRM\">\r\n      <created>1701411401498</created>\r\n      <option name=\"number\" value=\"00309\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00309\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701411401498</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00310\" summary=\"SRM\">\r\n      <created>1701597485015</created>\r\n      <option name=\"number\" value=\"00310\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00310\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701597485016</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00311\" summary=\"SRM\">\r\n      <created>1701622475023</created>\r\n      <option name=\"number\" value=\"00311\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00311\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701622475023</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00312\" summary=\"SRM\">\r\n      <created>1701624628751</created>\r\n      <option name=\"number\" value=\"00312\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00312\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701624628752</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00313\" summary=\"SRM\">\r\n      <created>1701626218119</created>\r\n      <option name=\"number\" value=\"00313\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00313\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701626218119</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00314\" summary=\"SRM\">\r\n      <created>1701664111425</created>\r\n      <option name=\"number\" value=\"00314\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00314\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701664111425</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00315\" summary=\"SRM\">\r\n      <created>1701668576882</created>\r\n      <option name=\"number\" value=\"00315\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00315\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701668576882</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00316\" summary=\"SRM\">\r\n      <created>1701669708855</created>\r\n      <option name=\"number\" value=\"00316\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00316\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701669708855</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00317\" summary=\"SRM\">\r\n      <created>1701678575699</created>\r\n      <option name=\"number\" value=\"00317\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00317\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701678575699</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00318\" summary=\"SRM\">\r\n      <created>1701680425538</created>\r\n      <option name=\"number\" value=\"00318\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00318\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701680425538</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00319\" summary=\"SRM\">\r\n      <created>1701689385095</created>\r\n      <option name=\"number\" value=\"00319\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00319\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701689385095</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00320\" summary=\"SRM\">\r\n      <created>1701689929923</created>\r\n      <option name=\"number\" value=\"00320\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00320\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701689929923</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00321\" summary=\"SRM\">\r\n      <created>1701754377530</created>\r\n      <option name=\"number\" value=\"00321\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00321\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701754377531</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00322\" summary=\"SRM\">\r\n      <created>1701757879006</created>\r\n      <option name=\"number\" value=\"00322\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00322\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701757879006</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00323\" summary=\"SRM\">\r\n      <created>1701758146306</created>\r\n      <option name=\"number\" value=\"00323\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00323\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701758146306</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00324\" summary=\"SRM\">\r\n      <created>1701759689552</created>\r\n      <option name=\"number\" value=\"00324\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00324\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701759689552</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00325\" summary=\"SRM\">\r\n      <created>1701759725477</created>\r\n      <option name=\"number\" value=\"00325\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00325\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701759725477</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00326\" summary=\"SRM\">\r\n      <created>1701768822714</created>\r\n      <option name=\"number\" value=\"00326\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00326\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701768822714</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00327\" summary=\"SRM\">\r\n      <created>1701769079346</created>\r\n      <option name=\"number\" value=\"00327\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00327\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701769079346</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00328\" summary=\"SRM\">\r\n      <created>1701775363541</created>\r\n      <option name=\"number\" value=\"00328\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00328\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701775363542</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00329\" summary=\"SRM\">\r\n      <created>1701775411767</created>\r\n      <option name=\"number\" value=\"00329\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00329\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701775411767</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00330\" summary=\"SRM\">\r\n      <created>1701854926912</created>\r\n      <option name=\"number\" value=\"00330\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00330\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701854926913</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00331\" summary=\"SRM\">\r\n      <created>1701940797312</created>\r\n      <option name=\"number\" value=\"00331\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00331\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1701940797312</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"411\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"RECENT_FILTERS\">\r\n      <map>\r\n        <entry key=\"User\">\r\n          <value>\r\n            <list>\r\n              <RecentGroup>\r\n                <option name=\"FILTER_VALUES\">\r\n                  <option value=\"*\" />\r\n                </option>\r\n              </RecentGroup>\r\n            </list>\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <option name=\"ADD_EXTERNAL_FILES_SILENTLY\" value=\"true\" />\r\n    <MESSAGE value=\"icon updated\" />\r\n    <MESSAGE value=\"icon click enable\" />\r\n    <MESSAGE value=\"fix UI\" />\r\n    <MESSAGE value=\"fix null\" />\r\n    <MESSAGE value=\"rest config\" />\r\n    <MESSAGE value=\"langugae sync\" />\r\n    <MESSAGE value=\"language updated\" />\r\n    <MESSAGE value=\"ip auth\" />\r\n    <MESSAGE value=\"draft process\" />\r\n    <MESSAGE value=\"consent dialog\" />\r\n    <MESSAGE value=\"language issue\" />\r\n    <MESSAGE value=\"sign up ui issue\" />\r\n    <MESSAGE value=\"scaling fixed\" />\r\n    <MESSAGE value=\"img fix\" />\r\n    <MESSAGE value=\"upt\" />\r\n    <MESSAGE value=\"date picker\" />\r\n    <MESSAGE value=\"re arrange\" />\r\n    <MESSAGE value=\"ui\" />\r\n    <MESSAGE value=\"UPD\" />\r\n    <MESSAGE value=\"distance checkout\" />\r\n    <MESSAGE value=\"SRM\" />\r\n    <MESSAGE value=\"Entry and edit fixed\" />\r\n    <MESSAGE value=\"order ui\" />\r\n    <MESSAGE value=\"phone number validation removed\" />\r\n    <MESSAGE value=\"new\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"new\" />\r\n    <option name=\"GROUP_MULTIFILE_MERGE_BY_DIRECTORY\" value=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 85b8d5b2057db8a29527c7800d437bdc40292770)
++++ b/.idea/workspace.xml	(date 1780031917375)
+@@ -10,11 +10,11 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="efeed662-6b72-4579-b990-f7c3673839a4" name="Changes" comment="new">
+-      <change afterPath="$PROJECT_DIR$/app/release/SRM_200624_0959.apk" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/app/release/output-metadata.json" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deploymentTargetSelector.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/app/release/app-release.aab" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/keystore.jks" beforeDir="false" afterPath="$PROJECT_DIR$/keystore.jks" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -24,7 +24,7 @@
+   <component name="ClangdSettings">
+     <option name="formatViaClangd" value="false" />
+   </component>
+-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=33220fdb)]" />
++  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[]" />
+   <component name="ExternalProjectsData">
+     <projectState path="$PROJECT_DIR$">
+       <ProjectState />
+@@ -97,6 +97,18 @@
+     </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
++  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
++  "lastFilter": {
++    "state": "OPEN",
++    "assignee": "MizanurRemon"
++  }
++}]]></component>
++  <component name="GithubPullRequestsUISettings"><![CDATA[{
++  "selectedUrlAndAccountId": {
++    "url": "https://github.com/MizanurRemon/SRManager.git",
++    "accountId": "5d2093c9-3cc3-4676-a725-dafb278c007b"
++  }
++}]]></component>
+   <component name="HighlightingSettingsPerFile">
+     <setting file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.compose.material3/material3/1.0.1/e90f5af2fdc04ac29257713d2ee94800d0262b17/material3-1.0.1-sources.jar!/androidx/compose/material3/TextFieldDefaults.kt" root0="FORCE_HIGHLIGHTING" />
+     <setting file="file://$PROJECT_DIR$/core/common/src/main/res/values/strings.xml" root0="SKIP_INSPECTION" />
+@@ -111,7 +123,7 @@
+   &quot;associatedIndex&quot;: 4
+ }</component>
+   <component name="ProjectId" id="2UwOJ3e61sNuQt4aE9mZuI7LkXL" />
+-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
++  <component name="ProjectLevelVcsManager">
+     <ConfirmationsSetting value="2" id="Add" />
+   </component>
+   <component name="ProjectViewState">
+@@ -134,10 +146,12 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "RunOnceActivity.cidr.known.project.marker": "true",
++    "RunOnceActivity.git.unshallow": "true",
+     "RunOnceActivity.readMode.enableVisualFormatting": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+     "ScreenRecorder.SavePath": "/home/remon/Desktop",
+     "android-custom-view/home/remon/Android/Sdk/sources/android-33/android/widget/TextView.java_SELECTED": "TextView",
++    "android.gradle.sync.needed": "true",
+     "cf.first.check.clang-format": "false",
+     "cidr.known.project.marker": "true",
+     "com.google.services.firebase.aqiPopupShown": "true",
+@@ -201,7 +215,8 @@
+   </component>
+   <component name="RunManager" selected="Android App.app">
+     <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+-      <module name="SRManager.app.main" />
++      <module name="SRManager.app" />
++      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+       <option name="DEPLOY" value="true" />
+       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+       <option name="DEPLOY_AS_INSTANT" value="false" />
+@@ -209,16 +224,17 @@
+       <option name="PM_INSTALL_OPTIONS" value="" />
+       <option name="ALL_USERS" value="false" />
+       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
++      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+       <option name="CLEAR_APP_STORAGE" value="false" />
+       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+       <option name="MODE" value="default_activity" />
++      <option name="RESTORE_ENABLED" value="false" />
++      <option name="RESTORE_FILE" value="" />
++      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+       <option name="CLEAR_LOGCAT" value="false" />
+       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+       <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+       <option name="DEBUGGER_TYPE" value="Java" />
+       <Auto>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -227,7 +243,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Auto>
+       <Hybrid>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -236,11 +251,9 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Hybrid>
+       <Java>
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Java>
+       <Native>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -249,7 +262,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Native>
+       <Profilers>
+         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+@@ -260,6 +272,7 @@
+         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+       </Profilers>
+       <option name="DEEP_LINK" value="" />
++      <option name="ACTIVITY" value="" />
+       <option name="ACTIVITY_CLASS" value="" />
+       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+@@ -269,6 +282,7 @@
+     </configuration>
+     <configuration name="PreviewNotificationScreen" type="ComposePreviewRunConfiguration" temporary="true">
+       <module name="InternetPolice.features.notification.notification_presentation" />
++      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+       <option name="DEPLOY" value="true" />
+       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+       <option name="DEPLOY_AS_INSTANT" value="false" />
+@@ -276,16 +290,17 @@
+       <option name="PM_INSTALL_OPTIONS" value="" />
+       <option name="ALL_USERS" value="false" />
+       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
++      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+       <option name="CLEAR_APP_STORAGE" value="false" />
+       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.notification_presentation.NotificationScreenKt.PreviewNotificationScreen" />
+       <option name="MODE" value="specific_activity" />
++      <option name="RESTORE_ENABLED" value="false" />
++      <option name="RESTORE_FILE" value="" />
++      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+       <option name="CLEAR_LOGCAT" value="false" />
+       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
++      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+       <option name="DEBUGGER_TYPE" value="Java" />
+       <Auto>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -294,7 +309,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Auto>
+       <Hybrid>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -303,11 +317,9 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Hybrid>
+       <Java>
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Java>
+       <Native>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -316,7 +328,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Native>
+       <Profilers>
+         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+@@ -327,6 +338,7 @@
+         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+       </Profilers>
+       <option name="DEEP_LINK" value="" />
++      <option name="ACTIVITY" value="" />
+       <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
+       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
+       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+@@ -337,6 +349,7 @@
+     </configuration>
+     <configuration name="PreviewPermissionMainScreen" type="ComposePreviewRunConfiguration" temporary="true">
+       <module name="InternetPolice.app" />
++      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+       <option name="DEPLOY" value="true" />
+       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+       <option name="DEPLOY_AS_INSTANT" value="false" />
+@@ -344,16 +357,17 @@
+       <option name="PM_INSTALL_OPTIONS" value="" />
+       <option name="ALL_USERS" value="false" />
+       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
++      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+       <option name="CLEAR_APP_STORAGE" value="false" />
+       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.app.permission.PermissionScreenKt.PreviewPermissionMainScreen" />
+       <option name="MODE" value="specific_activity" />
++      <option name="RESTORE_ENABLED" value="false" />
++      <option name="RESTORE_FILE" value="" />
++      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+       <option name="CLEAR_LOGCAT" value="false" />
+       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
++      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+       <option name="DEBUGGER_TYPE" value="Java" />
+       <Auto>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -362,7 +376,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Auto>
+       <Hybrid>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -371,11 +384,9 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Hybrid>
+       <Java>
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Java>
+       <Native>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -384,7 +395,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Native>
+       <Profilers>
+         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+@@ -395,6 +405,7 @@
+         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+       </Profilers>
+       <option name="DEEP_LINK" value="" />
++      <option name="ACTIVITY" value="" />
+       <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
+       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
+       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+@@ -405,6 +416,7 @@
+     </configuration>
+     <configuration name="PreviewShowPopup (1)" type="ComposePreviewRunConfiguration" temporary="true">
+       <module name="SRManager.core.designsystem" />
++      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+       <option name="DEPLOY" value="true" />
+       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+       <option name="DEPLOY_AS_INSTANT" value="false" />
+@@ -412,16 +424,17 @@
+       <option name="PM_INSTALL_OPTIONS" value="" />
+       <option name="ALL_USERS" value="false" />
+       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
++      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+       <option name="CLEAR_APP_STORAGE" value="false" />
+       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.srmanager.core.designsystem.theme.ThemeKt.PreviewShowPopup" />
+       <option name="MODE" value="specific_activity" />
++      <option name="RESTORE_ENABLED" value="false" />
++      <option name="RESTORE_FILE" value="" />
++      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+       <option name="CLEAR_LOGCAT" value="false" />
+       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
++      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+       <option name="DEBUGGER_TYPE" value="Java" />
+       <Auto>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -430,7 +443,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Auto>
+       <Hybrid>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -439,11 +451,9 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Hybrid>
+       <Java>
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Java>
+       <Native>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -452,7 +462,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Native>
+       <Profilers>
+         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+@@ -463,6 +472,7 @@
+         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+       </Profilers>
+       <option name="DEEP_LINK" value="" />
++      <option name="ACTIVITY" value="" />
+       <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
+       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
+       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+@@ -473,6 +483,7 @@
+     </configuration>
+     <configuration name="PreviewShowPopup" type="ComposePreviewRunConfiguration" temporary="true">
+       <module name="InternetPolice.core.designsystem" />
++      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+       <option name="DEPLOY" value="true" />
+       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+       <option name="DEPLOY_AS_INSTANT" value="false" />
+@@ -480,16 +491,17 @@
+       <option name="PM_INSTALL_OPTIONS" value="" />
+       <option name="ALL_USERS" value="false" />
+       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
++      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+       <option name="CLEAR_APP_STORAGE" value="false" />
+       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.core.designsystem.theme.ThemeKt.PreviewShowPopup" />
+       <option name="MODE" value="specific_activity" />
++      <option name="RESTORE_ENABLED" value="false" />
++      <option name="RESTORE_FILE" value="" />
++      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+       <option name="CLEAR_LOGCAT" value="false" />
+       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
++      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+       <option name="DEBUGGER_TYPE" value="Java" />
+       <Auto>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -498,7 +510,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Auto>
+       <Hybrid>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -507,11 +518,9 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Hybrid>
+       <Java>
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Java>
+       <Native>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -520,7 +529,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Native>
+       <Profilers>
+         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+@@ -531,6 +539,7 @@
+         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+       </Profilers>
+       <option name="DEEP_LINK" value="" />
++      <option name="ACTIVITY" value="" />
+       <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
+       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
+       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+@@ -541,6 +550,7 @@
+     </configuration>
+     <configuration name="PreviewWarningScreen" type="ComposePreviewRunConfiguration" temporary="true">
+       <module name="InternetPolice.app" />
++      <option name="ANDROID_RUN_CONFIGURATION_SCHEMA_VERSION" value="1" />
+       <option name="DEPLOY" value="true" />
+       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+       <option name="DEPLOY_AS_INSTANT" value="false" />
+@@ -548,16 +558,17 @@
+       <option name="PM_INSTALL_OPTIONS" value="" />
+       <option name="ALL_USERS" value="false" />
+       <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
++      <option name="ALLOW_ASSUME_VERIFIED" value="false" />
+       <option name="CLEAR_APP_STORAGE" value="false" />
+       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+       <option name="ACTIVITY_EXTRA_FLAGS" value="--es composable com.internetpolice.app.waring.WarningScreenKt.PreviewWarningScreen" />
+       <option name="MODE" value="specific_activity" />
++      <option name="RESTORE_ENABLED" value="false" />
++      <option name="RESTORE_FILE" value="" />
++      <option name="RESTORE_FRESH_INSTALL_ONLY" value="false" />
+       <option name="CLEAR_LOGCAT" value="false" />
+       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+-      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
++      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+       <option name="DEBUGGER_TYPE" value="Java" />
+       <Auto>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -566,7 +577,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Auto>
+       <Hybrid>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -575,11 +585,9 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Hybrid>
+       <Java>
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Java>
+       <Native>
+         <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+@@ -588,7 +596,6 @@
+         <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+         <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+         <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+-        <option name="DEBUG_SANDBOX_SDK" value="false" />
+       </Native>
+       <Profilers>
+         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+@@ -599,6 +606,7 @@
+         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+       </Profilers>
+       <option name="DEEP_LINK" value="" />
++      <option name="ACTIVITY" value="" />
+       <option name="ACTIVITY_CLASS" value="androidx.compose.ui.tooling.PreviewActivity" />
+       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="true" />
+       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+Index: local.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>## This file must *NOT* be checked into Version Control Systems,\r\n# as it contains information specific to your local configuration.\r\n#\r\n# Location of the SDK. This is only used by Gradle.\r\n# For customization when using a Version Control System, please read the\r\n# header note.\r\n#Mon Sep 04 23:05:00 BDT 2023\r\nsdk.dir=/home/remon/Android/Sdk\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/local.properties b/local.properties
+--- a/local.properties	(revision 85b8d5b2057db8a29527c7800d437bdc40292770)
++++ b/local.properties	(date 1780031035734)
+@@ -4,5 +4,5 @@
+ # Location of the SDK. This is only used by Gradle.
+ # For customization when using a Version Control System, please read the
+ # header note.
+-#Mon Sep 04 23:05:00 BDT 2023
+-sdk.dir=/home/remon/Android/Sdk
++#Fri May 29 11:03:55 BDT 2026
++sdk.dir=C\:\\Users\\remon\\AppData\\Local\\Android\\Sdk
+Index: .idea/deploymentTargetSelector.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"deploymentTargetSelector\">\r\n    <selectionStates>\r\n      <SelectionState runConfigName=\"app\">\r\n        <option name=\"selectionMode\" value=\"DROPDOWN\" />\r\n      </SelectionState>\r\n    </selectionStates>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/deploymentTargetSelector.xml b/.idea/deploymentTargetSelector.xml
+--- a/.idea/deploymentTargetSelector.xml	(revision 85b8d5b2057db8a29527c7800d437bdc40292770)
++++ b/.idea/deploymentTargetSelector.xml	(date 1780031061356)
+@@ -4,6 +4,7 @@
+     <selectionStates>
+       <SelectionState runConfigName="app">
+         <option name="selectionMode" value="DROPDOWN" />
++        <DialogSelection />
+       </SelectionState>
+     </selectionStates>
+   </component>
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\r\n  <component name=\"GradleSettings\">\r\n    <option name=\"linkedExternalProjectsSettings\">\r\n      <GradleProjectSettings>\r\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\r\n        <option name=\"gradleJvm\" value=\"jbr-17\" />\r\n        <option name=\"modules\">\r\n          <set>\r\n            <option value=\"$PROJECT_DIR$\" />\r\n            <option value=\"$PROJECT_DIR$/app\" />\r\n            <option value=\"$PROJECT_DIR$/buildSrc\" />\r\n            <option value=\"$PROJECT_DIR$/core\" />\r\n            <option value=\"$PROJECT_DIR$/core/common\" />\r\n            <option value=\"$PROJECT_DIR$/core/data\" />\r\n            <option value=\"$PROJECT_DIR$/core/database\" />\r\n            <option value=\"$PROJECT_DIR$/core/datastore\" />\r\n            <option value=\"$PROJECT_DIR$/core/designsystem\" />\r\n            <option value=\"$PROJECT_DIR$/core/domain\" />\r\n            <option value=\"$PROJECT_DIR$/core/network\" />\r\n            <option value=\"$PROJECT_DIR$/core/ui\" />\r\n            <option value=\"$PROJECT_DIR$/features\" />\r\n            <option value=\"$PROJECT_DIR$/features/auth\" />\r\n            <option value=\"$PROJECT_DIR$/features/auth/auth_data\" />\r\n            <option value=\"$PROJECT_DIR$/features/auth/auth_domain\" />\r\n            <option value=\"$PROJECT_DIR$/features/auth/auth_presentation\" />\r\n            <option value=\"$PROJECT_DIR$/features/order\" />\r\n            <option value=\"$PROJECT_DIR$/features/order/order_data\" />\r\n            <option value=\"$PROJECT_DIR$/features/order/order_domain\" />\r\n            <option value=\"$PROJECT_DIR$/features/order/order_presentation\" />\r\n            <option value=\"$PROJECT_DIR$/features/outlet\" />\r\n            <option value=\"$PROJECT_DIR$/features/outlet/outlet_data\" />\r\n            <option value=\"$PROJECT_DIR$/features/outlet/outlet_domain\" />\r\n            <option value=\"$PROJECT_DIR$/features/outlet/outlet_presentation\" />\r\n            <option value=\"$PROJECT_DIR$/features/report\" />\r\n            <option value=\"$PROJECT_DIR$/features/report/report_presentation\" />\r\n          </set>\r\n        </option>\r\n        <option name=\"resolveExternalAnnotations\" value=\"false\" />\r\n      </GradleProjectSettings>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/gradle.xml b/.idea/gradle.xml
+--- a/.idea/gradle.xml	(revision 85b8d5b2057db8a29527c7800d437bdc40292770)
++++ b/.idea/gradle.xml	(date 1780030938372)
+@@ -4,8 +4,9 @@
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
++        <option name="testRunner" value="CHOOSE_PER_TEST" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+-        <option name="gradleJvm" value="jbr-17" />
++        <option name="gradleJvm" value="jbr-21" />
+         <option name="modules">
+           <set>
+             <option value="$PROJECT_DIR$" />
+@@ -37,7 +38,6 @@
+             <option value="$PROJECT_DIR$/features/report/report_presentation" />
+           </set>
+         </option>
+-        <option name="resolveExternalAnnotations" value="false" />
+       </GradleProjectSettings>
+     </option>
+   </component>
