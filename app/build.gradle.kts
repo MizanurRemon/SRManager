@@ -20,10 +20,6 @@ android {
     namespace = ProjectConfig.appId
     compileSdk = ProjectConfig.compileSdk
 
-   /* dexOptions {
-        preDexLibraries = false
-    }*/
-
     defaultConfig {
         applicationId = ProjectConfig.appId
         minSdk = ProjectConfig.minSdk
@@ -74,8 +70,9 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        isCoreLibraryDesugaringEnabled = true
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = ProjectConfig.jvmTarget
@@ -86,11 +83,12 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.composeCompilerVersion
     }
-    packagingOptions {
-        resources.excludes.add("META-INF/*")
-        resources.excludes.add("META-INF/LICENSE.md")
-        resources.excludes.add("META-INF/LICENSE-notice.md")
-
+    packaging {
+        resources {
+            excludes += "/META-INF/*"
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
+        }
     }
 
     applicationVariants.all {
@@ -110,7 +108,7 @@ android {
 }
 
 dependencies {
-
+    coreLibraryDesugaring(Desugar.desugar_jdk_libs)
     implementation(AndroidX.coreKtx)
     implementation(AndroidX.appCompat)
     implementation(Compose.viewModelCompose)
@@ -158,7 +156,6 @@ dependencies {
     implementation(Compose.activityCompose)
     implementation(Compose.constraintlayoutCompose)
     implementation(Compose.GSON)
-    implementation(Compose.BILLING)
     implementation(Compose.DATASTORE_PREFERENCES)
     implementation(Compose.RETROFIT2_KOTLIN_SERIALIZATION_CONVERTER)
     implementation(Compose.KOTLINX_SERIALIZATION_JSON)

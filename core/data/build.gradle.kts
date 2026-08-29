@@ -9,7 +9,7 @@ apply {
 }
 
 android {
-    namespace = "com.srmanager.data"
+    namespace = "com.srmanager.core.data"
     buildFeatures {
         buildConfig = true
     }

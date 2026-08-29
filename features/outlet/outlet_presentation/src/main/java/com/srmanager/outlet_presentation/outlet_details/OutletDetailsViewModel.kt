@@ -74,12 +74,12 @@ class OutletDetailsViewModel @Inject constructor(
                         }
 
                         else -> {
-                            state.marketNameList.firstOrNull() {
+                            state.marketNameList.firstOrNull {
                                 it.id == response.data.marketId
                             }?.text ?: ""
                         }
                     },
-                    marketID = response.data.marketId ?: 0,
+                    marketID = response.data.marketId ?: 1,
                     routeName = response.data.routeName!!.ifEmpty { ROUTE_NAMES[0] },
                     email = response.data.ownerEmail ?: "",
                     paymentOption = response.data.paymentTerms!!.ifEmpty { PAYMENT_OPTIONS[0] },

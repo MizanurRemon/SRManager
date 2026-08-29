@@ -8,6 +8,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -28,8 +29,8 @@ import com.srmanager.order_presentation.signature.SignatureEvent
 import com.srmanager.order_presentation.signature.SignatureScreen
 import com.srmanager.order_presentation.signature.SignatureViewModel
 import com.srmanager.outlet_presentation.dashboard.OutletDashboardScreen
-import com.srmanager.outlet_presentation.maps.Multiple.AllOutletMapScreen
-import com.srmanager.outlet_presentation.maps.Single.MapScreen
+import com.srmanager.outlet_presentation.maps.multiple.AllOutletMapScreen
+import com.srmanager.outlet_presentation.maps.single.MapScreen
 import com.srmanager.outlet_presentation.outlet.OutletScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddScreen
 import com.srmanager.outlet_presentation.outlet_add.OutletAddViewModel
@@ -49,7 +50,10 @@ fun MainApp(
 
     var outletDetails: Outlet? = null
 
-    Scaffold(snackbarHost = { SnackbarHost(snackBarHostState) }) { innerPadding ->
+    Scaffold(
+        snackbarHost = { SnackbarHost(snackBarHostState) },
+        containerColor = Color.White
+    ) { innerPadding ->
         NavHost(
             navController = navController,
             startDestination = Route.SPLASH,
@@ -254,7 +258,7 @@ fun MainApp(
                         navController.navigateUp()
                     }, onSuccess = {
                         navController.navigate(Route.OUTLET_DASHBOARD) {
-                            popUpTo(Route.PRODUCTS_ITEMS){
+                            popUpTo(Route.PRODUCTS_ITEMS) {
                                 inclusive = true
                             }
                         }

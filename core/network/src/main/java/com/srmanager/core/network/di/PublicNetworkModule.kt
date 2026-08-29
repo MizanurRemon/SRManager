@@ -33,13 +33,16 @@ object PublicNetworkModule {
     @Singleton
     @PublicNetwork(TypeEnum.OKHTTP)
     fun provideOkHttpClient(@PublicNetwork(TypeEnum.INTERCEPTOR) interceptor: PublicInterceptor): OkHttpClient {
-        return OkHttpClient.Builder().apply {
-            val httpLoggingInterceptor = HttpLoggingInterceptor()
-            httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
-            this.addInterceptor(httpLoggingInterceptor).addInterceptor(interceptor)
-                .connectTimeout(60, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS)
-                .writeTimeout(60, TimeUnit.SECONDS)
-        }.build()
+        return OkHttpClient.Builder()
+            .followRedirects(false)
+            .followSslRedirects(false)
+            .apply {
+                val httpLoggingInterceptor = HttpLoggingInterceptor()
+                httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+                this.addInterceptor(httpLoggingInterceptor).addInterceptor(interceptor)
+                    .connectTimeout(60, TimeUnit.SECONDS).readTimeout(60, TimeUnit.SECONDS)
+                    .writeTimeout(60, TimeUnit.SECONDS)
+            }.build()
     }
 
     @Singleton

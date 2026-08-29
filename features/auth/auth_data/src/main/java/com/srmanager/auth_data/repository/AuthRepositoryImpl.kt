@@ -34,19 +34,7 @@ class AuthRepositoryImpl(
                     PreferenceDataStoreConstants.ACCESS_TOKEN,
                     loginResponse.data
                 )
-              /*  preferenceDataStoreHelper.putPreference(
-                    PreferenceDataStoreConstants.REFRESH_TOKEN,
-                    loginResponse.refresh_token
-                )
 
-                authLocalDataSource.deleteUsers()
-                authLocalDataSource.saveUser(
-                    UserEntity(
-                        id = loginResponse.userProfile.id,
-                        userId = loginResponse.userId,
-                        email = loginRequest.userName,
-                    )
-                )*/
                 preferenceDataStoreHelper.putPreference(
                     PreferenceDataStoreConstants.IS_LOGGED_IN,
                     true
